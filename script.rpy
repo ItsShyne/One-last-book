@@ -42,11 +42,11 @@ label start:
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-    ## The Main Part of the Script
-    # This is where your script code is called!
-    # 'persistent.playthrough' controls the playthrough number the player is on i.e (Act 1, 2, 3, 4)
-     
-    jump cap1
+    menu:
+        "¿Quieres ver el tutorial interactivo de uso de imágenes?":
+            jump explicacion_yuri
+        "Empezar la historia directamente":
+            jump cap1
 
 # This label is where the game 'ends' during Act 1.
 label endgame(pause_length=4.0):
