@@ -4,6 +4,14 @@
 # This image text shows the splash message when the game loads.
 image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign=0.5)
 
+image preview_glitch_color:
+    Solid("#22003c")
+    alpha 0.65
+    block:
+        linear 0.05 alpha 0.4
+        linear 0.05 alpha 0.8
+        repeat
+
 ## Main Menu Images
 # These image transforms store the images and positions of the game logo,
 # the menu character sprites and main menu/pause menu screen images.
@@ -193,6 +201,74 @@ image intro:
     2.5
     "white" with Dissolve(0.5, alpha=True)
     0.5
+
+# Transform for Fallen Angel moving blue background
+transform menu_bg_blue_move:
+    subpixel True
+    topleft
+    parallel:
+        xoffset 0 yoffset 0
+        linear 3.0 xoffset -100 yoffset -100
+        repeat
+    parallel:
+        ypos 0
+        time 0.65
+        ease 2.5 ypos -500
+
+# Transform for shaking screen elements during glitch
+transform main_menu_glitch_shake:
+    subpixel True
+    choice:
+        xoffset -15 yoffset 10
+    choice:
+        xoffset 10 yoffset -15
+    choice:
+        xoffset -5 yoffset 5
+    choice:
+        xoffset 15 yoffset 15
+    pause 0.04
+    repeat
+
+# Fallen Angel Main Menu mockup assets for intro
+image fallen_menu_bg:
+    "mod_assets/logos/menu_bg_blue.png"
+    menu_bg_blue_move
+
+image fallen_menu_logo:
+    "mod_assets/logos/fallen_logo.png"
+    subpixel True
+    xcenter 240
+    ycenter 145
+    zoom 0.50
+    menu_logo_move
+
+image fallen_menu_art_y:
+    "mod_assets/logos/Yuri Fallen Angel.png"
+    xalign 0.8
+    yalign 0.5
+    zoom 0.27
+    menu_art_move(0.90, 230, 0.26)
+
+image fallen_menu_art_n:
+    "gui/menu_art_n.png"
+    xcenter 750
+    ycenter 385
+    zoom 0.58
+    menu_art_move(0.58, 230, 0.40)
+
+image fallen_menu_art_s:
+    "gui/menu_art_s.png"
+    xcenter 510
+    ycenter 500
+    zoom 0.68
+    menu_art_move(0.68, 230, 0.40)
+
+image fallen_menu_art_m:
+    "gui/menu_art_m.png"
+    xcenter 1000
+    ycenter 640
+    zoom 1.00
+    menu_art_move(1.00, 250, 0.45)
 
 # This image is a left over from DDLC's development that shows the splash message
 # when the game starts.
@@ -391,17 +467,86 @@ label splashscreen:
     show white
     $ persistent.ghost_menu = False
     $ splash_message = splash_message_default
-    $ config.main_menu_music = audio.t1
-    $ renpy.music.play(config.main_menu_music)
-    show intro with Dissolve(0.5, alpha=True)
-    $ pause(2.5)
-    hide intro with Dissolve(0.5, alpha=True)
+
+    # Show the warning disclaimer first
     if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
         $ splash_message = renpy.random.choice(splash_messages)
     show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
-    $ pause(1.5)
+    $ pause(2.5)
     hide splash_warning with Dissolve(0.5, alpha=True)
     $ pause(0.5)
+
+    # Show Team Salvato logo cleanly with the Fallen Angel theme starting
+    $ config.main_menu_music = audio.t1
+    play music "mod_assets/bgm/Title_reorch.ogg" fadein 1.5
+
+    show expression "mod_assets/logos/fallen_splash.png" as ts_logo:
+        truecenter
+    with Dissolve(0.5, alpha=True)
+    $ pause(2.2)
+    hide ts_logo with Dissolve(0.5, alpha=True)
+    $ pause(0.5)
+
+    # Show Fallen Angel animated main menu mockup (given more time to appreciate)
+    show fallen_menu_bg as f_bg
+    show fallen_menu_art_y as f_art_y
+    show fallen_menu_art_n as f_art_n
+    show fallen_menu_logo as f_logo
+    show fallen_menu_art_s as f_art_s
+    show fallen_menu_art_m as f_art_m
+    show menu_fade as f_fade
+    $ pause(4.2)
+
+    # --- GLITCH 1: Out of Fallen Angel menu ---
+    play sound s_kill_glitch1
+    stop music
+    show screen tear(20, 0.1, 0.1, 0, 100)
+    $ pause(0.3)
+    hide screen tear
+
+    # Go to white and show first text
+    scene white
+    show splash_warning "Espera un momento..." with Dissolve(0.3, alpha=True)
+    $ pause(2.0)
+    hide splash_warning with Dissolve(0.3, alpha=True)
+    $ pause(0.2)
+
+    # --- DISTORTED MAIN MENU PREVIEW (Glitch sound and distorted preview at the same time, under 1s) ---
+    # Show the distorted main menu preview elements using 'at' to preserve their sizes/positions
+    # We zoom the background slightly and center it to prevent white bars on screen edges during shake
+    show menu_bg as preview_bg at main_menu_glitch_shake:
+        truecenter
+        zoom 1.05
+    show menu_art_y as preview_art_y at main_menu_glitch_shake
+    show menu_art_n as preview_art_n at main_menu_glitch_shake
+    show menu_art_s as preview_art_s at main_menu_glitch_shake
+    show menu_art_m as preview_art_m at main_menu_glitch_shake
+    show menu_logo as preview_logo at main_menu_glitch_shake
+    show preview_glitch_color as gc
+
+    # Force a frame update so Ren'Py renders the images on screen before screen tear captures it
+    $ renpy.pause(0.01, hard=True)
+
+    # Play the glitch sound and show the screen tear on top of the rendered images
+    play sound s_kill_glitch1
+    show screen tear(25, 0.1, 0.1, 0, 100)
+    $ pause(0.6)
+    hide screen tear
+
+    # Go to white and show second text
+    scene white
+    show splash_warning "¿Y si la historia fuese diferente?" with Dissolve(0.3, alpha=True)
+    $ pause(2.0)
+    hide splash_warning with Dissolve(0.3, alpha=True)
+    $ pause(0.2)
+
+    # --- FINAL TRANSITION ---
+    scene white
+    $ pause(0.6)
+
+    # Start main menu theme with a smooth recovery dissolve transition
+    $ renpy.transition(Dissolve(1.2))
+    $ renpy.music.play(config.main_menu_music, fadein=2.0)
     $ config.allow_skipping = True
     return
 

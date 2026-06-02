@@ -19,9 +19,10 @@ traceback.txt
 game/saves/
 game/cache/
 
-# OS-generated files
+# OS-generated files & IDE settings
 .DS_Store
 Thumbs.db
+.vscode/
 
 # ==========================================
 # Official DDLC Assets (Excluded from Repo)
