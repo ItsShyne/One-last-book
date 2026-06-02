@@ -139,24 +139,14 @@ transform particle_fadeout:
 # This transform moves the polka-dot menu background to the upper-left.
 transform menu_bg_move:
     subpixel True
-    topleft
-    parallel:
-        xoffset 0 yoffset 0
-        linear 3.0 xoffset -100 yoffset -100
-        repeat
-    parallel:
-        ypos 0
-        time 0.65
-        ease_cubic 2.5 ypos -500
+    xsize 1280
+    ysize 720
 
 # This transform loops the polka-dot moving effect.
 transform menu_bg_loop:
     subpixel True
-    topleft
-    parallel:
-        xoffset 0 yoffset 0
-        linear 3.0 xoffset -100 yoffset -100
-        repeat
+    xsize 1280
+    ysize 720
 
 # This transform moves the menu logo down to it's intended placement in-game.
 transform menu_logo_move:
