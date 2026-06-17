@@ -21,38 +21,59 @@ image menu_logo:
     "mod_assets/DDLCModTemplateLogo.png"
     # im.Composite((512, 512), (0, 0), recolorize("mod_assets/logo_bg.png"), (0, 0), "mod_assets/logo_fg.png")
     subpixel True
-    xcenter 240
-    ycenter 120
+    xcenter 180
+    ycenter 150
     zoom 0.60
     menu_logo_move
 
+screen interactive_logo():
+    add "menu_logo"
+
+#este hace que el menu se mueva, aunque me critiquen
+transform bg_move:
+    xoffset 0
+    ease 4 xoffset -70
+    ease 4 xoffset 0
+    repeat
 # This image shows the main menu polka-dot image.
 image menu_bg:
-    topleft
     "gui/menu_bg.png"
+    topleft
+    bg_move
     # recolorize("gui/menu_bg.png", "#ffdbf0", "#fff", 1)
-    menu_bg_move
-
+    
+#estew hace que el menu del juego se mueva aunque me critiquen    
+transform menu_game_move:
+    xoffset 0
+    ease 3 xoffset -20
+    ease 4 xoffset 0
+    repeat
 # This image shows the pause menu polka-dot image.
 image game_menu_bg:
     topleft
-    "gui/menu_bg.png"
+    "gui/menu_game.png"
     # recolorize("gui/menu_bg.png", "#ffdbf0", "#fff", 1)
-    menu_bg_loop
+    menu_game_move
+    
 
 # This image transform shows the white fading effect in the main menu.
 image menu_fade:
     "white"
     menu_fadeout
-
 # These images show each respective characters' menu sprite and positions/animations.
+transform yuri_menu:
+    yoffset 0
+    ease 1.5 yoffset -28
+    ease 2 yoffset 0
+    repeat
+
 image menu_art_y:
     subpixel True
     "gui/menu_art_y.png"
-    xcenter 600
-    ycenter 335
+    xcenter 800
+    ycenter 370
     zoom 0.60
-    menu_art_move(0.54, 600, 0.60)
+    yuri_menu
 
 image menu_art_n:
     subpixel True
@@ -376,7 +397,7 @@ label splashscreen:
     if not persistent.special_poems:
         python hide:
             persistent.special_poems = [0,0,0]
-            
+
             # This sets the range of poem numbers to pick from. In base DDLC,
             # there are 11 special poems.
             a = list(range(1,12))
@@ -467,11 +488,17 @@ label splashscreen:
     show white
     $ persistent.ghost_menu = False
     $ splash_message = splash_message_default
+    $ config.main_menu_music = audio.t1
+    $ renpy.music.play(config.main_menu_music)
+    show intro with Dissolve(0.5, alpha=True)
+    $ pause(2.5)
+    hide intro with Dissolve(0.5, alpha=True)
 
     # Show the warning disclaimer first
     if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
         $ splash_message = renpy.random.choice(splash_messages)
     show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
+    $ pause(1.5)
     $ pause(2.5)
     hide splash_warning with Dissolve(0.5, alpha=True)
     $ pause(0.5)
@@ -587,7 +614,7 @@ label after_load:
     $ persistent.ghost_menu = False
     $ style.say_dialogue = style.normal
 
-    
+
     # Check if we are in the Yuri Death CG scene in Act 2 and if so, redirect
     # back to the scene. This feature has been commented out for mod safety reasons 
     # but can be used if needed.
