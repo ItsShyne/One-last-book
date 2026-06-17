@@ -28,9 +28,9 @@ init python:
 default translations = scan_translations()
 
 # Enables the ability to add more settings in the game such as Uncensored Mode.
-default extra_settings = True
+default extra_settings = False
 # If you are using the Extras Menu feature, set this line to True.
-default enable_extras_menu = False
+default enable_extras_menu = True
 # If you are going to use extra languages, set this to True.
 default enable_languages = False
 
@@ -419,14 +419,14 @@ screen quick_menu():
             yalign 0.995
 
             #textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("Historia") action ShowMenu('history')
+            textbutton _("Saltear") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Load") action ShowMenu('load')
+            textbutton _("Guardar") action ShowMenu('save')
+            textbutton _("Cargar") action ShowMenu('load')
             #textbutton _("Q.Save") action QuickSave()
             #textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Settings") action ShowMenu('preferences')
+            textbutton _("Ajustes") action ShowMenu('preferences')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -483,18 +483,18 @@ screen navigation():
                 if persistent.playthrough == 1:
                     textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
                 else:
-                    textbutton _("New Game") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
+                    textbutton _("Iniciar historia") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
 
             else:
 
-                textbutton _("History") action [ShowMenu("history"), SensitiveIf(renpy.get_screen("history") == None)]
+                textbutton _("Historia") action [ShowMenu("history"), SensitiveIf(renpy.get_screen("history") == None)]
 
-                textbutton _("Save Game") action [ShowMenu("save"), SensitiveIf(renpy.get_screen("save") == None)]
+                textbutton _("Guardar partida") action [ShowMenu("save"), SensitiveIf(renpy.get_screen("save") == None)]
 
-            textbutton _("Load Game") action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
+            textbutton _("cargar partida") action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
 
             if enable_extras_menu:
-                textbutton _("Extras") action [ShowMenu("extras"), SensitiveIf(renpy.get_screen("extras") == None)]
+                textbutton _("Extras...") action [ShowMenu("extras"), SensitiveIf(renpy.get_screen("extras") == None)]
 
             if _in_replay:
 
@@ -502,22 +502,22 @@ screen navigation():
 
             elif not main_menu:
                 if persistent.playthrough != 3:
-                    textbutton _("Main Menu") action MainMenu()
+                    textbutton _("Menú principal") action MainMenu()
                 else:
-                    textbutton _("Main Menu") action NullAction()
+                    textbutton _("Menu principal") action NullAction()
 
-            textbutton _("Settings") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
+            textbutton _("Ajustes") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
-            if not enable_extras_menu:
-                textbutton _("Credits") action ShowMenu("about")
+           
+            textbutton _("Creditos") action ShowMenu("about")
 
             if renpy.variant("pc"):
 
                 ## Help isn't necessary or relevant to mobile devices.
-                textbutton _("Help") action [Help("README.html"), Show(screen="dialog", message="The help file has been opened in your browser.", ok_action=Hide("dialog"))]
+                # textbutton _("Ayuda") action [Help("README.html"), Show(screen="dialog", message="The help file has been opened in your browser.", ok_action=Hide("dialog"))]
 
                 ## The quit button is banned on iOS and unnecessary on Android.
-                textbutton _("Quit") action Quit(confirm=not main_menu)
+                textbutton _("Salir") action Quit(confirm=not main_menu)
         else:
             timer 1.75 action Start("autoload_yurikill")
 
@@ -572,7 +572,7 @@ screen main_menu():
         add "menu_particles"
         add "menu_particles"
         add "menu_particles"
-        add "menu_logo"
+        use interactive_logo()
     if persistent.ghost_menu:
         add "menu_art_s_ghost"
         add "menu_art_m_ghost"
@@ -794,7 +794,7 @@ screen about():
                 yfit True
 
             vbox:
-                add Transform("C:\renpy\One Last Book\game\mod_assets\DDLCModTemplateLogo.png", size=(200,200)) xalign .5
+                add Transform("/mod_assets/DDLCModTemplateLogo.png", size=(450,450)) xalign .5
 
                 null height 5
                 
@@ -808,6 +808,18 @@ screen about():
                 ## Do not touch/remove these unless the © or – symbol isn't available in your font.
                 ## You may add things above or below it.
                 ## If you are not going with a splashscreen option, this first line MUST stay in the mod.
+                text "\"One Last Book\" es un mod creado por el equipo de Doki Nova. Como un remake de Fallen Angel\n\n" xalign .5
+                text "PROGRAMACIÓN:\n\n" xalign .5
+                text "Minijuegos: Falkner\n\n" xalign .5
+                text "Historia: Leni\n\n" xalign .5
+                text "Port a android: Slytharbez\n\n" xalign .5
+                text "ARTE:\n\n" xalign .5
+                text "sprites de Yuri en el baño y otro: Parraga\n\n" xalign .5
+                text "hacerse wey: Saorin\n\n" xalign .5
+                text "Gui y MC: enpect\n\n" xalign .5
+                text "chibis: Artful\n\n" xalign .5
+                text "Gui: Ledezx\n\n" xalign .5
+
                 text "Made with bronya_rand's {a=https://github.com/Bronya-Rand/DDLCModTemplate2.0}DDLC Mod Template 2.0{/a}\nCopyright © 2019-" + str(datetime.date.today().year) + " Azariel Del Carmen (bronya_rand). All rights reserved.\n"
                 text "Doki Doki Literature Club. Copyright © 2017 Team Salvato. All rights reserved.\n"
                 text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n[renpy.license!t]")
@@ -853,14 +865,14 @@ screen save():
 
     tag menu
 
-    use file_slots(_("Save"))
+    use file_slots(_("Guardar"))
 
 
 screen load():
 
     tag menu
 
-    use file_slots(_("Load"))
+    use file_slots(_("Cargar"))
 
 init python:
     def FileActionMod(name, page=None, **kwargs):
@@ -1146,7 +1158,7 @@ screen ddlc_preferences():
         vbox:
             
             hbox:
-                label _("Text Speed")
+                label _("Velocidad del texto")
                 
                 null width 5
 
@@ -1156,7 +1168,7 @@ screen ddlc_preferences():
             bar value FieldValue(_preferences, "text_cps", range=180, max_is_zero=False, style="slider", offset=20)
 
             hbox:
-                label _("Auto-Forward Time")
+                label _("Tiempo del avance automatico")
                 
                 null width 5
                 
@@ -1168,7 +1180,7 @@ screen ddlc_preferences():
             
             if config.has_music:
                 hbox:
-                    label _("Music Volume")
+                    label _("Volumen de la música")
                     
                     null width 5
                 
@@ -1180,7 +1192,7 @@ screen ddlc_preferences():
             if config.has_sound:
 
                 hbox:
-                    label _("Sound Volume")
+                    label _("volumen del sonido")
                     
                     null width 5
                 
@@ -1209,7 +1221,7 @@ screen ddlc_preferences():
             if config.has_music or config.has_sound or config.has_voice:
                 null height gui.pref_spacing
 
-                textbutton _("Mute All"):
+                textbutton _("silenciar todo"):
                     action Preference("all mute", "toggle")
                     style "mute_all_button"
 
@@ -1230,7 +1242,7 @@ screen template_preferences():
         
         vbox:
             style_prefix "name"
-            label _("Player Name")
+            label _("nombre del jugador")
             
             null height 3
             
@@ -1706,7 +1718,7 @@ screen name_input(message, ok_action):
                 style "confirm_prompt"
                 xalign 0.5
 
-            input default "" value VariableInputValue("player") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+            input default "" value VariableInputValue("player") length 12 allow "AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚVWXYZaábcdeéfghiéjklmnñoópqrstuúvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
             #additionally added Cyrillic characters to support Russian names for MC
 
             hbox:
@@ -1794,7 +1806,7 @@ screen confirm(message, yes_action, no_action):
                 #     textbutton _("Yes") action NullAction()
                 #     textbutton _("No") action Hide("confirm")
                 # else:
-                textbutton _("Yes") action yes_action
+                textbutton _("Si") action yes_action
                 textbutton _("No") action no_action
 
     ## Right-click and escape answer "no".

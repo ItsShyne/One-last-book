@@ -7,14 +7,14 @@
 # Usamos 'yuri_parraga' como la primera palabra de la etiqueta (el tag), de esta forma
 # Ren'Py sabe que pertenecen al mismo personaje y reemplazará la expresión automáticamente al mostrar otra.
 
-image yuri_parraga enojada = "mod_assets/images/yuri/yuri_parraga_caraenojada.webp"
-image yuri_parraga llorando = "mod_assets/images/yuri/yuri_parraga_carallorando.webp"
-image yuri_parraga llorando_fuerte = "mod_assets/images/yuri/yuri_parraga_carallorandofuerte.webp"
-image yuri_parraga pensativa = "mod_assets/images/yuri/yuri_parraga_carapensativa.webp"
-image yuri_parraga triste = "mod_assets/images/yuri/yuri_parraga_caratriste.webp"
+image yuri_parraga enojada = "images/yuri/yuri_parraga_caraenojada.webp"
+image yuri_parraga llorando = "images/yuri/yuri_parraga_carallorando.webp"
+image yuri_parraga llorando_fuerte = "images/yuri/yuri_parraga_carallorandofuerte.webp"
+image yuri_parraga pensativa = "images/yuri/yuri_parraga_carapensativa.webp"
+image yuri_parraga triste = "images/yuri/yuri_parraga_caratriste.webp"
 
 # 2. GUION DEL TUTORIAL
-label explicacion_yuri2:
+label explicacion_yuri:
     
     # Configuramos el fondo del salón de clases e iniciamos con una transición de disolvencia completa
     scene bg class_day

@@ -96,6 +96,9 @@ define audio.stab = "sfx/stab.ogg"
 define audio.yuri_kill = "sfx/yuri-kill.ogg"
 define audio.crack = "sfx/crack.ogg"
 define audio.eyes = "sfx/eyes.ogg"  
+define audio.heart = "sfx/brvhrtz-heartbeat-01-brvhrtz-225058.mp3"
+define audio.lluvia = "sfx/liecio-calming-rain-257596.mp3"
+define audio.trueno = "sfx/u_q2hb2391vb-thunder-clap-521194.mp3"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -1465,3 +1468,5 @@ default sayori_confess = True
 
 # This variable tracks whether we read Natsuki's 3rd poem in Act 2.
 default natsuki_23 = False
+
+
