@@ -4,81 +4,94 @@ label cap2:
     $ ach_good_ending = True
     $ ach_secret_scene = True
     $ ach_all_yuri_poems = True
-    "Comienza el capítulo 2..."
     
+    stop music fadeout 2.0
     scene bg corridor
 
     with dissolve_scene_full
 
-    "Caminamos por el pasillo, no sabía que el salón estaba en el ultimo piso de la escuela, Comunmente subimos aqui por materiales"
+    "Seguí a Sayori por los pasillos, Comunmente subimos aqui por materiales."
 
-    "Sayori abrió la puerta con fuerza la puerta del salon"
+    "Sé que es un club con poca gente pero el que este tan alejado no ayuda"
 
-    player "¿No era más fácil abrirla con gentileza?"
+    "Sayori abrió la puerta del salón con fuerza."
+
+    player "¿No era más fácil abrirla gentilmente?"
 
     scene bg club_day
 
-    show sayori 1s zorder 2 at t11
+    show sayori 1s zorder 2 at f11
 
     s "¡¡¡Chicas!!! ¡¡¡traje a un nuevo miembro!!!"
+
+    show sayori 1s zorder 2 at t11
 
     player "No lo grites sayori..."
 
     "¿Chicas?"
 
-    show sayori zorder 2 at thide
     hide sayori
 
     with wipeleft_scene 
     #sirve para hacer una transición de izquierda a derecha, también se puede usar wiperight_scene, wipeup_scene, wipedown_scene
 
-    "movi mi mirada de Sayori hacia una chica de pelo morado"
+    "Mi mirada se centró en una chica de pelo morado."
 
-    show yuri 2b zorder 2 at t11
+    show yuri 2b zorder 2 at f11
 
-    y "bienvenido al club de literatura, es un placer conocerte [player]"
+    y "Bienvenido al club de literatura, es un placer conocerte [player]."
 
-    y "Sayori siempre nos habla bien de ti"
+    show yuri turned rup uniform happ om ce zorder 2 at f11
 
-    y "y tenia ganas de poder conocerte finalmente"
+    y "Sayori siempre nos habla bien de ti."
 
-    show yuri 4a zorder 2 at t11   
+    y "Me alegra mucho poder conocerte."   
 
-    y "(espera porque dije eso en voz alta?)"
+    show yuri turned lup rup uniform nerv cm oe zorder 2 at t11
 
-    y "uh..."
+    y "(¿Espera por qué dije eso en voz alta?)"
 
-    "dios... es como si viera un angel en persona"
+    show yuri turned lup rup uniform nerv cm oe zorder 2 at f11
 
-    "es tan maravillosa"
+    y "Uh..." 
 
-    "nunca la he visto en el instituto, hubiera recordado esos hermosos ojos"
+    show yuri turned lup rup uniform nerv cm oe zorder 2 at t11
 
-    "su cabello largo y morado... el fisico que cualquier chica desearia tener"
+    pause 1.0
 
-    "está encendido el aire acondicionado?"
+    show yuri turned rup uniform lsur cm oe zorder 2 at t11
 
-    n "enserio era necesario un chico?"
+    "Dios... es como si viera un angel en persona."
 
-    show yuri 1a zorder 2 at t22
+    "Es tan linda."
 
-    show natsuki 1h zorder 2 at t21
+    "Nunca la he visto en el instituto, hubiera recordado sus hermosos ojos violeta."
 
-    n "El club se va a sentir incomodo con el"
+    "Su cabello largo y morado... Esa personalidad tan tierna."
 
-    show yuri 1 zorder 2 at t32
+    "Luce como un sueño..."
+
+    n "¿Enserio era necesario un chico?"
+
+    show yuri shy neut cm oe zorder 2 at t22
+
+    pause 0.5
+
+    show natsuki 1h zorder 2 at f21
+
+    n "Qué incómodo será el club desde ahora."
+
+    show yuri shy neut cm oe zorder 2 at t32
 
     show natsuki 2g zorder 2 at t31
 
-    show monika 4b zorder 2 at t33
+    show monika 4b zorder 2 at f33
 
     m "¡Ey! que bonita sorpresa [player]"
 
-    show yuri 1 zorder 2 at t32
-
     show natsuki 2g zorder 2 at t31
 
-    show monika 2k zorder 2 at t33
+    show monika 2k zorder 2 at f33
 
     m "bienvenido al club de literatua"
 
@@ -92,104 +105,111 @@ label cap2:
 
     show yuri 1d zorder 2 at t11
 
-
-
     "¡Qué tiene a una chica tan linda!"
 
     show yuri 1e zorder 2 at t21
 
-    show natsuki 2w zorder 2 at t22
+    show natsuki 2w zorder 2 at f22
 
     n "¿Qué nunca has visto a una mujer?"
 
     show yuri 1e zorder 2 at t21
 
-    show natsuki 2u zorder 2 at t22
+    show natsuki turned anno cm oe zorder 2 at t22
 
-    player "Dis-disculpa"
+    player "\"Dis-disculpa.\""
 
     show yuri 1w zorder 2 at t42
 
     show natsuki 2w zorder 2 at t44
 
-    y "Natsuki... recuerda que es nuestro nuevo miembro"
+    y "Natsuki... recuerda que es nuestro nuevo miembro."
 
     show yuri 2i zorder 2 at t42
 
-    show natsuki 3i zorder 2 at t44
+    hide yuri
 
-    "parece que la chica de cabello rosado tiene una actitud un poco hostil"
+    show natsuki 3i zorder 2 at t11
 
-    "por su estatura será alguien de primer año asi que no vale la pena enojarse con ella"
+    "Parece que la chica de cabello rosado es un poco dificil..."
 
-    "¿Le dijo Natsuki?, probablemente sea quien hizo los pastelitos"
+    "Por su apariencia será alguien de primer año asi que no vale la pena enojarse con ella."
+
+    "¿Le dijo Natsuki? probablemente sea quien hizo los pastelitos."
 
     show yuri 2i zorder 2 at t32
 
     show natsuki 3i zorder 2 at t33
 
-    show sayori 2q zorder 2 at t31
+    show sayori turned happ om ce zorder 2 at f31
 
-    s "tranqui [player], solo ignorala cuando esté de mal humor"
+    s "tranqui [player], solo ignorala cuando esté de mal humor."
 
-    "Sayori se acercó a mi sonando sus pasos contra el suelo"
+    show sayori turned happ om ce zorder 2 at f31
 
-    show yuri zorder 2 at thide
+    "Sayori se acercó a mi sonando sus pasos contra el suelo."
+
     hide yuri
 
-    show Sayori zorder 2 at thide
     hide Sayori
 
-    show natsuki 3f zorder 2 at t11
+    show natsuki 3f zorder 2 at f11
 
-    s "¡De todos modos! ella es Natsuki"
+    s "¡De todos modos! ella es Natsuki."
 
-    show natsuki zorder 2 at thide
     hide natsuki 
 
     show yuri 3a zorder 2 at t11
 
-    s "yuri"
+    s "Yuri."
 
-    show yuri zorder 2 at thide
     hide yuri 
 
-    show monika 3a zorder 2 at t11
+    show monika lean happ om ce zorder 2 at t11
 
-    s "monika"
+    s "Monika."
 
-    show monika zorder 2 at thide
     hide monika
 
-    show sayori 1s zorder 2 at t11
+    show sayori 1s zorder 2 at f11
 
     s "¡y tu ya me conoces!"
 
     show sayori zorder 2 at thide
     hide sayori 
 
-    show yuri 1d zorder 2 at t11
+    show yuri shy happ cm oe zorder 2 at t11
 
-    "aunque Sayori me este presentando a las demás chicas no puedo quitar la mirada de Yuri..."
+    "Aunque Sayori me este presentando a las demás chicas no puedo quitar la mirada de Yuri..."
 
-    "monika se acerco a mi con una sonrisa amable"
+    "Monika se acercó a mi con una amable sonrisa."
 
     show yuri zorder 2 at thide
     hide yuri 
 
-    show sayori 1a zorder 2 at t21 
+    show sayori turned lsur cm oe zorder 2 at t21 
 
-    show monika 2b zorder 2 at t22
+    show monika forward happ om oe zorder 2 at f22
 
-    m "de hecho [player] y yo estuvimos en la misma clase el año pasado"
+    m "De hecho [player] y yo estuvimos en la misma clase el año pasado"
 
-    "ella es Monika recuerdo que estuvimos en la clase de Quimica... prefiero olvidar lo que pensaba el año pasado"
+    show monika forward happ cm oe zorder 2 at t22
+
+    "Ella es Monika recuerdo perfectamente que estuvimos en la clase de Quimica el año pasado..."
+    
+    "Prefiero olvidar lo que pensaba el año pasado."
+
+    show monika forward happ om oe zorder 2 at f22
 
     m "que alegria es verte denuevo [player]"
 
-    player "si... es un gusto también"
+    show monika forward happ cm oe zorder 2 at t22
 
-    s "¡ven [player]! ya tengo mucha hambre"
+    player "\"si... es un gusto también\""
+
+    show sayori turned happ om oe zorder 2 at f21
+
+    s "¡ven [player]! ya tengo mucha hambre."
 
     show sayori zorder 2 at thide
     hide sayori 
@@ -199,27 +219,33 @@ label cap2:
 
 
 
-    "Sayori me tomó de la mano y me sentó en un espacio al lado de una silla vacia"
+    "Las chicas hicieron un un circulo con los pupitres mientras que Sayori me sentó a su lado."
 
-    "al ver a las demas chicas excepto a Yuri supe de quien era el asiento"
+    "Al ver a las demas chicas excepto a Yuri supe de quien era el asiento faltante a mi lado."
 
-    s "bueno ya regreso"
+    show sayori tap nerv m1 zorder 2 at f21
+
+    s "Ya regreso~"
 
     with wipeleft_scene
 
-    show sayori 4p zorder 2 at t11
+    hide sayori
 
-    s "disculpa realmente no me podia aguantar las ganas de los pastelitos, Natsuki es la mejor cocinera... o pastelera?"
+    show sayori 4p zorder 2 at f11
+
+    s "Realmente no me podia aguantar las ganas de comer los pastelitos, Natsuki es la mejor cocinera... ¿o pastelera?"
 
     show sayori 4q zorder 2 at t22
 
-    show natsuki 3f zorder 2 at t21
+    show natsuki 3f zorder 2 at f21
 
     n "¡Sayori!"
 
+    show natsuki 3f zorder 2 at t21
+
     stop music fadeout 2.0
 
-    "le pelirosa agarro bruscamente la bandeja pero debido al movimeinto terminó cayendose al suelo"
+    "Le pelirosa agarró bruscamente la bandeja pero debido al movimiento ella terminó cayendo al suelo."
 
     play sound closet_close
 
@@ -234,7 +260,7 @@ label cap2:
 
     play music audio.t9
 
-    player "¿Te encuentras  bien?"
+    player "\"¿Te encuentras  bien?\""
 
     "me levanté de mi asiento, mientra Sayori ayudaba a Natsuki a levantarse. Recogí la bandeja"
 
@@ -244,27 +270,33 @@ label cap2:
     show monika zorder 2 at thide
     hide monika
 
-    show natsuki 2b zorder 2 at t11
+    show natsuki 2b zorder 2 at f11
 
-    n "U-uh... mi cabeza... ¿¡y los pastelitos!? ¨[player]¨ de-"
+    n "U-uh... mi cabeza... ¿¡y los pastelitos!? [player] deja lo-"
 
-    show natsuki 12g zorder 2 at t11
+    show natsuki turned curi cm oe zorder 2 at t11
 
-    "aunque una docena de pastelitos estaban caidos en el suelo logré rescatar algunos"
+    "Aunque un par de pastelitos estaban caidos en el suelo logré rescatar algunos."
 
-    "todos estan decorados como si fueran gatitos muy tiernos"
+    show natsuki turned lsur cm oe zorder 2 at t11
 
-    show natsuki 12i zorder 2 at t11
+    "Todos estan decorados como si fueran gatitos, realmente se mira el talento."
 
-    n "L-lo siento... Quería mostrarlo por mi misma realmente tarde mucho haciendolo..."
+    show natsuki turned fs neut om oe zorder 2 at f11
 
-    "Natsuki se ve triste solo mira los pastelitos en el suelo"
+    n "L-lo siento... Quería mostrarlo por mi misma realmente me esforcé mucho haciendolo..."
+
+    show natsuki turned fs neut cm oe zorder 2 at t11
+
+    "Natsuki está muy centrada en los pastelitos del suelo."
     
     show sayori 1f zorder 2 at t21
 
-    show natsuki 12i zorder 2 at t22
+    show natsuki turned fs neut cm oe zorder 2 at t22
 
-    "Sayori también"
+    "Sayori también."
+
+    "como puedo ayudar... con la bandeja en mi mano me di cuenta que aun quedaban unos pastelitos"
 
     player "\"oigan esta bien... miren no todos cayeron al piso...\""
 
@@ -272,15 +304,17 @@ label cap2:
 
     show natsuki 1n zorder 2 at t22
 
-    "Agarré la bandeja con cuidado y se la pase a Natsuki, aun quedaban unos 6 pastelitos"
-
-    player "pues... se miran muy delicisoso ¿no?"
+    player "\"y... se miran muy delicisoso ¿no?\""
 
     show sayori 3b zorder 2 at t21
 
-    show natsuki 4b zorder 2 at t22
+    show natsuki 4b zorder 2 at f22
 
     n "s-si..."
+
+    show natsuki 4b zorder 2 at t22
+
+    show sayori  zorder 2 at f21
 
     s "¡siii! aún hay pastelitos"
 
@@ -950,7 +984,7 @@ label cap2:
 
     player "¿sabes? el personaje principal me recuerda a ti"
 
-    yuri "¿enserio?"
+    y "¿enserio?"
 
     player "buneo... por lo menos en algunos gestos que sueles hacer"
 
@@ -1096,7 +1130,7 @@ label cap2:
 
     player "si de hecho eso lo vi cuando me lo pasate"
 
-    Y "¿¡y-y l-los leistes!?"
+    y "¿¡y-y l-los leistes!?"
 
     #añadie dialogo sobre lo que trate el poema, todavia no decidido
     
@@ -1527,7 +1561,7 @@ label cap2:
 
     y "¡uuuu-!"
 
-    Y "el piso está mojado"
+    y "el piso está mojado"
 
     y "perdón no estaba prestando atención de-de"
 
@@ -2379,11 +2413,342 @@ label cap2:
 
     "pero"
 
-    "no sé que es el amor..."
+    "no sé que es amar..."
 
     y "[player]... yo no tengo amigos"
 
-    player "eso no es cierto, me tienes a mi. Haré todo lo posible con tal que nadie ni nada te lastime"
+    player "eso no es cierto"
+  
+    player "me tienes a mi. Prometo hacer todo lo posible con tal que nada ni nadie te lastime"
+
+    y "..."
+
+    "quizás este sea un momento indicado"
+
+    "agarro mi mochila y de ella saco una hoja de papel"
+
+    player "sé que no estamos en el club, pero"
+
+    player "escribí esto... para ti"
+
+    y "¿para mi?"
+
+    player "es un sentimiento que queria plasmarlo"
+
+    y "pe-pero, no escribí nada"
+
+    player "esta bien ¿te gustaría leerlo?"
+
+    "estiro mi mano para darle el poema a Yuri"
+
+    "ella asiente y sostiene la carta"
+
+    #aqui se agrega el poema 
+
+    "derrepente, ella empieza a lagrimear. Sus mejillas quedan mojadas por las gotas de sus ojos"
+
+    player "Yuri, realmente quisiera apoyarte"
+
+    player "Ayer vi como Monika te dijo algo en voz baja y como me evitaste"
+
+    y "y-yo..."
+
+    "La voz de Yuri se quebró, su manga se volvió rojiza. Ella no habia limpiado sus brazos"
+
+    "Yuri se levantó, antes que siguiera la agarré de la mano"
+
+    y "[player] por favor..."
+
+    player "confia en mi"
+
+    "aunque no muy segura, me dio suavemente su mano. la manga de su mano bajo sola"
+
+    "Yuri..."
+
+    "Yuri tiene varios cortes... nuevos, viejos... ligeros y... profundos"
+
+    "Cicatrices sobre cicatrices"
+
+    "no puedo quedarme quiero observando"
+
+    player "¿tienes un botiquin o curas?"
+
+    y "creo que si..."
+
+    #transición casa de MC 
+
+    "10:43 AM"
+
+    "Este sábado es lo que necesito luego de una semana tan complicada"
+
+    "Yuri, pudo confiar en mi y yo en ella e incluso me dió su número"
+
+    "pero aun me inquieta las demás"
+
+    "Sayori evadiendome aunque seamos mejores amigos... eso creo"
+
+    "Natsuki también parece tener un problema que aún no puedo saber"
+
+    "desde ayer he estado recibiendo mensajes de un numero miesterioso"
+
+    "se me está complicando seguir el ritmo a todo..."
+
+    "pero Yuri"
+
+    "luego de curar su heridas quedamos en que ibamos a salir a salir hoy"
+
+    "me fui con ansiedad de su casa, que ella no pudiera controlar sus impulsos..."
+
+    "es un dia nublado hayá afuera"
+
+    #cambio de escena a la cocina
+
+    "saqué mi telefono para escribirle a Yuri, desde que me fuí de su casa no hemos hablado."
+
+    player "Hola Yuri, estoy saliendo de mi casa pero antes de ir quería saber como estás"
+
+    "Se que este día será bueno para ambos"
+
+    "*bzzt*"
+
+    y "Ya me encuentro lista, gracias por preguntar."
+
+    #cambio de escena suave
+
+    "me acerqué a la puerta de la casa"
+
+    "toque el timbre"
+
+    #pausa de unos 5 segundos con sonido de timbre
+
+    "escuché como la puerta se abria"
+
+    y "hola [player]"
+
+    player "pensaba que me ibas a dejar plantando"
+
+    y "u-uh no claro que no haria eso"
+
+    player "no lo digo enserio... ?deberiamos irnos?"
+
+    y "¡si! porsupuesto"
+
+    #escena de transición 
+
+    "Yuri continua mi paso"
+
+    "aunque un poco detrás de mi"
+
+    "hay muchas plazas en la ciudad"
+
+    "restaurantes, tiendas, centros comerciales ¿a donde le gustará ir a Yuri?"
+
+    "mientras seguimos recoriendo noto una cafeteria, a el ella le gusta el té y tranquilidad"
+
+    player "¿te gustaría ir a esa cafeteria?"
+
+    y "me parece bien, en realidad suelo visitar este lugar frecuentemente"
+
+    "entramos, mientras esperamos en la fila miro el menú escrito arriba"
+
+    player "ya que sueles ir aqui ¿alguna recomendación?"
+
+    y "uh, hay demasiadas cosas para probar, no quisiera elegir mal"
+
+    player "tranquila, no soy tan exigente"
+
+    y "supongo que... podrías beber un té blanco"
+
+    player "me parece bien y que escogerás?"
+
+    y "un té Oolong"
+
+    player "oh creo que ese fué el bebimos mientras estavamos en el club"
+
+    y "si..."
+
+    "si, el club"
+
+    "Sayori, despues de terminar esta cit... salida iré a ver como está ella"
+
+    y "(hola me da un té Oolong)"
+
+    y "(¿hola me podria dar un té OOlong?)"
+
+    "me volteo hacia Yuri"
+
+    player "¿me estabas diciendo algo?"
+
+    y "estaba practicando lo que iba pedir"
+
+    y "¿no te sueles preparar mentalmente para pedir algo?"
+
+    player "¿qué?"
+
+    y "oh si... que verguenza..."
+
+    y "que que vergonzoso"
+
+    "mierda, como podría recuperar la situación"
+
+    #aqui una elección 
+
+    player "oye tranquila, tu ya habías decidido por mi y supongo que es más dificil elegir por cuenta propia"
+
+    player "ademas es muy lindo"
+
+    y "¡que!"
+    
+    "vendedor" "siguiente"
+
+    "vendedor" "buenos días ¿qué les gustaría ordenar?"
+
+    player "un té blanco para mi porfavor"
+
+    "vendedor" "anotado y usted señorita?"
+
+    y "uhhh... u-un"
+
+    y "u-un... t-... té OO-"
+
+    "cliente" "¿oigan podrían apurarse? tengo un tiempo limitado"
+
+    "vendedor" "un té ¿de?"
+
+    "el vendedor deja de mirar a Yuri y voltea a ver a la fila de atrás"
+
+    #aqui eleccion de si pedir por yuri o deja que Yuri elija, la hisotira como tal seguira aqui por una manera de la ruta buena
+
+    player "a ella le gustaría tun té Oolong"
+
+    "vendedor" "té Oolong y blanco ¿sería todo?"
+
+    player "si, gracias"
+
+    "pago la orden, luego junto a Yuri vamos a una mesa vacia"
+
+    y "l-lo hice terrible... y seguramente te hice pasar pena, losiento"
+
+    player "no hay de que disculparse Yuri"
+
+    y "pe-pero ese señor nos grito..."
+
+    y "te avergonzé ¿verdad?"
+
+    player "Yuri, si quieres saber mi respuesta deja de voltear la mirada"
+
+    player "Yuri está bien, no estoy avergonzado ni nada parecido y sobretodo"
+
+    player "a quien le importa las personas que gritan por cualquier minima cosa"
+
+    player "no te preocupes por lo que digan los demás"
+
+    y "me preocupo por lo que digas tu..."
+
+    player "entonces todoe está bien, en realidad yo deberia de pedir perdón"
+
+    player "te distraje mientras te preparabas para pedi"
+
+    y "gracias... ordenaste por mi, enserio lo aprecio"
+
+    player "no hay problema"
+
+    "*bzzt*"
+
+    "el camarero pone las ordenes en la mesa"
+
+    "*bzzt*"
+
+    player "y ¿ya ha-"
+
+    "*bzzt*"
+
+    y "puedes contestar, no me molesta"
+
+    player "no, solo lo apagaré un rato, dame un momento"
+
+    "agarré mi celular y vi los mensajes del numero desconocido"
+
+    "???" "ya vas a responder o estas ocupado \"bebiendo té\""
+
+    player "jodete"
+
+    "apagué mi celular"
+
+    player "sabes, me gustaba pasar tiempo en el club contigo"
+
+    y "a mi tambien, era agradable... eres"
+
+    player "me uní al club por unos cupcakes y Sayori"
+
+    y "siendo honesta, cuando me uní al club pensé que podria encontrar personas con gustos similares a los mios"
+
+    y "como la pasión que tengo por lo libros, siempre me he sentido un poco aislada de los demas"
+
+    y "tenia la esperanza de poder deja de ser tan indiferente de los demas..."
+
+    y "parece que no salió como me esperaba"
+
+    y "Monika"
+
+    y "ella me invitó al club primeramente"
+
+    y "no quisiera que la odies... por mi culpa"
+
+    y "sé que es una buena persona..."
+
+    "¿una buena persona?"
+
+    "una buen persona no diría que te suicides"
+
+    "pero, una buena persona tampoco diria que va a matar a alguien..."
+
+    player "prefiero de no hablar de ella pero"
+
+    player "estas equivocada en lo de socializar, me refiero. Estas aquí conmigo"
+
+    player "tienes a Natsuki que si excluyes las diferencias estoy seguro que serian buenas amigas"
+
+    player "también a Sayori quien estoy seguro te considera su amiga"
+
+    player "me encanta estar contigo hoy, pero odio que la razon por la que estemos aqui sea Monika"
+
+    y "tienes razón, denuevo"
+
+    "Yuri me sonrie, dejando su timidez atrás"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    
+
+
+
+
+
+
 
     
 

@@ -1470,3 +1470,8 @@ default sayori_confess = True
 default natsuki_23 = False
 
 
+transform animation_title_screen:
+    xoffset -300
+    alpha 0.0
+
+    ease .5 xoffset 0 alpha 1.0
