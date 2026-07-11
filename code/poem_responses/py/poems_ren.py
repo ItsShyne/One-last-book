@@ -136,6 +136,7 @@ class Poem(renpy.text.text.Text):
         :return music: A formatted music string.
         :rtype: str
         """
+<<<<<<< HEAD
         if not music:
             return music
 
@@ -152,6 +153,23 @@ class Poem(renpy.text.text.Text):
             return f"<{content}>{path}"
 
         return f"<from {pos} {music}>"
+=======
+        music_match_pattern = re.compile(r"^<.*?>")
+        track_partition_pattern = re.compile(r"from( *)((\d+\.\d*)|(\d+)|(\.\d+))")
+
+        if music_match_pattern.match(music):
+            info, gt, path = music.partition(">")
+
+            if track_partition_pattern.search(info):
+                info = track_partition_pattern.sub("from %s" % pos, info)
+                music = info + gt + path
+            else:
+                music = "<from %s %s>" % (pos, music[1:])
+        else:
+            music = "<from %s %s>" % (pos, music)
+
+        return music
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
     def show(
         self,
@@ -192,6 +210,7 @@ class Poem(renpy.text.text.Text):
                 poem_track = music or None
 
             if poem_track:
+<<<<<<< HEAD
                 previous_music = renpy.music.get_playing(channel="music")
                 music = (
                     self.format_music_str(poem_track, renpy.music.get_pos(channel="music"))
@@ -200,6 +219,16 @@ class Poem(renpy.text.text.Text):
                 )
                 renpy.music.stop(channel="music", fadeout=0.5)
                 renpy.music.play(music, channel="music", loop=True, fadein=0.5)
+=======
+                previous_music = renpy.music.get_playing()
+                music = (
+                    self.format_music_str(poem_track, renpy.music.get_pos())
+                    if from_current
+                    else poem_track
+                )
+                renpy.music.play(music, channel="poem", loop=True, fadeout=0.5)
+                renpy.music.stop(fadeout=2.0)
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
             allow_skipping = renpy.config.allow_skipping
             renpy.config.allow_skipping = False
@@ -226,11 +255,21 @@ class Poem(renpy.text.text.Text):
             if poem_track and revert_music:
                 if previous_music:
                     previous_music = (
+<<<<<<< HEAD
                         self.format_music_str(previous_music, renpy.music.get_pos(channel="music"))
                         if from_current
                         else previous_music
                     )
                     renpy.music.play(previous_music, channel="music", loop=True, fadein=2.0)
+=======
+                        self.format_music_str(previous_music, renpy.music.get_pos())
+                        if from_current
+                        else previous_music
+                    )
+                    renpy.music.play(previous_music, loop=True, fadein=2.0)
+
+                renpy.music.stop("music", fadeout=2.0)
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
             renpy._window_auto = True
 
@@ -950,9 +989,13 @@ Of m  n ngl ss\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 Delete Her
     """,
 )
+<<<<<<< HEAD
 ###################### POEMAS DE ONE LAST BOOK ##########################
 ########################### POEMAS DEL DIA 1
 #poema de MC
+=======
+######################Poemas de one last book
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 poem_db.add_poem(
     "poem_mc1",
     author_mc,
@@ -980,7 +1023,10 @@ Pues parece odiar mis decisiones
 Pero no importa, por que aunque se marchite, seguirá siendo mi girasol.""",
     )
 
+<<<<<<< HEAD
 #poema de Yuri
+=======
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 poem_db.add_poem(
     "poem_mlb_yuri",
     author_y,
@@ -1009,7 +1055,11 @@ Pues esos capítulos, ya se han aferrado al pasado.
 
 Y ahí entendí que ya no me queda nada más que hacer, pues es mi libro favorito.""",
 )
+<<<<<<< HEAD
 #borrador de un poema de Yuri
+=======
+
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 poem_db.add_poem(
     "poem_borr_yuri1",
     author_y,
@@ -1043,7 +1093,10 @@ Para así, este recuerdo ya dejar ir.
 
 Pero ¿por que todo, eso tengo que recordar en el mes de diciembre? """,
 )
+<<<<<<< HEAD
 #poema de Natsuki
+=======
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 poem_db.add_poem(
     "natsuki_poem1",
     author_n,
@@ -1057,6 +1110,7 @@ los guepardos pueden corre,
 las águilas pueden volar,
 la gente puede intentarlo,
 pero eso es todo.""",
+<<<<<<< HEAD
 )
 
 ########################### POEMAS DEL DIA 2
@@ -1115,4 +1169,6 @@ Me escribiste un millón de cartas en todas estas hojas
 Pues ya dejaste de desafiar al reloj, en todas esas paradojas. 
 
 Gracias por mostrarte ante mi Señor tic tac. """,
+=======
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 )

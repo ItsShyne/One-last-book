@@ -1,6 +1,10 @@
 # TRANSFORMS
 image  bg recuerdos = "images/bg/borde_blanco.png.avif"
 image bg residensial_noche = "images/bg/residential-night.png"
+<<<<<<< HEAD
+=======
+image yuri_pequena = "images/yuri/yuri_chiquita.png"
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 image recuerdo_blanco = Solid("#0b0b0b80")
 
 transform heartbeat_weak:
@@ -349,6 +353,7 @@ label yuri_chiquita:
 
     return
 
+<<<<<<< HEAD
 label prueba1:
     scene bg bedroom
 
@@ -367,3 +372,5 @@ label prueba1:
     s "yo que se"
 
     $ renpy.notify("LENI ES GAY, MUY GAY DEMACIADO GAY")
+=======
+>>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
