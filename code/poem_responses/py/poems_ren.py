@@ -136,21 +136,22 @@ class Poem(renpy.text.text.Text):
         :return music: A formatted music string.
         :rtype: str
         """
-        music_match_pattern = re.compile(r"^<.*?>")
-        track_partition_pattern = re.compile(r"from( *)((\d+\.\d*)|(\d+)|(\.\d+))")
+        if not music:
+            return music
 
-        if music_match_pattern.match(music):
-            info, gt, path = music.partition(">")
+        if music.startswith("<"):
+            info, sep, path = music.partition(">")
+            if not sep:
+                return music
 
-            if track_partition_pattern.search(info):
-                info = track_partition_pattern.sub("from %s" % pos, info)
-                music = info + gt + path
-            else:
-                music = "<from %s %s>" % (pos, music[1:])
-        else:
-            music = "<from %s %s>" % (pos, music)
+            content = info[1:]
+            content = re.sub(r"\bfrom\s+((\d+\.\d*)|(\d+)|(\.\d+))", f"from {pos}", content)
+            if "from " not in content:
+                content = f"from {pos} {content}"
 
-        return music
+            return f"<{content}>{path}"
+
+        return f"<from {pos} {music}>"
 
     def show(
         self,
@@ -191,14 +192,14 @@ class Poem(renpy.text.text.Text):
                 poem_track = music or None
 
             if poem_track:
-                previous_music = renpy.music.get_playing()
+                previous_music = renpy.music.get_playing(channel="music")
                 music = (
-                    self.format_music_str(poem_track, renpy.music.get_pos())
-                    if from_current
+                    self.format_music_str(poem_track, renpy.music.get_pos(channel="music"))
+                    if from_current and previous_music
                     else poem_track
                 )
-                renpy.music.play(music, channel="poem", loop=True, fadeout=0.5)
-                renpy.music.stop(fadeout=2.0)
+                renpy.music.stop(channel="music", fadeout=0.5)
+                renpy.music.play(music, channel="music", loop=True, fadein=0.5)
 
             allow_skipping = renpy.config.allow_skipping
             renpy.config.allow_skipping = False
@@ -225,13 +226,11 @@ class Poem(renpy.text.text.Text):
             if poem_track and revert_music:
                 if previous_music:
                     previous_music = (
-                        self.format_music_str(previous_music, renpy.music.get_pos())
+                        self.format_music_str(previous_music, renpy.music.get_pos(channel="music"))
                         if from_current
                         else previous_music
                     )
-                    renpy.music.play(previous_music, loop=True, fadein=2.0)
-
-                renpy.music.stop("music", fadeout=2.0)
+                    renpy.music.play(previous_music, channel="music", loop=True, fadein=2.0)
 
             renpy._window_auto = True
 
@@ -951,7 +950,9 @@ Of m  n ngl ss\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 Delete Her
     """,
 )
-######################Poemas de one last book
+###################### POEMAS DE ONE LAST BOOK ##########################
+########################### POEMAS DEL DIA 1
+#poema de MC
 poem_db.add_poem(
     "poem_mc1",
     author_mc,
@@ -979,6 +980,7 @@ Pues parece odiar mis decisiones
 Pero no importa, por que aunque se marchite, seguirá siendo mi girasol.""",
     )
 
+#poema de Yuri
 poem_db.add_poem(
     "poem_mlb_yuri",
     author_y,
@@ -1007,7 +1009,7 @@ Pues esos capítulos, ya se han aferrado al pasado.
 
 Y ahí entendí que ya no me queda nada más que hacer, pues es mi libro favorito.""",
 )
-
+#borrador de un poema de Yuri
 poem_db.add_poem(
     "poem_borr_yuri1",
     author_y,
@@ -1041,6 +1043,7 @@ Para así, este recuerdo ya dejar ir.
 
 Pero ¿por que todo, eso tengo que recordar en el mes de diciembre? """,
 )
+#poema de Natsuki
 poem_db.add_poem(
     "natsuki_poem1",
     author_n,
@@ -1054,4 +1057,62 @@ los guepardos pueden corre,
 las águilas pueden volar,
 la gente puede intentarlo,
 pero eso es todo.""",
+)
+
+########################### POEMAS DEL DIA 2
+#poema de Sayori
+poem_db.add_poem(
+    "Sayori_poem1",
+    author_s,
+    title= "No sé como ser yo sin ti",
+    text="""\
+volví a intentar despertar
+el lago de noche prometí este día visitar
+me levanto, si ¿pero que mas da?
+si cada vez lo pienso, a la cama
+quiero ir una vez más.
+
+Vuelve el deseo a mi mente
+el deseo de tenerte aqui en lago
+y ya no ser indiferentes
+rápido lo empiezo a quitar
+recuerdo que alguien mas ya ocupa mi lugar
+y simplemente... ya no puedo respirar.
+
+ya no quiero nada más, ni siquiera se
+si me quiero despertar
+al lago de noche ya no quiero ir
+porque no se como ser yo sin. """,
+)
+#poema de Yuri
+poem_db.add_poem(
+    "Yuri_poem2",
+    author_y,
+    title= "Señor tic tac",
+    text="""\
+Hoy ante mi tu, te has de presentar Señor tic tac 
+Pues me quieres confesar que el tiempo ya no funciona igual 
+Ya que se debe a las tempestades que yo desate en su corazón 
+Pues es mi forma de agradecer, por  haberme sacado de mi caparazón.
+
+Pero yo quiero que mañana tu estés
+Ya que me juraste, segundos recoger 
+Y así hacer un caminito hecho de años 
+Para juntos crecer, mientras tu me escribes cartas en una hoja 
+Mientras desafías al reloj dentro de una paradoja.
+
+Tu me has contado Señor tic tac 
+Que has visto que la lluvia se retuerce al caer 
+Y haber visto golondrinas durante el amanecer 
+Olvidando  esas historias que aun no tienen solución 
+Pues has decidido darme todo tu amor.
+
+Ahora que el tiempo volvió a la normalidad 
+Ya no me podrás dejar 
+Pues segundos dejaste de recoger 
+Ya que acabaste el caminito hecho de años para que juntos pudiéramos envejecer 
+Me escribiste un millón de cartas en todas estas hojas 
+Pues ya dejaste de desafiar al reloj, en todas esas paradojas. 
+
+Gracias por mostrarte ante mi Señor tic tac. """,
 )

@@ -215,7 +215,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Transform("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Transform("mod_assets/textbox.png", xalign=0.5, yalign=1.0)
 
 style window_monika is window:
     background Transform("gui/textbox_monika.png", xalign=0.5, yalign=1.0)
@@ -227,17 +227,20 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("mod_assets/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
-    color gui.accent_color
+    # 1. Color de la letra: Un rosa suave y brillante
+    color "#fdb9f2" 
     font gui.name_font
     size gui.name_text_size
     xalign gui.name_xalign
     yalign 0.5
-    outlines [(3, text_outline_color, 0, 0), (1, text_outline_color, 1, 1)]
-    #outlines [(3, "#b59", 0, 0), (1, "#b59", 1, 1)]
+    
+    # 2. El borde: Cambiamos a un púrpura muy oscuro para dar contraste y un efecto de "halo"
+    # (3px de grosor, color #2d0039, sin offset horizontal/vertical)
+    outlines [(3, "#2d0039", 0, 0)]
 
 style say_dialogue:
     xpos gui.text_xpos
@@ -448,7 +451,13 @@ style quick_button:
 
 style quick_button_text:
     properties gui.button_text_properties("quick_button")
-    outlines []
+    
+    
+    idle_color "#a070b0"   # Morado claro/pastel
+    hover_color "#ff99f8"  # Rosa brillante
+
+    
+    outlines [(2, "#1a0022", 0, 0)]
 
 
 ################################################################################

@@ -1,3 +1,6 @@
+#aqui inicia el dia 1
+
+
 label cap1:
     stop music fadeout 2.0
     #lo de scene es para mostrar el fondo, y el with es para hacer la transición entre escenas
@@ -72,29 +75,29 @@ label cap1:
 
     show sayori turned rup uniform nerv cm oe zorder 2 at t44
 
-    player "\"¿Vamos? ¿tarde?.\""
+    player "\"¿Vamos? ¿tarde?\""
 
-    "Me estiré en mi asiento y miré alrededor, no habia nadie en el salón además de nosotros."
+    "Me estiré en mi asiento y miré alrededor, no había nadie en el salón además de nosotros."
 
     show sayori 5b zorder 2 at f11
     
-    s "Te estaba esperando afuera del salón por un ratito, pero como no salias entonces entré."
+    s "Te estaba esperando afuera del salón por un ratito, pero como no salías, entonces entré."
 
     show sayori tap om ce zorder 2 at f11
 
-    s "Realmente... ¡¡estás peor que yo!!! el timbre suena unas 3 veces."
+    s "Realmente... ¡¡estás peor que yo!!! El timbre suena unas 3 veces."
 
-    show sayori tap om ce zorder 2 at t11
+    show sayori tap nerv cm oe zorder 2 at t11
 
     player "\"Si bueno, de todos modos no necesitas esperarme seguro los de tu club se preocuparán por ti.\"" 
 
     show sayori tap cm oe zorder 2 at t11
 
-    "Antes Sayori estaba en el club de arte pero luego que se creara el club de literatura ella se unió, no tengo idea del porque."
+    "Antes Sayori estaba en el club de arte pero, después de que se creó el club de literatura, ella se unió. no tengo idea del porqué."
 
     show sayori 1h zorder 2 at f21
 
-    s "Desvelarte viendo anime te está afectando la memoria... en la mañana me prometiste visitar algunos clubs y..."
+    s "Desvelarte viendo anime te está afectando la memoria... en la mañana me prometiste visitar algunos clubes y..."
 
     show sayori turned uniform shoc cm oe zorder 2 at t11
 
@@ -102,23 +105,23 @@ label cap1:
 
     show sayori turned uniform vsur om oe zorder 2 at f22
 
-    s "¿¡Eh!? pe-pero"
+    s "¿¡Eh!? ¡Pe-pero...!"
 
     show sayori turned uniform vsur om oe zorder 2 at t22
 
     player "\"sip, nos vemos mañana.\""
 
-    "Recogi algunos libros del pupitre para meterlos en mi mochila."
+    "Recogí algunos libros del pupitre para meterlos en mi mochila."
 
-    "¿Enserio me quedé dormido?"
+    "¿En serio me quedé dormido?"
 
     show sayori tap uniform pout om oe zorder 2 at f11
 
-    s "Pero me prometiste que lo harías!"
+    s "Pero ¡me prometiste que lo harías!"
 
-    show sayori tap uniform pout om oe zorder 2 at t11
+    show sayori tap uniform pout cm oe zorder 2 at t11
 
-    player "\"¿Enserio es importante para ti qué lo haga?\""
+    player "\"¿En serio es importante para ti que lo haga?\""
 
     show sayori turned rup uniform nerv om oe zorder 3 at f11
 
@@ -126,17 +129,17 @@ label cap1:
 
     show sayori turned uniform nerv om oe zorder 2 at f43
 
-    s "Ayer... les dije a todo el club que traería un nuevo miembro y además Natsuki hizo pastelitos."
+    s "Ayer... le dije a todo el club que traería un nuevo miembro y además Natsuki hizo pastelitos."
 
-    show sayori turned uniform nerv om oe zorder 2 at t43
+    show sayori turned uniform nerv cm oe zorder 2 at t43
 
     player "\"¿¡Hiciste un promesa de algo que no depende de ti!?\""
 
     show sayori 2c zorder 2 at f11
 
-    s "Como tú diciendo que visitarias algunos clubs?"
+    s "¿Cómo tú diciendo que visitarías algunos clubes?"
 
-    show sayori 2c zorder 2 at t11
+    show sayori turned neut cm oe zorder 2 at t11
 
     player "\"...\""
 
@@ -146,21 +149,18 @@ label cap1:
 
     player "\"Está bien... pero solo visitar no unirme.\""
 
-    show sayori 4r zorder 2 at t21
+    show sayori 4r zorder 2 at f21
 
-    s "¡¡si!!! ¡¡vamos~!!"
+    s "¡¡sí!!! ¡¡vamos~!!"
 
-    pause 1.0
-
-    show sayori 4r zorder 2 at f22
+    show sayori 4r zorder 2 at t22
 
     "Sayori me agarró fuertemente del brazo para arrastrarme fuera del salón."
 
     show sayori zorder 2 at thide
     hide s
 
-    scene bg class_day
-    with fade
+    stop music fadeout 2.0
+    call cap2
 
-    jump cap2
 

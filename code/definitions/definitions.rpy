@@ -48,7 +48,7 @@ define audio.t5 = "<loop 4.444>bgm/5.ogg" # Okay Everyone! - Sharing Poems Theme
 
 define audio.tmonika = "<loop 4.444>bgm/5_monika.ogg" # Okay Everyone! (Monika)
 define audio.tsayori = "<loop 4.444>bgm/5_sayori.ogg" # Okay Everyone! (Sayori)
-define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Okay Everyone! (Natsuki)
+define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Okay Everyone! (Natsuki) "C:\renpy\fallen-Angel-OneLastBook\game\bgm\5_natsuki.ogg"
 define audio.tyuri = "<loop 4.444>bgm/5_yuri.ogg" # Okay Everyone! (Yuri)
 
 define audio.t5b = "<loop 4.444>bgm/5.ogg"
@@ -66,6 +66,7 @@ define audio.t9g = "<loop 1.532>bgm/9g.ogg" # My Feelings but 207% Speed
 define audio.t10 = "<loop 5.861>bgm/10.ogg" # My Confession - Sayori Confession Theme
 define audio.t10y = "<loop 0>bgm/10-yuri.ogg"
 define audio.td = "<loop 36.782>bgm/d.ogg"
+define audio.heartbreaking2 = "<loop 1.000>bgm/20260709_125539.ogg"
 
 define audio.m1 = "<loop 0>bgm/m1.ogg" # Just Monika. - Just Monika.
 define audio.mend = "<loop 6.424>bgm/monika-end.ogg" # I Still Love You - Monika Post-Delete Theme
@@ -96,9 +97,11 @@ define audio.stab = "sfx/stab.ogg"
 define audio.yuri_kill = "sfx/yuri-kill.ogg"
 define audio.crack = "sfx/crack.ogg"
 define audio.eyes = "sfx/eyes.ogg"  
+################## SFX ONE LAST BOOK ########################
 define audio.heart = "sfx/brvhrtz-heartbeat-01-brvhrtz-225058.mp3"
 define audio.lluvia = "sfx/liecio-calming-rain-257596.mp3"
 define audio.trueno = "sfx/u_q2hb2391vb-thunder-clap-521194.mp3"
+define audio.obj_fall = "sfx/objeto_cayendo.mp3"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -183,12 +186,23 @@ image bg club_day2: # Glitched Club BG
     choice:
         "bg/club-skill.png"
 
-image bg closet = "bg/closet.png" # The closet BG
+image bg closet = "bg/closet.png" # the closet BG
 image bg bedroom = "bg/bedroom.png" # MC's Room BG
 image bg sayori_bedroom = "bg/sayori_bedroom.png" # Sayori's Room BG
 image bg house = "bg/house.png" # Sayori's House BG
 image bg kitchen = "bg/kitchen.png" # MC's Kitchen BG
-
+##############  ONE LAST BOOK  #####################
+image bg escaleras = "mod_assets/bg/stairs_mid/stairs_mid_aft.png"
+image bg bano_Yuri = "images/bg/baño_cuchillo.webp"
+image bg bano_Yuri_nocuchillo = "images/bg/baño_sin_cuchillo.webp"
+image bg street1_morn = "mod_assets/bg/street1/street1.png"
+image bg yuri_sala = "images/bg/yurihouseinterior.png"
+image bg yuri_sala_noche = "images/bg/living room night.png"
+image bg cafe = "images/bg/CherryBlossomCafe.png"
+image bg ciudad_calle_nublado = "mod_assets/bg/city_street/city_street_cloudy.png"
+image bg casa_yuri = "images/bg/house.jpg"
+image silueta = "images/yuri/silueta.png"
+###################################################
 image bg notebook = "bg/notebook.png" # Poem Game Notebook Scene
 image bg notebook-glitch = "bg/notebook-glitch.png" # Glitched Poem Game BG
 
@@ -502,6 +516,7 @@ image sayori 4bv = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "s
 image sayori 4bw = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/w.png")
 image sayori 4bx = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/x.png")
 image sayori 4by = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/y.png")
+
 
 # This image shows a glitched Sayori sprite during Act 2.
 image sayori glitch:
@@ -945,6 +960,22 @@ image n_blackeyes = "images/natsuki/blackeyes.png"
 image n_eye = "images/natsuki/eye.png"
 
 # Yuri's Character Definitions
+#DE ONE LAST BOOK
+#Escena del baño
+image yuri_sentada = "images/yuri/yuri_sentada.png"
+image yuri_parada = "images/yuri/yuri_parada.png"
+
+#Subconciente de Yuri
+image yuri_pequena_timida = "images/yuri/yuri_chiquita.png"
+image yuri_pequena_seria = "images/yuri/yuri_chiquita_hablando.png"
+image yuri_pequena_cry = "images/yuri/yuri_chiquita_cry1.png"
+image yuri_pequena_cry2 = "images/yuri/yuri_chiquita_cry2.png"
+image yuri_pequena_neut = "images/yuri/yuri_chiquita_neut.png"
+image yuri_pequena_sad = "images/yuri/yuri_chiquita_sad.png"
+image yuri_pequena_sad2 = "images/yuri/yuri_chiquita_sad2.png"
+image yuri_pequena_tired = "images/yuri/yuri_chiquita_tired.png"
+
+################
 # Note: Sprites with a 'y' in the middle are Yuri's Yandere Sprites.
 image yuri 1 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/a.png")
 image yuri 2 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
@@ -1132,6 +1163,122 @@ image yuri 4bc = im.Composite((960, 960), (0, 0), "yuri/c2.png", (0, 0), "yuri/3
 image yuri 4bd = im.Composite((960, 960), (0, 0), "yuri/d2.png", (0, 0), "yuri/3b.png")
 image yuri 4be = im.Composite((960, 960), (0, 0), "yuri/e2.png", (0, 0), "yuri/3b.png")
 
+#Yuri outfit fallen angel 
+image yuri 1ca = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/a.png"
+)
+image yuri 1cb = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/b.png"
+)
+image yuri 1cc = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/c.png"
+)
+image yuri 1cd = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/d.png"
+)
+image yuri 1ce = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/e.png"
+)
+image yuri 1cf = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/f.png"
+)
+image yuri 1cg = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/g.png"
+)
+image yuri 1ch = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/h.png"
+)
+image yuri 1ci = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/i.png"
+)
+image yuri 1cj = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/j.png"
+)
+image yuri 1ck = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/k.png"
+)
+image yuri 1cl = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/l.png"
+)
+image yuri 1cm = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/m.png"
+)
+image yuri 1cn = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/n.png"
+)
+image yuri 1co = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/o.png"
+)
+image yuri 1cp = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/p.png"
+)
+image yuri 1cq = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/q.png"
+)
+image yuri 1cr = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/r.png"
+)
+image yuri 1cs = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/s.png"
+)
+image yuri 1ct = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/t.png"
+)
+image yuri 1cu = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/u.png"
+)
+image yuri 1cv = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/v.png"
+)
+image yuri 1cw = im.Composite(
+    (960, 960),
+    (0, 0), "images/yuri/Yuri Casual Clothes.png",
+    (0, 0), "yuri/w.png"
+)
 # This image shows the looping Yuri glitched head in Act 2.
 image y_glitch_head:
     "images/yuri/za.png"
