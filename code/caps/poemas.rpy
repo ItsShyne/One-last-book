@@ -47,6 +47,46 @@ label mostrar_poema_natsukis:
     "Yuri deberia estar libre, iré a mostrale mi poema"
 
     jump mostrar_poema_yuri
+label mostrar_poema_monika:
+    show monika 1a zorder 2 at t11
+    m "A ver qué tal te quedó..."
+    
+    # Monika lee tu poema (dirigido a Yuri)
+    m 1a "..."
+    m 2a "¡Vaya, qué interesante!"
+    m "Tiene un estilo bastante maduro y metafórico, ¿sabes?"
+    m 2b "Me recuerda mucho a la forma de escribir de Yuri."
+    
+    m 4b "Se nota que estás intentando impresionar a alguien en específico del club."
+    m 4a "No es que tenga nada de malo, ¡al contrario! Es un buen ejercicio escribir pensando en los demás."
+    m 5a "Aunque... a mí también me gustaría que escribieras algo que me llame la atención a mí alguna vez.{w} ¡Es broma!"
+    
+    # Consejo de Monika del Día 1
+    m 1a "Bueno, como es el primer día, te daré mi consejo de escritura."
+    m "A veces, cuando te cuesta encontrar la palabra adecuada, es mejor no pensar tanto en el significado profundo."
+    m 3b "Simplemente escribe lo primero que te venga a la mente y deja que tus sentimientos guíen tu mano."
+    m "¡A veces las palabras más simples son las que tienen más impacto!"
+    m 1a "En fin, gracias por compartirlo conmigo, [player]."
+    
+    # Monika muestra su poema
+    m 1b "¡Ahora es mi turno! Aquí tienes el mío. Espero que te guste."
+    
+    # Abre la interfaz del poema de Monika (Hole in Wall)
+    $ poem_db.show_poem ("poem_m1")
+    
+    # Diálogo después de que el jugador cierra el poema
+    m 1a "¿Y bien? ¿Qué te pareció?"
+    mc "Es... un poco abstracto, pero me gustó."
+    m 1a "¡Gracias! Quería probar algo un poco diferente hoy."
+    m 3b "A veces la estructura libre te permite expresar cosas que las rimas normales no pueden."
+    m 1a "¡Buen trabajo hoy! Estoy ansiosa por ver qué escribes mañana."
+    mc "Por supuesto, Monika"
+    mc "Gracias por el consejo"
+    show monika 1a zorder 2 at thide
+    hide monika 
+    "Seguramente Yuri debe estar libre ahora"
+    jump mostrar_poema_yuri
+
 
 #dia 2 Sayori
 label mostrar_poema_Sayori:

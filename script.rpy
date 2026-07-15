@@ -42,15 +42,7 @@ label start:
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-<<<<<<< HEAD
     jump cap1
-=======
-    menu:
-        "¿Quieres ver el tutorial interactivo de uso de imágenes?":
-            jump explicacion_yuri
-        "Empezar la historia directamente":
-            jump cap2
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
 # This label is where the game 'ends' during Act 1.
 label endgame(pause_length=4.0):

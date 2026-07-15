@@ -98,24 +98,15 @@ define -2 gui.textbox_yalign = 0.99
 
 # This controls the placement of the speaking character's name.
 define gui.name_xpos = 350
-<<<<<<< HEAD
-define gui.name_ypos = 10
-=======
-define gui.name_ypos = -3
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
+define gui.name_ypos = 20
 
 # This controls the horizontal alignment of the character's name.
 define gui.name_xalign = 0.5
 
 # This controls the width, height, and borders of the box containing the 
 # characters' name.
-<<<<<<< HEAD
-define gui.namebox_width = 190
-define gui.namebox_height = 46
-=======
 define gui.namebox_width = 168
 define gui.namebox_height = 39
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
 # This controls the borders of the box containing the characters' name in 
 # left, top, right, and bottom order.

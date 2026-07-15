@@ -48,11 +48,7 @@ define audio.t5 = "<loop 4.444>bgm/5.ogg" # Okay Everyone! - Sharing Poems Theme
 
 define audio.tmonika = "<loop 4.444>bgm/5_monika.ogg" # Okay Everyone! (Monika)
 define audio.tsayori = "<loop 4.444>bgm/5_sayori.ogg" # Okay Everyone! (Sayori)
-<<<<<<< HEAD
 define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Okay Everyone! (Natsuki) "C:\renpy\fallen-Angel-OneLastBook\game\bgm\5_natsuki.ogg"
-=======
-define audio.tnatsuki = "<loop 4.444>bgm/5_natsuki.ogg" # Okay Everyone! (Natsuki)
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 define audio.tyuri = "<loop 4.444>bgm/5_yuri.ogg" # Okay Everyone! (Yuri)
 
 define audio.t5b = "<loop 4.444>bgm/5.ogg"
@@ -70,10 +66,7 @@ define audio.t9g = "<loop 1.532>bgm/9g.ogg" # My Feelings but 207% Speed
 define audio.t10 = "<loop 5.861>bgm/10.ogg" # My Confession - Sayori Confession Theme
 define audio.t10y = "<loop 0>bgm/10-yuri.ogg"
 define audio.td = "<loop 36.782>bgm/d.ogg"
-<<<<<<< HEAD
 define audio.heartbreaking2 = "<loop 1.000>bgm/20260709_125539.ogg"
-=======
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
 define audio.m1 = "<loop 0>bgm/m1.ogg" # Just Monika. - Just Monika.
 define audio.mend = "<loop 6.424>bgm/monika-end.ogg" # I Still Love You - Monika Post-Delete Theme
@@ -104,17 +97,11 @@ define audio.stab = "sfx/stab.ogg"
 define audio.yuri_kill = "sfx/yuri-kill.ogg"
 define audio.crack = "sfx/crack.ogg"
 define audio.eyes = "sfx/eyes.ogg"  
-<<<<<<< HEAD
 ################## SFX ONE LAST BOOK ########################
 define audio.heart = "sfx/brvhrtz-heartbeat-01-brvhrtz-225058.mp3"
 define audio.lluvia = "sfx/liecio-calming-rain-257596.mp3"
 define audio.trueno = "sfx/u_q2hb2391vb-thunder-clap-521194.mp3"
 define audio.obj_fall = "sfx/objeto_cayendo.mp3"
-=======
-define audio.heart = "sfx/brvhrtz-heartbeat-01-brvhrtz-225058.mp3"
-define audio.lluvia = "sfx/liecio-calming-rain-257596.mp3"
-define audio.trueno = "sfx/u_q2hb2391vb-thunder-clap-521194.mp3"
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -199,16 +186,11 @@ image bg club_day2: # Glitched Club BG
     choice:
         "bg/club-skill.png"
 
-<<<<<<< HEAD
 image bg closet = "bg/closet.png" # the closet BG
-=======
-image bg closet = "bg/closet.png" # The closet BG
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 image bg bedroom = "bg/bedroom.png" # MC's Room BG
 image bg sayori_bedroom = "bg/sayori_bedroom.png" # Sayori's Room BG
 image bg house = "bg/house.png" # Sayori's House BG
 image bg kitchen = "bg/kitchen.png" # MC's Kitchen BG
-<<<<<<< HEAD
 ##############  ONE LAST BOOK  #####################
 image bg escaleras = "mod_assets/bg/stairs_mid/stairs_mid_aft.png"
 image bg bano_Yuri = "images/bg/baño_cuchillo.webp"
@@ -221,9 +203,6 @@ image bg ciudad_calle_nublado = "mod_assets/bg/city_street/city_street_cloudy.pn
 image bg casa_yuri = "images/bg/house.jpg"
 image silueta = "images/yuri/silueta.png"
 ###################################################
-=======
-
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 image bg notebook = "bg/notebook.png" # Poem Game Notebook Scene
 image bg notebook-glitch = "bg/notebook-glitch.png" # Glitched Poem Game BG
 
@@ -538,10 +517,7 @@ image sayori 4bw = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "s
 image sayori 4bx = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/x.png")
 image sayori 4by = im.Composite((960, 960), (0, 0), "sayori/2bl.png", (0, 0), "sayori/2br.png", (0, 0), "sayori/y.png")
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 # This image shows a glitched Sayori sprite during Act 2.
 image sayori glitch:
     "sayori/glitch1.png"
@@ -984,7 +960,6 @@ image n_blackeyes = "images/natsuki/blackeyes.png"
 image n_eye = "images/natsuki/eye.png"
 
 # Yuri's Character Definitions
-<<<<<<< HEAD
 #DE ONE LAST BOOK
 #Escena del baño
 image yuri_sentada = "images/yuri/yuri_sentada.png"
@@ -1001,8 +976,6 @@ image yuri_pequena_sad2 = "images/yuri/yuri_chiquita_sad2.png"
 image yuri_pequena_tired = "images/yuri/yuri_chiquita_tired.png"
 
 ################
-=======
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 # Note: Sprites with a 'y' in the middle are Yuri's Yandere Sprites.
 image yuri 1 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/a.png")
 image yuri 2 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
@@ -1190,7 +1163,6 @@ image yuri 4bc = im.Composite((960, 960), (0, 0), "yuri/c2.png", (0, 0), "yuri/3
 image yuri 4bd = im.Composite((960, 960), (0, 0), "yuri/d2.png", (0, 0), "yuri/3b.png")
 image yuri 4be = im.Composite((960, 960), (0, 0), "yuri/e2.png", (0, 0), "yuri/3b.png")
 
-<<<<<<< HEAD
 #Yuri outfit fallen angel 
 image yuri 1ca = im.Composite(
     (960, 960),
@@ -1307,8 +1279,6 @@ image yuri 1cw = im.Composite(
     (0, 0), "images/yuri/Yuri Casual Clothes.png",
     (0, 0), "yuri/w.png"
 )
-=======
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 # This image shows the looping Yuri glitched head in Act 2.
 image y_glitch_head:
     "images/yuri/za.png"
@@ -1566,14 +1536,16 @@ image monika g2:
 # To define a new character without assets, declare a character variable like this instead:
 #   define en = Character('Eileen & Nat', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
-define narrator = Character(ctc="ctc", ctc_position="fixed")
-define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+define narrator = Character(ctc="ctc", ctc_position="fixed", show_custom_prefix="narrator", what_style="mc_dialog"  )
+define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', what_style="mc_dialog", ctc="ctc", ctc_position="fixed", show_custom_prefix="mc", who_color="#ffffff", who_outlines=[(2, "#4a5159", 0, 0)])
 
+# El prefijo "show_" es obligatorio aquí para que Ren'Py lo envíe a la pantalla
+define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="sayori",who_color="#ffffff", who_outlines=[(2, "#3a7da8", 0, 0)])
+define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="monika", who_color="#ffffff", who_outlines=[(2, "#2e5a1c", 0, 0)])
+define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="natsuki", who_color="#ffffff", who_outlines=[(2, "#b63c60", 0, 0)])
+define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="yuri", who_color="#c8a2c8", who_outlines=[(2, "#4a154b", 0, 0)])
+
+define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 # This variable determines whether to allow the player to dismiss pauses.
 # By default this is set by config.developer which is normally set to false
 # once you packaged your mod.
@@ -1741,3 +1713,5 @@ transform correr_izquierda:
         ease 0.15 yoffset 0
         ease 0.15 yoffset -20
         ease 0.15 yoffset 0
+
+        

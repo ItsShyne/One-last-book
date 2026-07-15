@@ -178,20 +178,79 @@ style frame:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
-screen say(who, what):
+screen say(who, what, **kwargs):
     style_prefix "say"
 
     window:
         id "window"
-
-        text what id "what"
-
-        if who is not None:
-
+        
+       # --- TEXTBOXES PERSONALIZADAS (YURI Y ELSE POR DEFECTO) ---
+        if kwargs.get('custom_prefix') == "sayori":
+            background Transform(
+                "mod_assets/textbox_s.png", 
+                xalign=0.5, 
+                yalign=0,
+                ypos = 15,
+                size=(864, 184)
+            )
+        elif kwargs.get('custom_prefix') == "monika":
+            background Transform(
+                "mod_assets/textbox_m.png", 
+                xalign=0, 
+                yalign=0,
+                xpos = 200,
+                ypos= 21,
+                size=(864, 178)
+            )
+        elif kwargs.get('custom_prefix') == "narrator":
+            background Transform(
+                "mod_assets/textbox_mc.png", 
+                xalign=0.5, 
+                yalign=1.8,
+                size=(864, 164)
+            )
+        elif kwargs.get('custom_prefix') == "natsuki":
+            background Transform(
+                "mod_assets/textbox_n.png", 
+                xalign=0.5, 
+                yalign=1.8,
+                size=(864, 164)
+            )
+        elif kwargs.get('custom_prefix') == "mc":
+            background Transform(
+                "mod_assets/textbox_mc.png", 
+                xalign=0.5, 
+                yalign=1.8,
+                size=(864, 164)
+            )
+        elif kwargs.get('custom_prefix') == "yuri":
+            # Se queda como antes (Original)
+            background Transform("mod_assets/textbox_y.png", xalign=0.5, yalign=1.0)
+        else:
+            # Se queda como antes (Original)
+            background Transform("gui/textbox.png", xalign=0.5, yalign=1.0)
+        if who:
             window:
                 style "namebox"
+                
+                # --- NAMEBOX AUTOMÁTICA (Tal cual la tenías) ---
+                if kwargs.get('custom_prefix') == "sayori":
+                    # Aquí estaba el peligro; ya está perfectamente revisado con sus comas:
+                    background Transform("mod_assets/namebox_s.png", xalign=0.0, yalign=1.0, xpos=-10, ypos=45, size=(190, 50))
+                elif kwargs.get('custom_prefix') == "monika":
+                    background Transform("mod_assets/namebox_m.png", xalign=0.0, yalign=1.0, xpos=23, ypos=48, size=(190, 50))
+                elif kwargs.get('custom_prefix') == "natsuki":
+                    background Frame("mod_assets/namebox_n.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+                elif kwargs.get('custom_prefix') == "yuri":
+                    background Frame("mod_assets/namebox_y.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+                elif kwargs.get('custom_prefix') == "mc":
+                    background Transform("mod_assets/namebox_mc.png", xalign=0.0, yalign=1.0, xpos=-30, ypos=55, size=(190,70 ))
+                else:
+                    background Transform("gui/namebox.png", xalign=0.0, yalign=0, xpos=0, ypos=0)
+
                 text who id "who"
 
+        text what id "what"
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
     if not renpy.variant("small"):
@@ -203,6 +262,13 @@ screen say(who, what):
 style window is default
 style say_label is default
 style say_dialogue is default
+# Este estilo hereda todo lo del diálogo normal, pero le aplica tus cambios solo al MC
+style mc_dialog is say_dialog:
+    xoffset 265  # Mueve la letra del MC: Positivo = Derecha | Negativo = Izquierda
+    yoffset 67 # Mueve la letra del MC: Positivo = Abajo | Negativo = Arriba
+    
+    # Si la textbox del MC también es de las cortas (864px), limita el ancho del texto:
+    xmaximum 730
 style say_thought is say_dialogue
 
 style namebox is default
@@ -215,11 +281,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-<<<<<<< HEAD
-    background Transform("mod_assets/textbox.png", xalign=0.5, yalign=1.0)
-=======
     background Transform("gui/textbox.png", xalign=0.5, yalign=1.0)
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
 style window_monika is window:
     background Transform("gui/textbox_monika.png", xalign=0.5, yalign=1.0)
@@ -231,40 +293,23 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-<<<<<<< HEAD
-    background Frame("mod_assets/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
-    padding gui.namebox_borders.padding
-
-style say_label:
-    # 1. Color de la letra: Un rosa suave y brillante
-    color "#fdb9f2" 
-=======
     background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
     color gui.accent_color
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
     font gui.name_font
     size gui.name_text_size
     xalign gui.name_xalign
     yalign 0.5
-<<<<<<< HEAD
-    
-    # 2. El borde: Cambiamos a un púrpura muy oscuro para dar contraste y un efecto de "halo"
-    # (3px de grosor, color #2d0039, sin offset horizontal/vertical)
-    outlines [(3, "#2d0039", 0, 0)]
-=======
     outlines [(3, text_outline_color, 0, 0), (1, text_outline_color, 1, 1)]
     #outlines [(3, "#b59", 0, 0), (1, "#b59", 1, 1)]
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
 style say_dialogue:
     xpos gui.text_xpos
     xanchor gui.text_xalign
     xsize gui.text_width
     ypos gui.text_ypos
-
     text_align gui.text_xalign
     layout ("subtitle" if gui.text_xalign else "tex")
 
@@ -468,17 +513,7 @@ style quick_button:
 
 style quick_button_text:
     properties gui.button_text_properties("quick_button")
-<<<<<<< HEAD
-    
-    
-    idle_color "#a070b0"   # Morado claro/pastel
-    hover_color "#ff99f8"  # Rosa brillante
-
-    
-    outlines [(2, "#1a0022", 0, 0)]
-=======
     outlines []
->>>>>>> 3da4df11d06dd09889e946a1bfcda428fb1ca342
 
 
 ################################################################################
