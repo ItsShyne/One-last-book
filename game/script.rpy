@@ -46,7 +46,7 @@ label start:
         "¿Quieres ver el tutorial interactivo de uso de imágenes?":
             jump explicacion_yuri
         "Empezar la historia directamente":
-            jump cap1
+            jump cap2
 
 # This label is where the game 'ends' during Act 1.
 label endgame(pause_length=4.0):

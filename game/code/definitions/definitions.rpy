@@ -115,7 +115,56 @@ image splash = "bg/splash.png"
 image end:
     truecenter
     "gui/end.png"
-
+# backgrounds añadidos por shyne
+image bg MC_room_destroyed_night = "mod_assets/bg/MC_room_destroyed_night.png"
+image bg MC_room_destroyed_vignette = "mod_assets/bg/MC_room_destroyed_vignette.png"
+image bg MC_room_destroyed = "mod_assets/bg/MC_room_destroyed.png"
+image bg c_end = "mod_assets/bg/c_end.png"
+image bg club_invert = "mod assets/bg/club_invert.png"
+image bg street1_cloudy = "mod_assets/bg/street1/street1_cloudy.png"
+image bg street1_nolight = "mod_assets/bg/street1/street1_nolight.png"
+image bg street1_night = "mod_assets/bg/street1/street1_night.png "
+image bg street1_aft = "mod_assets/bg/street1/street1_aft.png" 
+image bg street1 = "mod_assets/bg/street1/street1.png "
+image bg street1_rainy = "mod_assets/bg/street1/street1_rainy.png "
+image bg street1_stormy = "mod_assets/bg/street1/street1_stormy.png"
+image bg monika_room_evening = "mod_assets/bg/monika_bedroom_evening.png"
+image bg monika_room_night = "mod_assets/bg/monika_bedroom_night.png"
+image bg monika_room = "mod_assets/bg/monika_bedroom.png"
+image bg gate_rainy =  "mod_assets/bg/gate/gate_rainy.png" 
+image bg gate_closed_stormy = "mod_assets/bg/gate/gate_closed_stormy.png" 
+image bg gate_night_stormy =  "mod_assets/bg/gate/gate_night_stormy.png "
+image bg gate_aft_stormy = "mod_assets/bg/gate/gate_aft_stormy.png "
+image bg gate_stormy  = "mod_assets/bg/gate/gate_stormy.png "
+image bg gate_closed_cloudy = "mod_assets/bg/gate/gate_closed_cloudy.png" 
+image bg gate_night_cloudy = "mod_assets/bg/gate/gate_night_cloudy.png "
+image bg gate_aft_cloudy = "mod_assets/bg/gate/gate_aft_cloudy.png "
+image bg gate_cloudy = "mod_assets/bg/gate/gate_cloudy.png "
+image bg gate_closed = "mod_assets/bg/gate/gate_closed.png "
+image bg gate_night = "mod_assets/bg/gate/gate_night.png "
+image bg gate_aft = "mod_assets/bg/gate/gate_aft.png "
+image bg gate = "mod_assets/bg/gate/gate.png "
+image bg gate_closed_rainy = "mod_assets/bg/gate/gate_closed_rainy.png "
+image bg gate_night_rainy = "mod_assets/bg/gate/gate_night_rainy.png "
+image bg gate_aft_rainy = "mod_assets/bg/gate/gate_aft_rainy.png"
+image bg library_nolight =  "mod_assets/bg/library/library_nolight.png" 
+image bg library_night =  "mod_assets/bg/library/library_night.png "
+image bg library_aft =  "mod_assets/bg/library/library_aft.png"
+image bg library =  "mod_assets/bg/library/library.png "
+image bg library_stormy =  "mod_assets/bg/library/library_stormy.png"
+image bg library_cloudy =  "mod_assets/bg/library/library_cloudy.png"
+image bg city_street_rainy =  "mod_assets/bg/city_street/city_street_rainy.png"
+image bg city_street_stormy =  "mod_assets/bg/city_street/city_street_stormy.png" 
+image bg city_street_cloudy =  "mod_assets/bg/city_street/city_street_cloudy.png"
+image bg city_street_nolight =  "mod_assets/bg/city_street/city_street_nolight.png" 
+image bg city_street_night =  "mod_assets/bg/city_street/city_street_night.png" 
+image bg city_street_aft =  "mod_assets/bg/city_street/city_street_aft.png" 
+image bg city_street =  "mod_assets/bg/city_street/city_street.png"
+image bg courtyard_aft =  "mod_assets/bg/courtyard/courtyard_aft.png" 
+image bg courtyard =  "mod_assets/bg/courtyard/courtyard.png "
+image bg courtyard_nolight =  "mod_assets/bg/courtyard/courtyard_nolight.png" 
+image bg courtyard_night =  "mod_assets/bg/courtyard/courtyard_night.png"
+####################3
 image bg residential_day = "bg/residential.png" # Start of DDLC BG
 image bg class_day = "bg/class.png" # The classroom BG
 image bg corridor = "bg/corridor.png" # The hallway BG
@@ -1470,3 +1519,48 @@ default sayori_confess = True
 default natsuki_23 = False
 
 
+transform animation_title_screen:
+    # Cuando la pantalla aparece al iniciar el juego
+    on show:
+        xoffset -300
+        alpha 0.0
+        ease .5 xoffset 0 alpha 1.0
+    
+    # Cuando regresas de Ajustes/Cargar (se reemplaza la pantalla)
+    on replace:
+        xoffset 0
+        alpha 1.0
+
+style navigation_button_text:
+    # Cambiamos el borde viejo por uno negro limpio (o del color que prefieras)
+    # El primer número (2) controla el grosor. Si es más fino, no se amontona.
+    outlines [ (2.6, "#000000", 0, 0) ] 
+    
+    # Añadimos un pequeño espacio interno arriba para que el punto de la 'i' respire
+    top_padding 5
+    #animacion correr
+    # Animación para salir corriendo hacia la DERECHA
+transform correr_derecha:
+    # 'easein' hace que empiece lento y acelere (como alguien arrancando a correr)
+    # Cambiamos el 'xalign' a 2.0 para que se mueva mucho más allá del borde derecho
+    easein 0.6 xalign 2.0 yoffset 0
+    
+    # Este bloque simula el "trote" (subir y bajar) mientras se desplaza
+    parallel:
+        easein 0.6 xalign 2.0
+    parallel:
+        ease 0.15 yoffset -20
+        ease 0.15 yoffset 0
+        ease 0.15 yoffset -20
+        ease 0.15 yoffset 0
+
+# Animación para salir corriendo hacia la IZQUIERDA
+transform correr_izquierda:
+    # Cambiamos el 'xalign' a -1.0 para que salga por el borde izquierdo
+    parallel:
+        easein 0.6 xalign -1.0
+    parallel:
+        ease 0.15 yoffset -20
+        ease 0.15 yoffset 0
+        ease 0.15 yoffset -20
+        ease 0.15 yoffset 0

@@ -69,6 +69,12 @@ style yuri_text_3:
     kerning -8
     justify True
 
+style mc_text:
+    font "mod_assets/font/ReenieBeanie_Regular.ttf"
+    size 28
+    color "#000"
+    outlines []
+
 style natsuki_text:
     font "gui/font/n1.ttf"
     size 28

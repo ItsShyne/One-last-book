@@ -205,3 +205,33 @@ init python:
     build.documentation('README.html')
 
     build.include_old_themes = False
+    #Traduccion de algunos menús
+    layout.LOADING = _("La carga dará como resultado la pérdida de progreso no guardado. \n¿Estas seguro de que quieres hacer esto?.")
+    layout.QUIT = _("¿Estas seguro de que quieres salir?.")
+    layout.MAIN_MENU = _("¿Estas seguro de que deseas volver al menú principal?\n Esto conducira a la perdida de progreso no guardado.")
+    layout.OVERWRITE_SAVE = _("¿Estas seguro de que quieres sobreescribir este punto de guardado?.")
+
+init python:
+    def formatear_dialogo_automatico(texto):
+        if not texto:
+            return texto
+        
+        # Forzar la primera letra en mayúscula (manejando ¿ y ¡)
+        if len(texto) > 1 and texto[0] in ("¿", "¡"):
+            # Si empieza con signo, dejamos el signo igual y hacemos mayúscula la letra que le sigue
+            texto_final = texto[0] + texto[1].upper() + texto[2:]
+        else:
+            # Si empieza con una letra normal
+            texto_final = texto[0].upper() + texto[1:]
+        
+        # Revisar el final de la oración para el punto final
+        texto_limpio = texto_final.rstrip() 
+        signos_cierre = (".", "!", "?", "...", '"', "'")
+        
+        if not texto_limpio.endswith(signos_cierre):
+            texto_final = texto_limpio + "."
+            
+        return texto_final
+
+    # Aplicamos el filtro de forma global a todos los diálogos
+    config.say_menu_text_filter = formatear_dialogo_automatico

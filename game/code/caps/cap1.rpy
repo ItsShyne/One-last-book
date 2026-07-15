@@ -51,95 +51,116 @@ label cap1:
 
     scene bg class_day with Dissolve(0.3)
     
-    $ persistent.gallery_img_1_unlocked = True
-    $ renpy.save_persistent()
-    $ persistent.gallery_img_2_unlocked = True
-    $ renpy.save_persistent()
-    $ persistent.gallery_img_3_unlocked = True
-    $ renpy.save_persistent()
-    $ persistent.gallery_img_4_unlocked = True
-    $ renpy.save_persistent()
-    $ persistent.gallery_img_5_unlocked = True
-    $ renpy.save_persistent()
-    $ persistent.gallery_img_6_unlocked = True
-    $ renpy.save_persistent()
+    #$ persistent.gallery_img_1_unlocked = True
+    #$ renpy.save_persistent()
+    #$ persistent.gallery_img_2_unlocked = True
+    #$ renpy.save_persistent()
+    #$ persistent.gallery_img_3_unlocked = True
+    #$ renpy.save_persistent()
+    #$ persistent.gallery_img_4_unlocked = True
+    #$ renpy.save_persistent()
+    #$ persistent.gallery_img_5_unlocked = True
+    #$ renpy.save_persistent()
+    #$ persistent.gallery_img_6_unlocked = True
+    #$ renpy.save_persistent()
 
-    "escuché una ruidosa y conocida voz."
+    "Escuché una ruidosa y conocida voz."
 
-    show sayori turned uniform lup nerv om oe zorder 2 at t44
+    show sayori turned rup uniform nerv om oe zorder 3 at f44
 
-    s "jeje, disculpa por moverte un poco pero digamos que vamos tarde."
+    s "Jeje, disculpa por moverte un poco pero digamos que vamos tarde."
 
-    player "\"¿vamos? ¿tarde?.\""
+    show sayori turned rup uniform nerv cm oe zorder 2 at t44
 
-    "me estiré en mi asiento y al mirar a alrededor no habia nadie en el salón además de nosotros."
+    player "\"¿Vamos? ¿tarde?.\""
 
-    show sayori 5b zorder 2 at t11
+    "Me estiré en mi asiento y miré alrededor, no habia nadie en el salón además de nosotros."
+
+    show sayori 5b zorder 2 at f11
     
-    s "te estaba esperando afuera del salón por un ratito, pero como no salias entonces entré."
+    s "Te estaba esperando afuera del salón por un ratito, pero como no salias entonces entré."
 
-    show sayori tap uniform nerv om ce  zorder 2 at t11
+    show sayori tap om ce zorder 2 at f11
 
     s "Realmente... ¡¡estás peor que yo!!! el timbre suena unas 3 veces."
 
-    player "\"de todos modos no necesitas esperarme seguro los de tu club se preocuparán por ti.\"" 
+    show sayori tap om ce zorder 2 at t11
 
-    show sayori tap uniform neut cm oe  zorder 2 at t11
+    player "\"Si bueno, de todos modos no necesitas esperarme seguro los de tu club se preocuparán por ti.\"" 
 
-    "antes Sayori estaba en el club de arte pero luego que se creara el club de literatura ella se unió, no tengo idea del porque."
+    show sayori tap cm oe zorder 2 at t11
 
-    show sayori 1h zorder 2 at t21
+    "Antes Sayori estaba en el club de arte pero luego que se creara el club de literatura ella se unió, no tengo idea del porque."
 
-    s "desvelarte viendo anime te está afectando la memoria... en la mañana me prometiste visitar algunos clubs y..."
+    show sayori 1h zorder 2 at f21
 
-    player "\"no visitaré el club de literatura Sayori…\""
+    s "Desvelarte viendo anime te está afectando la memoria... en la mañana me prometiste visitar algunos clubs y..."
 
-    show sayori turned uniform ldown curi cm oe zorder 2 at t44
+    show sayori turned uniform shoc cm oe zorder 2 at t11
 
-    s "¿¡eh!? pe-pero"
+    player "\"No visitaré el club de literatura Sayori…\""
+
+    show sayori turned uniform vsur om oe zorder 2 at f22
+
+    s "¿¡Eh!? pe-pero"
+
+    show sayori turned uniform vsur om oe zorder 2 at t22
 
     player "\"sip, nos vemos mañana.\""
 
-    "recogi algunos libros de mi pupitre para meterlos en mi mochila."
+    "Recogi algunos libros del pupitre para meterlos en mi mochila."
 
-    "¿enserio me quedé dormido?"
+    "¿Enserio me quedé dormido?"
 
-    show sayori tap uniform dist cm ce  zorder 2 at t11
+    show sayori tap uniform pout om oe zorder 2 at f11
 
-    s "pero me dijiste que lo harías!"
+    s "Pero me prometiste que lo harías!"
 
-    player "\"¿porqué es tan importante para ti que lo haga?\""
+    show sayori tap uniform pout om oe zorder 2 at t11
+
+    player "\"¿Enserio es importante para ti qué lo haga?\""
+
+    show sayori turned rup uniform nerv om oe zorder 3 at f11
 
     s "bueno yo..."
 
-    show sayori turned uniform nerv om oe zorder 2 at t43
+    show sayori turned uniform nerv om oe zorder 2 at f43
 
-    s "ayer... les dije a todo el club que traería un nuevo miembro y además Natsuki hizo pastelitos."
+    s "Ayer... les dije a todo el club que traería un nuevo miembro y además Natsuki hizo pastelitos."
+
+    show sayori turned uniform nerv om oe zorder 2 at t43
 
     player "\"¿¡Hiciste un promesa de algo que no depende de ti!?\""
 
-    show sayori 2c zorder 2 at t11
+    show sayori 2c zorder 2 at f11
 
-    s "como tú diciendo que visitarias algunos clubs?"
+    s "Como tú diciendo que visitarias algunos clubs?"
+
+    show sayori 2c zorder 2 at t11
 
     player "\"...\""
 
-    "debí de haberme ido en lugar de discutir."
+    "Debí de haberme ido en lugar de discutir."
 
-    "suspiré."
+    "Suspiré."
 
-    player "\"está bien... pero solo visitar no unirme.\""
+    player "\"Está bien... pero solo visitar no unirme.\""
 
     show sayori 4r zorder 2 at t21
 
-    show sayori 4r zorder 2 at t22
-
     s "¡¡si!!! ¡¡vamos~!!"
+
+    pause 1.0
+
+    show sayori 4r zorder 2 at f22
 
     "Sayori me agarró fuertemente del brazo para arrastrarme fuera del salón."
 
     show sayori zorder 2 at thide
     hide s
+
+    scene bg class_day
+    with fade
 
     jump cap2
 

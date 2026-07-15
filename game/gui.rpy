@@ -66,10 +66,10 @@ define -2 gui.text_size = 24
 define -2 gui.name_text_size = 24
 
 # This determines the text size of the game's user interface.
-define -2 gui.interface_text_size = 24
+define -2 gui.interface_text_size = 28
 
 # This determines the text size of the game's label in the user interface.
-define -2 gui.label_text_size = 28
+define -2 gui.label_text_size = 26
 
 # This determines the text size of the notification screen.
 define -2 gui.notify_text_size = 16

@@ -156,7 +156,7 @@ class Poem(renpy.text.text.Text):
         self,
         img: str | None = None,
         at_list: list = [store.i11],
-        paper_sound: str | None = store.audio.page_turn,
+        paper_sound: str | None = "sfx/pageflip.ogg",
         music: str | bool = True,
         from_current: bool = True,
         revert_music: bool = True,
@@ -339,10 +339,11 @@ class PoemResponseDB(object):
 # Initialize the Poem database and authors.
 poem_db = PoemResponseDB()
 
-author_s = PoemAuthor("sayori", music=store.audio.tsayori)
-author_n = PoemAuthor("natsuki", music=store.audio.tnatsuki)
-author_y = PoemAuthor("yuri", music=store.audio.tyuri)
-author_m = PoemAuthor("monika", music=store.audio.tmonika)
+author_s = PoemAuthor("sayori", music="<loop 4.444>bgm/5_sayori.ogg")
+author_n = PoemAuthor("natsuki", music="<loop 4.444>bgm/5_natsuki.ogg")
+author_y = PoemAuthor("yuri", music="<loop 4.444>bgm/5_yuri.ogg")
+author_m = PoemAuthor("monika", music="<loop 4.444>bgm/5_monika.ogg")
+author_mc = PoemAuthor("mc")
 
 ## Yuri's Poems
 poem_db.add_poem(
@@ -949,4 +950,108 @@ p  m
 Of m  n ngl ss\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 Delete Her
     """,
+)
+######################Poemas de one last book
+poem_db.add_poem(
+    "poem_mc1",
+    author_mc,
+    title="Mi girasol",
+    text="""\
+En un hermoso prado estoy 
+Y en él, veo un hermoso girasol 
+De pétalos dorados 
+Como si se tratase del mismo sol 
+Todo eso lo he visto hoy
+Pues algo como ese girasol, no hay igual 
+Por que como ya se sabe, es un hermoso girasol 
+
+El día siguiente lo volví a visitar
+Con la intención de podérmelo llevar 
+Por que, aunque yo quiera no puedo dejarlo de mirar 
+
+Al girasol lo he puesto en un lindo florero
+Pero veo que el girasol, me dice que no puede estar
+Incluso dice ser prisionero 
+Diciendo que de mis acciones 
+No hay justificaciones
+Pues parece odiar mis decisiones 
+
+Pero no importa, por que aunque se marchite, seguirá siendo mi girasol.""",
+    )
+
+poem_db.add_poem(
+    "poem_mlb_yuri",
+    author_y,
+    title="Mi libro favorito",
+    text="""\
+En un estante de mi casa
+Hay un libro, del cual no me puedo olvidar 
+Pues un sinfín de memorias, se pueden hallar 
+Memorias las cuales prefiero no recordar
+Pero no importa, pues es mi libro favorito.
+
+Ese libro lo sabe todo de mi pasado 
+Lo cual eso me tiene muy asustado 
+Pues esas memorias, al papel ya se han pegado 
+Negándose a ser borradas 
+Pues como cadenas me tienen atado
+Y amargas son, como si ese fuese su sabor 
+Pero no le doy importancia, es mi  libro favorito 
+
+De ese libro no me puedo deshacer 
+Pues ya lo intente hacer arder 
+Tan solo pensar en el libro, me hace estremecer 
+Pero no lo logro entender 
+Ya que  esas memorias no quieren desaparecer
+Pues esos capítulos, ya se han aferrado al pasado.
+
+Y ahí entendí que ya no me queda nada más que hacer, pues es mi libro favorito.""",
+)
+
+poem_db.add_poem(
+    "poem_borr_yuri1",
+    author_y,
+    title= "Recuerdos de Diciembre",
+    text="""\
+Bajo la luna, del mes de diciembre 
+Escucho un eco que siempre vuelve 
+Donde cualquier rastro  de ti
+Un asco profundo logra provocar 
+Y un desprecio inmenso, empiezo a demostrar.
+
+A tu falta de valentía 
+Me toca a mi sufrir con esta agonía 
+Que se que desaparecerá algún día 
+Y por tu culpa este sentir 
+Solo se niega a partir 
+
+Ahora con el peso de esta cicatriz 
+Tengo que sufrir 
+Pues, ese sentir llega hasta lo más profundo de mi raíz.
+
+Todo eso me toca sufrir en diciembre 
+Mes que odiare por siempre 
+Pues desde ese entonces tu sombra es como una espina la cual no me puedo librar 
+Pues la luna de diciembre 
+Abre la cicatriz que me atormenta por siempre 
+
+Pero algún día te tocara a ti sufrir 
+Y así tal vez, yo aprenda a vivir 
+Para así, este recuerdo ya dejar ir.
+
+Pero ¿por que todo, eso tengo que recordar en el mes de diciembre? """,
+)
+poem_db.add_poem(
+    "natsuki_poem1",
+    author_n,
+    title= "Las Aguilas pueden volar",
+    text="""\
+Los monos pueden trepar,
+los grillos pueden saltar,
+los caballos pueden correr,
+los búhos pueden buscar,
+los guepardos pueden corre,
+las águilas pueden volar,
+la gente puede intentarlo,
+pero eso es todo.""",
 )

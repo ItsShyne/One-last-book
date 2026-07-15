@@ -1,6 +1,8 @@
 # TRANSFORMS
 image  bg recuerdos = "images/bg/borde_blanco.png.avif"
 image bg residensial_noche = "images/bg/residential-night.png"
+image yuri_pequena = "images/yuri/yuri_chiquita.png"
+image recuerdo_blanco = Solid("#0b0b0b80")
 
 transform heartbeat_weak:
     zoom 1.00
@@ -283,7 +285,7 @@ label despertar_realista:
 
     "\"Toc Toc\""
 
-    # Apertura final
+    # ultimo parpadeo
     show top_lid at top_open
     show bottom_lid at bottom_open
 
@@ -321,3 +323,30 @@ transform sleepy_camera:
     linear 4.0 xoffset -15 yoffset -8
     linear 4.0 xoffset 15 yoffset 8
     repeat
+
+
+
+
+
+
+transform recuerdo:
+    matrixcolor SaturationMatrix(0.3) * TintMatrix("#d8c6a0")
+    blur 2.0
+
+transform recuerdo1:
+    alpha 0  
+
+label yuri_chiquita:
+
+    scene bg class_day
+    show recuerdo_blanco
+    with Dissolve(1.0)
+
+    hide sayori
+
+    show yuri_pequena zorder 2 at f11
+
+    y "..."
+
+    return
+

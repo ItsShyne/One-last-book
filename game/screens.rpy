@@ -1,3 +1,6 @@
+#animaciones del titlle screen
+# Definimos la animación de entrada horizontal
+    
 ## screens.rpy
 
 # This file declares all the screens and styles in DDLC.
@@ -471,6 +474,8 @@ screen navigation():
     vbox:
         style_prefix "navigation"
 
+        at animation_title_screen
+
         xpos gui.navigation_xpos
         yalign 0.8
 
@@ -479,7 +484,7 @@ screen navigation():
         if not persistent.autoload or not main_menu:
 
             if main_menu:
-
+                
                 if persistent.playthrough == 1:
                     textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
                 else:
@@ -491,7 +496,7 @@ screen navigation():
 
                 textbutton _("Guardar partida") action [ShowMenu("save"), SensitiveIf(renpy.get_screen("save") == None)]
 
-            textbutton _("cargar partida") action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
+            textbutton _("Cargar partida") action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
 
             if enable_extras_menu:
                 textbutton _("Extras...") action [ShowMenu("extras"), SensitiveIf(renpy.get_screen("extras") == None)]
@@ -1192,7 +1197,7 @@ screen ddlc_preferences():
             if config.has_sound:
 
                 hbox:
-                    label _("volumen del sonido")
+                    label _("Volumen del sonido")
                     
                     null width 5
                 
@@ -1221,7 +1226,7 @@ screen ddlc_preferences():
             if config.has_music or config.has_sound or config.has_voice:
                 null height gui.pref_spacing
 
-                textbutton _("silenciar todo"):
+                textbutton _("Silenciar todo"):
                     action Preference("all mute", "toggle")
                     style "mute_all_button"
 
@@ -2103,3 +2108,10 @@ translate None strings:
 label choose_language:
     call screen choose_language
     return
+style navigation_button_text:
+    font "mod_assets/font/Chewy_Regular.ttf"
+#Colores de la fuente del menú
+style navigation_button_text:
+    idle_color "#680868"   # Color lila/morado suave cuando el botón está quieto
+    hover_color "#FF007F"  # Color fucsia encendido del logo al pasar el mouse
+    selected_color "#FF007F"
