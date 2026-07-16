@@ -2,6 +2,17 @@
 *.rpyc
 *.rpyb
 *.pyc
+# Carpetas a ignorar en la raíz
+/DDLCModTemplate.xcodeproj/
+/Documentation/
+/Original Script Files/
+
+# Archivos a ignorar en la raíz
+/README
+/Config.xcconfig
+/LinuxLauncher.sh
+/README.linux
+/XCODE
 
 # DDLC / Ren'Py archives
 *.rpa
