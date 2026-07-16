@@ -1,7 +1,6 @@
 # TRANSFORMS
 image  bg recuerdos = "images/bg/borde_blanco.png.avif"
 image bg residensial_noche = "images/bg/residential-night.png"
-image yuri_pequena = "images/yuri/yuri_chiquita.png"
 image recuerdo_blanco = Solid("#0b0b0b80")
 
 transform heartbeat_weak:
@@ -350,3 +349,21 @@ label yuri_chiquita:
 
     return
 
+label prueba1:
+    scene bg bedroom
+
+    with dissolve_scene_full
+    show sayori 4ba zorder 2 at t32
+    s "NEGROS DE MIERDA"
+    $ renpy.notify("LENI ES GAY, MUY GAY DEMACIADO GAY")
+    s "AY QUE DESIFECTARLOS"
+    $ renpy.notify("LENI ES GAY, MUY GAY DEMACIADO GAY")
+    hide sayori 4ba zorder 2 at t32
+    show sayori 1bb zorder 2 at t32
+    s "PARA NO MANCHARNOS CON SU NEGROSURA"
+    $ renpy.notify("LENI ES GAY, MUY GAY DEMACIADO GAY")
+    s "si tienes un amigo demaciado oscuro"
+    $ renpy.notify("LENI ES GAY, MUY GAY DEMACIADO GAY")
+    s "yo que se"
+
+    $ renpy.notify("LENI ES GAY, MUY GAY DEMACIADO GAY")
