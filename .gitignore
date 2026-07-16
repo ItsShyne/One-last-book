@@ -1,3 +1,9 @@
+# Ignorar absolutamente todo por defecto en la raíz
+/*
+
+# Excepciones: NO ignorar el archivo .gitignore ni la carpeta game
+!/.gitignore
+!/game/
 # Ren'Py compiled files
 *.rpyc
 *.rpyb
