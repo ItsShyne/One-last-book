@@ -14,7 +14,7 @@ label cap1:
 
     pause 0.8
 
-    "???" "\"[player]...\""
+    "???" "Hey"
 
     show top_lid at top_open
     show bottom_lid at bottom_open
@@ -26,7 +26,7 @@ label cap1:
 
     pause 0.15
 
-    "???" "\"[player]\""
+    "???" "Oye"
 
     show top_lid at top_open
     show bottom_lid at bottom_open
@@ -38,7 +38,7 @@ label cap1:
 
     pause 0.15
 
-    "???" "\"¡[player]!\""
+    "???" "Despierta"
 
     show top_lid at top_open
     show bottom_lid at bottom_open
@@ -75,7 +75,7 @@ label cap1:
 
     show sayori turned rup uniform nerv cm oe zorder 2 at t44
 
-    player "\"¿Vamos? ¿tarde?\""
+    mc "¿Vamos? ¿tarde?"
 
     "Me estiré en mi asiento y miré alrededor, no había nadie en el salón además de nosotros."
 
@@ -85,11 +85,11 @@ label cap1:
 
     show sayori tap om ce zorder 2 at f11
 
-    s "Realmente... ¡¡estás peor que yo!!! El timbre suena unas 3 veces."
+    s "Realmente... ¡¡estás peor que yo!! El timbre suena unas 3 veces."
 
     show sayori tap nerv cm oe zorder 2 at t11
 
-    player "\"Si bueno, de todos modos no necesitas esperarme seguro los de tu club se preocuparán por ti.\"" 
+    mc "Si bueno, de todos modos no necesitas esperarme seguro los de tu club se preocuparán por ti." 
 
     show sayori tap cm oe zorder 2 at t11
 
@@ -101,7 +101,7 @@ label cap1:
 
     show sayori turned uniform shoc cm oe zorder 2 at t11
 
-    player "\"No visitaré el club de literatura Sayori…\""
+    mc "No visitaré el club de literatura Sayori…"
 
     show sayori turned uniform vsur om oe zorder 2 at f22
 
@@ -109,7 +109,7 @@ label cap1:
 
     show sayori turned uniform vsur om oe zorder 2 at t22
 
-    player "\"sip, nos vemos mañana.\""
+    mc "sip, nos vemos mañana."
 
     "Recogí algunos libros del pupitre para meterlos en mi mochila."
 
@@ -121,7 +121,7 @@ label cap1:
 
     show sayori tap uniform pout cm oe zorder 2 at t11
 
-    player "\"¿En serio es importante para ti que lo haga?\""
+    mc "¿En serio es importante para ti que lo haga?"
 
     show sayori turned rup uniform nerv om oe zorder 3 at f11
 
@@ -133,7 +133,7 @@ label cap1:
 
     show sayori turned uniform nerv cm oe zorder 2 at t43
 
-    player "\"¿¡Hiciste un promesa de algo que no depende de ti!?\""
+    mc "¿¡Hiciste un promesa de algo que no depende de ti!?"
 
     show sayori 2c zorder 2 at f11
 
@@ -141,13 +141,13 @@ label cap1:
 
     show sayori turned neut cm oe zorder 2 at t11
 
-    player "\"...\""
+    mc "..."
 
     "Debí de haberme ido en lugar de discutir."
 
     "Suspiré."
 
-    player "\"Está bien... pero solo visitar no unirme.\""
+    mc "Está bien... pero solo visitar no unirme."
 
     show sayori 4r zorder 2 at f21
 

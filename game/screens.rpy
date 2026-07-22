@@ -33,7 +33,7 @@ default translations = scan_translations()
 # Enables the ability to add more settings in the game such as Uncensored Mode.
 default extra_settings = False
 # If you are using the Extras Menu feature, set this line to True.
-default enable_extras_menu = True
+default enable_extras_menu = False
 # If you are going to use extra languages, set this to True.
 default enable_languages = False
 
@@ -181,54 +181,61 @@ style frame:
 screen say(who, what, **kwargs):
     style_prefix "say"
 
+    $ textbox_size = (824, 148)
+
     window:
         id "window"
-        
-       # --- TEXTBOXES PERSONALIZADAS (YURI Y ELSE POR DEFECTO) ---
+
+        # --- TEXTBOXES PERSONALIZADAS (todas con el mismo tamaño y alineación) ---
         if kwargs.get('custom_prefix') == "sayori":
             background Transform(
-                "mod_assets/textbox_s.png", 
-                xalign=0.5, 
-                yalign=0,
-                ypos = 15,
-                size=(864, 184)
+                "mod_assets/textbox_s.png",
+                xalign=0.5,
+                yalign=1.0,
+                size=textbox_size
             )
         elif kwargs.get('custom_prefix') == "monika":
             background Transform(
-                "mod_assets/textbox_m.png", 
-                xalign=0, 
-                yalign=0,
-                xpos = 200,
-                ypos= 21,
-                size=(864, 178)
+                "mod_assets/textbox_m.png",
+                xalign=0.5,
+                yalign=1.0,
+                size=textbox_size
             )
         elif kwargs.get('custom_prefix') == "narrator":
             background Transform(
-                "mod_assets/textbox_mc.png", 
-                xalign=0.5, 
-                yalign=1.8,
-                size=(864, 164)
+                "mod_assets/textbox_mc.png",
+                xalign=0.5,
+                yalign=1.0,
+                size=textbox_size
             )
         elif kwargs.get('custom_prefix') == "natsuki":
             background Transform(
-                "mod_assets/textbox_n.png", 
-                xalign=0.5, 
-                yalign=1.8,
-                size=(864, 164)
+                "mod_assets/textbox_n.png",
+                xalign=0.5,
+                yalign=1.0,
+                size=textbox_size
             )
         elif kwargs.get('custom_prefix') == "mc":
             background Transform(
-                "mod_assets/textbox_mc.png", 
-                xalign=0.5, 
-                yalign=1.8,
-                size=(864, 164)
+                "mod_assets/textbox_mc.png",
+                xalign=0.5,
+                yalign=1.0,
+                size=textbox_size
             )
         elif kwargs.get('custom_prefix') == "yuri":
-            # Se queda como antes (Original)
-            background Transform("mod_assets/textbox_y.png", xalign=0.5, yalign=1.0)
+            background Transform(
+                "mod_assets/textbox_y.png",
+                xalign=0.5,
+                yalign=1.0,
+                size=textbox_size
+            )
         else:
-            # Se queda como antes (Original)
-            background Transform("gui/textbox.png", xalign=0.5, yalign=1.0)
+            background Transform(
+                "gui/textbox.png",
+                xalign=0.5,
+                yalign=1.0,
+                size=textbox_size
+            )
         if who:
             window:
                 style "namebox"
@@ -269,6 +276,12 @@ style mc_dialog is say_dialog:
     
     # Si la textbox del MC también es de las cortas (864px), limita el ancho del texto:
     xmaximum 730
+style m_dialog is say_dialog:
+    xoffset 320  # Mueve la letra del Moni: Positivo = Derecha | Negativo = Izquierda
+    yoffset 60 # Mueve la letra del Moni: Positivo = Abajo | Negativo = Arriba
+    
+    # Si la textbox del Moni también es de las cortas (864px), limita el ancho del texto:
+    xmaximum 700
 style say_thought is say_dialogue
 
 style namebox is default
@@ -312,6 +325,7 @@ style say_dialogue:
     ypos gui.text_ypos
     text_align gui.text_xalign
     layout ("subtitle" if gui.text_xalign else "tex")
+    yoffset -10
 
 image ctc:
     xalign 0.81 yalign 0.98 xoffset -5 alpha 0.0 subpixel True
@@ -579,7 +593,7 @@ screen navigation():
             textbutton _("Ajustes") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
            
-            textbutton _("Creditos") action ShowMenu("about")
+            #textbutton _("Creditos") action ShowMenu("about")
 
             if renpy.variant("pc"):
 

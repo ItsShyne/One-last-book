@@ -966,14 +966,16 @@ image yuri_sentada = "images/yuri/yuri_sentada.png"
 image yuri_parada = "images/yuri/yuri_parada.png"
 
 #Subconciente de Yuri
-image yuri_pequena_timida = "images/yuri/yuri_chiquita.png"
-image yuri_pequena_seria = "images/yuri/yuri_chiquita_hablando.png"
-image yuri_pequena_cry = "images/yuri/yuri_chiquita_cry1.png"
-image yuri_pequena_cry2 = "images/yuri/yuri_chiquita_cry2.png"
-image yuri_pequena_neut = "images/yuri/yuri_chiquita_neut.png"
-image yuri_pequena_sad = "images/yuri/yuri_chiquita_sad.png"
-image yuri_pequena_sad2 = "images/yuri/yuri_chiquita_sad2.png"
-image yuri_pequena_tired = "images/yuri/yuri_chiquita_tired.png"
+# Sprites de Yuri Chiquita
+# Sprites de Yuri Chiquita estructurados para Ren'Py
+image yuri_pequena timida = "images/yuri/yuri_chiquita.png"
+image yuri_pequena seria  = "images/yuri/yuri_chiquita_hablando.png"
+image yuri_pequena cry    = "images/yuri/yuri_chiquita_cry1.png"
+image yuri_pequena cry2   = "images/yuri/yuri_chiquita_cry2.png"
+image yuri_pequena neut   = "images/yuri/yuri_chiquita_neut.png"
+image yuri_pequena sad    = "images/yuri/yuri_chiquita_sad.png"
+image yuri_pequena sad2   = "images/yuri/yuri_chiquita_sad2.png"
+image yuri_pequena tired  = "images/yuri/yuri_chiquita_tired.png"
 
 ################
 # Note: Sprites with a 'y' in the middle are Yuri's Yandere Sprites.
@@ -1541,7 +1543,7 @@ define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', what_st
 
 # El prefijo "show_" es obligatorio aquí para que Ren'Py lo envíe a la pantalla
 define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="sayori",who_color="#ffffff", who_outlines=[(2, "#3a7da8", 0, 0)])
-define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="monika", who_color="#ffffff", who_outlines=[(2, "#2e5a1c", 0, 0)])
+define m = DynamicCharacter('m_name', image='monika', what_prefix='"',what_style="m_dialog", what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="monika", who_color="#ffffff", who_outlines=[(2, "#2e5a1c", 0, 0)])
 define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="natsuki", who_color="#ffffff", who_outlines=[(2, "#b63c60", 0, 0)])
 define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="yuri", who_color="#c8a2c8", who_outlines=[(2, "#4a154b", 0, 0)])
 

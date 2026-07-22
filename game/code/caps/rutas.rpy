@@ -179,18 +179,24 @@ label rutas:
         mc "Hola, Yuri. Qué oportuno verte también por aquí."
         pause 0.5
         show yuri turned flus cm ce zorder 2 at s11
-        pause 0.5
-        y turned sedu om oe "O-Oh, hola, [player]."
+        pause 0.9
+
+        show yuri turned flus om oe zorder 2 at f11
+        y "O-Oh, hola, [player]."
 
         y "No esperaba verte por aquí."
 
         y "¿Sueles venir a buscar libros a la biblioteca?"
+
+        show yuri turned sedu om oe zorder 2 at t11
 
         mc "No exactamente. Como acabo de ingresar al club, quería sumergirme al menos un poco en esto de la literatura."
 
         mc "Para no sentirme fuera de lugar y poder discutir con ustedes sobre el tema."
 
         "No es del todo mentira, pero sigue siendo una mentira."
+
+        show yuri turned happ om oe zorder 2 at f11
 
         y turned happ om oe "Maravilloso."
 
@@ -200,13 +206,19 @@ label rutas:
 
         y "Tengo muchos libros que son una excelente introducción para lectores principiantes."
 
+        show yuri turned happ om oe zorder 2 at t11
+
         mc "¿En serio? Me serviría de mucha ayuda."
 
         show yuri turned ldown rdown sedu om oe zorder 2 at t11
 
         "Yuri se percata de los libros que llevo en los brazos."
 
+        show yuri turned ldown rdown sedu om oe zorder 2 at f11
+
         y "¿[player]... te gusta el terror?"
+
+        show yuri turned ldown rdown sedu om oe zorder 2 at t11
 
         mc "¿Mmh? ¿Por qué lo dices?"
 
@@ -216,12 +228,15 @@ label rutas:
 
         "No suena tan convincente, espero que se lo crea."
 
+        show yuri turned happ om ce zorder 2 at f11
+
         y turned happ om ce "¿En serio? El terror psicológico está siendo uno de mis géneros favoritos últimamente."
 
         "Uff, se lo creyó."
 
         y turned happ cm oe "Si es así, me gustaría darte unas cuantas recomendaciones sobre algunos libros que estoy segura de que te darán una grata sorpresa."
 
+        show yuri turned happ cm oe zorder 2 at t11
         mc "Si no es mucha molestia, por favor."
 
         show yuri turned lup rup dist om ce zorder 2 at t11
@@ -238,6 +253,7 @@ label rutas:
 
         "Todo suena inofensivo cuando lo dice Yuri, pero en realidad describe tramas repletas de asesinatos, trastornos y torturas de lo más siniestras."
 
+        show yuri turned lup rup dist om ce zorder 2 at f11
         y "Es una historia fantástica... Tras ser acorralada, la protagonista entra en un terrible dilema."
 
         y "Una inquietante maldición la persigue día tras día, justo desde que encontró una pequeña caja de madera en su apartamento."
@@ -266,23 +282,33 @@ label rutas:
 
         "Una fuerte alarma interrumpe a Yuri y la devuelve bruscamente a la realidad."
 
+        show yuri turned pani om oe zorder 2 at f11
+
         y "A-Ah..."
 
         y turned ldown rdown lsur om oe "Lamento haberte retenido aquí tanto tiempo escuchándome..."
+
+        show yuri turned ldown rdown lsur om oe zorder 2 at t11
 
         mc "No, no te preocupes."
 
         mc "Te agradezco mucho las recomendaciones. Lograste capturar toda mi atención al contarme de qué trataban."
 
+        show yuri turned happ cm oe zorder 2 at f11
         y turned happ cm oe "E-Está bien... Debo irme, se ha hecho un poco tarde."
+
+        show yuri turned happ cm oe zorder 2 at t11
 
         mc "Sí, no sé en qué momento el tiempo pasó tan rápido."
 
         mc "De nuevo, muchas gracias por las recomendaciones. Te aseguro que intentaré leerlos todos."
 
+        show yuri turned happ cm ce zorder 2 at f11
         y turned happ cm ce "Fue un placer. Nos vemos mañana, [player]."
 
         y "No olvides escribir tu poema."
+
+        show yuri turned happ cm ce zorder 2 at t11
 
         mc "Tienes razón."
 
@@ -408,11 +434,11 @@ label rutas:
 
         n "¡¿Cómo puede decir que mi poema es simplemente 'lindo'?! ¡¿Por qué todos tienen que encasillarme en eso?!"
 
-        n "¡¿Acaso no son capaces de ver que hay algo más en mí?!"
+        n turned angr om ce "¡¿Acaso no son capaces de ver que hay algo más en mí?!"
 
         n "¡Ush!"
 
-        n "¡¡JÓDANSE TODOS!!"
+        n turned pani cm oe "¡¡JÓDANSE TODOS!!"
 
         show natsuki turned cry cm oe zorder 2 at correr_izquierda
 
@@ -423,16 +449,18 @@ label rutas:
         play audio closet_close
 
         "Con pisotones violentos que retumban en el aula, Natsuki sale corriendo del salón del club, dejándonos a Yuri y a mí en un silencio sepulcral."
-        show yuri shy neut om oe zorder 2 at t11
+        show yuri shy neut om oe zorder 2 at f11
 
         y "Y-Yo..."
 
         "Yuri desvía la mirada por completo, rehuyendo de mí como si le lastimara verme."
 
+        show yuri shy neut om oe zorder 2 at t11
+
         mc "Yuri... Tranquila..."
 
         "Doy un paso cauteloso hacia ella."
-        show yuri shy angr cm ce zorder 2 at t11
+        show yuri shy angr cm ce zorder 2 at f11
         "Yuri se aleja bruscamente, apretando los puños con tanta fuerza que sus nudillos se tornan blancos."
 
         "Me quedo inmóvil, contemplando su silenciosa agitación."
@@ -456,9 +484,15 @@ label rutas:
 
         mc "¿Chicas por que tanto alboro-{nw}"
 
+        show natsuki cross n1 angr om ce zorder 2 at f22
+
         n cross n1 angr om ce "Si vas hacerte el tonto, callate y sientate."
 
+        show natsuki cross n1 angr om ce zorder 2 at t22
+
         "Me senté rápidamente en mi asiento."
+
+        show yuri turned n1 angr om oe zorder 2 at f21
 
         y turned n1 angr om oe "Natsuki, no deberías hablarle así a [player]. Es una total falta de respeto."
         show natsuki turned angr om oe zorder 2 at f22
@@ -542,47 +576,48 @@ label rutas:
     label mostrar_poema_monika2:
         play music audio.t5 fadein 0.5
 
-        show monika 1a at t11
+        show monika 1a at f11
         m "¡Hola de nuevo, [player]!"
         m "Veo que te estás tomando esto de la escritura muy en serio."
         m 1b "Déjame ver qué preparaste para hoy."
 
         "Le entrego mi poema a Monika."
 
-        show monika 1d at t11
+        show monika 1d at f11
         m "..."
-        show monika 2g at t11
+        show monika 2g at f11
         "Monika entrecierra los ojos mientras lee el papel. Por un segundo, su sonrisa desaparece por completo."
-        show monika 4b at t11
+        show monika 4b at f11
         m "Oh... ya veo."
         m "Vaya, [player]... parece que te esforzaste bastante en impresionar a alguien en específico hoy, ¿verdad?"
 
+        show monika 4b at t11
         mc "¿Eh? ¿A qué te refieres?"
 
-        show monika 2h at t11
+        show monika 2h at f11
         m "Je, no te hagas el tonto."
         m "La elección de palabras en este poema... es demasiado profunda, metafórica y oscura."
-        show monika 1r at t11
+        show monika 1r at f11
         "Monika desvía la mirada un momento, cruzándose de brazos con un ligero suspiro de fastidio."
         m 1g "Definitivamente tiene la vibra de Yuri escrita por todos lados."
         m "A ella le fascinan este tipo de cosas pretenciosas... ya sabes, misterios pesados y un vocabulario innecesariamente complejo."
-
+        show monika 1g zorder 2 at t11
         mc "Bueno, yo... solo intenté escribir algo diferente."
 
-        show monika 2f at t11
+        show monika 2f at f11
         m "No tienes que justificarte conmigo, [player]. Aunque..."
         m 2g "Me sorprende un poco que te hayas decantado por su estilo tan rápido."
-        show monika 3b at t11
+        show monika 3b at f11
         m "Solo ten cuidado de no perder tu propia voz en el proceso, ¿de acuerdo? No querrás cambiar solo para complacerla."
         m 3h "A veces, intentar encajar en el mundo de alguien tan... inestable y reservado como Yuri, puede hacer que te olvides de ti mismo."
-        show monika 2e at t11
+        show monika 2e at f11
         m "Y, honestamente, sería una lástima que desperdiciaras tu potencial limitándote a lo que a ella le gusta."
-        show monika 5a at t11
+        show monika 5a at f11
         "Monika recupera rápidamente su sonrisa perfecta, aunque sus ojos aún muestran un toque de recelo."
         m "¡Pero bueno, es solo un consejo de tu presidenta! En general, hiciste un buen esfuerzo..."
 
         # Monika se prepara para mostrar su poema
-        show monika 1b at t11
+        show monika 1b at f11
         m "Ahora, es mi turno. Déjame mostrarte lo que escribí hoy."
         m "Es un poema que habla sobre decisiones reales, algo que de verdad importa. No metáforas vacías."
         m 1a "¡Espero que te guste!"
@@ -590,16 +625,17 @@ label rutas:
         
         $ poem_db.show_poem("poem_m2")
 
-        show monika 1a at t11
+        show monika 1a at f11
         m "¿Y bien? ¿Qué te pareció?"
         m 1b "Sé que es mucho más directo que lo que acabas de escribir, pero a mí me gusta ser clara con lo que quiero transmitir."
 
+        show monika 1a at t11
         mc "Es... bastante único, Monika. Me hace pensar en cómo a veces nos sentimos atrapados."
 
-        show monika 5a at t11
+        show monika 5a at f11
         m "¡Exactamente! Me alegra tanto que lo entiendas de esa manera, [player]."
         m 1j "Significa muchísimo para mí que prestes atención a mis palabras."
-        show monika 2a at t11
+        show monika 2a at f11
         m "En fin... será mejor que sigas compartiendo tu poema con las demás."
         m 2g "Estoy segura de que Yuri se morirá de ganas por leer lo que escribiste 'especialmente' para ella."
         show show monika 2a at thide
@@ -723,9 +759,11 @@ label rutas:
 
             "Yuri se acerca lentamente a mi."
 
-            show yuri turned happ cm oe zorder 2 at t11
+            show yuri turned happ cm oe zorder 2 at f11
 
             y "[player], ¿quieres compartir poemas?"
+
+            show yuri turned happ cm oe zorder 2 at t11
 
             mc "Por supuesto"
 
@@ -771,7 +809,7 @@ label rutas:
 
             y "Si sigues mejorando, incluso podrías ser el mejor escritor del club, yo lo creo."
 
-            show yuri turned laug cm oe zorder 2 at f11
+            show yuri turned laug cm oe zorder 2 at t11
 
             mc "No creo que sea tan bueno como mencionas, Yuri, pero sí seguí tus consejos y además leí algunos libros."
 
@@ -785,7 +823,7 @@ label rutas:
 
             show yuri turned worr cm oe zorder 2 at t11
 
-            mc "Pero no tengo problemas."
+            mc "Pero no tengo problemas luego de compartirlo con las chicas."
 
             show yuri turned laug om oe zorder 2 at t11
 

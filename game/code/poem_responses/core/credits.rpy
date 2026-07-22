@@ -177,14 +177,7 @@ image credits_logo:
     4.5
     linear 2.0 alpha 0
 
-# This image shows the Team Salvato logo with certain transforms.
-image credits_ts:
-    "images/bg/splash-white.png"
-    xalign 0.5 yalign 0.6
-    zoom 0.65 alpha 0 subpixel True
-    linear 2.0 alpha 1
-    4.5
-    linear 2.0 alpha 0
+
 
 # This style declares the text appearance of the work type credits text in the
 # credits.
