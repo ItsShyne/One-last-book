@@ -26,6 +26,7 @@ label start:
     $ m_name = "Monika"
     $ n_name = "Natsuki"
     $ y_name = "Yuri"
+    
 
     # This variable controls whether the quick menu in the textbox is enabled.
     $ quick_menu = True
@@ -42,7 +43,7 @@ label start:
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-    jump cap1
+    jump creditos   
 
 # This label is where the game 'ends' during Act 1.
 label endgame(pause_length=4.0):

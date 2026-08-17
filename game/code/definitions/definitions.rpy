@@ -102,6 +102,8 @@ define audio.heart = "sfx/brvhrtz-heartbeat-01-brvhrtz-225058.mp3"
 define audio.lluvia = "sfx/liecio-calming-rain-257596.mp3"
 define audio.trueno = "sfx/u_q2hb2391vb-thunder-clap-521194.mp3"
 define audio.obj_fall = "sfx/objeto_cayendo.mp3"
+define audio.ducha = "mod_assets/bgm/freesound_community-shower-14461.mp3"
+define audio.street_stroll = "mod_assets/bgm/main_street_stroll.ogg"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -167,6 +169,9 @@ image bg courtyard_aft =  "mod_assets/bg/courtyard/courtyard_aft.png"
 image bg courtyard =  "mod_assets/bg/courtyard/courtyard.png "
 image bg courtyard_nolight =  "mod_assets/bg/courtyard/courtyard_nolight.png" 
 image bg courtyard_night =  "mod_assets/bg/courtyard/courtyard_night.png"
+image bg yuri_bedroom = "mod_assets/bg/yuri_bed.png"
+image bg yuri_bathroom = "mod_assets/bg/Bathroom_BG.jpg"
+image bg clothing_store = "mod_assets/bg/clothing_store.png"
 ####################3
 image bg residential_day = "bg/residential.png" # Start of DDLC BG
 image bg class_day = "bg/class.png" # The classroom BG
@@ -1538,17 +1543,19 @@ image monika g2:
 # To define a new character without assets, declare a character variable like this instead:
 #   define en = Character('Eileen & Nat', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
-define narrator = Character(ctc="ctc", ctc_position="fixed", show_custom_prefix="narrator", what_style="mc_dialog"  )
-define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', what_style="mc_dialog", ctc="ctc", ctc_position="fixed", show_custom_prefix="mc", who_color="#ffffff", who_outlines=[(2, "#4a5159", 0, 0)])
+# Narrador y voces sin sprite
+define narrator = Character(ctc="ctc", ctc_position="fixed", show_custom_prefix="narrator", what_style="mc_dialog", callback=mouth_cb('narrator'))
+define dr = Character('Dr Lankton', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", callback=mouth_cb('narrator'))
+define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', what_style="mc_dialog", ctc="ctc", ctc_position="fixed", show_custom_prefix="mc", who_color="#ffffff", who_outlines=[(2, "#4a5159", 0, 0)], callback=mouth_cb('narrator'))
 
-# El prefijo "show_" es obligatorio aquí para que Ren'Py lo envíe a la pantalla
-define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="sayori",who_color="#ffffff", who_outlines=[(2, "#3a7da8", 0, 0)])
-define m = DynamicCharacter('m_name', image='monika', what_prefix='"',what_style="m_dialog", what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="monika", who_color="#ffffff", who_outlines=[(2, "#2e5a1c", 0, 0)])
-define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="natsuki", who_color="#ffffff", who_outlines=[(2, "#b63c60", 0, 0)])
-define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="yuri", who_color="#c8a2c8", who_outlines=[(2, "#4a154b", 0, 0)])
+define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", callback=mouth_cb('narrator'))
+define my = Character('Moni & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", callback=mouth_cb('narrator'))
 
-define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
-define my = Character('Moni & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# Personajes con sprites MPT
+define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="sayori", who_color="#ffffff", who_outlines=[(2, "#3a7da8", 0, 0)], callback=mouth_cb('sayori'))
+define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_style="m_dialog", what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="monika", who_color="#ffffff", who_outlines=[(2, "#2e5a1c", 0, 0)], callback=mouth_cb('monika'))
+define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="natsuki", who_color="#ffffff", who_outlines=[(2, "#b63c60", 0, 0)], callback=mouth_cb('natsuki'))
+define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="yuri", who_color="#c8a2c8", who_outlines=[(2, "#4a154b", 0, 0)], callback=mouth_cb('yuri'))
 # This variable determines whether to allow the player to dismiss pauses.
 # By default this is set by config.developer which is normally set to false
 # once you packaged your mod.
@@ -1716,5 +1723,36 @@ transform correr_izquierda:
         ease 0.15 yoffset 0
         ease 0.15 yoffset -20
         ease 0.15 yoffset 0
+# Definimos la animación para los párpados
+transform despertar_ojos:
+    # 1. Ojos totalmente cerrados (pantalla negra)
+    Solid("#000000")
+    alpha 1.0
+    pause 1.0
+    
+    # 2. Primer entreabierto rápido (se asoma la luz)
+    easein 0.4 alpha 0.6
+    easeout 0.3 alpha 0.95
+    pause 0.2
+    
+    # 3. Segundo intento de abrir los ojos (se ve un poco más)
+    easein 0.6 alpha 0.3
+    easeout 0.4 alpha 0.85
+    pause 0.3
+    
+    # 4. Abre los ojos por completo (desaparece lo negro)
+    easein 1.2 alpha 0.0
+# Transformación de desenfoque progresivo
+transform enfoque_despertar:
+    blur 20.0
+    ease 2.5 blur 0.0
 
-        
+transform parpados_abriendo:
+    Solid("#000")
+    alpha 1.0
+    ease 0.5 alpha 0.7
+    ease 0.3 alpha 0.9
+    ease 1.5 alpha 0.0
+init python:
+    af.addCharacterToTag('natsuki', ny)
+    af.addCharacterToTag('yuri', ny)

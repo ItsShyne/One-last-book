@@ -3164,7 +3164,6 @@ label biblioteca:
         show yuri turned cry cm oe zorder 2 at t22
         show monika forward flus cm oe zorder 2 at f21
 
-        stop music 
 
         y "..."
         show yuri turned cry cm oe zorder 2 at thide
@@ -5178,5 +5177,7 @@ label biblioteca:
         stop music fadeout 1.5
         
         with dissolve_scene_full
+
+        jump cap3
 
     return
