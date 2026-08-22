@@ -23,7 +23,7 @@ image menu_logo:
     subpixel True
     xcenter 180
     ycenter 150
-    zoom 0.60
+    zoom 0.50
     menu_logo_move
 
 screen interactive_logo():
@@ -291,6 +291,19 @@ image fallen_menu_art_m:
     zoom 1.00
     menu_art_move(1.00, 250, 0.45)
 
+image fallen_menu_panel:
+    "mod_assets/gui/game_menu.png"
+    xalign 0.0
+    yalign 0.0
+
+
+transform fallen_menu_panel_enter:
+    xoffset -1280
+    alpha 0.0
+
+    easeout 3 xoffset 0 alpha 1.0
+
+
 # This image is a left over from DDLC's development that shows the splash message
 # when the game starts.
 image warning:
@@ -310,6 +323,9 @@ default persistent.has_chosen_language = False
 
 ## This sets the first run variable to False to show the disclaimer.
 default persistent.first_run = False
+
+# Controla si el prólogo/menu interactivo de Fallen Angel ya fue visto.
+default persistent.fallen_intro_seen = False
 
 ## Startup Disclaimer
 ## This label calls the disclaimer screen that appears when the game starts.
@@ -504,78 +520,153 @@ label splashscreen:
     $ pause(0.5)
 
     # Show Team Salvato logo cleanly with the Fallen Angel theme starting
-    $ config.main_menu_music = audio.t1
-    play music "mod_assets/bgm/Title_reorch.ogg" fadein 1.5
+    # ========================================================================
+    # FALLEN ANGEL INTRO - SOLO LA PRIMERA VEZ
+    # ========================================================================
+    # ========================================================================
+# TEAM SALVATO SPLASH - DESPUÉS DE HABER VISTO FALLEN ANGEL
+# ========================================================================
 
-    show expression "mod_assets/logos/fallen_splash.png" as ts_logo:
-        truecenter
-    with Dissolve(0.5, alpha=True)
-    $ pause(2.2)
-    hide ts_logo with Dissolve(0.5, alpha=True)
-    $ pause(0.5)
+if persistent.fallen_intro_seen:
 
-    # Show Fallen Angel animated main menu mockup (given more time to appreciate)
-    show fallen_menu_bg as f_bg
-    show fallen_menu_art_y as f_art_y
-    show fallen_menu_art_n as f_art_n
-    show fallen_menu_logo as f_logo
-    show fallen_menu_art_s as f_art_s
-    show fallen_menu_art_m as f_art_m
-    show menu_fade as f_fade
-    $ pause(4.2)
+    show intro
 
-    # --- GLITCH 1: Out of Fallen Angel menu ---
-    play sound s_kill_glitch1
-    stop music
-    show screen tear(20, 0.1, 0.1, 0, 100)
-    $ pause(0.3)
-    hide screen tear
+    $ pause(4.5)
 
-    # Go to white and show first text
-    scene white
-    show splash_warning "Espera un momento..." with Dissolve(0.3, alpha=True)
-    $ pause(2.0)
-    hide splash_warning with Dissolve(0.3, alpha=True)
-    $ pause(0.2)
+    hide intro
 
-    # --- DISTORTED MAIN MENU PREVIEW (Glitch sound and distorted preview at the same time, under 1s) ---
-    # Show the distorted main menu preview elements using 'at' to preserve their sizes/positions
-    # We zoom the background slightly and center it to prevent white bars on screen edges during shake
-    show menu_bg as preview_bg at main_menu_glitch_shake:
-        truecenter
-        zoom 1.05
-    show menu_art_y as preview_art_y at main_menu_glitch_shake
-    show menu_art_n as preview_art_n at main_menu_glitch_shake
-    show menu_art_s as preview_art_s at main_menu_glitch_shake
-    show menu_art_m as preview_art_m at main_menu_glitch_shake
-    show menu_logo as preview_logo at main_menu_glitch_shake
-    show preview_glitch_color as gc
+    if not persistent.fallen_intro_seen:
 
-    # Force a frame update so Ren'Py renders the images on screen before screen tear captures it
-    $ renpy.pause(0.01, hard=True)
+        # --------------------------------------------------------------------
+        # FALLEN ANGEL LOGO
+        # --------------------------------------------------------------------
 
-    # Play the glitch sound and show the screen tear on top of the rendered images
-    play sound s_kill_glitch1
-    show screen tear(25, 0.1, 0.1, 0, 100)
-    $ pause(0.6)
-    hide screen tear
+        $ config.main_menu_music = audio.t1
+        play music "mod_assets/bgm/Title_reorch.ogg" fadein 1.5
 
-    # Go to white and show second text
-    scene white
-    show splash_warning "¿Y si la historia fuese diferente?" with Dissolve(0.3, alpha=True)
-    $ pause(2.0)
-    hide splash_warning with Dissolve(0.3, alpha=True)
-    $ pause(0.2)
+        show expression "mod_assets/logos/fallen_splash.png" as ts_logo:
+            truecenter
+        with Dissolve(0.5, alpha=True)
 
-    # --- FINAL TRANSITION ---
-    scene white
-    $ pause(0.6)
+        $ pause(2.2)
 
-    # Start main menu theme with a smooth recovery dissolve transition
-    $ renpy.transition(Dissolve(1.2))
-    $ renpy.music.play(config.main_menu_music, fadein=2.0)
-    $ config.allow_skipping = True
-    return
+        hide ts_logo with Dissolve(0.5, alpha=True)
+        $ pause(0.5)
+
+
+        # --------------------------------------------------------------------
+        # FALLEN ANGEL ANIMATED MENU
+        # --------------------------------------------------------------------
+
+        show fallen_menu_bg as f_bg
+        show fallen_menu_panel as f_panel at fallen_menu_panel_enter
+        show fallen_menu_art_y as f_art_y
+        show fallen_menu_art_n as f_art_n
+        show fallen_menu_logo as f_logo
+        show fallen_menu_art_s as f_art_s
+        show fallen_menu_art_m as f_art_m
+        show menu_fade as f_fade
+
+        $ pause(4.2)
+
+
+        # --------------------------------------------------------------------
+        # INTERACTIVE FALLEN ANGEL MENU
+        # --------------------------------------------------------------------
+
+        call screen fallen_intro_menu
+
+
+        # --------------------------------------------------------------------
+        # START GAME -> GLITCH
+        # --------------------------------------------------------------------
+
+        play sound s_kill_glitch1
+        stop music
+
+        show screen tear(20, 0.1, 0.1, 0, 100)
+        $ pause(0.3)
+        hide screen tear
+
+        hide f_bg
+        hide f_art_y
+        hide f_art_n
+        hide f_logo
+        hide f_art_s
+        hide f_art_m
+        hide f_fade
+
+
+        # --------------------------------------------------------------------
+        # "ESPERA UN MOMENTO..."
+        # --------------------------------------------------------------------
+
+        scene black
+
+        show splash_warning "{color=#ffffff}Espera un momento...{/color}" with Dissolve(0.3, alpha=True)
+
+        $ pause(2.0)
+
+        hide splash_warning with Dissolve(0.3, alpha=True)
+
+        $ pause(0.2)
+
+
+        # --------------------------------------------------------------------
+        # DISTORTED NORMAL MENU
+        # --------------------------------------------------------------------
+
+        show menu_bg as preview_bg at main_menu_glitch_shake:
+            truecenter
+            zoom 1.05
+
+        show menu_art_y as preview_art_y at main_menu_glitch_shake
+        show menu_art_n as preview_art_n at main_menu_glitch_shake
+        show menu_art_s as preview_art_s at main_menu_glitch_shake
+        show menu_art_m as preview_art_m at main_menu_glitch_shake
+        show menu_logo as preview_logo at main_menu_glitch_shake
+        show preview_glitch_color as gc
+
+        $ renpy.pause(0.01, hard=True)
+
+        play sound s_kill_glitch1
+
+        show screen tear(25, 0.1, 0.1, 0, 100)
+
+        $ pause(0.6)
+
+        hide screen tear
+
+
+        # --------------------------------------------------------------------
+        # "¿Y SI LA HISTORIA FUESE DIFERENTE?"
+        # --------------------------------------------------------------------
+
+        scene black
+
+        show splash_warning "{color=#ffffff}¿Y si la historia fuese diferente?{/color}" with Dissolve(0.3, alpha=True)
+
+        $ pause(2.0)
+
+        hide splash_warning with Dissolve(0.3, alpha=True)
+
+        $ pause(0.2)
+
+
+        # --------------------------------------------------------------------
+        # FINAL
+        # --------------------------------------------------------------------
+
+        scene black
+
+        $ pause(0.6)
+
+        $ renpy.transition(Dissolve(1.2))
+
+        $ renpy.music.play(config.main_menu_music, fadein=2.0)
+
+        $ config.allow_skipping = True
+
 
 # This label script is used when 'monika.chr' is deleted from the game after the 
 # at the beginning of a new game. This feature has been commented out for mod safety 

@@ -1546,14 +1546,14 @@ image monika g2:
 # Narrador y voces sin sprite
 define narrator = Character(ctc="ctc", ctc_position="fixed", show_custom_prefix="narrator", what_style="mc_dialog", callback=mouth_cb('narrator'))
 define dr = Character('Dr Lankton', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", callback=mouth_cb('narrator'))
-define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', what_style="mc_dialog", ctc="ctc", ctc_position="fixed", show_custom_prefix="mc", who_color="#ffffff", who_outlines=[(2, "#4a5159", 0, 0)], callback=mouth_cb('narrator'))
+define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="mc", who_color="#ffffff", who_outlines=[(2, "#4a5159", 0, 0)], callback=mouth_cb('narrator'))
 
 define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", callback=mouth_cb('narrator'))
 define my = Character('Moni & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", callback=mouth_cb('narrator'))
 
 # Personajes con sprites MPT
 define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="sayori", who_color="#ffffff", who_outlines=[(2, "#3a7da8", 0, 0)], callback=mouth_cb('sayori'))
-define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_style="m_dialog", what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="monika", who_color="#ffffff", who_outlines=[(2, "#2e5a1c", 0, 0)], callback=mouth_cb('monika'))
+define m = DynamicCharacter('m_name', image='monika', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="monika", who_color="#ffffff", who_outlines=[(2, "#2e5a1c", 0, 0)], callback=mouth_cb('monika'))
 define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="natsuki", who_color="#ffffff", who_outlines=[(2, "#b63c60", 0, 0)], callback=mouth_cb('natsuki'))
 define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="yuri", who_color="#c8a2c8", who_outlines=[(2, "#4a154b", 0, 0)], callback=mouth_cb('yuri'))
 # This variable determines whether to allow the player to dismiss pauses.
@@ -1690,13 +1690,7 @@ transform animation_title_screen:
         xoffset 0
         alpha 1.0
 
-style navigation_button_text:
-    # Cambiamos el borde viejo por uno negro limpio (o del color que prefieras)
-    # El primer número (2) controla el grosor. Si es más fino, no se amontona.
-    outlines [ (2.6, "#000000", 0, 0) ] 
-    
-    # Añadimos un pequeño espacio interno arriba para que el punto de la 'i' respire
-    top_padding 5
+
     #animacion correr
     # Animación para salir corriendo hacia la DERECHA
 transform correr_derecha:

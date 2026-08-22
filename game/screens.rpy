@@ -177,87 +177,22 @@ style frame:
 ## and id "window" to apply style properties.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
+## Say screen ##################################################################
 
 screen say(who, what, **kwargs):
     style_prefix "say"
 
-    $ textbox_size = (824, 148)
-
     window:
         id "window"
 
-        # --- TEXTBOXES PERSONALIZADAS (todas con el mismo tamaño y alineación) ---
-        if kwargs.get('custom_prefix') == "sayori":
-            background Transform(
-                "mod_assets/textbox_s.png",
-                xalign=0.5,
-                yalign=1.0,
-                size=textbox_size
-            )
-        elif kwargs.get('custom_prefix') == "monika":
-            background Transform(
-                "mod_assets/textbox_m.png",
-                xalign=0.5,
-                yalign=1.0,
-                size=textbox_size
-            )
-        elif kwargs.get('custom_prefix') == "narrator":
-            background Transform(
-                "mod_assets/textbox_mc.png",
-                xalign=0.5,
-                yalign=1.0,
-                size=textbox_size
-            )
-        elif kwargs.get('custom_prefix') == "natsuki":
-            background Transform(
-                "mod_assets/textbox_n.png",
-                xalign=0.5,
-                yalign=1.0,
-                size=textbox_size
-            )
-        elif kwargs.get('custom_prefix') == "mc":
-            background Transform(
-                "mod_assets/textbox_mc.png",
-                xalign=0.5,
-                yalign=1.0,
-                size=textbox_size
-            )
-        elif kwargs.get('custom_prefix') == "yuri":
-            background Transform(
-                "mod_assets/textbox_y.png",
-                xalign=0.5,
-                yalign=1.0,
-                size=textbox_size
-            )
-        else:
-            background Transform(
-                "gui/textbox.png",
-                xalign=0.5,
-                yalign=1.0,
-                size=textbox_size
-            )
         if who:
             window:
                 style "namebox"
-                
-                # --- NAMEBOX AUTOMÁTICA (Tal cual la tenías) ---
-                if kwargs.get('custom_prefix') == "sayori":
-                    # Aquí estaba el peligro; ya está perfectamente revisado con sus comas:
-                    background Transform("mod_assets/namebox_s.png", xalign=0.0, yalign=1.0, xpos=-10, ypos=45, size=(190, 50))
-                elif kwargs.get('custom_prefix') == "monika":
-                    background Transform("mod_assets/namebox_m.png", xalign=0.0, yalign=1.0, xpos=23, ypos=48, size=(190, 50))
-                elif kwargs.get('custom_prefix') == "natsuki":
-                    background Frame("mod_assets/namebox_n.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
-                elif kwargs.get('custom_prefix') == "yuri":
-                    background Frame("mod_assets/namebox_y.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
-                elif kwargs.get('custom_prefix') == "mc":
-                    background Transform("mod_assets/namebox_mc.png", xalign=0.0, yalign=1.0, xpos=-30, ypos=55, size=(190,70 ))
-                else:
-                    background Transform("gui/namebox.png", xalign=0.0, yalign=0, xpos=0, ypos=0)
 
                 text who id "who"
 
         text what id "what"
+
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
     if not renpy.variant("small"):
@@ -265,24 +200,13 @@ screen say(who, what, **kwargs):
 
     use quick_menu
 
-
+style mc_dialog is say_dialogue
+style m_dialog is say_dialogue
 style window is default
 style say_label is default
 style say_dialogue is default
-# Este estilo hereda todo lo del diálogo normal, pero le aplica tus cambios solo al MC
-style mc_dialog is say_dialog:
-    xoffset 265  # Mueve la letra del MC: Positivo = Derecha | Negativo = Izquierda
-    yoffset 67 # Mueve la letra del MC: Positivo = Abajo | Negativo = Arriba
-    
-    # Si la textbox del MC también es de las cortas (864px), limita el ancho del texto:
-    xmaximum 730
-style m_dialog is say_dialog:
-    xoffset 320  # Mueve la letra del Moni: Positivo = Derecha | Negativo = Izquierda
-    yoffset 60 # Mueve la letra del Moni: Positivo = Abajo | Negativo = Arriba
-    
-    # Si la textbox del Moni también es de las cortas (864px), limita el ancho del texto:
-    xmaximum 700
 style say_thought is say_dialogue
+
 
 style namebox is default
 style namebox_label is say_label
@@ -294,10 +218,8 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Transform("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Transform("mod_assets/textbox.png", xalign=0.5, yalign=1.0)
 
-style window_monika is window:
-    background Transform("gui/textbox_monika.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -306,8 +228,9 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("mod_assets/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
+
 
 style say_label:
     color gui.accent_color
@@ -316,7 +239,7 @@ style say_label:
     xalign gui.name_xalign
     yalign 0.5
     outlines [(3, text_outline_color, 0, 0), (1, text_outline_color, 1, 1)]
-    #outlines [(3, "#b59", 0, 0), (1, "#b59", 1, 1)]
+
 
 style say_dialogue:
     xpos gui.text_xpos
@@ -326,6 +249,7 @@ style say_dialogue:
     text_align gui.text_xalign
     layout ("subtitle" if gui.text_xalign else "tex")
     yoffset -10
+
 
 image ctc:
     xalign 0.81 yalign 0.98 xoffset -5 alpha 0.0 subpixel True
@@ -565,9 +489,9 @@ screen navigation():
             if main_menu:
                 
                 if persistent.playthrough == 1:
-                    textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
+                    textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
                 else:
-                    textbutton _("Iniciar historia") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
+                    textbutton _("Iniciar historia") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
 
             else:
 
@@ -722,6 +646,172 @@ style main_menu_title:
 ## The scroll parameter can be None, or one of "viewport" or "vpgrid". When this
 ## screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
+
+default persistent.fallen_intro_seen = False
+
+
+init python:
+    class StartFallenIntro(Action):
+        def __call__(self):
+            persistent.fallen_intro_seen = True
+            renpy.save_persistent()
+            return True
+
+
+screen fallen_intro_menu():
+
+    zorder 200
+
+    vbox:
+        xalign 0.205
+        yalign 0.61
+        spacing 0
+
+        # FUNCIONA
+        textbutton _("Iniciar historia"):
+            style "fallen_intro_menu_button"
+            action StartFallenIntro()
+
+        # NO FUNCIONA
+        textbutton _("Cargar juego"):
+            style "fallen_intro_menu_button"
+            action NullAction()
+
+        # NO FUNCIONA
+        textbutton _("Galeria"):
+            style "fallen_intro_menu_button"
+            action NullAction()
+
+        # NO FUNCIONA
+        textbutton _("Opciones"):
+            style "fallen_intro_menu_button"
+            action NullAction()
+
+        # FUNCIONA
+        textbutton _("Salir"):
+            style "fallen_intro_menu_button"
+            action Quit(confirm=True)
+
+
+# ============================================================
+# ESTILO EXCLUSIVO DEL MENU FALLEN ANGEL
+# NO MODIFICA LOS DEMAS MENUS DEL JUEGO
+# ============================================================
+
+screen fallen_intro_menu():
+
+    zorder 200
+
+    vbox:
+        xalign 0.05
+        yalign 0.75
+        spacing 10
+
+        textbutton _("Iniciar historia"):
+            style "fallen_intro_menu_button"
+            at fallen_button_1
+            action StartFallenIntro()
+
+        textbutton _("Cargar juego"):
+            style "fallen_intro_menu_button"
+            at fallen_button_2
+            action NullAction()
+
+        textbutton _("Galeria"):
+            style "fallen_intro_menu_button"
+            at fallen_button_3
+            action NullAction()
+
+        textbutton _("Opciones"):
+            style "fallen_intro_menu_button"
+            at fallen_button_4
+            action NullAction()
+
+        textbutton _("Salir"):
+            style "fallen_intro_menu_button"
+            at fallen_button_5
+            action Quit(confirm=True)
+
+transform fallen_button_appear:
+    alpha 0.0
+    ease 0.22 alpha 1.0
+
+
+transform fallen_button_1:
+    pause 0.08
+    alpha 0.0
+    ease 0.22 alpha 1.0
+
+
+transform fallen_button_2:
+    pause 0.15
+    alpha 0.0
+    ease 0.22 alpha 1.0
+
+
+transform fallen_button_3:
+    pause 0.22
+    alpha 0.0
+    ease 0.22 alpha 1.0
+
+
+transform fallen_button_4:
+    pause 0.29
+    alpha 0.0
+    ease 0.22 alpha 1.0
+
+
+transform fallen_button_5:
+    pause 0.36
+    alpha 0.0
+    ease 0.22 alpha 1.0
+
+# ============================================================
+# ESTILOS EXCLUSIVOS DEL MENU FALLEN ANGEL
+# ============================================================
+
+style fallen_intro_menu_button is button:
+    xminimum 340
+    xmaximum 340
+    xpadding 0
+    ypadding 0
+
+    background None
+    hover_background None
+    insensitive_background None
+
+    # Los mismos sonidos que usa el menu normal.
+    hover_sound gui.hover_sound
+    activate_sound gui.activate_sound
+
+
+style fallen_intro_menu_button_text is button_text:
+
+    # Fuente exclusiva de Fallen Angel.
+    font "mod_assets/RifficFree-Bold.ttf"
+
+    size 24
+
+    # Normal
+    color "#FFFFFF"
+
+    # Al pasar el mouse
+    hover_color "#F2D8FF"
+
+    insensitive_color "#FFFFFF"
+
+    xalign 0.0
+    text_align 0.0
+
+    # Contorno normal
+    outlines [
+        (3.6, "#8B4BC4", 0, 0)
+    ]
+
+    # Contorno al pasar el mouse
+    hover_outlines [
+        (3.6, "#B66AE8", 0, 0)
+    ]
 
 screen game_menu_m():
     $ persistent.menu_bg_m = True
@@ -2188,9 +2278,10 @@ label choose_language:
     call screen choose_language
     return
 style navigation_button_text:
-    font "mod_assets/font/Chewy_Regular.ttf"
+    font "mod_assets/font/Fredoka-SemiBold.ttf"
 #Colores de la fuente del menú
 style navigation_button_text:
-    idle_color "#680868"   # Color lila/morado suave cuando el botón está quieto
-    hover_color "#FF007F"  # Color fucsia encendido del logo al pasar el mouse
-    selected_color "#FF007F"
+    idle_color "#FFFFFF"       # Blanco puro para destacar sobre cualquier fondo
+    hover_color "#FFD700"      # Dorado brillante al pasar el cursor
+    selected_color "#FFA500"   # Naranja cálido para la opción activ
+    outlines [ (3, "#450ba1", 0, 0) ]

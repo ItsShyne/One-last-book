@@ -27,7 +27,7 @@ define -2 gui.idle_color = '#aaaaaa'
 
 # The small color is used for small text, which needs to be brighter/darker to
 # achieve the same effect.
-define -2 gui.idle_small_color = '#333'
+define -2 gui.idle_small_color = '#333333'
 
 # This color is that is used for buttons and bars that are hovered.
 define -2 gui.hover_color = '#cc6699'
@@ -59,6 +59,7 @@ define -2 gui.name_font = "gui/font/RifficFree-Bold.ttf"
 # This font is used for out-of-game text.
 define -2 gui.interface_font = "mod_assets/font/Nunito-Medium.ttf"
 
+
 # The text size of normal dialogue text.
 define -2 gui.text_size = 24
 
@@ -69,7 +70,7 @@ define -2 gui.name_text_size = 24
 define -2 gui.interface_text_size = 28
 
 # This determines the text size of the game's label in the user interface.
-define -2 gui.label_text_size = 26
+define -2 gui.label_text_size = 28
 
 # This determines the text size of the notification screen.
 define -2 gui.notify_text_size = 16
@@ -98,7 +99,7 @@ define -2 gui.textbox_yalign = 0.99
 
 # This controls the placement of the speaking character's name.
 define gui.name_xpos = 350
-define gui.name_ypos = 20
+define gui.name_ypos = -3
 
 # This controls the horizontal alignment of the character's name.
 define gui.name_xalign = 0.5
@@ -174,7 +175,7 @@ define gui.page_button_borders = Borders(10, 4, 10, 4)
 
 define gui.quick_button_text_size = 14
 
-define gui.quick_button_text_idle_color = "#522"
+define gui.quick_button_text_idle_color = "#ffffff"
 define gui.quick_button_text_hover_color = "#fcc"
 define gui.quick_button_text_selected_color = gui.accent_color
 define gui.quick_button_text_insensitive_color = "#a66"
@@ -230,7 +231,7 @@ define gui.notify_ypos = 45
 define gui.choice_spacing = 22
 
 # This controls the spacing between each navigation option in the navigation screen.
-define gui.navigation_spacing = 6
+define gui.navigation_spacing = 15
 
 # This controls the spacing between each preference and preference button option 
 # in the preference screen.

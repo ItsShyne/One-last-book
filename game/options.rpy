@@ -13,7 +13,7 @@ define config.name = "One Last Book"
 define gui.show_name = True
 
 # This controls the version number of your mod.
-define config.version = "0.0-Py3"
+define config.version = "0.9"
 
 # This adds information about your mod in the About screen.
 # DDLC does not have a 'About' screen so you can leave this blank.
