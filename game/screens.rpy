@@ -496,57 +496,57 @@ screen navigation():
                 if persistent.playthrough == 1:
                     textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«"):
                         action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
-                        at [navigation_button_appear(nav_delay), navigation_button_hover]
+                        at navigation_button(nav_delay)
                 else:
                     textbutton _("Iniciar historia"):
                         action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
-                        at [navigation_button_appear(nav_delay), navigation_button_hover]
+                        at navigation_button(nav_delay)
 
             else:
 
                 $ nav_delay += 0.07
                 textbutton _("Historia"):
                     action [ShowMenu("history"), SensitiveIf(renpy.get_screen("history") == None)]
-                    at [navigation_button_appear(nav_delay), navigation_button_hover]
+                    at navigation_button(nav_delay)
 
                 $ nav_delay += 0.07
                 textbutton _("Guardar partida"):
                     action [ShowMenu("save"), SensitiveIf(renpy.get_screen("save") == None)]
-                    at [navigation_button_appear(nav_delay), navigation_button_hover]
+                    at navigation_button(nav_delay)
 
             $ nav_delay += 0.07
             textbutton _("Cargar partida"):
                 action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
-                at [navigation_button_appear(nav_delay), navigation_button_hover]
+                at navigation_button(nav_delay)
 
             if enable_extras_menu:
                 $ nav_delay += 0.07
                 textbutton _("Extras..."):
                     action [ShowMenu("extras"), SensitiveIf(renpy.get_screen("extras") == None)]
-                    at [navigation_button_appear(nav_delay), navigation_button_hover]
+                    at navigation_button(nav_delay)
 
             if _in_replay:
 
                 $ nav_delay += 0.07
                 textbutton _("End Replay"):
                     action EndReplay(confirm=True)
-                    at [navigation_button_appear(nav_delay), navigation_button_hover]
+                    at navigation_button(nav_delay)
 
             elif not main_menu:
                 $ nav_delay += 0.07
                 if persistent.playthrough != 3:
                     textbutton _("Menú principal"):
                         action MainMenu()
-                        at [navigation_button_appear(nav_delay), navigation_button_hover]
+                        at navigation_button(nav_delay)
                 else:
                     textbutton _("Menu principal"):
                         action NullAction()
-                        at [navigation_button_appear(nav_delay), navigation_button_hover]
+                        at navigation_button(nav_delay)
 
             $ nav_delay += 0.07
             textbutton _("Ajustes"):
                 action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
-                at [navigation_button_appear(nav_delay), navigation_button_hover]
+                at navigation_button(nav_delay)
 
 
             #textbutton _("Creditos") action ShowMenu("about")
@@ -560,7 +560,7 @@ screen navigation():
                 $ nav_delay += 0.07
                 textbutton _("Salir"):
                     action Quit(confirm=not main_menu)
-                    at [navigation_button_appear(nav_delay), navigation_button_hover]
+                    at navigation_button(nav_delay)
         else:
             timer 1.75 action Start("autoload_yurikill")
 
@@ -569,21 +569,22 @@ screen navigation():
 # ANIMACIONES DE LOS BOTONES DEL MENÚ (entrada + hover)
 # ============================================================
 
-# Entrada en cascada: cada botón aparece con un pequeño desliz desde la
-# izquierda y un fundido, retrasado un poco respecto al anterior — el mismo
-# lenguaje visual que ya usan los botones del menú de Fallen Angel.
-transform navigation_button_appear(delay=0.0):
-    alpha 0.0
-    xoffset -25
-    pause delay
-    parallel:
-        ease 1.8 alpha 1.0
-    parallel:
-        ease 0.8 xoffset 0
-
-# Al pasar el mouse, el botón se desliza levemente hacia la derecha; al
-# salir, vuelve suavemente a su lugar.
-transform navigation_button_hover:
+# Entrada en cascada (on show) + reacción al pasar el mouse (on hover/on
+# idle), todo en UN solo transform. Antes eran dos transforms encadenados
+# vía "at [navigation_button_appear(delay), navigation_button_hover]": en
+# cuanto el primero (sin "repeat") terminaba su animación de entrada, Ren'Py
+# dejaba de re-evaluar esa cadena compuesta y el hover se quedaba congelado
+# (el botón seguía siendo clicable, pero ya no se animaba al pasar el mouse).
+# Un solo transform con bloques "on" no tiene ese problema.
+transform navigation_button(delay=0.0):
+    on show:
+        alpha 0.0
+        xoffset -25
+        pause delay
+        parallel:
+            ease 1.8 alpha 1.0
+        parallel:
+            ease 0.8 xoffset 0
     on hover:
         ease 0.15 xoffset 10
     on idle:

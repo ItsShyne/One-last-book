@@ -444,6 +444,13 @@ renpy.config.keymap["toggle_skip"] = []
 # Register the music channel for the poem game.
 renpy.music.register_channel("music_poem", mixer="music", tight=True)
 
+# Register the sound channel for the poem page-flip sfx (Poem.show() in
+# poems_ren.py plays on this channel). Without registering it first,
+# renpy.sound.play() raises "Audio channel 'page_turn' is unknown", which
+# renpy.audio.music.play() silently swallows unless config.debug_sound is
+# on -- so the sound simply never played and no error was ever visible.
+renpy.music.register_channel("page_turn", mixer="sfx", tight=False)
+
 # Initialize gesture mapping for Android devices.
 if renpy.android:
     renpy.config.keymap["rollback"] = []
