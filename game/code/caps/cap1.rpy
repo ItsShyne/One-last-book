@@ -3,6 +3,7 @@
 
 label cap1:
     stop music fadeout 2.0
+    play music olb_menu fadein 0.5
     #lo de scene es para mostrar el fondo, y el with es para hacer la transición entre escenas
     #el dissolve_scene_full es una transición que hace que la escena se disuelva completamente
     with dissolve_scene_full 

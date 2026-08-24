@@ -21,18 +21,25 @@ image menu_logo:
     "mod_assets/DDLCModTemplateLogo.png"
     # im.Composite((512, 512), (0, 0), recolorize("mod_assets/logo_bg.png"), (0, 0), "mod_assets/logo_fg.png")
     subpixel True
-    xcenter 180
-    ycenter 150
-    zoom 0.50
+    xcenter 130
+    ycenter 215
+    zoom 0.22
     menu_logo_move
 
 screen interactive_logo():
     add "menu_logo"
 
+
+# Transformación para que el panel de la rosa se deslice desde la izquierda
+transform panel_enter_left:
+    subpixel True
+    xoffset -1280          # Empieza fuera de pantalla a la izquierda             # Transparente al inicio
+    easeout 3 xoffset 1 # Se desliza suavemente a su posición
+
 #este hace que el menu se mueva, aunque me critiquen
 transform bg_move:
     xoffset 0
-    ease 4 xoffset -70
+    ease 4 xoffset -45
     ease 4 xoffset 0
     repeat
 # This image shows the main menu polka-dot image.
@@ -180,8 +187,8 @@ transform menu_bg_loop:
 # This transform moves the menu logo down to it's intended placement in-game.
 transform menu_logo_move:
     subpixel True
-    yoffset -300
-    time 1.925
+    yoffset -500
+    time 3.25
     easein_bounce 1.5 yoffset 0
 
 # This transform moves the main menu screen in-game to be visible.
@@ -211,6 +218,15 @@ transform menu_art_move(z, x, z2):
     parallel:
         pause 0.75
         ease 1.5 zoom z2 xoffset 0
+
+## Doki Nova Splash Screen
+# Logo que se muestra justo después del splash estilo Team Salvato
+# (fallen_splash.png / ts_logo), tanto la primera vez que se abre el
+# juego (intro de Fallen Angel) como en los arranques posteriores.
+image doki_nova_logo:
+    "mod_assets/logos/dokinova.png"
+    truecenter
+    zoom 0.5
 
 ## Team Salvato Splash Screen
 # This image stores the Tean Salvato logo image that appears when the game starts.
@@ -368,13 +384,13 @@ label splashscreen:
         # get DDLC (preferably https://ddlc.moe).
         #
         # ...Yes this even applies if your mod has no spoilers whatsoever.
-        "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
-        "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
-        "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
+        "[config.name] es un mod no oficial hecho por fans de Doki Doki Literature Club que no está afiliado de ninguna manera con Team Salvato."
+        "Está diseñado para jugarse únicamente después de haber completado el juego oficial, y contiene spoilers del mismo."
+        "Se requieren los archivos del juego Doki Doki Literature Club para jugar este mod, los cuales se pueden descargar gratis en: https://ddlc.moe o en Steam."
 
         menu:
-            "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
-            "I agree.":
+            "Al jugar [config.name], aceptas que has completado Doki Doki Literature Club y asumes cualquier spoiler contenido en el juego"
+            "Estoy de acuerdo.":
                 $ persistent.first_run = True
 
         scene tos2
@@ -501,39 +517,16 @@ label splashscreen:
     #     pause
     #     $ renpy.quit()
 
-    show white
-    $ persistent.ghost_menu = False
-    $ splash_message = splash_message_default
-    $ config.main_menu_music = audio.t1
-    $ renpy.music.play(config.main_menu_music)
-    $ pause(0.5)
 
-    # Skip the initial Team Salvato intro and go straight to the disclaimer.
 
-    # Show the warning disclaimer first
-    if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
-        $ splash_message = renpy.random.choice(splash_messages)
-    show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
-    $ pause(1.5)
-    $ pause(2.5)
-    hide splash_warning with Dissolve(0.5, alpha=True)
-    $ pause(0.5)
-
-    # Show Team Salvato logo cleanly with the Fallen Angel theme starting
     # ========================================================================
-    # FALLEN ANGEL INTRO - SOLO LA PRIMERA VEZ
+    # FALLEN ANGEL INTRO
     # ========================================================================
-    # ========================================================================
-# TEAM SALVATO SPLASH - DESPUÉS DE HABER VISTO FALLEN ANGEL
-# ========================================================================
 
-if persistent.fallen_intro_seen:
-
-    show intro
-
-    $ pause(4.5)
-
-    hide intro
+    # Se guarda esto ANTES del bloque, porque persistent.fallen_intro_seen pasa
+    # a True en cuanto se pulsa "Iniciar historia" (StartFallenIntro en
+    # screens.rpy), es decir, DENTRO de este mismo bloque.
+    $ was_first_run = not persistent.fallen_intro_seen
 
     if not persistent.fallen_intro_seen:
 
@@ -541,8 +534,28 @@ if persistent.fallen_intro_seen:
         # FALLEN ANGEL LOGO
         # --------------------------------------------------------------------
 
-        $ config.main_menu_music = audio.t1
-        play music "mod_assets/bgm/Title_reorch.ogg" fadein 1.5
+        # Mientras carga/se desarrolla el menú de Fallen Angel, el título de
+        # la ventana dice "Fallen Angel" en vez del nombre normal del juego.
+        $ config.window_title = "Fallen Angel"
+
+        show white
+        $ persistent.ghost_menu = False
+        $ splash_message = splash_message_default
+        $ config.main_menu_music = "mod_assets/bgm/Title_reorch.ogg"
+        $ renpy.music.play(config.main_menu_music)
+        $ pause(0.5)
+
+        # Skip the initial Team Salvato intro and go straight to the disclaimer.
+
+        # Show the warning disclaimer first
+        if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
+            $ splash_message = renpy.random.choice(splash_messages)
+        show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
+        $ pause(1.5)
+        $ pause(2.5)
+        hide splash_warning with Dissolve(0.5, alpha=True)
+        $ pause(0.5)
+        
 
         show expression "mod_assets/logos/fallen_splash.png" as ts_logo:
             truecenter
@@ -553,6 +566,14 @@ if persistent.fallen_intro_seen:
         hide ts_logo with Dissolve(0.5, alpha=True)
         $ pause(0.5)
 
+        scene black
+
+        show doki_nova_logo as dn_logo with Dissolve(0.5, alpha=True)
+
+        $ pause(2.2)
+
+        hide dn_logo with Dissolve(0.5, alpha=True)
+        $ pause(0.5)
 
         # --------------------------------------------------------------------
         # FALLEN ANGEL ANIMATED MENU
@@ -569,13 +590,11 @@ if persistent.fallen_intro_seen:
 
         $ pause(4.2)
 
-
         # --------------------------------------------------------------------
         # INTERACTIVE FALLEN ANGEL MENU
         # --------------------------------------------------------------------
 
         call screen fallen_intro_menu
-
 
         # --------------------------------------------------------------------
         # START GAME -> GLITCH
@@ -585,7 +604,10 @@ if persistent.fallen_intro_seen:
         stop music
 
         show screen tear(20, 0.1, 0.1, 0, 100)
-        $ pause(0.3)
+        $ config.window_title = "F4ll3n 4ng3l"
+        $ pause(0.15)
+        $ config.window_title = "??? ??????"
+        $ pause(0.15)
         hide screen tear
 
         hide f_bg
@@ -595,7 +617,6 @@ if persistent.fallen_intro_seen:
         hide f_art_s
         hide f_art_m
         hide f_fade
-
 
         # --------------------------------------------------------------------
         # "ESPERA UN MOMENTO..."
@@ -610,7 +631,6 @@ if persistent.fallen_intro_seen:
         hide splash_warning with Dissolve(0.3, alpha=True)
 
         $ pause(0.2)
-
 
         # --------------------------------------------------------------------
         # DISTORTED NORMAL MENU
@@ -632,11 +652,14 @@ if persistent.fallen_intro_seen:
         play sound s_kill_glitch1
 
         show screen tear(25, 0.1, 0.1, 0, 100)
-
-        $ pause(0.6)
+        $ config.window_title = "F4ll3n_4ng3l"
+        $ pause(0.2)
+        $ config.window_title = "0n3 L4st B00k"
+        $ pause(0.2)
+        $ config.window_title = "??????"
+        $ pause(0.2)
 
         hide screen tear
-
 
         # --------------------------------------------------------------------
         # "¿Y SI LA HISTORIA FUESE DIFERENTE?"
@@ -652,23 +675,66 @@ if persistent.fallen_intro_seen:
 
         $ pause(0.2)
 
-
         # --------------------------------------------------------------------
         # FINAL
         # --------------------------------------------------------------------
 
+
         scene black
 
-        $ pause(0.6)
+        # La animación terminó: el título vuelve a la normalidad.
+        $ config.window_title = "One Last Book"
+
+        $ pause(1)
 
         $ renpy.transition(Dissolve(1.2))
 
-        $ renpy.music.play(config.main_menu_music, fadein=2.0)
 
         $ config.allow_skipping = True
 
 
-# This label script is used when 'monika.chr' is deleted from the game after the 
+    show white
+    $ persistent.ghost_menu = False
+    $ splash_message = splash_message_default
+    $ config.main_menu_music = audio.olb_menu
+    $ renpy.music.play(config.main_menu_music)
+    $ pause(0.5)
+
+    # La primera vez que se abre el juego, el disclaimer ya se mostró dentro
+    # de la intro de Fallen Angel (arriba), así que aquí se salta y se va
+    # directo al menú. Las demás veces (Fallen Angel ya visto) se muestra el
+    # disclaimer y, después, el logo estilo Team Salvato que hasta ahora solo
+    # aparecía dentro del menú de Fallen Angel.
+    if not was_first_run:
+
+        # Show the warning disclaimer first
+        if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
+            $ splash_message = renpy.random.choice(splash_messages)
+        show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
+        $ pause(1.5)
+        $ pause(2.5)
+        hide splash_warning with Dissolve(0.5, alpha=True)
+        $ pause(0.5)
+
+        show expression "mod_assets/logos/fallen_splash.png" as ts_logo:
+            truecenter
+        with Dissolve(0.5, alpha=True)
+
+        $ pause(2.2)
+
+        hide ts_logo with Dissolve(0.5, alpha=True)
+        $ pause(0.5)
+
+        scene black
+
+        show doki_nova_logo as dn_logo with Dissolve(0.5, alpha=True)
+
+        $ pause(2.2)
+
+        hide dn_logo with Dissolve(0.5, alpha=True)
+        $ pause(0.5)
+
+# This label script is used when 'monika.chr' is deleted from the game after the
 # at the beginning of a new game. This feature has been commented out for mod safety 
 # reasons but can be used if needed.
 
@@ -808,7 +874,7 @@ label autoload:
 # This label sets the main menu music to Doki Doki Literature Club before the
 # menu starts.
 label before_main_menu:
-    $ config.main_menu_music = audio.t1
+    $ config.main_menu_music = audio.olb_menu
     return
 
 # This label handles special logic that should happen when the game quits.

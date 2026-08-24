@@ -186,7 +186,7 @@ label cap2:
 
     "Ella es Monika. Recuerdo perfectamente que estuvimos en la clase de Química el año pasado..."
     
-    "Prefiero olvidar lo que pensaba el año pasado."
+    "Prefiero olvidar todo lo que paso el año pasado..."
 
     show monika forward happ om oe zorder 2 at f22
 

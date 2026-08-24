@@ -4,9 +4,20 @@ init -1 python:
     VALID_SPRITES = ["sayori", "yuri", "natsuki", "monika"]
 
     # Atributos de boca MPT
+    # NOTA: "ce"/"oe" son ojos (cerrados/abiertos), no boca -- nunca deben
+    # entrar aquí. Antes "ce" estaba incluido por error y is_mouth_attribute()
+    # lo trataba como boca, así que cada vez que el sistema auto-boca actuaba
+    # sobre un personaje con ojos cerrados (p. ej. "happ cm ce"), se lo quitaba
+    # de clean_attrs y los ojos volvían a abrirse solos ("oe", el default del
+    # grupo eyes) justo cuando el personaje debía seguir con ojos cerrados.
     OPEN_MOUTH_ATTRS = {"om", "ma", "md", "mo", "m_open", "m_talk", "yand_om"}
-    CLOSED_MOUTH_ATTRS = {"cm", "mb", "mc", "me", "mf", "mg", "ce", "int", "stly", "jong"}
-    SPECIAL_OVERLAYS = {"scream", "stab"}
+    CLOSED_MOUTH_ATTRS = {"cm", "mb", "mc", "me", "mf", "mg"}
+    # "scream" no existe como atributo -- el real es "s_scream", así que esta
+    # comprobación nunca protegía nada. Según el propio MPT de Yuri (comentario
+    # junto a sus atributos "Special"), "s_scream" y "s_dark" SÍ permiten
+    # cambiar la boca (no hace falta protegerlos); el único que no debe tocarse
+    # es "s_yandere", que antes faltaba aquí por completo.
+    SPECIAL_OVERLAYS = {"stab", "s_yandere"}
 
     def is_mpt_sprite(char_tag):
         """Determina si el sprite activo en pantalla usa MPT o el modelo base."""

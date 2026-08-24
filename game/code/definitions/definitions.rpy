@@ -104,6 +104,7 @@ define audio.trueno = "sfx/u_q2hb2391vb-thunder-clap-521194.mp3"
 define audio.obj_fall = "sfx/objeto_cayendo.mp3"
 define audio.ducha = "mod_assets/bgm/freesound_community-shower-14461.mp3"
 define audio.street_stroll = "mod_assets/bgm/main_street_stroll.ogg"
+define audio.olb_menu = "<loop 0>mod_assets/bgm/Fallen.mp3"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.

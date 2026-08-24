@@ -223,7 +223,7 @@ define gui.file_slot_rows = 2
 # These variables control the positioning and spacing of various user interface
 # elements.
 
-define gui.navigation_xpos = 80
+define gui.navigation_xpos = 30
 define gui.skip_ypos = 10
 define gui.notify_ypos = 45
 
