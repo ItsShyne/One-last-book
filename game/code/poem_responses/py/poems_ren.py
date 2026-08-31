@@ -963,28 +963,31 @@ Delete Her
 poem_db.add_poem(
     "poem_mc1",
     author_mc,
-    title="Mi girasol",
+    title="Pequeño urutau",
     text="""\
-En un hermoso prado estoy 
-Y en él, veo un hermoso girasol 
-De pétalos dorados 
-Como si se tratase del mismo sol 
-Todo eso lo he visto hoy
-Pues algo como ese girasol, no hay igual 
-Por que como ya se sabe, es un hermoso girasol 
+En todos mis días solo quiero llorar.
+Siempre intento darle a mis días un final feliz para siquiera intentarlo un poco más.
+Pero no entiendo por qué dices que está bien estar mal, pequeño urutau.
 
-El día siguiente lo volví a visitar
-Con la intención de podérmelo llevar 
-Por que, aunque yo quiera no puedo dejarlo de mirar 
+Yo sé que todo, absolutamente todo, está mal,
+pero desconozco si todo esto tan siquiera pasará.
+Entonces, ¿por qué me dices que todo esto es temporal?
+Así que dame la paciencia para así poder esperar.
+Por favor, ayúdame a aguantar un poco más, mi pequeño urutau.
 
-Al girasol lo he puesto en un lindo florero
-Pero veo que el girasol, me dice que no puede estar
-Incluso dice ser prisionero 
-Diciendo que de mis acciones 
-No hay justificaciones
-Pues parece odiar mis decisiones 
+Así que hoy te confieso que me estoy derrumbando,
+estos días solo me están desesperando.
+No sé cómo encontrar en este laberinto una salida,
+pues esta cambia de lugar cada día,
+pero todo esto se siente como una epifanía.
+Pero tú, pequeño urutau, a la salida me has de llevar.
+Así que sé mi guía y no me sueltes una vez más.
 
-Pero no importa, por que aunque se marchite, seguirá siendo mi girasol.""",
+Aún sigo sin entender por qué todo está mal,
+pero fue verdad que todo esto logré pasar.
+Decías la verdad al decir que todo es temporal.
+Gracias por haberme dado la paciencia para esperar más.
+Gracias por hacerme aguantar un poco más, mi pequeño urutau.""",
     )
 
 #poema de Yuri
@@ -1122,4 +1125,34 @@ Me escribiste un millón de cartas en todas estas hojas
 Pues ya dejaste de desafiar al reloj, en todas esas paradojas. 
 
 Gracias por mostrarte ante mi Señor tic tac. """,
+)
+#poema de MC
+poem_db.add_poem(
+    "mc_poem2",
+    author_mc,
+    title="El vapor se va",
+    text="""\
+Hay días en que las palabras se enredan en mi garganta.
+No salen, solo se entierran más en mi mente;
+En esos días, entras sin querer perturbar el polvo y te sientas.
+No preguntas, tampoco esperas.
+
+El libro queda en la mesa,
+El té se enfría, por que me haces centrar la mente en lo que importa y la lengua se me va.
+Tú escuchas, sin impacientarte.
+Solo existes, y eso ya es más de lo que merezco.
+
+El vapor sube, desvaneciéndose con mis secretos,
+Secretos que ni yo recordaba.
+Secretos que te confío,
+Así como tú confías los tuyos en mí.
+
+No te juzgo, no me juzgas,
+Comprendo tu situación, tú la mía.
+Sin burlas, ni risas.
+Aunque no nos conozcamos, nos entendemos.
+
+El vapor se va, no hay más,
+Se va y se entrelaza con el aire.
+Espero que no le diga lo que escucho.""",
 )

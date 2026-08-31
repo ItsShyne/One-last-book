@@ -4,7 +4,7 @@
 
 label mostrar_poema_natsukis:
     
-    "Natsuki no esta compartiendo poema con nadie supongo que lo compartire con ella primero"
+    "Natsuki no está compartiendo poema con nadie, supongo que lo compartiré con ella primero"
     show natsuki 1c zorder 2 at t11
     n "A ver qué traes ahí..."
     
@@ -30,7 +30,7 @@ label mostrar_poema_natsukis:
     $ poem_db.show_poem("natsuki_poem1")
     
     show natsuki 1p zorder 2 at t11
-    n "...Y bien? ¿Qué cara es esa? ¿Vas a decir algo?"
+    n "...¿Y bien? ¿Qué cara es esa? ¿Vas a decir algo?"
     mc "Es... bastante diferente a lo que suelo leer. Es muy directo, casi parece una rima infantil al principio."
     
     show natsuki 1r zorder 2 at t11
@@ -41,10 +41,10 @@ label mostrar_poema_natsukis:
     show natsuki 1g zorder 2 at t11
     n "Simple no significa fácil o tonto. Significa que no necesito esconderme detrás de palabras pretenciosas."
     n 1h "Mañana espero ver algo con más honestidad de tu parte, [player]."
-    mc "vale vale"
+    mc "Vale, vale"
     show natsuki 1g zorder 2 at thide
     hide natsuki
-    "Yuri deberia estar libre, iré a mostrale mi poema"
+    "Yuri debería estar libre, iré a mostrarle mi poema"
 
     jump mostrar_poema_yuri
 label mostrar_poema_monika:
@@ -80,8 +80,8 @@ label mostrar_poema_monika:
     m 1a "¡Gracias! Quería probar algo un poco diferente hoy."
     m 3b "A veces la estructura libre te permite expresar cosas que las rimas normales no pueden."
     m 1a "¡Buen trabajo hoy! Estoy ansiosa por ver qué escribes mañana."
-    mc "Por supuesto, Monika"
-    mc "Gracias por el consejo"
+    mc "Por supuesto, Monika."
+    mc "Gracias por el consejo."
     show monika 1a zorder 2 at thide
     hide monika 
     "Seguramente Yuri debe estar libre ahora"
@@ -92,50 +92,50 @@ label mostrar_poema_monika:
 label mostrar_poema_Sayori:
     stop music fadeout 1.5
     play music audio.t5
-    "Me acerque a Sayori, ayer me mencionó que haría \"el mejor poema del mundo\" seguramente lo hizo"
+    "Me acerqué a Sayori, ayer me mencionó que haría \"el mejor poema del mundo\", seguramente lo hizo"
     show sayori turned lup rup happ om oe zorder 2 at f11
-    s "¡hola [player]!"
+    s "¡Hola [player]!"
     show sayori turned lup rup happ cm oe zorder 2 at t11
-    mc "hola Sayori ¿lograste hacer el mejor poema del mundo?"
+    mc "Hola Sayori, ¿lograste hacer el mejor poema del mundo?"
     show sayori tap nerv om oe zorder 2 at f11
-    s "ya lo verás~"
+    s "Ya lo verás~"
     show sayori tap nerv cm oe zorder 2 at t11
     "le entregué mi poema a Sayori"
     show sayori turned rup happ om oe zorder 2 at f11
-    s "este poema, es muy bueno"
-    s "me encanta [player]"
-    s "me sorprendió relamente parece como un poema que haría Yuri jeje..."
+    s "Este poema es muy bueno."
+    s "Me encanta, [player]."
+    s "Me sorprendió, realmente parece como un poema que haría Yuri, jeje..."
     show sayori turned rup happ om oe zorder 2 at t11
-    mc "espera Sayori creo que te estas confundiendo-"
+    mc "Espera Sayori, creo que te estás confundiendo-"
     show sayori turned rup happ om ce zorder 2 at f11
-    s "jeje, te conozco desde que somos niños es imposible no notar cosas obvias"
+    s "Jeje, te conozco desde que somos niños, es imposible no notar cosas obvias"
     show sayori turned lsur om ce zorder 2 at t11
-    mc "lo que digas..."
+    mc "Lo que digas..."
     "Sayori me ofreció su poema"
     $ poem_db.show_poem("Sayori_poem1")
     show sayori turned happ cm oe zorder 2 at t11
-    mc "¿Sayori tu escribiste esto?"
+    mc "¿Sayori, tú escribiste esto?"
     show sayori tap nerv om oe zorder 2 at f11
-    s "si, quería probar un estilo mas diferente al de ayer"
-    s "te dije que haria el mejor poema del mundo"
+    s "Sí, quería probar un estilo más diferente al de ayer."
+    s "Te dije que haría el mejor poema del mundo."
     show sayori tap nerv om ce zorder 2 at f11
-    s "y seguramente lo es, tu cara me lo dice"
+    s "Y seguramente lo es, tu cara me lo dice."
     show sayori tap neut cm oe zorder 2 at t11
-    mc "¿si?"
+    mc "¿Sí?"
     show sayori tap neut om oe zorder 2 at f11
-    s "sip"
+    s "Sip"
     show sayori tap neut cm oe zorder 2 at t11
-    mc "diría que es mas por sorpresa, no pensaba en que podrías expreasrte asi"
+    mc "Diría que es más por sorpresa, no pensaba en que podrías expresarte así."
     show sayori tap nerv om ce zorder 2 at f11
-    s "hay muchas cosas que no sabes de mi [player]"
+    s "Hay muchas cosas que no sabes de mí, [player]."
     show sayori tap pout om oe zorder 2 at t11
-    mc "¿de qué hablas? nos conocemos desde la infancia sé todo de ti"
+    mc "¿De qué hablas? Nos conocemos desde la infancia, sé todo de ti"
     show sayori turned lup rup laug om oe zorder 2 at f11
-    s "¿cuándo es mi cumpleaños?"
+    s "¿Cuándo es mi cumpleaños?"
     show sayori turned lup rup laug cm oe zorder 2 at t11
-    mc "eh... eh.. ¿25 de enero?"
+    mc "Eh... eh... ¿25 de enero?"
     show sayori turned lup rup happ om ce zorder 2 at f11
-    s "muuuy cerca, el 10 de mayo"
+    s "Muuuy cerca, el 10 de mayo."
     show sayori turned lup rup happ om ce zorder 2 at thide
     hide sayori
 

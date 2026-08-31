@@ -36,6 +36,19 @@ init -1 python:
             return True
         return False
 
+    def has_specific_mouth(attrs):
+        """
+        True si el personaje ya tiene puesta una boca ESPECÍFICA a mano
+        (p. ej. "mk" para una mueca de dolor), en vez de la genérica "om"/"cm"
+        que pone el propio sistema automático. En ese caso el sistema no debe
+        tocar nada: se respeta la elección manual del guion mientras dure esa
+        línea, en vez de sobrescribirla apenas el personaje habla.
+        """
+        for a in attrs:
+            if is_mouth_attribute(a) and a not in ("om", "cm"):
+                return True
+        return False
+
 
     def auto_mouth_callback(character_tag, event, **kwargs):
         global last_speaker
@@ -66,6 +79,9 @@ init -1 python:
         if any(overlay in attrs for overlay in SPECIAL_OVERLAYS):
             return
 
+        if has_specific_mouth(attrs):
+            return
+
         # SINTAXIS MPT
         if is_mpt_sprite(char_tag):
             clean_attrs = [a for a in attrs if not is_mouth_attribute(a)]
@@ -86,6 +102,9 @@ init -1 python:
         attrs = list(renpy.get_attributes(char_tag) or [])
 
         if any(overlay in attrs for overlay in SPECIAL_OVERLAYS):
+            return
+
+        if has_specific_mouth(attrs):
             return
 
         # SINTAXIS MPT

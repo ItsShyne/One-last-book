@@ -192,9 +192,17 @@ layeredimage yuri turned:
             base_path + "yuri_turned_casual_left_down.png"
         attribute lup if_any(["rup","rcut","rscar","rclean","rmix"]) if_all(["casual"]):
             base_path + "yuri_turned_casual_left_up.png"
-    
-    
-    
+
+        # "cross_arms" ya trae el torso completo (definido en el grupo
+        # "right" más abajo), así que aquí se anula el brazo izquierdo por
+        # defecto para no dibujarlo por debajo -- igual que hace "stab".
+        attribute cross_arms if_any(["uniform"]):
+            null
+        attribute cross_arms if_any(["casual"]):
+            null
+
+
+
     group right:
         attribute rdown default if_any(["uniform"]):
             base_path + "yuri_turned_uniform_right_down.png"
@@ -263,6 +271,22 @@ layeredimage yuri turned:
 
         attribute rmix if_any(["casual"]):
             extra_path + "yuri_turned_casual_right_midcut.png"
+
+        # Poses nuevas (mano en la cadera / brazos cruzados)
+        attribute rhip if_any(["uniform"]):
+            extra_path + "yuri_turned_uniform_right_hip.png"
+
+        attribute rhip if_any(["casual"]):
+            extra_path + "yuri_turned_casual_right_hip.png"
+
+        # "cross_arms" reemplaza el torso completo (los dos brazos), por
+        # eso también anula el brazo izquierdo por defecto más abajo en
+        # el segundo "group left" -- igual que hace "stab".
+        attribute cross_arms if_any(["uniform"]):
+            extra_path + "yuri_turned_uniform_cross_arms.png"
+
+        attribute cross_arms if_any(["casual"]):
+            extra_path + "yuri_turned_casual_cross_arms.png"
 
         #--------------------------------------------------------------------------------------
     

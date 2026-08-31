@@ -3,7 +3,6 @@
 
 label cap1:
     stop music fadeout 2.0
-    play music olb_menu fadein 0.5
     #lo de scene es para mostrar el fondo, y el with es para hacer la transición entre escenas
     #el dissolve_scene_full es una transición que hace que la escena se disuelva completamente
     with dissolve_scene_full 
@@ -76,7 +75,7 @@ label cap1:
 
     show sayori turned rup uniform nerv cm oe zorder 2 at t44
 
-    mc "¿Vamos? ¿tarde?"
+    mc "¿Vamos? ¿Tarde?"
 
     "Me estiré en mi asiento y miré alrededor, no había nadie en el salón además de nosotros."
 
@@ -90,11 +89,11 @@ label cap1:
 
     show sayori tap nerv cm oe zorder 2 at t11
 
-    mc "Si bueno, de todos modos no necesitas esperarme seguro los de tu club se preocuparán por ti." 
+    mc "Sí, bueno, de todos modos no necesitas esperarme, seguro los de tu club se preocuparán por ti."
 
     show sayori tap cm oe zorder 2 at t11
 
-    "Antes Sayori estaba en el club de arte pero, después de que se creó el club de literatura, ella se unió. no tengo idea del porqué."
+    "Antes Sayori estaba en el club de arte pero, después de que se creó el club de literatura, ella se unió. No tengo idea del porqué."
 
     show sayori 1h zorder 2 at f21
 
@@ -126,7 +125,7 @@ label cap1:
 
     show sayori turned rup uniform nerv om oe zorder 3 at f11
 
-    s "bueno yo..."
+    s "Bueno yo..."
 
     show sayori turned uniform nerv om oe zorder 2 at f43
 
@@ -134,7 +133,7 @@ label cap1:
 
     show sayori turned uniform nerv cm oe zorder 2 at t43
 
-    mc "¿¡Hiciste un promesa de algo que no depende de ti!?"
+    mc "¿¡Hiciste una promesa de algo que no depende de ti!?"
 
     show sayori 2c zorder 2 at f11
 
@@ -148,11 +147,11 @@ label cap1:
 
     "Suspiré."
 
-    mc "Está bien... pero solo visitar no unirme."
+    mc "Está bien... pero solo visitar, no unirme."
 
     show sayori 4r zorder 2 at f21
 
-    s "¡¡sí!!! ¡¡vamos~!!"
+    s "¡¡Sí!!! ¡¡Vamos~!!"
 
     show sayori 4r zorder 2 at t22
 

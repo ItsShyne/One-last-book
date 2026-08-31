@@ -472,10 +472,15 @@ init python:
         if launchGame:
             renpy.jump_out_of_context("start")
 
+default _fallen_angel_nav_style = False
+
 screen navigation():
 
     vbox:
-        style_prefix "navigation"
+        # Mientras se navega desde el intro de Fallen Angel (Cargar juego /
+        # Opciones abiertos desde ahí), usa la fuente y colores de Fallen
+        # Angel para estos botones en vez de los de One Last Book.
+        style_prefix ("fallen_intro_menu" if _fallen_angel_nav_style else "navigation")
 
         at animation_title_screen
 
@@ -730,7 +735,11 @@ init python:
 
 screen fallen_intro_menu():
 
-    zorder 200
+    # zorder normal (no 200): así, cuando se abre "Cargar juego" u "Opciones"
+    # desde aquí, esas pantallas (que agregan su propio fondo de One Last
+    # Book vía game_menu) quedan por encima de este menú en vez de que los
+    # botones de Fallen Angel se sigan viendo por arriba.
+    zorder 0
 
     vbox:
         xalign 0.05
@@ -745,17 +754,17 @@ screen fallen_intro_menu():
         textbutton _("Cargar juego"):
             style "fallen_intro_menu_button"
             at fallen_button_2
-            action NullAction()
+            action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
 
         textbutton _("Galeria"):
             style "fallen_intro_menu_button"
             at fallen_button_3
-            action NullAction()
+            action Show("dialog", message=_("Galería bloqueada. ¡Próximamente disponible!"), ok_action=Hide("dialog"))
 
         textbutton _("Opciones"):
             style "fallen_intro_menu_button"
             at fallen_button_4
-            action NullAction()
+            action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
         textbutton _("Salir"):
             style "fallen_intro_menu_button"
@@ -848,10 +857,20 @@ screen game_menu_m():
     add "gui/menu_bg_m.png"
     timer 0.3 action Hide("game_menu_m")
 
+default _menu_bg_override = None
+
 screen game_menu(title, scroll=None):
 
     # Add the backgrounds.
-    if main_menu:
+    # "_menu_bg_override" es una variable "default" (mutable) que se usa
+    # para forzar un fondo distinto al normal -- p. ej. el de Fallen Angel
+    # durante ese intro. No se puede lograr lo mismo pisando
+    # gui.main_menu_background/gui.game_menu_background en tiempo real
+    # porque esas son "define" (Ren'Py las trata como constantes y cachea
+    # el resultado de "add", ignorando cambios posteriores).
+    if _menu_bg_override:
+        add _menu_bg_override
+    elif main_menu:
         add gui.main_menu_background
     else:
         key "mouseup_3" action Return()

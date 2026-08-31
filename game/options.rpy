@@ -12,11 +12,6 @@ define config.name = "One Last Book"
 # If your mod name is big, it is suggested to turn this off.
 define gui.show_name = True
 
-# This controls the text shown in the title bar of the game window. It's set
-# as a separate variable (instead of relying on config.name) so it can be
-# changed dynamically during the Fallen Angel intro (see splash.rpy).
-define config.window_title = "One Last Book"
-
 # This controls the version number of your mod.
 define config.version = "0.9"
 

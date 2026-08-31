@@ -105,6 +105,21 @@ define audio.obj_fall = "sfx/objeto_cayendo.mp3"
 define audio.ducha = "mod_assets/bgm/freesound_community-shower-14461.mp3"
 define audio.street_stroll = "mod_assets/bgm/main_street_stroll.ogg"
 define audio.olb_menu = "<loop 0>mod_assets/bgm/Fallen.mp3"
+define audio.t112 = "mod_assets/bgm/Bright_and_Early.ogg"
+define audio.t100 = "mod_assets/bgm/Play_with_me_Capuccino_mix.ogg"
+define audio.t114 = "mod_assets/bgm/Noodle.ogg"
+define audio.t103 = "mod_assets/bgm/Violet.ogg"
+define audio.doorbell = "mod_assets/bgm/doorbell.ogg"
+define audio.schoolbell = "mod_assets/bgm/schoolbell.mp3"
+define audio.t200 = "mod_assets/bgm/An Endless Chase.mp3"
+define audio.alarm = "mod_assets/bgm/alarm_clock.mp3"
+define audio.t201 = "mod_assets/bgm/Scent_of_Mango_Trees.mp3"
+define audio.t104 = "mod_assets/bgm/Cold Ink.mp3"
+define audio.t105 = "mod_assets/bgm/Worlds Apart - By (childofragnarok).ogg"
+define audio.kdoor = "mod_assets/bgm/kdoor.mp3"
+define audio.opdoor = "mod_assets/bgm/opdoor.mp3"
+define audio.vibration = "mod_assets/bgm/vibration.mp3"
+define audio.glassbr = "mod_assets/bgm/glassbr.mp3"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -173,6 +188,7 @@ image bg courtyard_night =  "mod_assets/bg/courtyard/courtyard_night.png"
 image bg yuri_bedroom = "mod_assets/bg/yuri_bed.png"
 image bg yuri_bathroom = "mod_assets/bg/Bathroom_BG.jpg"
 image bg clothing_store = "mod_assets/bg/clothing_store.png"
+image bg noodle_shop = "mod_assets/bg/noodle_shop.png"
 ####################3
 image bg residential_day = "bg/residential.png" # Start of DDLC BG
 image bg class_day = "bg/class.png" # The classroom BG
@@ -202,11 +218,11 @@ image bg escaleras = "mod_assets/bg/stairs_mid/stairs_mid_aft.png"
 image bg bano_Yuri = "images/bg/baño_cuchillo.webp"
 image bg bano_Yuri_nocuchillo = "images/bg/baño_sin_cuchillo.webp"
 image bg street1_morn = "mod_assets/bg/street1/street1.png"
-image bg yuri_sala = "images/bg/yurihouseinterior.png"
+image bg living_room = "images/bg/yurihouseinterior.png"
 image bg yuri_sala_noche = "images/bg/living room night.png"
 image bg cafe = "images/bg/CherryBlossomCafe.png"
 image bg ciudad_calle_nublado = "mod_assets/bg/city_street/city_street_cloudy.png"
-image bg casa_yuri = "images/bg/house.jpg"
+image bg yuri_house = "images/bg/house.jpg"
 image silueta = "images/yuri/silueta.png"
 ###################################################
 image bg notebook = "bg/notebook.png" # Poem Game Notebook Scene
@@ -970,6 +986,11 @@ image n_eye = "images/natsuki/eye.png"
 #Escena del baño
 image yuri_sentada = "images/yuri/yuri_sentada.png"
 image yuri_parada = "images/yuri/yuri_parada.png"
+image yuri_cuts angry = "images/yuri/yuri_parraga_caraenojada.webp"
+image yuri_cuts sad = "images/yuri/yuri_parraga_carallorando.webp"
+image yuri_cuts cry = "images/yuri/yuri_parraga_carallorandofuerte.webp"
+image yuri_cuts = "images/yuri/yuri_parraga_carapensativa.webp"
+image yuri_cuts ns = "images/yuri/yuri_parraga_caratriste.webp" 
 
 #Subconciente de Yuri
 # Sprites de Yuri Chiquita
@@ -1545,7 +1566,7 @@ image monika g2:
 #   define en = Character('Eileen & Nat', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
 # Narrador y voces sin sprite
-define narrator = Character(ctc="ctc", ctc_position="fixed", show_custom_prefix="narrator", what_style="mc_dialog", callback=mouth_cb('narrator'))
+define narrator = Character(ctc="ctc", ctc_position="fixed", show_custom_prefix="narrator", callback=mouth_cb('narrator'))
 define dr = Character('Dr Lankton', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", callback=mouth_cb('narrator'))
 define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", show_custom_prefix="mc", who_color="#ffffff", who_outlines=[(2, "#4a5159", 0, 0)], callback=mouth_cb('narrator'))
 
@@ -1719,24 +1740,30 @@ transform correr_izquierda:
         ease 0.15 yoffset -20
         ease 0.15 yoffset 0
 # Definimos la animación para los párpados
+# Simula a alguien recién despertando: dos parpadeos cortos (se cierran más
+# rápido de lo que se abren, como un parpadeo real) donde cada vez se ve un
+# poco más de luz que la anterior, y al final los ojos se abren del todo y
+# se quedan así. Duración total ~4.1s (ver el "renpy.pause" en cap3.rpy).
 transform despertar_ojos:
-    # 1. Ojos totalmente cerrados (pantalla negra)
+    # 1. Ojos totalmente cerrados, todavía dormido
     Solid("#000000")
     alpha 1.0
-    pause 1.0
-    
-    # 2. Primer entreabierto rápido (se asoma la luz)
-    easein 0.4 alpha 0.6
-    easeout 0.3 alpha 0.95
-    pause 0.2
-    
-    # 3. Segundo intento de abrir los ojos (se ve un poco más)
-    easein 0.6 alpha 0.3
-    easeout 0.4 alpha 0.85
-    pause 0.3
-    
-    # 4. Abre los ojos por completo (desaparece lo negro)
-    easein 1.2 alpha 0.0
+    pause 1.1
+
+    # 2. Primer parpadeo: apenas se asoma la luz y se vuelve a cerrar rápido
+    easeout 0.12 alpha 0.8
+    easein 0.18 alpha 1.0
+    pause 0.55
+
+    # 3. Segundo parpadeo: se abre bastante más antes de volver a cerrar
+    easeout 0.22 alpha 0.4
+    easein 0.28 alpha 0.9
+    pause 0.5
+
+    # 4. Último parpadeo: se abren del todo y se quedan abiertos
+    easeout 0.35 alpha 0.12
+    pause 0.12
+    easeout 0.7 alpha 0.0
 # Transformación de desenfoque progresivo
 transform enfoque_despertar:
     blur 20.0

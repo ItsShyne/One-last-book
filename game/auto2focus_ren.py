@@ -220,9 +220,16 @@ defaultconfig = {
     },
 
     # same values but for dimming
+    # Antes: idle -0.1 / focus 0.0 -- el personaje que habla quedaba con el
+    # brillo tal cual (0.0, sin oscurecer nada), lo que por contraste con el
+    # otro personaje atenuado se veía muy pálido/blanco. Luego se subió a
+    # idle -0.25 / focus -0.1 para corregir eso, pero terminó siendo
+    # demasiado oscuro para el personaje que NO habla. Se bajó de nuevo,
+    # manteniendo una diferencia similar entre los dos (~0.1) para que la
+    # sombra del que no habla se siga notando sin verse casi negro.
     "dim": {
-        "idle": -0.1,
-        "focus": 0.0,
+        "idle": -0.15,
+        "focus": -0.03,
         "time": 0.15,
         "warper": _warper.easein,
     },

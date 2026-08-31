@@ -14,12 +14,12 @@ label rutas:
 
         mc "por supuesto Sayori"
 
-        show sayori turned lup rup happ om ce zorder 2 at h11 
+        show sayori turned lup rup happ om ce zorder 2 at h11
         s "yaaay~"
         mc "Dame un momento y tomo mis cosas"
         show sayori turned lup rup happ om ce zorder 2 at thide
-        hide sayori 
-        "Rapidamente guarde mis cosas y alcancé a Sayori en la puerta del aula"
+        hide sayori
+        "Rápidamente guardé mis cosas y alcancé a Sayori en la puerta del aula"
         mc "Listo Sayori, podemos irnos"
         s "¡¡¡Nos vemos mañana chicas!!!"
 
@@ -30,11 +30,11 @@ label rutas:
 
         show yuri 3b zorder 2 at t11
 
-        "En Yuri.{w} Quizas no esté pensando bien pero siento como si tuvieramos algo en común"
+        "En Yuri.{w} Quizás no esté pensando bien pero siento como si tuviéramos algo en común"
 
         "estoy seguro que me la pasaré muy bien todos los días con ella"
-        "Y por supuesto con las demas chicas tambien"
-   
+        "Y por supuesto con las demás chicas también"
+
         "Quiero conocerla un poco más, espero que no me mire como un rarito..."
 
         show yuri zorder 2 at thide
@@ -42,7 +42,7 @@ label rutas:
 
         "¡perfecto! solo necesito hacerlo bien y lo lograré"
 
-        "asi que escribir un poema...{w} si hago un poema que a ella le guste será más facil acercarme"
+        "así que escribir un poema...{w} si hago un poema que a ella le guste será más fácil acercarme"
 
         show sayori turned happ cm ce zorder 2 at t11
 
@@ -54,13 +54,13 @@ label rutas:
 
         show sayori turned happ om oe zorder 2 at f11
 
-        s "quizás sea acerca del sol, es muy lindo, sobretodo cuando voy a la escuela"
+        s "quizás sea acerca del sol, es muy lindo, sobre todo cuando voy a la escuela"
 
         show sayori turned happ cm oe zorder 2 at t11
 
-        mc "nunca he escrito un poema. no tengo idea de que hacerlo"
+        mc "nunca he escrito un poema. no tengo idea de cómo hacerlo"
 
-        mc "aunque me sorprende que escribas poemas, nunca me imagine que podrias hacerlo"
+        mc "aunque me sorprende que escribas poemas, nunca me imaginé que podrías hacerlo"
 
         show sayori tap nerv om oe zorder 2 at f11
 
@@ -80,22 +80,23 @@ label rutas:
     #RUTA NEUTRA ELECCIÓN 1
     label sayori_insiste:
         show sayori 2m zorder 2 at f11
-        s "¿¡qué!? ¿enserio?"
+        s "¿¡qué!? ¿en serio?"
         show sayori tap zorder 2 at f11
         s "Vamos [player] hace tiempo no salimos juntos"
         show sayori tap zorder 2 at t11
+        window show
         menu:
             #CONTINUACIÓN DE LA RUTA NEUTRA
             "Irse con sayori":
                 $ puntos_ruta += 1
                 $ decision_sayori = "insistir"
                 mc "Esta bien Esta bien"
-                show sayori turned lup rup happ om ce zorder 2 at h11 
+                show sayori turned lup rup happ om ce zorder 2 at h11
                 s "yaaay~"
                 mc "Dame un momento y tomo mis cosas"
                 show sayori turned lup rup happ om ce zorder 2 at thide
-                hide sayori 
-                "Rapidamente guarde mis cosas y alcancé a Sayori en la puerta del aula"
+                hide sayori
+                "Rápidamente guardé mis cosas y alcancé a Sayori en la puerta del aula"
                 mc "Listo Sayori, podemos irnos"
                 s "¡¡¡Nos vemos mañana chicas!!!"
 
@@ -106,11 +107,11 @@ label rutas:
 
                 show yuri 3b zorder 2 at t11
 
-                "En Yuri.{w} Quizas no esté pensando bien pero siento como si tuvieramos algo en común"
+                "En Yuri.{w} Quizás no esté pensando bien pero siento como si tuviéramos algo en común"
 
                 "estoy seguro que me la pasaré muy bien todos los días con ella"
-                "Y por supuesto con las demas chicas tambien"
-        
+                "Y por supuesto con las demás chicas también"
+
                 "Quiero conocerla un poco más, espero que no me mire como un rarito..."
 
                 show yuri zorder 2 at thide
@@ -118,7 +119,7 @@ label rutas:
 
                 "¡perfecto! solo necesito hacerlo bien y lo lograré"
 
-                "asi que escribir un poema...{w} si hago un poema que a ella le guste será más facil acercarme"
+                "así que escribir un poema...{w} si hago un poema que a ella le guste será más fácil acercarme"
 
                 show sayori turned happ cm ce zorder 2 at t11
 
@@ -130,13 +131,13 @@ label rutas:
 
                 show sayori turned happ om oe zorder 2 at f11
 
-                s "quizás sea acerca del sol, es muy lindo, sobretodo cuando voy a la escuela"
+                s "quizás sea acerca del sol, es muy lindo, sobre todo cuando voy a la escuela"
 
                 show sayori turned happ cm oe zorder 2 at t11
 
-                mc "nunca he escrito un poema. no tengo idea de que hacerlo"
+                mc "nunca he escrito un poema. no tengo idea de cómo hacerlo"
 
-                mc "aunque me sorprende que escribas poemas, nunca me imagine que podrias hacerlo"
+                mc "aunque me sorprende que escribas poemas, nunca me imaginé que podrías hacerlo"
 
                 show sayori tap nerv om oe zorder 2 at f11
 
@@ -167,6 +168,7 @@ label rutas:
 
 # Decision biblioteca
     label hablar_yuri_biblioteca:
+        play music t6 fadein 1.0
         "Sin pensarlo dos veces, camino hacia Yuri."
 
         "Espero no interrumpir nada importante."
@@ -280,6 +282,10 @@ label rutas:
 
         show yuri turned pani om oe zorder 2 at h11
 
+        play sound alarm
+        $ renpy.pause(2.0)
+        stop sound fadeout 0.3
+
         "Una fuerte alarma interrumpe a Yuri y la devuelve bruscamente a la realidad."
 
         show yuri turned pani om oe zorder 2 at f11
@@ -335,6 +341,8 @@ label rutas:
         show monika forward dist cm oe zorder 2 at t11
 
         mc "No tendría problema, adelante."
+
+        play music t10 fadein 1.0
         
         show monika forward dist om oe zorder 2 at f11
         m "¿Qué opinas de las chicas del club?"
@@ -387,7 +395,7 @@ label rutas:
         "Realmente no sé qué decir, ¿cómo podría alejarme o evitar a Yuri?"
         "No puedo hacer eso."
 
-        play music audio.heartbreaking2 fadein 2.0
+        
 
         show monika forward neut om oe zorder 2 at f11
         m "Bueno, me tengo que retirar. Hasta mañana, [player], cuídate."
@@ -405,6 +413,7 @@ label rutas:
 
         "Quizás esté sobrepensando. Es la presidenta del club, obviamente querrá lo mejor para... para el club."
         "N-no debería darle tantas vueltas ahora."
+        stop music fadeout 2.0
         "Revisé las estanterías y llevé conmigo unos cuantos libros para continuar con la tarea que me espera en casa."
         "El mismo silencio que me recibió antes me despide mientras camino fuera de la biblioteca de camino a casa."
         jump noche_poem1
@@ -482,11 +491,11 @@ label rutas:
     label ruta_bad_1:
         "Me levanté de mi asiento con un poco de miedo."
 
-        mc "¿Chicas por que tanto alboro-{nw}"
+        mc "¿Chicas por qué tanto alboro-{nw=1}"
 
         show natsuki cross n1 angr om ce zorder 2 at f22
 
-        n cross n1 angr om ce "Si vas hacerte el tonto, callate y sientate."
+        n cross n1 angr om ce "Si vas a hacerte el tonto, cállate y siéntate."
 
         show natsuki cross n1 angr om ce zorder 2 at t22
 
@@ -497,26 +506,36 @@ label rutas:
         y turned n1 angr om oe "Natsuki, no deberías hablarle así a [player]. Es una total falta de respeto."
         show natsuki turned angr om oe zorder 2 at f22
         show yuri turned angr om oe zorder 2 at t21
-        n "¡S-Silencio, Yuri!"
+        n "¿Falta de respeto? Mira quién habla."
+
+        n "Llevas toda la reunión mirándome como si lo que escribo no valiera nada."
+
+        show yuri turned doub om oe zorder 2 at f21
+        y "Yo no dije eso en ningún momento."
+
+        show natsuki turned angr cm oe zorder 2 at t22
+        n "No hace falta que lo digas, Yuri. Se te nota en la cara."
         stop music fadeout 2.0
-        n "¿Sabes qué pienso de ti, Yuri?"
+        n "¿Sabes qué? Te voy a decir lo que realmente pienso de ti."
 
         n turned angr om ce "Al principio pensaba que iba a ser increíble tener una amiga con mis mismos gustos..."
 
         "Natsuki se detuvo unos segundos."
 
         "Está a punto de estallar la bomba."
-        
-        n turned vang om oe "¡Pero ahora pienso que eres una perra engreída!"
+
+        n turned vang om oe "¡Pero ahora pienso que eres una perra engreída que se cree superior a todos!"
         show natsuki turned vang om oe zorder 2 at h22
-        n "A nadie le sorprende que no tengas amigos."
-        with vpunch 
+        with vpunch
+        n "No me sorprende que no tengas amigos, con esa actitud de que todo lo que a los demás nos gusta es 'poco profundo'."
+
         show yuri turned me e1g b1b zorder 2 at s21
 
         y "..."
         show natsuki sad om oe zorder 2 at s22
         pause 2
         show yuri turned cry cm ce zorder 2 at s21
+        "El silencio que sigue es peor que cualquier grito."
         n "..."
         window hide
         show yuri shy sad om oe zorder 2 at t21
@@ -524,7 +543,7 @@ label rutas:
         show yuri shy sad om oe zorder 2 at correr_izquierda
 
         pause 0.4
-        hide yuri 
+        hide yuri
         play audio closet_open
         window show
         "Yuri salió del club cubriendo sus ojos con una de sus mangas."
@@ -535,14 +554,16 @@ label rutas:
 
         "Miro a Natsuki; parece arrepentida."
 
-        n "Yo... ya regreso..."
+        n "Yo... no quería decir eso..."
+
+        n "Ya regreso..."
 
         show natsuki turned fs cry cm ce zorder 2 at correr_izquierda
         pause 0.8
         hide natsuki 
         play audio closet_close
         "Natsuki caminó hacia la puerta del salón y la cerró de un portazo." 
-        "Miré a Sayori, Parece igual de impactada que yo"
+        "Miré a Sayori. Parecía igual de impactada que yo"
 
         show sayori turned sad om oe zorder 2 at t11
         s "Oh... Seguramente todo se arreglará, [player]."
@@ -638,7 +659,7 @@ label rutas:
         show monika 2a at f11
         m "En fin... será mejor que sigas compartiendo tu poema con las demás."
         m 2g "Estoy segura de que Yuri se morirá de ganas por leer lo que escribiste 'especialmente' para ella."
-        show show monika 2a at thide
+        show monika 2a at thide
         hide monika
         with wipeleft_scene
 
@@ -739,16 +760,68 @@ label rutas:
 
             y "Como yo..."
 
+            show yuri turned nerv cm ce zorder 2 at t11
+
+            "Se quedó en silencio un segundo, como si recién hubiera escuchado lo que acababa de decir."
+
+            show yuri turned nerv om oe zorder 2 at f11
+
+            y "Q-quiero decir... alguien en quien confíes. No tiene que ser yo, necesariamente."
+
+            show yuri turned flus cm oe zorder 2 at t11
+
+            mc "No sé, Yuri. Contigo se siente bastante fácil hablar de estas cosas."
+
+            show yuri turned happ om ce zorder 2 at f11
+
+            y "..."
+
             show yuri turned laug cm oe zorder 2 at t11
 
             mc "Suena a una buena idea para mi próximo poema."
 
             "Yuri me pasó su poema. Era una hoja suelta."
             $ poem_db.show_poem("Yuri_poem2")
-            show yuri turned laug cm oe zorder 2 at thide
+
+            show yuri turned nerv om oe zorder 2 at f11
+
+            y "¿Y bien...?"
+
+            show yuri turned nerv cm oe zorder 2 at t11
+
+            mc "Es realmente hermoso, Yuri... El \"Señor tic tac\". ¿En quién pensabas cuando lo escribiste?"
+
+            show yuri turned flus om ce zorder 2 at f11
+
+            y "E-eso no es algo que pueda responder tan fácilmente."
+
+            show yuri shy m4 e1 b1 zorder 2 at f11
+
+            y "Solo... hay alguien que ha estado ahí, aunque no se lo haya pedido. Alguien paciente, que no se rindió conmigo aunque tuviera motivos de sobra."
+
+            show yuri shy m4 e1 b1 zorder 2 at t11
+
+            y "No sabía cómo agradecer eso con palabras normales, así que... lo escribí de la única forma que sé hacerlo."
+
+            show yuri shy m1 e2 b1 zorder 2 at t11
+
+            mc "Oh... conque es eso."
+
+            mc "Entonces vale mucho más ahora que sé lo que hay detrás de esas palabras."
+
+            show yuri shy m3 e1 b1 zorder 2 at f11
+
+            y "..."
+
+            show yuri shy m3 e1 b1 zorder 2 at t11
+
+            y "Me alegra que lo veas de esa forma."
+
+            
+            show yuri shy m3 e1 b1 zorder 2 at thide
             hide yuri
 
-            with wipeleft_scene 
+            with wipeleft_scene
             jump pelea
 
         elif decision_biblioteca == "Yuri":
@@ -757,7 +830,7 @@ label rutas:
 
             play music audio.t5
 
-            "Yuri se acerca lentamente a mi."
+            "Yuri se acerca lentamente a mí."
 
             show yuri turned happ cm oe zorder 2 at f11
 
@@ -855,18 +928,90 @@ label rutas:
 
             y "Como yo..."
 
+            show yuri turned nerv cm ce zorder 2 at t11
+
+            "Se quedó en silencio un segundo, como si recién hubiera escuchado lo que acababa de decir."
+
+            show yuri turned nerv om oe zorder 2 at f11
+
+            y "Q-quiero decir... alguien en quien confíes. No tiene que ser yo, necesariamente."
+
+            show yuri turned flus cm oe zorder 2 at t11
+
+            mc "No sé, Yuri. Contigo se siente bastante fácil hablar de estas cosas."
+
+            show yuri turned happ om ce zorder 2 at f11
+
+            y "..."
+
             show yuri turned laug cm oe zorder 2 at t11
 
             mc "Suena a una buena idea para mi próximo poema."
 
             "Yuri me pasó su poema. Era una hoja suelta."
             $ poem_db.show_poem("Yuri_poem2")
+
+            show yuri turned nerv om oe zorder 2 at f11
+
+            y "¿Y bien...?"
+
+            show yuri turned nerv cm oe zorder 2 at t11
+
+            mc "Es realmente hermoso, Yuri... El \"Señor tic tac\". ¿En quién pensabas cuando lo escribiste?"
+
+            show yuri turned flus om ce zorder 2 at f11
+
+            y "E-eso no es algo que pueda responder tan fácilmente."
+
+            show yuri turned worr om oe zorder 2 at f11
+
+            y "Solo... hay alguien que ha estado ahí, aunque no se lo haya pedido. Alguien paciente, que no se rindió conmigo aunque tuviera motivos de sobra."
+
+            show yuri turned worr cm oe zorder 2 at t11
+
+            y "No sabía cómo agradecer eso con palabras normales, así que... lo escribí de la única forma que sé hacerlo."
+
+            show yuri turned flus cm oe zorder 2 at t11
+
+            mc "Oh... conque es eso."
+
+            mc "Entonces vale mucho más ahora que sé lo que hay detrás de esas palabras."
+
+            show yuri turned happ om ce zorder 2 at f11
+
+            y "..."
+
+            show yuri turned flus cm oe zorder 2 at t11
+
+            y "Me alegra que lo veas de esa forma."
+
+            show yuri turned laug cm oe zorder 2 at t11
             show yuri turned laug cm oe zorder 2 at thide
             hide yuri
 
-            with wipeleft_scene 
+            with wipeleft_scene
             jump pelea
 
-
+########## BIFURCACION DE RUTAS (semana 2, tras el tramo compartido de cap3) ##########
+# puntos_ruta se acumula durante el dia 1 (cap2). Tras sumar las decisiones nuevas
+# (te de Yuri y pedir-por-ella en la cafeteria) el rango real ya no es -5 a +3:
+# ahora hay 192 combinaciones posibles (contando las 3 sub-rutas de "sayori_insiste")
+# y el rango va de -10 a +8 (simulado a mano, script de enumeracion completa).
+# Umbral >= 2 deja la ruta buena en ~28% de los caminos posibles.
+# Umbral <= -2 dejaria la ruta mala en ~39% de los caminos, con la neutra
+# (-1, 0, 1) en el ~33% restante. Es el reparto mas parejo entre las tres rutas
+# de todos los umbrales probados.
+label chequeo_ruta_semana2:
+    if puntos_ruta >= 2:
+        jump ruta_buena_semana2
+    else:
+        jump chapter6
+        # TODO: cuando exista guion propio de ruta mala, cambia el bloque de arriba por:
+        # if puntos_ruta >= 2:
+        #     jump ruta_buena_semana2
+        # elif puntos_ruta <= -2:
+        #     jump ruta_mala_semana2
+        # else:
+        #     jump chapter6
 
 
