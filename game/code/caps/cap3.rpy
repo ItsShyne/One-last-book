@@ -8,6 +8,7 @@ label cap3:
     # segundo cero.
 
     stop music fadeout 2.0
+    $ set_lighting(None)
     call time_skip("Unos días después")
     play music t112 fadein 1.5
     scene bg yuri_bedroom at enfoque_despertar

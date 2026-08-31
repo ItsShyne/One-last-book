@@ -220,16 +220,14 @@ defaultconfig = {
     },
 
     # same values but for dimming
-    # Antes: idle -0.1 / focus 0.0 -- el personaje que habla quedaba con el
-    # brillo tal cual (0.0, sin oscurecer nada), lo que por contraste con el
-    # otro personaje atenuado se veía muy pálido/blanco. Luego se subió a
-    # idle -0.25 / focus -0.1 para corregir eso, pero terminó siendo
-    # demasiado oscuro para el personaje que NO habla. Se bajó de nuevo,
-    # manteniendo una diferencia similar entre los dos (~0.1) para que la
-    # sombra del que no habla se siga notando sin verse casi negro.
+    # Historial: idle -0.1/focus 0.0 (el que habla se veía pálido/blanco) ->
+    # idle -0.25/focus -0.1 (demasiado oscuro el que no habla) ->
+    # idle -0.15/focus -0.03 (seguía viéndose muy oscuro el que no habla).
+    # Se bajó de nuevo, manteniendo una diferencia chica entre los dos
+    # (~0.06) para que se note quién habla sin que el otro se vea apagado.
     "dim": {
-        "idle": -0.15,
-        "focus": -0.03,
+        "idle": -0.08,
+        "focus": -0.02,
         "time": 0.15,
         "warper": _warper.easein,
     },
@@ -395,9 +393,12 @@ class CharacterDim(Speaking):
 
         if not enabled or enabled and (speaking or force or not (dim and dimActive)):
             t = self.sl.tracker.update(dt)
-        else: 
+        else:
             t = self.sl.tracker.update(-dt)
-        trans.matrixcolor = BrightnessMatrix(SingleLerp.lerp(self.sl.start, self.sl.end, t))
+        # se multiplica con el tinte de iluminacion ambiental (code/lighting_system.rpy)
+        # para que el personaje respete la luz de la escena (tarde/noche/lluvia/etc)
+        # ademas del oscurecido normal de hablar/no hablar.
+        trans.matrixcolor = BrightnessMatrix(SingleLerp.lerp(self.sl.start, self.sl.end, t)) * store.get_current_lighting_matrix()
 
 
 # this merges the zoom and dim controllers and passes some other stuff to them
