@@ -51,35 +51,35 @@ label poem_special(poem=1):
 
 # Backwards Compatibility
 label poem_special_1:
-    call poem_special(1)
+    call poem_special(1) from _call_poem_special
     return
 label poem_special_2:
-    call poem_special(2)
+    call poem_special(2) from _call_poem_special_1
     return
 label poem_special_3:
-    call poem_special(3)
+    call poem_special(3) from _call_poem_special_2
     return
 label poem_special_4:
-    call poem_special(4)
+    call poem_special(4) from _call_poem_special_3
     return
 label poem_special_5:
-    call poem_special(5)
+    call poem_special(5) from _call_poem_special_4
     return
 label poem_special_6:
-    call poem_special(6)
+    call poem_special(6) from _call_poem_special_5
     return
 label poem_special_7:
-    call poem_special(7)
+    call poem_special(7) from _call_poem_special_6
     return
 label poem_special_8:
-    call poem_special(8)
+    call poem_special(8) from _call_poem_special_7
     return
 label poem_special_9:
-    call poem_special(9)
+    call poem_special(9) from _call_poem_special_8
     return
 label poem_special_10:
-    call poem_special(10)
+    call poem_special(10) from _call_poem_special_9
     return
 label poem_special_11:
-    call poem_special(11)
+    call poem_special(11) from _call_poem_special_10
     return

@@ -11,71 +11,48 @@ label rutas:
 #Decision ir con Sayori
     label ir_sayori:
         show sayori turned happ cm oe zorder 2 at t11
-
-        mc "por supuesto Sayori"
-
-        show sayori turned lup rup happ om ce zorder 2 at h11
-        s "yaaay~"
-        mc "Dame un momento y tomo mis cosas"
+        mc "Por supuesto Sayori."
+        show sayori turned lup rup happ om ce zorder 2 at h11 
+        s "Yaaay~"
+        mc "Dame un momento y tomo mis cosas."
         show sayori turned lup rup happ om ce zorder 2 at thide
-        hide sayori
-        "Rápidamente guardé mis cosas y alcancé a Sayori en la puerta del aula"
-        mc "Listo Sayori, podemos irnos"
+        hide sayori 
+        "Rápidamente guarde mis cosas y alcancé a Sayori en la puerta del aula."
+        mc "Listo Sayori, podemos irnos."
         s "¡¡¡Nos vemos mañana chicas!!!"
-
         show bg residential_day
         with wipeleft_scene
-
-        "Durante todo el camino a casa he pensado en ella"
-
+        "Durante todo el camino a casa he pensado en ella."
         show yuri 3b zorder 2 at t11
-
-        "En Yuri.{w} Quizás no esté pensando bien pero siento como si tuviéramos algo en común"
-
-        "estoy seguro que me la pasaré muy bien todos los días con ella"
-        "Y por supuesto con las demás chicas también"
-
+        "En Yuri.{w} Quizás no esté pensando bien pero siento como si tuvieramos algo en común."
+        "Estoy seguro que me la pasaré muy bien todos los días con ella."
+        "Y por supuesto con las demás chicas también."
         "Quiero conocerla un poco más, espero que no me mire como un rarito..."
-
         show yuri zorder 2 at thide
         hide yuri
-
-        "¡perfecto! solo necesito hacerlo bien y lo lograré"
-
-        "así que escribir un poema...{w} si hago un poema que a ella le guste será más fácil acercarme"
-
+        "¡Perfecto! Solo necesito hacerlo bien y lo lograré."
+        "Asi que escribir un poema...{w} si hago un poema que a ella le guste, será más fácil acercarme."
         show sayori turned happ cm ce zorder 2 at t11
-
-        mc "oye Sayori ¿de qué escribirás tu poema?"
-
+        mc "Oye Sayori... ¿de qué escribirás tu poema?"
         show sayori turned lsur om oe zorder 2 at f11
-
-        s "hmmm..."
-
+        s "Hmmm..."
         show sayori turned happ om oe zorder 2 at f11
-
-        s "quizás sea acerca del sol, es muy lindo, sobre todo cuando voy a la escuela"
-
+        s "Quizás sea acerca del sol, es muy lindo, sobretodo cuando voy a la escuela."
         show sayori turned happ cm oe zorder 2 at t11
-
-        mc "nunca he escrito un poema. no tengo idea de cómo hacerlo"
-
-        mc "aunque me sorprende que escribas poemas, nunca me imaginé que podrías hacerlo"
-
+        mc "Nunca he escrito un poema. No tengo idea de que trataría honestamente."
+        mc "Aunque me sorprende que escribas poemas, nunca me imaginé que podrías hacerlos."
         show sayori tap nerv om oe zorder 2 at f11
-
-        s "s-si..."
-
+        s "S-si..."
         show sayori tap pout cm oe zorder 2 at t11
-
-        mc "adivino... estamos en las mismas ¿cierto?"
-
+        mc "Adivinaré... estamos en las mismas ¿cierto?"
         show sayori turned lup rup pani om oe zorder 2 at f11
-
         s "¡¡¡Oye!!!"
-
         show sayori turned lup rup pani om ce zorder 2 at thide
+        mc "A pesar de seguir metiendome con Sayori, soltamos unas cuantas risas antes de despedirnos e ir cada uno a nuestras casas."
         hide sayori
+        scene black
+        with dissolve_scene_full
+        stop music fadeout 2.0
         jump biblioteca
     #RUTA NEUTRA ELECCIÓN 1
     label sayori_insiste:
@@ -90,8 +67,8 @@ label rutas:
             "Irse con sayori":
                 $ puntos_ruta += 1
                 $ decision_sayori = "insistir"
-                mc "Esta bien Esta bien"
-                show sayori turned lup rup happ om ce zorder 2 at h11
+                mc "Está bien, Está bien..."
+                show sayori turned lup rup happ om ce zorder 2 at h11 
                 s "yaaay~"
                 mc "Dame un momento y tomo mis cosas"
                 show sayori turned lup rup happ om ce zorder 2 at thide

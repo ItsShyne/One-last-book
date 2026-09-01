@@ -206,6 +206,10 @@ init python:
 
     build.include_old_themes = False
     #Traduccion de algunos menús
+    layout.LOADING = _("La carga dará como resultado la pérdida de progreso no guardado. \n¿Estás seguro de que quieres hacer esto?")
+    layout.QUIT = _("¿Estás seguro de que quieres salir?")
+    layout.MAIN_MENU = _("¿Estás seguro de que deseas volver al menú principal?\n Esto conducirá a la pérdida de progreso no guardado.")
+    layout.OVERWRITE_SAVE = _("¿Estás seguro de que quieres sobreescribir este punto de guardado?")
     layout.LOADING = _("La carga dará como resultado la pérdida de progreso no guardado. \n¿Estas seguro de que quieres hacer esto?")
     layout.QUIT = _("¿Estas seguro de que quieres salir?")
     layout.MAIN_MENU = _("¿Estas seguro de que deseas volver al menú principal?\n Esto conducira a la perdida de progreso no guardado.")
