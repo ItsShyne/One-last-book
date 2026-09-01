@@ -12,11 +12,6 @@ define config.name = "One Last Book"
 # If your mod name is big, it is suggested to turn this off.
 define gui.show_name = True
 
-# This controls the text shown in the title bar of the game window. It's set
-# as a separate variable (instead of relying on config.name) so it can be
-# changed dynamically during the Fallen Angel intro (see splash.rpy).
-define config.window_title = "One Last Book"
-
 # This controls the version number of your mod.
 define config.version = "0.9"
 
@@ -215,12 +210,18 @@ init python:
     layout.QUIT = _("¿Estás seguro de que quieres salir?")
     layout.MAIN_MENU = _("¿Estás seguro de que deseas volver al menú principal?\n Esto conducirá a la pérdida de progreso no guardado.")
     layout.OVERWRITE_SAVE = _("¿Estás seguro de que quieres sobreescribir este punto de guardado?")
+    layout.LOADING = _("La carga dará como resultado la pérdida de progreso no guardado. \n¿Estas seguro de que quieres hacer esto?")
+    layout.QUIT = _("¿Estas seguro de que quieres salir?")
+    layout.MAIN_MENU = _("¿Estas seguro de que deseas volver al menú principal?\n Esto conducira a la perdida de progreso no guardado.")
+    layout.OVERWRITE_SAVE = _("¿Estas seguro de que quieres sobreescribir este punto de guardado?")
 
 init python:
+    import re
+
     def formatear_dialogo_automatico(texto):
         if not texto:
             return texto
-        
+
         # Forzar la primera letra en mayúscula (manejando ¿ y ¡)
         if len(texto) > 1 and texto[0] in ("¿", "¡"):
             # Si empieza con signo, dejamos el signo igual y hacemos mayúscula la letra que le sigue
@@ -228,14 +229,31 @@ init python:
         else:
             # Si empieza con una letra normal
             texto_final = texto[0].upper() + texto[1:]
-        
-        # Revisar el final de la oración para el punto final
-        texto_limpio = texto_final.rstrip() 
-        signos_cierre = (".", "!", "?", "...", '"', "'")
-        
-        if not texto_limpio.endswith(signos_cierre):
-            texto_final = texto_limpio + "."
-            
+
+        # Los diálogos interrumpidos terminan en etiquetas de Ren'Py como
+        # {nw} o {w=0.5} (ej. 'No hay necesi—{nw}'). Si no las separamos
+        # antes de revisar la puntuación, el punto se pega DESPUÉS de la
+        # etiqueta en vez de antes, rompiendo el corte de la interrupción.
+        match = re.search(r"(\{[^{}]*\}\s*)+$", texto_final)
+        if match:
+            cuerpo = texto_final[:match.start()]
+            cola = texto_final[match.start():]
+        else:
+            cuerpo = texto_final
+            cola = ""
+
+        # Revisar el final de la oración para el punto final.
+        # "-" y "—" se cuentan como cierre porque marcan diálogo cortado a
+        # propósito (interrupciones); "…" es el carácter de elipsis unicode,
+        # distinto de "..." (tres puntos), así que hace falta revisar ambos.
+        cuerpo_limpio = cuerpo.rstrip()
+        signos_cierre = (".", "!", "?", "...", "…", '"', "'", "-", "—")
+
+        if cuerpo_limpio and not cuerpo_limpio.endswith(signos_cierre):
+            cuerpo_limpio += "."
+
+        texto_final = cuerpo_limpio + cola
+
         return texto_final
 
     # Aplicamos el filtro de forma global a todos los diálogos

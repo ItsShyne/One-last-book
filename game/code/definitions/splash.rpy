@@ -4,6 +4,33 @@
 # This image text shows the splash message when the game loads.
 image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign=0.5)
 
+## Tarjeta de "salto de tiempo" (Al día siguiente / Dos semanas después / etc.)
+## Fondo negro + texto centrado con Playfair Display, una tipografía tipo
+## libro que estaba en los archivos del proyecto sin usarse en ningún lado.
+image time_skip_text = ParameterizedText(style="time_skip_text", xalign=0.5, yalign=0.5)
+
+style time_skip_text:
+    font "mod_assets/font/Playfair_Display/static/PlayfairDisplay-Italic.ttf"
+    size 44
+    color "#ffffff"
+    outlines []
+    text_align 0.5
+
+transform time_skip_text_appear:
+    alpha 0.0
+    easeout 0.6 alpha 1.0
+    pause 1.6
+    easein 0.6 alpha 0.0
+
+# Uso: call time_skip("Al día siguiente")
+label time_skip(text):
+    window hide
+    scene black
+    show time_skip_text "[text]" at time_skip_text_appear
+    pause 2.8
+    scene black
+    return
+
 image preview_glitch_color:
     Solid("#22003c")
     alpha 0.65
@@ -270,6 +297,21 @@ transform main_menu_glitch_shake:
 image fallen_menu_bg:
     "mod_assets/logos/menu_bg_blue.png"
     menu_bg_blue_move
+
+# Igual que menu_bg_blue_move pero sin la segunda parte que sube la imagen
+# fuera de pantalla (esa está pensada para el intro, no para un fondo que
+# tiene que quedarse visible). Va y vuelve en bucle, como bg_move.
+transform menu_bg_blue_loop:
+    subpixel True
+    topleft
+    xoffset 0 yoffset 0
+    linear 3.0 xoffset -100 yoffset -100
+    linear 3.0 xoffset 0 yoffset 0
+    repeat
+
+image fallen_menu_bg_loop:
+    "mod_assets/logos/menu_bg_blue.png"
+    menu_bg_blue_loop
 
 image fallen_menu_logo:
     "mod_assets/logos/fallen_logo.png"
@@ -594,7 +636,20 @@ label splashscreen:
         # INTERACTIVE FALLEN ANGEL MENU
         # --------------------------------------------------------------------
 
+        # Mientras se muestra este menú, si el jugador abre "Cargar juego" u
+        # "Opciones" (pantallas compartidas con el menú real), que usen el
+        # fondo de Fallen Angel en vez del atardecer normal de One Last Book.
+        # "fallen_menu_bg_loop" se mueve en bucle (va y vuelve) sin
+        # desaparecer nunca, a diferencia de "fallen_menu_bg" que sube la
+        # imagen fuera de pantalla a los pocos segundos (pensado para la
+        # animación de entrada del intro, no para un fondo persistente).
+        $ _menu_bg_override = "fallen_menu_bg_loop"
+        $ _fallen_angel_nav_style = True
+
         call screen fallen_intro_menu
+
+        $ _menu_bg_override = None
+        $ _fallen_angel_nav_style = False
 
         # --------------------------------------------------------------------
         # START GAME -> GLITCH

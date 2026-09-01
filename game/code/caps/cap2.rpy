@@ -35,7 +35,9 @@ label cap2:
     with wipeleft_scene 
     "Mi mirada se centró en una estudiante de cabello morado."
     show yuri 2b zorder 2 at f11
-    y "Bienvenido al club de literatura, es un placer conocerte [player]."
+
+    y "Bienvenido al club de literatura, es un placer conocerte, [player]."
+
     show yuri turned rup uniform happ om ce zorder 2 at f11
     y "Sayori siempre nos habla bien de ti."
     y "Me alegra mucho poder conocerte."   
@@ -117,6 +119,11 @@ label cap2:
     show monika forward lpoint happ om oe zorder 2 at f22
     m "De hecho, [player] y yo estuvimos en la misma clase el año pasado."
     show monika forward happ cm ce zorder 2 at t22
+
+    "Ella es Monika. Recuerdo perfectamente que estuvimos en la clase de Química el año pasado..."
+    
+    "Prefiero olvidar todo lo que pasó el año pasado..."
+
     "Ella es Monika. Recuerdo perfectamente que estuvimos en la clase de química el año pasado..."
     "Prefiero olvidar todo lo que pasó el año pasado..."
     show monika forward happ om oe zorder 2 at f22
@@ -253,7 +260,7 @@ label cap2:
     show yuri zorder 2 at thide
     hide yuri
     show monika lean happ om oe zorder 2 at f11
-    m "Por cierto [player], me alegra que te hayas unido. Como presidenta del club me aseguraré de que te sientas cómodo."
+    m "Por cierto, [player], me alegra que te hayas unido. Como presidenta del club me aseguraré de que te sientas cómodo."
     show monika lean happ om oe zorder 2 at t11
     stop music fadeout 2.0
     mc "¿Que me haya unido? Pero aún no me he decidido en unirme..."
@@ -358,6 +365,7 @@ label cap2:
     s "Oye [player], ya que desde ahora nos veremos todos los días, ¿quieres caminar conmigo a casa? Ya sabes, como lo hacíamos antes."
     "Es cierto, hace mucho tiempo que no caminaba con Sayori debido a lo tarde que salía, no solo de la escuela."
 
+    window show
     menu irse_con_Sayori:
         "Irse con Sayori":
             $ decision_sayori = "Sayori"
@@ -369,10 +377,10 @@ label cap2:
             jump sayori_insiste
 
 label biblioteca:
-
+    stop music fadeout 2
     show bg bedroom
     with dissolve_scene_full
-    play music audio.t8
+    play music t112
 
     "Agarré un lápiz y una hoja de papel."
 
@@ -399,7 +407,7 @@ label biblioteca:
     
     scene bg library_aft
     with dissolve_scene
-    play music audio.heartbreaking2 fadein 2.0
+    play music street_stroll fadein 1
 
     "Uff, aún sigue abierta."
     "El silencio de la biblioteca siempre me tranquiliza."
@@ -418,7 +426,7 @@ label biblioteca:
 
     "El hombre de arena.{w} ¿Ese no era un enemigo de un superhéroe?"
 
-    "¿Exit Music: Redux?{w} Me suena de algo..."
+    "¿Crystal Roses?{w} Me suena de algo..."
 
     show silueta zorder 2 at f11
 
@@ -522,29 +530,31 @@ label biblioteca:
     
     "Monika no reaccionó ante mi intento de chiste."
     show yuri turned anno om oe zorder 2 at t11
-    hide yuri 
+    hide yuri
     show monika forward anno cm oe zorder 2 at t11
+    window show
     menu hablar_yuri:
         "Ir hablar con Yuri":
+            stop music fadeout 2
             $ decision_biblioteca = "Yuri"
             $ puntos_ruta += 1
-            "Que raro encontrar a Yuri aqui"
+            "Qué raro encontrar a Yuri aquí."
             "No creo que Monika se tome esto personal, ¿verdad?"
-            mc "Monika, disculpa tengo que irme"
-            "Antes de que pueda darme una respuesta trato de alejarme pero me agarra de la camisa"
-            m forward dist om oe "Espera"
-            m "¿Iras hablar con Yuri verdad?"
-            mc "Lo siento, Monika"
-            m forward flus om oe "Esta bien no pasa nada..."
-            mc "Nos vemos mañana, Monika"
-            m "Adios [player]"
+            mc "Monika, disculpa, tengo que irme."
+            "Antes de que pueda darme una respuesta, trato de alejarme, pero me agarra de la camisa."
+            m forward dist om oe "¡Espera!"
+            m "¿Irás a hablar con Yuri, verdad?"
+            mc "Lo siento, Monika."
+            m forward flus om oe "Está bien, no pasa nada..."
+            mc "Nos vemos mañana, Monika."
+            m "Adiós, [player]."
             show monika forward flus om oe zorder 2 at thide
-            hide monika 
+            hide monika
             jump hablar_yuri_biblioteca
         "Quedarse con Monika":
             $ decision_biblioteca = "Monika"
             $ puntos_ruta -= 1
-            "Seria muy grosero de mi parte dejar a Monika"
+            "Sería muy grosero de mi parte dejar a Monika."
             jump no_hablar_yuri_biblioteca
     
     label noche_poem1:
@@ -556,7 +566,8 @@ label biblioteca:
     mc "Me espera una laaarga noche."
     stop music fadeout 2.0
 
-    # Al siguiente día
+    call time_skip("Al día siguiente")
+
     # Día 2
     label dia2:
     scene bg club_day
@@ -717,92 +728,92 @@ label biblioteca:
         hide yuri
     elif decision_sayori == "Sayori":
         show yuri turned n3 flus cm oe zorder 2 at t11
-        y "D-Disculpa [player] tienes un segundo"
+        y "D-Disculpa, [player], ¿tienes un segundo?"
 
-        "Que extraño Yuri parece esconder algo tras su espalda, parece un poco nerviosa"
+        "Qué extraño. Yuri parece esconder algo tras su espalda, parece un poco nerviosa."
 
-        mc "Hola Yuri, por supuesto"
+        mc "Hola, Yuri. Por supuesto."
 
         show yuri turned n2 flus cm oe zorder 2 at t11
 
-        "Una pequeña gota de sudor cae por el rostro de Yuri"
+        "Una pequeña gota de sudor cae por el rostro de Yuri."
 
-        "Parece estar atrapada en decirme algo o no"
+        "Parece estar atrapada entre decirme algo o no."
 
-        "Sera mejor que salve un poco la situación, quisiera saber que quiere decirme"
+        "Será mejor que salve un poco la situación, quisiera saber qué quiere decirme."
 
-        mc "Yuri hay algo que quieras decir-"
+        mc "Yuri, ¿hay algo que quieras decir—?"
 
         show yuri shy neut om oe zorder 2 at f11
 
-        y "T-T-Toma [player] es para ti, eres nuevo en el mundo de la literatura y creí que este libro seria una buena introducción"
+        y "T-T-Toma, [player], es para ti. Eres nuevo en el mundo de la literatura y creí que este libro sería una buena introducción"
 
         show yuri shy neut cm oe zorder 2 at t11
         "Sin mirarme a los ojos, Yuri saca un libro de detrás de su espalda que lleva un gran ojo en el centro de la portada."
 
-        "Me cuesta tener una reacción que pueda tranquilizar a Yuri"
+        "Me cuesta tener una reacción que pueda tranquilizar a Yuri."
 
-        "Ver el ojo de la portada me estremece un poco pero es más que interesante"
+        "Ver el ojo de la portada me estremece un poco, pero es más que interesante."
 
         show yuri shy neut om oe zorder 2 at f11
 
-        y "Es un gran libro, uno de mis favoritos, cuando menos te lo esperes estarás sumergido entre sus paginas"
+        y "Es un gran libro, uno de mis favoritos. Cuando menos te lo esperes, estarás sumergido entre sus páginas"
 
         show yuri shy neut om oe zorder 2 at t11
-        mc "Muchas gracias Yuri, aprecio mucho este gesto"
+        mc "Muchas gracias, Yuri. Aprecio mucho este gesto"
 
-        mc "Es muy amable de tu parte el escoger un libro para mi, no debiste tomarte la molestia"
+        mc "Es muy amable de tu parte el escoger un libro para mí, no debiste tomarte la molestia"
 
         show yuri turned n2 shoc cm ce zorder 2 at s11
 
-        "Al escuchar mis palabras Yuri parece tranquilizarse y recupera su postura"
+        "Al escuchar mis palabras, Yuri parece tranquilizarse y recupera su postura."
 
         show yuri turned sedu cm oe zorder 2 at t11
 
-        "Yuri me entrega el libro"
+        "Yuri me entrega el libro."
 
-        "'El retrato de Markov' un libro de tapa dura y de color rojo sangre"
+        "'El retrato de Markov', un libro de tapa dura y de color rojo sangre."
 
-        "Parece algún tipo de edición de coleccionista"
+        "Parece algún tipo de edición de coleccionista."
 
-        mc "No puedo esperar a comenzar a leerlo"
+        mc "No puedo esperar a comenzar a leerlo."
 
-        mc "De nuevo muchas gracias Yuri"
+        mc "De nuevo, muchas gracias, Yuri"
 
         show yuri turned n1 happ om ce zorder 2 at f11
 
-        y "Espero lo disfrutes, es un libro fantástico"
+        y "Espero que lo disfrutes, es un libro fantástico"
 
 
 
-        y turned happ om oe "[player] quisiera pedirte una cosa más"
+        y turned happ om oe "[player], quisiera pedirte una cosa más"
 
         show yuri turned n1 happ om ce zorder 2 at t11
 
-        mc "por supuesto Yuri, soy todo oídos"
+        mc "Por supuesto, Yuri, soy todo oídos"
 
         show yuri turned n1 happ om ce zorder 2 at f11
 
-        y "Una vez que termines el libro me gustaría que discutiéramos sobre el"
+        y "Una vez que termines el libro, me gustaría que discutiéramos sobre él"
 
         y turned happ cm ce "Estoy esperando escuchar tu opinión sobre el libro"
 
-        "Yuri parece muy emocionada de compartir este libro conmigo debo corresponder de igual manera"
+        "Yuri parece muy emocionada de compartir este libro conmigo, debo corresponder de igual manera."
 
         show yuri turned happ cm ce zorder 2 at t11
-        mc "Me encantaría si, tenme un poco de paciencia a la hora de discutirlo, suelo ser un poco tonto con los mensajes ocultos que dejan los autores"
+        mc "Me encantaría, sí, tenme un poco de paciencia a la hora de discutirlo, suelo ser un poco tonto con los mensajes ocultos que dejan los autores"
 
         show yuri turned happ om ce zorder 2 at f11
-        y turned happ om ce "Ni más faltaba, si tienes problemas con algún hilo de la historia no dudes en contarme"
+        y turned happ om ce "Ni más faltaba, si tienes problemas con algún hilo de la historia, no dudes en contarme"
 
         show yuri turned happ om ce zorder 2 at t11
         mc "Dalo por hecho"
 
         show yuri turned happ om ce zorder 2 at thide
-        hide yuri 
+        hide yuri
 
 
-        "Regreso a mi escritorio y guardo el libro en mi mochila"
+        "Regreso a mi escritorio y guardo el libro en mi mochila."
     elif decision_sayori == "no ir":
         show yuri turned n3 flus cm oe zorder 2 at f11
         "D-Disculpa [player], ¿tienes un segundo?"
@@ -935,7 +946,7 @@ label biblioteca:
 
     show yuri turned nerv om oe zorder 2 at h11
 
-    y "¡Perdón! Volvi a empezar a hablar de más."
+    y "¡Perdón! Volví a empezar a hablar de más."
 
     mc "No, está bien. Si hablas mucho de algo es porque te interesa, ¿cierto?"
 
@@ -1143,13 +1154,14 @@ label biblioteca:
         "Gracias, Sayori. Con el camino despejado..."
     elif decision_biblioteca == "Monika":
         show monika lean zorder 2 at t11
-        m "[player] Te gustaría compartir tu poema conmigo?"
+        m "[player], ¿te gustaría compartir tu poema conmigo?"
 
-        "Monika me sonrie como es de costumbre"
+        "Monika me sonríe como es de costumbre."
         "Asiento, sacando el poema de mi mochila."
         jump mostrar_poema_monika
 
     "¿Debería enseñarle mi poema primero a Yuri?"
+    window show
     menu poema_yuri1:
         "Mostrar mi poema a Yuri":
             "Sí, debería ir con Yuri."
@@ -1188,21 +1200,24 @@ label biblioteca:
         "Yuri no mencionó nada, tomó mi poema y empezó a leerlo detenidamente."
         $ poem_db.show_poem("poem_mc1")
         # Poner poema de MC
-        show yuri turned happ om oe zorder 2 at h11
-        y "Tu grafía es excelente y el poema es increíble."
+        show yuri turned mh e1a b1a zorder 2 at h11
+        y "Tu letra es muy prolija... y elegiste cada palabra con mucho cuidado."
 
         mc "Vamos, puedes ser sincera. Es mi primera vez, después de todo."
 
         y turned happ om ce "Lo digo en serio. De hecho, no esperaba que lo hicieras tan bien."
 
-        y turned laug cm oe "Es como si hubiera sido creado para mí: el ambiente, el tono, la prosa... Me recuerda tanto a mis poemas."
-        show yuri turned n2 ml e1b b2a zorder 2 at s11
+        y turned mlb e1d b1c "No esperaba algo tan... personal. Se nota que no solo pensaste en la forma, sino en lo que querías decir."
+        show yuri turned mf e4a b1a zorder 2 at s11
         y "..."
-        show yuri turned n2 nerv om oe zorder 2 at h11
-        y "N-no intento decir que el poema va dirigido a mí... s-solo que me gustó mucho."
+        show yuri turned mh e2a b1c zorder 2 at h11
+        y "Hay algo en tus palabras que se siente muy real, casi crudo."
 
-        mc "Bueno, quizás tengamos algo en común."
+        mc "Supongo que no sé cómo ocultar lo que pienso cuando escribo."
         show yuri turned flus cm oe zorder 2 at s11
+        y "Yo tampoco... Por eso me cuesta tanto mostrar los míos."
+        mc "Entonces quizás tengamos algo en común."
+        show yuri turned flus cm oe zorder 2 at d11
         y "Uuuh..."
 
         y turned n1 lsur om oe "Una pregunta, ¿alguna vez has escrito otros poemas?"
@@ -1211,7 +1226,7 @@ label biblioteca:
 
         mc "Muchas gracias por todos los halagos, significan mucho para mí viniendo de ti. Pero no..."
     
-        mc "Es mi primera vez escribiendo poesia."
+        mc "Es mi primera vez escribiendo poesía."
         mc "Digamos que estuve en eso toda la noche."
         mc "No quería decepcionarlas."
         y turned happ cm ce "Valió la pena todo el esfuerzo, es un gran poema."
@@ -1259,7 +1274,7 @@ label biblioteca:
 
         mc "Pude darme cuenta mientras buscabas tu poema."
         show yuri turned pani om oe zorder 2 at h11
-        y "¿¡Y-y l-los leiste!?"
+        y "¿¡Y-y l-los leíste!?"
 
         # Añadir diálogo sobre lo que trate el poema, todavía no decidido
     
@@ -1483,13 +1498,14 @@ label biblioteca:
 
     "¿Qué debería hacer?"
 
+    window show
     menu decision_ruta:
         "Fingir que no escuchabas.":
             "Es mejor que evite todo este desastre."
             $ puntos_ruta -= 1
             jump ruta_bad_1
         "Apoyar a Yuri":
-            "Natsuki no deberia reaccionar así"
+            "Natsuki no debería reaccionar así."
             $ puntos_ruta += 1
             jump apoyar_yuripoem
     # Escena de transición 
@@ -1556,6 +1572,8 @@ label biblioteca:
         "Sayori me sonríe honestamente. Hace un tiempo ni siquiera hablábamos, pero luce más alegre desde que me uní."
         show sayori turned happ cm ce zorder 2 at thide
         hide sayori
+    stop music fadeout 2.0
+    play music t112
     scene bg street1_aft
     with wipeleft_scene
     show sayori turned dist cm oe zorder 2 at t11
@@ -1752,82 +1770,77 @@ label biblioteca:
 
     "Yuri tenía la cara cubierta con sus manos."
 
-    show yuri turned vsur om oe zorder 2 at f11
-    y "L-Lo dije sin pensar... ¿Cómo no pude pensar en que sonaría tan agresiva?"
-    show yuri turned vsur cm oe zorder 2 at t11
+    show yuri shy m4 e4 b2 sweat1 zorder 2 at f11
+    y "No debí decir eso... ¿En qué estaba pensando?"
+    show yuri shy m2 e4 b2 sweat1 zorder 2 at t11
 
     mc "Yuri..."
 
-    show yuri turned vsur om oe zorder 2 at f11
-    y "Me molestó cómo lo dijo Monika... Pero no es justificación."
+    show yuri shy m4 e4 b2 sweat1 zorder 2 at f11
+    y "Sé que me molestó cómo lo dijo, pero eso no justifica que le hablara así."
 
-    y "¿Será que al abrirme con los demás ya estoy mostrando lo insoportable que soy?"
+    y "Probablemente ahora piense que soy una persona horrible."
 
-    show yuri turned worr om oe zorder 2 at f11
-    y "Quizás debería irme a mi casa..."
-    show yuri turned lsur cm oe zorder 2 at t11
+    show yuri shy m4 e4 b2 sweat1 zorder 2 at f11
+    y "Quizás sea mejor que me vaya a casa..."
+    show yuri shy m2 e4 b2 sweat1 zorder 2 at t11
 
-    mc "No, Yuri, no hiciste mal. No has hecho nada malo, pienso que lo has manejado bien."
+    mc "No hiciste nada malo, Yuri. Solo dijiste lo que pensabas."
 
-    mc "No necesitas explicarle a otras personas lo que haces o no haces."
+    mc "Eso no te convierte en una persona horrible."
 
-    mc "Te culpas demasiado, incluso por cosas que no son tu culpa."
-
-    show yuri turned anno om oe zorder 2 at f11
-    y "Porque..."
+    show yuri turned anno cm ce zorder 2 at f11
+    y "..."
 
     show yuri turned vsur om ce zorder 2 at f11
-    y "¿Por qué eres tan amable conmigo?"
+    y "Sigo sin entender cómo puedes tomarte esto con tanta calma."
     show yuri turned worr cm oe zorder 2 at t11
 
-    mc "Porque nada de lo que haces es tan malo. Nadie es perfecto, todos cometemos errores."
-   
-    mc "Incluyéndome."
+    mc "Porque no es la primera vez que alguien se equivoca al hablar. Yo también lo hago."
 
-    mc "Hay veces en las que hablo sin pensar, pero de todos modos, soy humano, ¿cierto?"
-
-    mc "Sobrepiensas mucho acerca de lo que dices."
+    mc "Lo importante es que no lo hiciste con mala intención."
 
     show yuri turned nerv cm oe zorder 2 at f11
-    y "T-Tú..."
+    y "T-Tal vez tengas razón..."
 
     show yuri turned lsur om oe zorder 2 at f11
-    y "¿Por qué no me odias? Incluso podría actuar terrible contigo..."
+    y "Aun así, me sorprende que sigas aquí, hablando conmigo, después de lo que acaba de pasar."
     show yuri turned lsur cm oe zorder 2 at t11
 
-    mc "¿Estás segura de eso último?"
+    mc "¿Por qué no lo estaría? No vas a deshacerte de mí tan fácil."
 
     show yuri turned sad om oe zorder 2 at f11
-    y "No..."
+    y "..."
     show yuri turned sad cm oe zorder 2 at t11
 
-    mc "No puedo odiarte por expresarte. De todos modos, los amigos siempre se apoyan."
+    mc "Para eso están los amigos, ¿no?"
 
     show yuri shy neut n5 m4 zorder 2 at f11
-    y "¿¡Am-Amigo!?"
+    y "¿Amigos...?"
 
-    y "¡M-Me gusta que podamos... ¡que podamos ser amigos!"
+    y "Creo que es la primera vez que alguien lo dice así, tan simple."
     show yuri shy neut n5 m1 zorder 2 at t11
 
-    mc "Gracias, Yuri."
+    mc "Bueno, ahora lo sabes."
 
     "Me pregunto cómo podré avanzar más en esta relación. Por el momento, me centraré en hacer que Yuri se sienta mejor."
 
     show yuri shy neut n5 m1 zorder 2 at thide
     hide yuri
     stop music fadeout 1.5
+    play music t112
     scene bg escaleras
     with dissolve_scene_full
     
-    show yuri turned neut n4 md e1c zorder 2 at t11
+    show yuri turned neut n2 md e1c zorder 2 at t11
 
     "Llegamos a la fuente de agua. Yuri me estaba ayudando a llenar la jarra."
 
     "Debido al acercamiento, nuestras manos se sobreponían un poco."
 
-    show yuri turned neut n4 mi e1c zorder 2 at f11
+    show yuri turned neut n2 mi e2b zorder 2 at f11
     y "[player], ¿piensas que Monika se haya molestado?"
-    show yuri turned neut n4 md e1c zorder 2 at t11
+    show yuri turned neut n2 md e2b zorder 2 at t11
 
     "Vino a mi mente la mirada de Monika."
 
@@ -1835,13 +1848,13 @@ label biblioteca:
 
     mc "...tan tonto."
 
-    show yuri turned neut n4 mi e1d zorder 2 at f11
+    show yuri turned neut n1 mi e1d zorder 2 at f11
     y "Quiero disculparme con ella."
-    show yuri turned neut n4 md e1d zorder 2 at f11
+    show yuri turned neut n1 md e1d zorder 2 at f11
 
     mc "Me parece buena idea, de hecho."
 
-    show yuri turned neut n4 mi e1d zorder 2 at f11
+    show yuri turned neut n1 mi e1d zorder 2 at f11
     y "Sé que no soy buena expresándome... Me gustaría mejorar en eso."
 
     y "Algunas veces incluso me da miedo hablar con otras personas."
@@ -1856,7 +1869,7 @@ label biblioteca:
     mc "¿En serio? ¿Por qué?"
 
     show yuri turned worr om oe zorder 2 at f11
-    y "Cuadno era niña, mis compañeros solían molestarme..."
+    y "Cuando era niña, mis compañeros solían molestarme..."
 
     show yuri turned flus om oe zorder 2 at f11
     y "Solía leer en el receso y me veían raro por eso."
@@ -1864,7 +1877,7 @@ label biblioteca:
 
     mc "Yuri, quizás no sea la persona más amable, pero sien-"
 
-    show yuri turned shoc om oe zorder 2 at t11
+    show yuri turned n1 shoc om oe zorder 2 at t11
     "Sentí cómo el agua de la jarra estaba mojando nuestras manos."
 
     "Yuri miró la jarra y cerró el grifo de la fuente."
@@ -1907,7 +1920,7 @@ label biblioteca:
     show yuri shy neut n4 m3 e3 b1 zorder 2 at t11
     y "..."
 
-    "Es un poco raro decirle esto a una chica que conozco hace un par de dias."
+    "Es un poco raro decirle esto a una chica que conozco hace un par de días."
     
     "Sin embargo, sí lo pienso."
 
@@ -1925,7 +1938,7 @@ label biblioteca:
     with dissolve_scene_full
 
     play sound closet_open
-    play music audio.tyuri
+    play music audio.t6 fadein 2.0
 
     "Al entrar, sentí las miradas de los demás miembros."
 
@@ -2059,7 +2072,7 @@ label biblioteca:
 
     y "¡Sí! Tengo una terrible postura."
 
-    hide Yuri
+    hide yuri
     scene y_cg2_bg1
     show y_cg2_dust1
     show y_cg2_base
@@ -2119,6 +2132,8 @@ label biblioteca:
 
     y "Es-eso..."
 
+    stop music fadeout 1.5
+
     m "¡Okay, todo el mundo!"
 
     mc "¿¡EEEH!?"
@@ -2153,6 +2168,7 @@ label biblioteca:
 
     show monika forward lpoint neut om oe zorder 2 at f22
 
+    
     m "Uh... Es tiempo de compartir poemas, chicos."
 
     show monika forward lpoint neut om ce zorder 2 at f22
@@ -2181,7 +2197,9 @@ label biblioteca:
     with wipeleft_scene
 
     if decision_biblioteca == "Monika":
-        show yuri turned neut cm oe zorder 2 at  t11
+
+        play music t201 fadein 2.0
+        show yuri turned mh e1a b1b zorder 2 at  t11
         y "H-Hola, [player]... ¿Te encuentras bien?"
         mc "¿Por qué lo dices?"
         mc "Oh... Sí, sí. Es solo que no esperaba que Monika apareciera de la nada."
@@ -2253,17 +2271,18 @@ label biblioteca:
         show monika lean anno om oe zorder 2 at f21
         show yuri turned angr om oe zorder 2 at f22
         my "Y bien... ¿[player]?"
+        window show
         menu discusion_moniyuri:
             "Compartir mi poema con Monika":
                 $ decision_poema_my = "Monika"
                 $ puntos_ruta -= 2
-                "Monika tiene razón Yuri y yo no estabamos compartiendo nuestros poemas"
-                mc "Esta bien Monika"
-                mc "Yuri podemos compartir poemas luego"
+                "Monika tiene razón, Yuri y yo no estábamos compartiendo nuestros poemas."
+                mc "Está bien, Monika."
+                mc "Yuri, podemos compartir poemas luego."
                 show monika lean zorder 2 at f21
                 show yuri turned sad cm ce zorder 2 at f22
-                y "Uh, s-seguro"
-                "Yuri se aleja de manera calmada y con aura de melancolia"
+                y "Uh, s-seguro."
+                "Yuri se aleja de manera calmada y con aura de melancolía."
                 show monika lean zorder 2 at thide
                 show yuri turned sad cm ce zorder 2 at thide
                 hide yuri 
@@ -2273,13 +2292,13 @@ label biblioteca:
             "Compartir mi poema con Yuri":
                 $ decision_poema_my = "Yuri"
                 $ puntos_ruta += 1
-                "No se que se le metio en la cabeza a Monika, Yuri y yo estabamos por compartir nuestros poemas tarde o temprano"
-                mc "Lo siento, Monika pero Yuri y yo ibamos a comparit nuestros poemas luego de charlar"
+                "No sé qué se le metió en la cabeza a Monika, Yuri y yo estábamos por compartir nuestros poemas tarde o temprano."
+                mc "Lo siento, Monika, pero Yuri y yo íbamos a compartir nuestros poemas luego de charlar."
                 show monika forward neut om oe zorder 2 at f21
                 show yuri turned angr om oe zorder 2 at t22
-                m "Oh esta bien"
-                m "Lo siento por interrumpir chicos"
-                "Puedo ver como Monika me mira con unos ojos amenazadores antes de irse"
+                m "Oh, está bien."
+                m "Lo siento por interrumpir, chicos."
+                "Puedo ver cómo Monika me mira con unos ojos amenazadores antes de irse."
                 show monika forward neut om oe zorder 2 at thide
                 show yuri turned angr om oe zorder 2 at thide
                 hide yuri 
@@ -2341,7 +2360,7 @@ label biblioteca:
 
         "¿Será algo importante?"
 
-        "Parecía muy triste o indiferente... Qué será lo que estab—"
+        "Parecía muy triste o indiferente... ¿Qué será lo que estab—"
 
         show monika forward lpoint rhip happ om oe zorder 2 at f11
 
@@ -2408,11 +2427,15 @@ label biblioteca:
 
         if decision_poema_my == "Monika":
 
+            stop music fadeout 1.5
+
+
             m "Oh, ¡hola, [player]! ¿Necesitas algo?"
 
             show monika forward happ cm oe zorder 2 at t11
 
             mc "Sí, ¿has notado que Yuri ha estado un poco rara luego de...?"
+
 
             show monika forward flus om oe zorder 2 at f11
 
@@ -2424,7 +2447,7 @@ label biblioteca:
 
             show monika forward worr om oe zorder 2 at f11
 
-            m "Quizás me di a mal entender. Me refiero a que Yuri no habla frecuentemente con nosotros u otras personas."
+            m "Quizás me di a entender mal. Me refiero a que Yuri no habla frecuentemente con nosotros u otras personas."
 
             m "Es más solitaria, incluso en el club."
 
@@ -2438,7 +2461,7 @@ label biblioteca:
 
             show monika forward happ om ce zorder 2 at f11
 
-            m "Créeme, conozco perfectamente a mi miembros."
+            m "Créeme, conozco perfectamente a mis miembros."
 
             show monika forward dist cm oe zorder 2 at t11
 
@@ -2523,11 +2546,15 @@ label biblioteca:
             show monika forward worr cm oe zorder 2 at thide 
             hide monika 
         elif decision_poema_my == "Yuri":
+
+            stop music fadeout 1.5
             m "Oh, ¡hola, [player]! ¿Necesitas algo?"
 
             show monika forward happ cm oe zorder 2 at t11
 
             mc "Sí... ¿Has notado que Yuri ha estado un poco rara luego de...?"
+
+            play music t104 fadein 3 
 
             show monika forward flus om oe zorder 2 at f11
 
@@ -2627,11 +2654,14 @@ label biblioteca:
             show monika forward worr cm oe zorder 2 at thide
             hide monika
         elif decision_poema_my == "yuriyuri":
+            stop music fadeout 1.5
             m "Oh, ¡hola, [player]! ¿Necesitas algo?"
 
             show monika forward happ cm oe zorder 2 at t11
 
             mc "Sí... ¿Has notado que Yuri ha estado un poco rara luego de...?"
+
+            play music t104 fadein 3 
 
             show monika forward flus om oe zorder 2 at f11
 
@@ -2765,7 +2795,7 @@ label biblioteca:
             show monika forward rdown mb e1e b1a zorder 2 at f11
 
             m "¡Adiós, [player]! Ve con cuidado a casa."
-            m "¡¡Y no olvides escribir el poema de mañana!! Estaré esperando ansiosa sobre qué escribaras esta vez... preferiblemente algo más propio de ti, ¿sí?"
+            m "¡¡Y no olvides escribir el poema de mañana!! Estaré esperando ansiosa sobre qué escribirás esta vez... preferiblemente algo más propio de ti, ¿sí?"
             show monika forward ldown rhip pout om oe zorder 2 at thide
             hide monika
 
@@ -2773,6 +2803,8 @@ label biblioteca:
         #cambiar a escena de casa de 
         scene bg bedroom
         with dissolve_scene_full
+
+        stop music fadeout 1.5
 
         "'Cosas de chicas'."
 
@@ -2812,6 +2844,7 @@ label biblioteca:
 
         "Abrí la puerta."
         play sound closet_open
+        play music t105 fadein 3
         scene bg club_day
         with dissolve_scene_full
 
@@ -2820,37 +2853,37 @@ label biblioteca:
         show yuri turned pani om oe zorder 2 at h22
         show monika forward anno cm oe zorder 2 at t21
 
-        y "Peróname, Monika, no intentaba faltarte al res—"
+        y "Perdóname, Monika, no intentaba faltarte al res—"
 
         show yuri turned lsur cm oe zorder 2 at t22
         show monika forward anno om oe zorder 2 at f21
 
-        m "No acepto tus disculpas, Yuri."
+        m "No necesito tus disculpas, Yuri."
 
         show yuri turned lsur cm oe zorder 2 at t22
         show monika forward anno om ce zorder 2 at f21
 
-        m "Desde que estás en el club has sido igual de tóxica."
+        m "Desde que llegaste al club apenas te has esforzado por ser parte de él."
 
         show yuri turned lsur cm oe zorder 2 at t22
         show monika forward angr om ce zorder 2 at f21
 
-        m "Ni siquiera te comunicas con nosotras, vienes, lees tus estúpidos libros y te vas."
+        m "Vienes, lees tus libros en silencio y te vas. Ni una palabra para nadie más."
 
         show yuri turned dist cm oe zorder 2 at t22
         show monika forward angr om ce zorder 2 at f21
 
-        m "¡Sí sabes que existen las bibliotecas, Yuri!"
+        m "Para eso existen las bibliotecas, Yuri."
 
         show yuri turned lup angr cm oe zorder 2 at f22
         show monika forward angr cm oe zorder 2 at t21
 
-        "Yuri apretó su mano como si intentara decir algo."
+        "Yuri apretó su mano como si intentara contener algo."
 
         show yuri turned lup angr cm oe zorder 2 at t22
         show monika forward anno om oe zorder 2 at f21
 
-        m "¿Qué? ¿Quieres decir algo?"
+        m "¿Qué? ¿Tienes algo que decir?"
 
         show yuri turned lup anno om oe zorder 2 at f22
         show monika forward anno cm oe zorder 2 at t21
@@ -2860,39 +2893,39 @@ label biblioteca:
         show yuri turned lup vang cm oe zorder 2 at f22
         show monika forward anno cm oe zorder 2 at t21
 
-        y "Pienso que eres una maldita egocéntrica."
+        y "Pienso que eres una persona profundamente vacía, Monika."
 
         show yuri turned lup vang cm ce zorder 2 at f22
         show monika forward pout cm oe zorder 2 at t21
 
-        y "¿En serio piensas que está bien tratar como un estorbo a un miembro de tu club?"
+        y "¿De verdad crees que está bien tratar así a alguien de tu propio club?"
 
         show yuri turned lup vang cm ce zorder 2 at f22
 
-        y "Te crees que eres la mejor solo por ser popular, cuando en realidad eres una puta narcisista."
+        y "Te escondes detrás de esa sonrisa perfecta porque no soportarías que alguien viera lo que hay debajo."
 
         show yuri turned lup vang cm oe zorder 2 at f22
 
-        y "Con el ego más frágil que una rosa."
+        y "Un cascarón hueco disfrazado de presidenta ejemplar."
 
         show yuri turned lup yand cm ce zorder 2 at f22
 
-        y "Así que... ¡piensa dos veces antes de hablar!"
+        y "Así que piensa dos veces antes de volver a abrir la boca."
 
         show yuri turned lup yand om ce zorder 2 at f22
 
-        y "Porque cuando acabe contigo, ni siquiera tus padres podrán reconocer—"
+        y "Porque la próxima vez no pienso contenerme—"
 
         show yuri turned yand cm ce zorder 2 at t22
         show monika forward sedu om oe zorder 2 at f21
 
-        m "Que sí, Yuri, que sí."
+        m "¿Terminaste?"
 
         show yuri turned yand cm ce zorder 2 at t22
         show monika forward lpoint sedu om ce zorder 2 at f21
 
 
-        m "¿Por qué no muestras a los demás cómo realmente eres?"
+        m "Es curioso que hables de esconder cosas, Yuri."
 
         show yuri turned yand cm ce zorder 2 at t22
         show monika forward lpoint sedu cm oe zorder 2 at t21
@@ -2902,7 +2935,7 @@ label biblioteca:
         show yuri turned yand om ce zorder 2 at t22
         show monika forward lpoint rhip sedu cm oe zorder 2 at f21
 
-        m "Vamos, muéstrale a [player] cómo realmente eres."
+        m "Yo, en tu lugar, tendría mucho más cuidado con lo que digo en voz alta."
 
         show yuri turned shoc cm oe zorder 2 at h22
         show monika forward lpoint rhip sedu cm oe zorder 2 at t21
@@ -2912,11 +2945,13 @@ label biblioteca:
         show yuri turned shoc om oe zorder 2 at f22
         show monika forward lpoint rhip sedu cm oe zorder 2 at t21
 
-        y "¿[player]...? N-no, espera, ¡no intentaba decir eso!"
+        m "¿No es cierto, [player]? Estoy segura de que Yuri no querría que ciertas cosas... salieran a la luz."
+
+        y "¿[player]...? N-no, espera, no es lo que—"
 
         show yuri turned cry om ce zorder 2 at f22
 
-        y "¡No soy así!"
+        y "Yo no quería decir todo eso..."
 
         show yuri turned cry om oe zorder 2 at f22
 
@@ -2924,38 +2959,38 @@ label biblioteca:
 
         show yuri turned cry cm oe zorder 2 at t22
 
-        "Monika le tocó el hombro a Yuri, haciendo que ella la voltée a ver."
+        "Monika le tocó el hombro a Yuri, haciendo que ella la voltee a ver."
 
         show monika forward happ om oe zorder 2 at f21
 
-        m "Tranquila, siempre puedes tener un consejo de mi parte, incluso en los momentos malos."
+        m "Tranquila, Yuri. Sabes que puedo guardar tus secretos... por ahora."
 
         show monika forward happ om ce zorder 2 at f21
 
-        m "¿Has considerado acabar con tu vida?"
-
-        show monika forward flus om oe zorder 2 at f21
-
-        m "¡Ayudaría a que dejes de hacer esas cosas!"
+        m "Solo pórtate mejor la próxima vez, ¿de acuerdo?"
         show yuri turned cry cm oe zorder 2 at t22
         show monika forward flus cm oe zorder 2 at f21
 
 
         y "..."
         show yuri turned cry cm oe zorder 2 at thide
-        hide yuri 
+        hide yuri
         show monika forward flus cm oe zorder 2 at thide
-        hide monika 
+        hide monika
 
-        "Como ayer, Yuri salió de la habitación. No tenía los ojos llorosos."
-        
-        "Ella estaba llorando. Estoy asustado por las palabras de Monika."
+        play sound closet_close
 
-        "Realmente no sé qué decir."
-        
+        "Como ayer, Yuri salió de la habitación. No pude verle bien la cara."
+
+        "Pero sé que estaba llorando. Y esa última frase de Monika no dejaba de darme vueltas en la cabeza."
+
+        "¿Qué es lo que sabe sobre Yuri? ¿Y por qué suena tan tranquila al decirlo?"
+
         "..."
 
-        "Iré a ver a Yuri. Cuando iba a salir del club, Monika me detuvo."
+        "Iré a ver a Yuri. "
+
+        "Cuando intente salir del club, Monika me detuvo."
 
         show monika forward lpoint worr om oe zorder 2 at f11
 
@@ -2963,7 +2998,7 @@ label biblioteca:
 
         show monika forward vsur cm oe zorder 2 at t11
 
-        mc "¿Qué mierda pasa contigo, Monika? Un consejo: 'mátate'. ¿En serio?"
+        mc "¿Qué fue eso, Monika? 'Sus secretos'. ¿De qué estás hablando?"
 
         "Noto a mi alrededor. Sayori está en un escritorio cubriéndose los oídos con sus manos."
 
@@ -2973,15 +3008,15 @@ label biblioteca:
 
         show monika forward anno om oe zorder 2 at f11
 
-        m "Oh, bueno, grítame y hazme ver como la mala."
+        m "No es asunto tuyo. Y, para que quede claro, yo no empecé esto."
 
         show monika lean anno om oe zorder 2 at f11
 
-        m "Ya has visto cómo es Yuri, solo me defendí frente a lo que me dijo."
+        m "Ya viste de lo que es capaz cuando se lo propone. Solo me defendí."
 
         show monika lean angr cm oe zorder 2 at t11
 
-        mc "Estás enferma... Yuri no es así, sacaste su peor lado. Iré con ella."
+        mc "No te creo. Sea lo que sea que le dijiste, la orillaste a esto. Iré con ella."
 
         show monika forward neut om oe zorder 2 at f11
 
@@ -2993,7 +3028,7 @@ label biblioteca:
 
         show monika forward neut om oe zorder 2 at f11
 
-        m "Lo digo en serio, no creo que te guste lo que estás a punto de ver."
+        m "Lo digo en serio, no creo que te guste lo que estás a punto de descubrir."
 
         show monika forward neut cm oe zorder 2 at f11
 
@@ -3035,22 +3070,21 @@ label biblioteca:
 
         #añadir escena perspectiva de Yuri 
         play music audio.t10 fadein 2.0
-        with dissolve_scene_full
         scene bg bano_Yuri_nocuchillo
         "???" "¿No crees que deberías dejar de huir de tus problemas?"
         show yuri_pequena seria zorder 2 at f11
-        "(Yuri)" "Sí, creo que sería la mejor idea."
+        "???" "Sí, creo que sería la mejor idea."
         show yuri_pequena neut zorder 2 at t11
-        y "[player] m-me vio actuando así... É-el va a despreciarme... soy un fenómeno."
+        y "[player] m-me vio actuando así... É-Él va a despreciarme... soy un fenómeno."
 
         show yuri_pequena tired zorder 2 at f11
-        "(Yuri)" "Él no te odia, solo estará un poco sorprendido..."
+        "???" "Él no te odia, solo estará un poco sorprendido..."
 
         show yuri_pequena neut zorder 2 at t11
         y "No puedo soportarlo más... Monika, Monika..."
 
         show yuri_pequena sad2 zorder 2 at f11
-        "(Yuri)" "Yuri, espera, creo que deberías... ¡N-no! ¡Espera!"
+        "???" "Yuri, espera, creo que deberías...{w=1} ¡N-no! ¡Espera!"
         show yuri_pequena sad2 zorder 2 at thide
         hide yuri_pequena sad2
         with dissolve_scene_full
@@ -3058,7 +3092,7 @@ label biblioteca:
 
         ############################
 
-        mc "¿Yu-yuri?"
+        mc "¿Yu-Yuri?"
 
         scene bg bano_Yuri
         show yuri_sentada zorder 2 at t11:
@@ -3070,22 +3104,36 @@ label biblioteca:
 
         "Tiene tantas marcas de cortes... algunas recientes... otras no."
 
+        hide yuri_sentada
 
+        show yuri_parada zorder 2 at t11 
+
+        "Yuri se levantó del suelo al ver cómo me acerco a ella."
         y "[player], n-no se supone que deberías estar aquí..."
 
+        hide yuri_parada
+
         "No tengo la suficiente fuerza para decir algo, di unos pasos para poderme acercar."
+
+        show yuri_cuts sad zorder 2 at f11 
 
         y "¡No!"
 
         y "Aléjate... por favor..."
 
+        show yuri_cuts cry zorder 2 at f11
+
         y "Soy peor que un fenómeno..."
 
         "Yuri apretó su mano derecha y volvió a cortarse."
 
+        show yuri_cuts cry zorder 2 at t11
+
         mc "Por-por favor... Yo solo quiero ayudarte."
 
         mc "Estás sangrando mucho... Quizás te puedan atender en la enfermería, yo te llevaré..."
+
+        show yuri_cuts zorder 2 at f11
 
         y "Yo... no merezco ser ayudada. No quiero tu ayuda. ¿Me escuchaste? Escuchaste cómo soy realmente."
 
@@ -3096,24 +3144,29 @@ label biblioteca:
         "Volví a acercarme a ella."
 
         "Sé que Yuri también estuvo mal diciendo eso... pero fue por la insensibilidad de Monika."
+        show yuri_cuts zorder 2 at t11
 
         mc "No puedo juzgarte, Yuri..."
 
+        show yuri_cuts sad zorder 2 at t11
+
         "Por unos segundos nuestras miradas chocaron."
+
+        show yuri_cuts cry zorder 2 at t11
 
         "Sus ojos lavanda se tiñieron de lágrimas que no dejaban de salir."
 
         "Su expresión era completamente diferente... era de desesperación."
 
-        y "Hay tantas emociones... Que las he guardado por tanto tiempo... Tantos años."
+        show yuri_cuts ns zorder 2 at f11
+
+        y "Hay tantas emociones... que las he guardado por tanto tiempo... Tantos años."
 
         y "Por si fuera poco, no puedo contenerlas..."
 
-        hide yuri_sentada
+        "Trato de tomar su mano pero Yuri la quita de inmediato"
 
-        #show yuri_parada zorder 2 at t11 este sprite le falta
-
-        "Yuri se levantó del suelo al ver cómo me acerco a ella."
+        show yuri_cuts angry zorder 2 
 
         y "¡Aléjate de mí!"
 
@@ -3121,15 +3174,23 @@ label biblioteca:
 
         "Para ayudarla."
 
+        show yuri_cuts angry zorder 2 at t11
+
         mc "Yuri... Escúchame, por favor. Yo realmente te quiero ayudar, no me importa lo que le dijiste a Monika."
+
+        show yuri_cuts sad zorder 2 at t11
 
         mc "Yo quiero, no me importa tu pasado. Me importas tú, Yuri, por eso me encuentro aquí ahora."
 
         mc "Intentándolo..."
 
+        show yuri_cuts ns zorder 2 at t11
+
         "Sus gotas de sangre cayeron en el suelo poco a poco mientras ella se volteaba, evitando verme."
 
         "No sé cómo acabe esto... Pero haré lo que sea con tal de que Yuri esté bien."
+
+        show yuri_cuts cry zorder 2 at f11
 
         y "¡Ya te dije que no quiero tu ayuda!"
 
@@ -3137,9 +3198,13 @@ label biblioteca:
 
         y "No puedo luchar con esto, no lo puedo controlar, soy un títere de mis sentimientos..."
 
+        show yuri_cuts ns zorder 2
+
         y "No puedo dejar que los demás vean cómo realmente soy..."
 
         y "Yo no quiero aceptar quién realmente soy... porque sé que solo soy..."
+
+        show yuri_cuts zorder 2 
 
         y "Una maldita enferma."
 
@@ -3147,29 +3212,37 @@ label biblioteca:
 
         y "¡Escúchame, no merezco ser ayudada, mucho menos por ti!"
 
-        y "¡¡¡¡SOLO DÉJAME EN PAZ!!!!"
+        y "Solo... solo déjame en paz"
 
         "Logré estar cerca de ella e intenté agarrar sus manos."
 
         "Por unos segundos lo logré, Yuri parecía más calmada."
+
+        show yuri_cuts zorder 2 at t11
 
         mc "Yuri, todo va a estar bien... Estoy seguro de que no solo yo quiero lo mejor para ti."
 
         mc "También Natsuki, Sayori..."
 
         y "Monika... L-lo siento."
+        show yuri_cuts zorder 2 at thide
+        hide yuri_cuts 
 
-        #show yuri_parada zorder 2 at t11
-        #hide yuri_parada
+        play sound fall
+
+        "Yuri me empuja entre lagrimas lanzandome al suelo y huye"
 
         mc "¡Yuri, espera!"
         stop music fadeout 2.0
 
         #transición
-        with dissolve_scene_full
-        scene corridor
 
-        "Aunque intente alcanzarla, el dolor en mi cabeza incrementaba por los movimientos bruscos."
+        scene corridor
+        with dissolve_scene_full
+
+        "Aunque intenté alcanzarla, el dolor en mi cabeza incrementaba por los movimientos bruscos."
+
+        play music audio.t9 fadein 1.5
 
         "La he perdido..."
 
@@ -3191,7 +3264,7 @@ label biblioteca:
 
         "Unas monedas cayeron en el suelo luego del golpe repentino."
 
-        play music audio.t6 fadein 1.5
+        
 
         show natsuki turned lhip rhip ff angr om oe zorder 2 at f11
 
@@ -3359,9 +3432,11 @@ label biblioteca:
         show natsuki turned ff sad cm oe zorder 2 at t11
 
         mc "Sí, se lo diré."
+        
+        
+        stop music fadeout 0.5
 
-
-        scene bg casa_yuri
+        scene bg house_y
 
         with dissolve_scene_full
 
@@ -3371,7 +3446,7 @@ label biblioteca:
 
         show natsuki turned ff anno om oe zorder 2 at f11
 
-        n "Oye, ya llegamos. Si te estás arrepitiendo, mejor lárgate a tu casa."
+        n "Oye, ya llegamos. Si te estás arrepintiendo, mejor lárgate a tu casa."
 
         show natsuki turned ff anno cm oe zorder 2 at t11
 
@@ -3381,22 +3456,25 @@ label biblioteca:
 
         show natsuki cross angr om ce zorder 2 at f11
 
-        n "Sí, bueno, de nada. Espero esté bien y tú también."
+        n "Sí, bueno, de nada. Espero que esté bien y tú también."
 
         show natsuki cross angr om ce zorder 2 at thide
         hide natsuki
 
         "Natsuki se alejó de mi vista."
 
-        stop music fadeout 1.5
 
         "Me acerqué a la puerta, es una casa muy grande para solo una persona. Espero no estén sus padres."
 
         "¿Cuánto tiempo llevará Yuri lidiando con esto sola...?"
 
+        play sound doorbell
+
         "Presioné el timbre con fuerza."
 
         "Pero nadie vino."
+
+        play sound doorbell
 
         "Lo presioné de nuevo."
 
@@ -3411,9 +3489,11 @@ label biblioteca:
         "¿Pero qué puedo hacer?"
 
         #okay como tal aqui pongo la base pero siento que aqui vendria hiper bien una elección
-        #agregar sonido de timbre o de tocar puertya
+        #agregar sonido de timbre o de tocar puerta
 
         "No quiere ayuda..."
+
+        play sound kdoor 
 
         "Toqué la puerta."
 
@@ -3421,11 +3501,13 @@ label biblioteca:
 
         "Los segundos se sienten eternos."
 
+        play sound opdoor
+
         "Luego de más de un minuto, escucho la cerradura abrirse lentamente."
 
         "Aunque la puerta se abría, se detuvo abruptamente."
 
-        play music audio.heartbreaking2 fadein 2.0
+        play music t10 fadein 2.0
 
         y "¿[player]...?"
 
@@ -3447,73 +3529,77 @@ label biblioteca:
 
         mc "Gracias..."
 
-        scene bg yuri_sala
+        scene bg living_room
         with wipeleft_scene
 
         "Entré dentro de la casa, aunque en la entrada no vi a Yuri."
 
         "Pasé a la sala con preocupación y ahí estaba ella..."
 
-        show yuri turned casual rcut worr cm oe zorder 2 at t11
+        show yuri turned casual worr cm oe zorder 2 at t11
 
-        "Pude ver su antebrazo, lleno de cortes, aunque algunos aún siguen abiertos... o nuevos."
 
         mc "Yuri..."
 
-        "Esta pobre chica ha estado lidiando con esto todo este tiempo."
+        mc "Me preocupe demasiado"
 
-        show yuri turned rcut worr om oe zorder 2 at f11
+        show yuri turned  worr om oe zorder 2 at f11
 
         y "Lo siento... No quería mostrarte cómo realmente soy y... que me dejaras de hablar..."
 
-        show yuri turned rcut worr cm oe zorder 2 at t11
+        show yuri turned worr cm oe zorder 2 at t11
 
         mc "No te dejaré de hablar, Yuri."
 
-        show yuri turned rcut lsur om oe zorder 2 at t11
+        show yuri turned lsur om oe zorder 2 at t11
 
         "Saco el libro de mi mochila."
 
-        show yuri turned rcut lsur cm oe zorder 2 at t11
+        show yuri turned  lsur cm oe zorder 2 at t11
 
         mc "¿Continuamos donde lo dejamos?"
 
-        show yuri turned rcut lsur om oe zorder 2 at f11
+        show yuri turned lsur om oe zorder 2 at f11
 
         y "O-okay..."
 
-        show yuri turned rcut lsur cm oe zorder 2 at t11
+        show yuri turned lsur cm oe zorder 2 at t11
 
         "Ya no está tratando de evitarme. Yuri dudó unos segundos antes de hablar."
 
-        show yuri turned rcut flus om oe zorder 2 at f11
+        show yuri turned flus om oe zorder 2 at f11
 
         y "Necesito subir a limpiarme."
 
-        show yuri turned rcut flus cm oe zorder 2 at t11
+        show yuri turned flus cm oe zorder 2 at t11
 
         mc "Claro, tómate tu tiempo."
 
-        show yuri turned rcut flus cm oe zorder 2 at thide
+        show yuri turned flus cm oe zorder 2 at thide
         hide yuri
 
         stop music fadeout 2.0
 
         "Ella subió las escaleras, no sin antes verme. Nuestros ojos chocaron otra vez, pero esta vez..."
 
-        "No fue como en la escuela. Ella está confiando en mí..."
+        "No fue como en la escuela.{w} Habia un poco de miedo en sus ojos..."
 
         "Tomo asiento en el sofá y abro el libro en la última página que leímos."
 
         "¿Cómo puedo ayudarla...?"
 
-        "Me toqué la cabeza y sentí un dolor punzante. Suspiré esperando a Yuri."
+        "Me toqué la cabeza y sentí un dolor punzante. "
+        "Suspiré esperando a Yuri."
 
         #transición y sonido del bzzt
 
         with wipeleft_scene
 
+        play sound vibration
+
         "*bzzt*"
+
+        play sound vibration
 
         "*bzzt*"
 
@@ -3538,7 +3624,7 @@ label biblioteca:
 
         y "¿[player]?"
 
-        play music audio.heartbreaking2 fadein 2.0
+        play music t200 fadein 2.0
 
         "Del susto, tiré mi celular al suelo."
 
@@ -3640,6 +3726,9 @@ label biblioteca:
 
         show yuri turned casual neut me e1g b1b zorder 2 at t11
 
+        stop music fadeout 0.5
+        play music t10 fadein 2.0
+
         "¿Por qué vine aquí?"
 
         "Recientemente conocí a Yuri, pero es alguien importante para mí."
@@ -3672,11 +3761,11 @@ label biblioteca:
 
         y "Sé lo que me podría pasar si me llegara a equivocar por un centímetro; sin embargo..."
 
-        y "No."
+        y "No..."
 
-        y "Puedo."
+        y "Puedo..."
 
-        y "dejar de hacerlo."
+        y "...Dejar de hacerlo."
 
         show yuri turned casual rup neut md e1g b1b zorder 2 at t11
 
@@ -3694,25 +3783,19 @@ label biblioteca:
 
         y "Pero... yo solo te he arrastrado hasta aquí."
 
-        y "Estuviste en el momento cuando le dije a Monika... Es-estabas ahí y aun así decidiste seguir."
+        y "Estuviste en el momento cuando le dije a Monika... Es-estabas ahí y aun así decidiste no odiarme."
 
         show yuri turned casual rup cry cm oe zorder 2 at t11
 
-        "Porque te amo, Yuri."
+        mc "Como podria odiarte Yuri."
 
-        mc "Porque es lo que debería de hacer, Yuri: ayudarte sin importar la circunstancia."
-
-        "Te amo."
-
-        "Pero..."
-
-        "No sé qué es amar..."
+        mc "Esto es lo que debería de hacer, Yuri: ayudarte sin importar la circunstancia."
 
         show yuri turned casual rup cry om oe zorder 2 at f11
 
         y "[player]... yo nunca he tenido amigos."
 
-        show yuri casual rup cry cm oe zorder 2 at t11
+        show yuri turned casual rup cry cm oe zorder 2 at t11
 
         mc "Eso no es cierto."
     
@@ -3738,9 +3821,9 @@ label biblioteca:
 
         show yuri turned casual lup rup worr cm oe zorder 2 at t11
 
-        mc "¿Recuerdas lo que me dijiste acerca de plasmar mis pensamientos? Lo hice expresando..."
+        mc "¿Recuerdas lo que me dijiste acerca de plasmar mis pensamientos?"
 
-        mc "Lo que siento por ti."
+        mc "Estuve trabajando en ello de la mano de tus consejos"
 
         show yuri turned casual lup rup sad om oe zorder 2 at f11
 
@@ -3754,7 +3837,7 @@ label biblioteca:
 
         "Ella asiente y sostiene la carta."
 
-        #aqui se agrega el poema 
+        $ poem_db.show_poem("mc_poem2")
 
         show yuri turned casual lup cry cm ce zorder 2 at t11
 
@@ -3804,13 +3887,97 @@ label biblioteca:
 
         mc "¿Tienes un botiquín o curas?"
 
-        y "Creo que sí..."
+        y "Tengo un pequeño botiquín en mi habitación."
+
+        show yuri zorder 2 at thide
+        hide yuri
+        "Yuri camina hacia las escaleras."
+        with wipeleft_scene
+        "Un par de minutos después regresa con un pequeño botiquín."
+
+        show yuri turned casual lup rup dist om oe zorder 2 at t11
+
+        mc "Yuri, ¿podrías...?"
+        y "Oh, sí, lo siento."
+        show yuri turned casual rcut nerv cm ce zorder 2 at t11
+        "Yuri baja su manga."
+        "Su brazo está temblando, aún está muy asustada."
+        mc "Dolerá un poco. Sé valiente."
+        y "N-no te preocupes, estoy acostumbrada, suelo desinfectar mis heridas luego de..."
+        "Levemente toco un corte de Yuri mientras lo desinfecto con un pequeño algodón."
+        y turned casual rcut mk e1f b2c "Uh... auch."
+        mc "No habías desinfectado aún estos cortes."
+        y mj e2b b2b "..."
+        "Con mucho cuidado continúo limpiando cada herida."
+        show yuri turned casual rdown me e2b b1a zorder 2 at t11
+        with wipeleft_scene
+        
+        mc "Creo que con eso será suficiente."
+        mc "Trata de cambiar cada cierto tiempo el vendaje."
+        y "E-está bien."
+
+        show yuri turned casual sad om oe zorder 2 at f11
+
+        y "[player], ¿por qué haces esto por mí?"
+        y "No deberías hablarme después... después de verme así..."
+
+        show yuri turned casual lup cry cm oe zorder 2 at t11
+
+        y "¿Por qué no te doy asco?"
+        y "¿Por qué no puedo ver en tus ojos cómo me ven los demás?"
+
+        show yuri turned casual lup cry om oe zorder 2 at f11
+
+        mc "Yuri."
+        mc "Por favor, detente."
+        mc "No pienso en ti como alguien rota, ni como alguien de quien haya que alejarse."
+        mc "Lo único que veo es a alguien que ha estado cargando demasiado, sola, durante demasiado tiempo."
+
+        show yuri turned casual lup cry cm oe zorder 2 at t11
+
+        mc "Y eso no me da asco. Me hace querer quedarme."
+
+        y "..."
+
+        mc "Necesito que confíes en mí. Quiero estar para ti."
+        mc "Ya no estás sola, Yuri. Todos esos pensamientos que te atormentan, los vamos a manejar juntos."
+        mc "No voy a permitir que hables así de ti misma."
+
+        show yuri turned casual lup lsur cm oe zorder 2 at f11
+
+        y "..."
+        y "Nunca nadie me había dicho algo así."
+
+        show yuri turned casual lup flus cm oe zorder 2 at t11
+
+        y "Gracias, [player]... de verdad."
+
+        mc "¿Puedo pedirte algo?"
+
+        y "¿Q-qué cosa?"
+
+        mc "Dame tu número. Así puedo escribirte si alguna vez necesitas hablar... o si solo quieres hablar de un libro."
+
+        show yuri turned casual lup happ cm ce zorder 2 at f11
+
+        "Por primera vez esa tarde, Yuri sonríe. Es una sonrisa pequeña, apenas visible"
+
+        y "Está bien..."
+
+        "Intercambiamos números. Sus manos ya no tiemblan tanto como antes."
+
+        show yuri turned casual lup zorder 2 at thide
+        hide yuri
+
         stop music fadeout 2.0
+
+        call time_skip ("2 días después")
         
         scene bg bedroom
         with dissolve_scene_full
         play sound closet_open
-
+        play music t8 fadein 2
+        
         "10:43 AM"
 
         "Este sábado es lo que más necesito luego de una semana tan complicada."
@@ -3846,13 +4013,15 @@ label biblioteca:
 
         "Sé que hoy será un día bueno para ambos."
 
+        play sound vibration
+
         "*bzzt*"
 
         y "Ya me encuentro lista, gracias por preguntar."
 
         #cambio de escena suave
         
-        scene house
+        scene bg house_y
         with wipeleft_scene 
 
         "Me acerqué a la puerta de la casa."
@@ -3868,7 +4037,7 @@ label biblioteca:
 
         show yuri 1cb zorder 2 at f11
 
-        play music audio.t6 fadein 2.0
+        play music t201 fadein 2.0
 
         y "Hola [player]."
 
@@ -3916,6 +4085,7 @@ label biblioteca:
         show yuri 1cd zorder 2 at f11
 
         y "Me parece bien. En realidad, suelo visitar este lugar frecuentemente."
+
 
         scene bg cafe
         with wiperight_scene
@@ -3992,35 +4162,47 @@ label biblioteca:
 
         show yuri 1cw zorder 2 at t11
 
-        "Mierda, ¿cómo podría recuperar la situación?"
+        
 
-        ##################
-        show yuri 1cs zorder 2 at t11
-        mc "No suelo hacerlo, pero siento que todos nos preparamos para algo en cierta medida."
+        window show
+        menu:
+            "Es una linda costumbre":
+                $ puntos_ruta += 2
 
+                show yuri 1cs zorder 2 at t11
+                mc "No suelo hacerlo, pero sé que es de mucha ayuda, así evitas pronunciar mal tus palabras."
 
+                show yuri 1cn zorder 2 at t11
+                mc "Además, es lindo que te esfuerces tanto por algo tan pequeño."
 
-        #aqui una elección. mas arriba quizas 
+                show yuri 1cn zorder 2 at f11
+                y "¡Qué!"
 
-        show yuri 1cn zorder 2 at t11
+                show yuri 1ce zorder 2 at t11
+                y "N-no digas esas cosas de la nada..."
+                "puedo notar una pequeña sonrisa que intenta esconder detrás de su cabello."
 
-        mc "Además, es lindo."
+            "No es para tanto":
+                $ puntos_ruta -= 3
 
-        show yuri 1cn zorder 2 at f11
+                show yuri 1cn zorder 2 at t11
+                mc "No es para tanto, es solo un té. No creo que necesites practicar tanto para pedirlo."
 
-        y "¡Qué!"
+                show yuri 1cq zorder 2 at f11
+                y "..."
+                y "Supongo que tienes razón."
 
-        stop music fadeout 2.0
+                show yuri 1cf zorder 2 at t11
+                "Su voz se apaga un poco, y vuelve a mirar hacia el mostrador en silencio."
 
         show yuri 1ce zorder 2 at t11
-        
-        "Camarero" "Siguiente."
 
-        "Camarero" "Buenos días, ¿qué les gustaría ordenar?"
+        "Empleado" "Siguiente."
 
-        mc "Un té blanco para mí, por favor."
+        "Empleado" "Buenos días, ¿qué les gustaría ordenar?"
+        show yuri 1co zorder 2 at t11
 
-        "Camarero" "Anotado. ¿Y usted, señorita?"
+        "Empleado" "¿Señorita?"
 
         show yuri 1co zorder 2 at f11
 
@@ -4030,81 +4212,140 @@ label biblioteca:
 
         show yuri 1cn zorder 2 at t11
 
-        "Cliente" "¿Oigan, podrían apurarse? Tengo un tiempo limitado."
+        "Cliente" "¿Oigan, podrían apurarse? Estoy muy corto de tiempo."
 
-        "Camarero" "Señorita, ¿un té de?"
+        "Empleado" "Señorita, ¿un té de?"
 
         "El vendedor deja de mirar a Yuri y voltea a ver a la fila de atrás."
 
-        "Camarero" "¿Podría apurarse, por favor?"
+        "Empleado" "¿Podría apurarse, por favor?"
 
-        #aqui eleccion de si pedir por yuri o deja que Yuri elija, la hisotira como tal seguira aqui por una manera de la ruta buena
+        window show
+        menu:
+            "Pedir por ella":
+                $ puntos_ruta -= 1
 
-        show yuri 1ck zorder 2 at t11
-        mc "A ella le gustaría un té Oolong."
+                show yuri 1ck zorder 2 at t11
+                mc "A ella le gustaría un té Oolong."
 
-        "Camarero" "Té Oolong y blanco. ¿Sería todo?"
-        show yuri 1ck zorder 2 at thide
-        hide yuri
+                mc "Y para mi un té blanco, por favor"
 
-        mc "Sí, gracias."
+                "Empleado" "Té Oolong y blanco. ¿Sería todo?"
+                show yuri 1ck zorder 2 at thide
+                hide yuri
 
-        "Pagué la orden y, junto a Yuri, nos sentamos en una mesa vacía, cerca de las ventanas del lugar."
+                mc "Sí, gracias."
 
-        show yuri 1cv zorder 2 at f11
+                "Pagué la orden y, junto a Yuri, nos sentamos en una mesa vacía, cerca de las ventanas del lugar."
 
-        y "L-lo hice terrible... y seguramente te hice pasar pena. Lo siento."
+                show yuri 1cv zorder 2 at f11
 
-        show yuri 1cu zorder 2 at t11
+                y "L-lo hice terrible... y seguramente te hice pasar pena. Lo siento."
 
-        mc "No hay de qué disculparse, Yuri."
+                show yuri 1cu zorder 2 at t11
 
-        show yuri 1cw zorder 2 at f11
+                mc "No hay de qué disculparse, Yuri."
 
-        y "Pe-pero ese señor nos gritó..."
+                show yuri 1cw zorder 2 at f11
 
-        show yuri 1cv zorder 2 at f11
+                y "Pe-pero ese señor nos gritó..."
 
-        y "Te avergoncé, ¿verdad?"
+                show yuri 1cv zorder 2 at f11
 
-        show yuri 1cv zorder 2 at t11
+                y "Te avergoncé, ¿verdad?"
 
-        mc "Yuri, si quieres saber mi respuesta, deja de voltear la mirada."
+                show yuri 1cv zorder 2 at t11
 
-        show yuri 1cs zorder 2 at t11
+                mc "Yuri, si quieres saber mi respuesta, deja de voltear la mirada."
 
-        mc "Yuri, está bien. No estoy avergonzado ni nada parecido y, sobre todo..."
+                show yuri 1cs zorder 2 at t11
 
-        mc "A quién le importan las personas que gritan por cualquier mínima cosa."
+                mc "Yuri, está bien. No estoy avergonzado ni nada parecido y, sobre todo..."
 
-        mc "No te preocupes por lo que digan los demás."
+                mc "A quién le importan las personas que gritan por cualquier mínima cosa."
 
-        show yuri 1ct zorder 2 at f11
+                mc "No te preocupes por lo que digan los demás."
 
-        y "Me preocupo por lo que digas tú..."
+                show yuri 1ct zorder 2 at f11
 
-        show yuri 1cs zorder 2 at t11
+                y "Me preocupo por lo que digas tú..."
 
+                show yuri 1cs zorder 2 at t11
 
-        mc "Entonces todo está bien. En realidad, yo debería de pedir perdón."
+                mc "Entonces todo está bien. En realidad, yo debería de pedir perdón."
 
-        mc "Te distraje mientras te preparabas para pedir."
+                mc "Te distraje mientras te preparabas para pedir."
 
-        show yuri 1cf zorder 2 at f11
+                show yuri 1cf zorder 2 at f11
 
-        y "Gracias por ordenar por mí, en serio lo aprecio."
+                y "Gracias por ordenar por mí, en serio lo aprecio."
 
-        show yuri 1ca zorder 2 at t11
+                show yuri 1ca zorder 2 at t11
+
+            "Dejar que lo intente ella sola":
+
+                $ puntos_ruta += 1
+
+                show yuri 1co zorder 2 at f11
+
+                "Podría intervenir y pedir por ella... pero tal vez no sea lo que necesita en este momento."
+
+                "Solo le doy una pequeña sonrisa, esperando que le dé el valor que le falta."
+
+                show yuri 1cn zorder 2 at t11
+
+                y "U-un té Oolong, por favor."
+
+                "Empleado" "Té Oolong. ¿Y usted?"
+
+                mc "Un té blanco para mí, gracias."
+
+                "Empleado" "Anotado. ¿Sería todo?"
+
+                mc "Sí, gracias."
+
+                show yuri 1cn zorder 2 at thide
+                hide yuri
+
+                "Pagué la orden y, junto a Yuri, nos sentamos en una mesa vacía, cerca de las ventanas del lugar."
+
+                show yuri 1cb zorder 2 at f11
+
+                y "L-lo logré... de verdad lo logré."
+
+                show yuri 1ca zorder 2 at t11
+
+                mc "Lo hiciste muy bien, Yuri."
+
+                show yuri 1cd zorder 2 at f11
+
+                y "Pensé que me quedaría congelada de nuevo, pero... no sé, sentí que podía hacerlo."
+
+                show yuri 1cf zorder 2 at t11
+
+                mc "Porque puedes. Solo necesitabas intentarlo tú misma."
+
+                show yuri 1cs zorder 2 at f11
+
+                y "Gracias por dejarme intentarlo... y por no rendirte conmigo."
+
+                show yuri 1ca zorder 2 at t11
 
         mc "No hay problema."
+
+        play sound vibration
 
         "*Bzzt*"
 
         "El camarero pone las órdenes en la mesa."
 
+        play sound vibration
+
         "*Bzzt*"
 
         mc "Y ¿ya ha—"
+
+        play sound vibration
 
         "*Bzzt*"
 
@@ -4126,11 +4367,11 @@ label biblioteca:
 
         show yuri 1ce zorder 2 at t11
 
-        mc "Sabes, me gustaba pasar tiempo en el club contigo."
+        mc "Sabes, disfruto mucho pasar tiempo en el club con todas hasta que...."
 
         show yuri 1cd zorder 2 at f11
 
-        y "A mí también, era agradable... Eres..."
+        y "A mí también, era agradable...."
 
         show yuri 1ca zorder 2 at t11
 
@@ -4230,11 +4471,12 @@ label biblioteca:
 
         "Luego de finalizar nuestras bebidas, salimos de la cafetería para dirigirnos a la casa de Sayori."
 
-        
-        scene residential
+        scene bg sayori_street_aft
         with wipeleft_scene 
 
         show yuri 1cu zorder 2 at t11
+
+        play sound kdoor
 
         "Llegamos a la casa de Sayori y toqué la puerta."
 
@@ -4246,7 +4488,7 @@ label biblioteca:
 
         show yuri 1ct zorder 2 at f11
 
-        y "Quizás ella no esté en casa."
+        y "Quizás Sayori no esta en casa."
 
         show yuri 1cn zorder 2 at t11
 
@@ -4254,19 +4496,21 @@ label biblioteca:
 
         show yuri 1cn zorder 2 at f11
 
-        y "¿Oy-Oye, estás seguro de hacer eso?"
+        y "¿O-Oye, estás seguro de hacer eso?"
 
         show yuri 1cn zorder 2 at t11
 
         mc "¿Por qué no?"
 
-        mc "Ella solía hacer lo mismo cuando no quería salir a jugar."
+        mc "Sayori solía hacer lo mismo cuando no quería salir a jugar."
 
         show yuri 1cb zorder 2 at f11
 
-        y "Recuerdo que Sayori nos solía hablar de anécdotas parecidas."
+        y "Recuerdo que Sayori nos solía contar algunas anécdotas parecidas."
 
         show yuri 1ca zorder 2 at t11
+
+        play sound vibration
 
         "Brrr"
 
@@ -4281,7 +4525,7 @@ label biblioteca:
         show yuri 1ci zorder 2 at thide
         hide yuri
         
-        
+        stop music fadeout 1.0
         scene black 
         with dissolve_scene_full
 
@@ -4301,10 +4545,11 @@ label biblioteca:
 
         mc "Oye, en serio quiero hablar contigo, así que espero que no estés dorm—"
 
-        show sayori turned casual rup flus om oe zorder 2 at f11
 
-        scene bg sayori_bedroom
+        scene bg sayori_bedroom_aft
         with dissolve_scene_full
+
+        show sayori turned casual rup flus om oe zorder 2 at t11
 
         s "¿¡[player]!?"
 
@@ -4325,13 +4570,15 @@ label biblioteca:
 
         "Me quedé parado en el umbral de la puerta, en un silencio incómodo."
 
+        play music t10 fadein 1.5
+
         show sayori turned casual laug om oe zorder 2 at f11
 
         s "Así que ¿tú y Yuri, no?"
 
         show sayori turned casual happ cm oe zorder 2 at t11
 
-        mc "N-No lo malinterpretes, solo estamos aquí como amigos."
+        mc "N-No lo malinterpretes, solo somos amigos."
 
         show sayori turned casual neut om oe zorder 2 at f11
 
@@ -4353,8 +4600,6 @@ label biblioteca:
 
         mc "¿Sayori?"
 
-        play music audio.t10
-
         show sayori turned neut n1 mj e1g b1c zorder 2 at t11
 
         "Ella tiene los ojos lagrimosos, no sé qué está pasando."
@@ -4365,7 +4610,7 @@ label biblioteca:
 
         mc "Sé que está pasando algo."
 
-        mc "Como mencionas, es difícil ocultar los sentimientos y más si te conozco desde la infancia."
+        mc "Como mencionas, es difícil ocultar los sentimientos y más si te conozco desde hace mucho tiempo."
 
         show sayori turned neut n1 mb e1g b1c zorder 2 at t11
 
@@ -4411,7 +4656,7 @@ label biblioteca:
 
         show sayori turned sad cm oe zorder 2 at t11
 
-        "Mi mente no está soportando las palabras de Sayori."
+        "Mi mente no soporta oir las palabras de Sayori."
 
         mc "Sayori, sé honesta conmigo, por favor. ¿Qué sucede?"
 
@@ -4425,6 +4670,14 @@ label biblioteca:
 
         s "He pasado toda mi vida lidiando con la depresión."
 
+        show sayori turned sad om oe zorder 2 at f11
+
+        s "Desde que tengo memoria. Incluso antes de conocerte a ti."
+
+        s "Nunca se lo había dicho a nadie. Ni siquiera a ti, y eso que eres la persona que más conozco en este mundo."
+
+        show sayori turned sad cm oe zorder 2 at t11
+
         s "Siempre he tenido esos pensamientos en mi mente; que no debería de ser feliz, que no debería de continuar."
 
         show sayori turned cry om oe zorder 2 at f11
@@ -4434,6 +4687,16 @@ label biblioteca:
         s "Porque todos los días no encuentro una razón para levantarme de la cama y caminar."
 
         s "Todos los días no encuentro una razón para comer, para continuar."
+
+        show sayori turned cry cm oe zorder 2 at t11
+
+        s "¿Te acuerdas cuando éramos chicos y me preguntabas por qué faltaba tanto a la escuela?"
+
+        s "Te decía que estaba enferma. Cada vez. Durante años."
+
+        show sayori turned cry om oe zorder 2 at f11
+
+        s "Nunca estuve enferma, [player]. Solo no podía moverme de la cama."
 
         s "Cuando llego al instituto, solo pienso en irme."
 
@@ -4457,7 +4720,7 @@ label biblioteca:
 
         show sayori turned cry om oe zorder 2 at f11
 
-        s "Por qué abrir los ojos todas las mañanas..."
+        s "¿Por qué abrir los ojos todas las mañanas...?"
 
         s "Cuando la única persona y razón por la cual intento aguantar todo este dolor y continuar..."
 
@@ -4467,12 +4730,28 @@ label biblioteca:
 
         show sayori turned neut cm oe zorder 2 at t11
 
+        show sayori turned cry om oe zorder 2 at f11
+
+        s "Todos los días me repito lo mismo: \"un día más, solo por él.\""
+
+        s "Cada mañana que logro levantarme es porque pienso en ti, en que tal vez hoy me sonrías, en que tal vez hoy me necesites para algo."
+
+        show sayori turned cry cm ce zorder 2 at t11
+
+        s "Sin eso... sin ti... no sé si encontraría ninguna otra razón."
+
+        show sayori turned cry om oe zorder 2 at f11
+
+        s "Y ni siquiera es que quiera que sea así. Sé que está mal. Sé que no debería depender tanto de una sola persona."
+
+        s "Pero es lo único que tengo."
+
         "Siento como si mi mundo se estuviera destruyendo por cada palabra de Sayori."
 
         "He estado ignorando... a la chica que siempre me ha intentado ayudar..."
 
-        show sayori turned neut cm oe zorder 2 at thide
-        hide sayori 
+        show sayori turned cry cm oe zorder 2 at thide
+        hide sayori
 
         scene black
         with dissolve_scene
@@ -4497,7 +4776,7 @@ label biblioteca:
 
         s "No lo entiendes."
 
-        scene bg sayori_bedroom
+        scene bg sayori_bedroom_aft
         with wipeleft_scene
         show sayori turned casual lup rup cry cm oe zorder 2 at f11
 
@@ -4519,6 +4798,12 @@ label biblioteca:
 
         show sayori turned casual lup rup neut n1 mc e4e b2c zorder 2 at f11
 
+        s "No es tu culpa, ¿sabes? Nunca lo fue."
+
+        s "Es mía. Siempre fue mía."
+
+        s "Debí decírtelo antes de que te encariñaras tanto conmigo. Debí alejarte antes de arrastrarte a esto."
+
         s "Es el universo castigándome, sé que lo merezco... pero es tan horrible... tener este sentimiento."
 
         s "Verte aquí con Yuri..."
@@ -4532,6 +4817,16 @@ label biblioteca:
         s "Eres todo para mí, eres mi mundo. Cada vez que caminamos, cada vez que hablamos..."
 
         s "Me hace querer llorar por todo el dolor que siento."
+
+        show sayori turned casual lup rup neut n1 mh e1h b2c zorder 2 at f11
+
+        s "Perdón. Lo siento. No debería estarte diciendo todo esto."
+
+        s "Siempre termino arruinando los momentos buenos con... con esto."
+
+        show sayori turned casual lup rup cry om ce zorder 2 at t11
+
+        s "¿Ves? Por esto no quería que nadie lo supiera."
 
         show sayori turned casual lup rup neut n1 mc e4e b2c zorder 2 at t11
 
@@ -4549,22 +4844,34 @@ label biblioteca:
 
         s "Pero [player]..."
 
+        s "No podés prometer eso. Nadie puede prometer eso."
+
         show sayori turned casual lup rup neut n1 mj e1h b2c zorder 2 at f11
+
+        s "Y aunque pudieras cumplirlo... no sé si merezco que lo intentes."
 
         mc "Sayori."
 
     # Mierda, no quiero continuar esta parte :(
 
+    window show
     menu Sayori_eleccion:
         "Siempre serás mi mejor amiga.":
-            "\"Tú siempre serás mi mejor amiga.\""
+            $ puntos_ruta -=1
+            mc "Tú siempre serás mi mejor amiga."
             jump siempre_serás_mi_mejor_amiga
         "Te quiero, Sayori.":
+            $ puntos_ruta += 1
             mc "Sayori... Yo honestamente te quiero en mi vida."
             jump te_quiero_sayori
 
     label siempre_serás_mi_mejor_amiga:
+        stop music fadeout 0.5
         show sayori turned casual lup rup cry om ce zorder 2 at f11
+        s "...Claro. Por supuesto."
+
+        s "¿Qué esperaba? Ni siquiera yo me elegiría a mí misma."
+
         s "Vete..."
 
         show sayori turned casual lup rup cry om ce zorder 2 at t11
@@ -4576,6 +4883,8 @@ label biblioteca:
         s "¡Vete de mi casa, por favor!"
 
         show sayori turned casual lup rup cry cm oe zorder 2 at t11
+
+        play sound glassbr
 
         "Intenté volverme a acercar a Sayori y ella tiró un espejo cerca de mí."
 
@@ -4596,14 +4905,22 @@ label biblioteca:
         jump yuri_continuación
 
     label te_quiero_sayori:
-        
+
         scene black
         with dissolve_scene_full
         s "[player]..."
         s "Tú eres la única razón por la cual continúo viviendo todos los días."
 
+        s "No es una forma de hablar. Lo digo en serio."
+
+        s "Si no fuera por ti, no sé si seguiría aquí para contarte esto."
+
         mc "Tranquila, Sayori... Siento que, a su vez, deberías de ir a un psicólogo."
         mc "Te acompañaré en cada terapia."
+
+        s "..."
+
+        s "No sé si eso vaya a arreglar algo. Pero si vos vas a estar ahí, puedo intentarlo."
 
         s "[player]..."
         s "Gracias por estar aquí."
@@ -4618,9 +4935,8 @@ label biblioteca:
 
     label yuri_continuación:
         stop music fadeout 1.5
-        scene residential
+        scene bg sayori_street_aft 
         with dissolve_scene_full
-        play music audio.t6 fadein 1.5
         "Salí de la casa de Sayori y cerré la puerta."
 
         "Yuri aún seguía en la llamada, pero luego de unos segundos colgó."
@@ -4702,11 +5018,12 @@ label biblioteca:
         y "Por supuesto."
 
         show yuri 1cb zorder 2 at thide
-        hide Yuri
+        hide yuri
         
 
 
         # Poner la escena de la biblioteca
+        play music t201 fadein 1.5
         scene bg library_aft
         with dissolve_scene_full
 
@@ -4715,6 +5032,8 @@ label biblioteca:
         y "Oye, [player], mira: es Guía del Sakura, la continuación de Insolación Infinita."
 
         show yuri 1ca zorder 2 at t11
+
+        ######cambiar dialogos porque cambia el libro 29/08
 
         mc "¿Guía del Sakura? No suena como la continuación del libro que leemos."
 
@@ -4765,7 +5084,7 @@ label biblioteca:
 
         # Aquí poner escena de la ciudad
         
-        scene bg ciudad_calle_nublado
+        scene bg city_street_aft
         with wipeleft_scene 
         show yuri 1cq zorder 2 at t11
 
@@ -4813,31 +5132,45 @@ label biblioteca:
 
         y "Decir..."
 
+        y "No es tan fácil decir las cosas cuando de verdad quieres decirlas."
+
         show yuri 1cq zorder 2 at t11
 
-        "Esto es un poco... surrealista. Estar con ella tanto tiempo no me ha permitido ver lo reservada que es."
+        "Hay algo en la forma en que lo dijo que se sintió... personal. Como si no estuviera hablando solo del vendedor."
+
+        "Esto es un poco... surrealista. Estar con ella tanto tiempo no me ha permitido ver lo reservada que es. Y aun así, ahí está: queriendo decir más de lo que se permite."
 
         # Ahora casa de Yuri
         stop music fadeout 2.0
-        
-        scene bg casa_yuri
+
+        scene bg house_aft 
         with dissolve_scene_full
-        play music audio.heartbreaking2 fadein 2.0
+        play music t100 fadein 2.0
         show yuri 1cd zorder 2 at t11
 
         mc "Hoy fue un día increíble, Yuri. Quizás podríamos salir en otro momento."
 
         mc "Hasta luego, cuí—"
 
+        "Casi digo algo que no debería. Cierro la boca antes de terminar la palabra."
+
         show yuri 1cq zorder 2 at f11
-        
+
         y "O-Oye, [player]..."
+
+        show yuri 1cq zorder 2 at t11
+
+        "Se quedó ahí parada, jugando con la manga de su suéter, sin mirarme directamente."
+
+        show yuri 1cq zorder 2 at f11
 
         y "¿No te gustaría entrar a mi casa y leer un rato?"
 
         show yuri 1cq zorder 2 at t11
 
         mc "..."
+
+        "No sé por qué, pero de repente siento que me falta el aire."
 
         show yuri 1cq zorder 2 at f11
 
@@ -4847,13 +5180,15 @@ label biblioteca:
 
         mc "Por supuesto, Yuri, el gusto es mío."
 
+        "Lo dije más rápido de lo que pretendía. Por su expresión, creo que ella lo notó."
+
         show yuri 1cn zorder 2 at thide
-        hide yuri 
+        hide yuri
 
 
         # Casa de Yuri
-        
-        scene bg yuri_sala
+
+        scene bg living_room_aft
         with wipeleft_scene
 
         "Ahora que lo recuerdo, no traje mi mochila donde tengo el libro."
@@ -4868,12 +5203,28 @@ label biblioteca:
 
         mc "Ah, cierto, lo había olvidado."
 
+        show yuri 1cc zorder 2 at f11
+
+        y "Puedes sentarte donde quieras. Yo... normalmente leo aquí."
+
+        "Señaló un rincón del sofá. Justo a su lado. No al otro extremo."
+
+        show yuri 1ca zorder 2 at t11
+
+        "Me senté donde me indicó. Más cerca de lo que hubiera esperado hace apenas una semana."
+
         # Añadir fondo de la casa de Yuri de noche
-        
-        scene bg yuri_sala_noche
+
+        scene bg living_room_night
         with dissolve_scene_full
 
         show yuri 1cm zorder 2 at t11
+
+        "Pasamos un buen rato así, en silencio. Lo único que se escuchaba era el pasar de las páginas y, de vez en cuando, su respiración cuando algo del libro la sorprendía."
+
+        "No es un silencio incómodo. Es de esos que no necesitan llenarse con nada."
+
+        "La miré de reojo más de una vez. Un par de esas veces, ella hacía lo mismo. Ninguno de los dos dijo nada al respecto."
 
         "Estuvimos leyendo una gran parte de la tarde. Creo que Yuri está dormida."
 
@@ -4891,37 +5242,61 @@ label biblioteca:
 
         "Sin carga."
 
+        mc "No tengo idea, pero ya está bastante oscuro afuera."
+
         show yuri 1cg zorder 2 at f11
 
-        y "21:59. Es muy tarde para que regreses solo."
+        y "Es tarde. Muy tarde."
 
         show yuri 1co zorder 2 at t11
+
+        "Se levantó de golpe y caminó hasta la ventana, como si pudiera confirmar la hora solo con mirar afuera."
+
+        show yuri 1cg zorder 2 at f11
+
+        y "No deberías caminar solo a esta hora."
+
+        mc "Estaré bien, Yuri, no es la primera vez que—"
+
+        show yuri 1co zorder 2 at f11
+
+        y "No."
+
+        "Lo dijo tan rápido que hasta ella pareció sorprendida de haberlo dicho."
+
+        show yuri 1cg zorder 2 at t11
+
+        y "Q-Quiero decir... preferiría que no. Si algo llegara a pasarte..."
+
+        show yuri 1co zorder 2 at f11
 
         mc "Tampoco quisiera ser un intruso en tu casa, ¿sabes?"
 
         show yuri 1cb zorder 2 at f11
 
-        y "Para mí está bien que te quedes."
+        y "No serías un intruso."
+
+        "Se hizo un silencio entre los dos. Ninguno se movió."
 
         show yuri 1ca zorder 2 at t11
 
-        mc "¿En serio? ¿Y dónde dormiría?"
+        mc "¿Y... dónde dormiría?"
 
         show yuri 1ch zorder 2 at f11
 
-        y "(No puedo dejar que duermas en la sala, él es mi invitado...)"
+        "Su expresión cambió por completo, como si no hubiera pensado en esa parte hasta este momento."
 
         show yuri 1ch zorder 2 at t11
 
-        "Espera, ¿en serio pasará lo que estoy pensando?"
+        y "E-en la sala hay... no, espera, eso sería descortés de mi parte."
 
         show yuri 1ch zorder 2 at f11
+
+        "Se está poniendo roja. Creo que yo también."
+
+        show yuri 1ch zorder 2 at t11
 
         y "Sé que sonará un poco ridículo, pero..."
-
-        show yuri 1ch zorder 2 at t11
-        
-        "¿Yuri en serio me pedirá... que duerma con ella?"
 
         show yuri 1cq zorder 2 at f11
 
@@ -4929,29 +5304,56 @@ label biblioteca:
 
         show yuri 1cq zorder 2 at t11
 
-        "Mi boca no responde."
+        "Mi boca no responde. No estoy seguro de que mis pulmones sigan funcionando con normalidad."
 
         show yuri 1cv zorder 2 at f11
 
-        y "Disculpa, dormiré aquí y tú en mi cuarto..."
+        y "O-olvídalo, fue una idea tonta. Dormiré yo aquí y tú en mi cuarto, es lo justo."
 
-        show yuri 1ca zorder 2 at t11
+        show yuri 1cn zorder 2 at t11
 
-        mc "N-No, de hecho, no veo algún problema en que durmamos ambos."
+        "No quiero que se sienta mal por haberlo dicho. Y, siendo honesto, tampoco quiero que la idea desaparezca tan rápido."
+
+        mc "N-No hace falta. En serio, no veo ningún problema en que... durmamos los dos."
 
         show yuri 1cc zorder 2 at f11
-    
-        y "Gracias, [player]."
 
-        y "Por ti, mi día ha sido increíble."
+        "Se quedó completamente quieta por un segundo que se sintió eterno."
 
         show yuri 1ca zorder 2 at t11
 
-        mc "Gracias, Yuri, opino lo mismo de hoy."
+        y "...Está bien."
+
+        show yuri 1cc zorder 2 at f11
+
+        y "Gracias, [player]."
+
+        show yuri 1ca zorder 2 at t11
+
+        y "Por ti, mi día ha sido increíble. Incluso con... con todo lo que pasó."
+
+        show yuri 1cb zorder 2 at t11
+
+        mc "El mío también, Yuri. Y no sé cómo explicarlo, pero se siente bien poder decirlo así, sin más rodeos."
+
+        "Ella no respondió nada. Solo sonrió, de esa forma pequeña y torpe que hace cuando no sabe qué decir."
 
         "Yuri me llevó a su cuarto."
+
+        "Ninguno de los dos dijo una palabra en todo el camino por el pasillo. No hacía falta."
+
         stop music fadeout 1.5
-        
+
+        scene bg yuri_bedroom_night
+        with dissolve_scene_full
+
+        "La luz de la luna entraba apenas por las cortinas, lo justo para distinguir el contorno de todo."
+
+        "Nos quedamos ahí parados un momento, sin saber muy bien qué hacer con las manos, con la mirada, con nosotros mismos."
+
+        "No sé qué va a pasar después de esta noche. Pero por primera vez en mucho tiempo, no tengo miedo de averiguarlo."
+
+        scene black
         with dissolve_scene_full
 
         jump cap3
