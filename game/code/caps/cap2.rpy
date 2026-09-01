@@ -20,471 +20,280 @@ label cap2:
     with dissolve_scene_full
 
     "Seguí a Sayori por los pasillos. Comúnmente subimos aquí por materiales."
-
     "Sé que es un club con poca gente, pero el que esté tan alejado no ayuda."
-
     play audio closet_open
-
     "Sayori abrió la puerta del salón con fuerza."
-
     mc "¿No era más fácil abrirla gentilmente?"
-
     scene bg club_day
     show sayori 1s zorder 2 at f11
-
     s "¡¡¡Chicas!!! ¡¡¡Traje a un nuevo miembro!!!"
-
     show sayori 1q zorder 2 at t11
-
     mc "No lo grites, Sayori..."
-
     "¿Chicas?"
-
     show sayori 1q zorder 2 at thide
     hide sayori
     with wipeleft_scene 
-
     "Mi mirada se centró en una estudiante de cabello morado."
-
     show yuri 2b zorder 2 at f11
-
     y "Bienvenido al club de literatura, es un placer conocerte [player]."
-
     show yuri turned rup uniform happ om ce zorder 2 at f11
-
     y "Sayori siempre nos habla bien de ti."
-
     y "Me alegra mucho poder conocerte."   
-
     show yuri turned lup rup uniform nerv cm oe zorder 2 at t11
-
     y "(¿Espera, por qué dije eso en voz alta?)"
-
     show yuri turned lup rup uniform nerv cm oe zorder 2 at f11
-
     y "Uh..." 
-
     show yuri turned lup rup uniform nerv cm oe zorder 2 at t11
-
     pause 1.0
-
     show yuri turned rup uniform lsur cm oe zorder 2 at t11
-
     "Dios... es como si viera a un ángel en persona."
-
     "Es tan linda."
-
     "Aunque recuerdo como si la hubiera visto fuera de la escuela..."
-
     "Su cabello es hermoso..."
-
     n "¿En serio era necesario un chico?"
-
     show yuri shy neut cm oe zorder 2 at t22
     show natsuki 1h zorder 2 at f21
-
     n "Qué incómodo será el club desde ahora."
-
     show yuri shy neut cm oe zorder 2 at t32
     show natsuki 2g zorder 2 at t31
     show monika 4b zorder 2 at f33
-
     m "¡Ey! Qué bonita sorpresa, [player]."
-
     show natsuki 2g zorder 2 at t31
     show monika 2k zorder 2 at f33
-
     m "Bienvenido al club de literatura."
-
     show monika 2j zorder 2 at t33
-
     "Sayori... Sayori me trajo a un club..."
-
     show monika zorder 2 at thide
     hide monika
     show natsuki zorder 2 at thide
     hide natsuki
     show yuri 1d zorder 2 at t11
-
     "¡Qué tiene a una chica tan linda!"
-
     show yuri 1e zorder 2 at t21
     show natsuki 2w zorder 2 at f22
-
     n "¿Qué, nunca has visto a una mujer?"
-
     show yuri 1e zorder 2 at t21
     show natsuki turned anno cm oe zorder 2 at t22
-
-    mc "Dis-disculpa."
-
+    mc "D-disculpa."
     show yuri 1w zorder 2 at t42
     show natsuki 2w zorder 2 at t44
-
     y "Natsuki... recuerda que es nuestro nuevo miembro."
-
     show yuri 1w zorder 2 at thide
     hide yuri
     show natsuki 3i zorder 2 at t11
-
     "Parece que la chica de cabello rosado es un poco difícil..."
-
     "Por su apariencia será alguien de primer año, así que no vale la pena enojarse con ella."
-
     "¿Le dijo Natsuki? Probablemente sea quien hizo los pastelitos."
-
     show yuri 2i zorder 2 at t32
     show natsuki 3i zorder 2 at t33
     show sayori turned happ om ce zorder 2 at f31
-
     s "Tranqui [player], solo ignórala cuando esté de mal humor."
-
     show sayori turned happ cm ce zorder 2 at t31
-
     "Sayori se acercó a mí, sonando sus pasos contra el suelo."
-
     show yuri 2i zorder 2 at thide
     show sayori turned happ om ce zorder 2 at thide 
     hide yuri
     hide sayori
     show natsuki 3f zorder 2 at f11
-
     s "¡De todos modos! Ella es Natsuki."
-
     show natsuki 3f zorder 2 at thide 
     hide natsuki 
     show yuri 3a zorder 2 at t11
-
     s "Yuri."
-
     hide yuri 
     show monika lean happ om ce zorder 2 at t11
-
     s "Monika."
-
     hide monika
     show sayori 1s zorder 2 at f11
-
     s "¡Y tú ya me conoces!"
-
     show sayori zorder 2 at thide
     hide sayori 
     show yuri shy happ cm oe zorder 2 at t11
-
     "Aunque Sayori me esté presentando a las demás chicas, no puedo quitar la mirada de Yuri..."
-
     "Monika se acercó a mí con una amable sonrisa."
-
     show yuri zorder 2 at thide
     hide yuri 
     show sayori turned lsur cm oe zorder 2 at t21 
     show monika forward lpoint happ om oe zorder 2 at f22
-
     m "De hecho, [player] y yo estuvimos en la misma clase el año pasado."
-
     show monika forward happ cm ce zorder 2 at t22
-
-    "Ella es Monika. Recuerdo perfectamente que estuvimos en la clase de Química el año pasado..."
-    
-    "Prefiero olvidar todo lo que paso el año pasado..."
-
+    "Ella es Monika. Recuerdo perfectamente que estuvimos en la clase de química el año pasado..."
+    "Prefiero olvidar todo lo que pasó el año pasado..."
     show monika forward happ om oe zorder 2 at f22
-
     m "Qué alegría es verte de nuevo, [player]."
-
     show monika forward happ cm oe zorder 2 at t22
-
     mc "Sí... es un gusto también."
-
     show sayori turned happ om oe zorder 2 at f21
-
     s "¡Ven, [player]! Ya tengo mucha hambre."
-
     show sayori zorder 2 at thide
     hide sayori 
     show monika zorder 2 at thide
     hide monika 
-
     "Las chicas formaron un círculo con los pupitres mientras que Sayori me sentó a su lado."
-
     "Al ver a las demás chicas excepto a Yuri, supe de quién era el asiento faltante a mi lado."
-
     show sayori tap nerv m1 zorder 2 at f21
-
     s "Ya regreso~"
-
     hide sayori
     with wipeleft_scene
-
     show sayori 4p zorder 2 at f11
-
     s "Realmente no me podía aguantar las ganas de comer los pastelitos. Natsuki es la mejor cocinera... ¿o pastelera?"
-
     show sayori 4q zorder 2 at t22
     show natsuki 3f zorder 2 at f21
-
     n "¡Sayori!"
-
     show natsuki 3f zorder 2 at t21
     stop music fadeout 2.0
-
     "La pelirrosa agarró bruscamente la bandeja, pero debido al movimiento terminó cayendo al suelo."
-
     play sound obj_fall
     show natsuki 3f zorder 2 at h21
-
     n "off...-{nw}"
-
     show natsuki zorder 2 at thide
     hide natsuki 
     show sayori 4m zorder 2 at t21
     show monika 1g zorder 2 at t22
-
     play music audio.t9
-
     mc "¿Te encuentras bien?"
-
     "Me levanté de mi asiento mientras Sayori ayudaba a Natsuki a levantarse. Recogí la bandeja."
-
     show sayori zorder 2 at thide
     hide sayori
     show monika zorder 2 at thide
     hide monika
     show natsuki 2b zorder 2 at f11
-
     n "U-uh... mi cabeza... ¿¡y los pastelitos!? [player] deja lo-"
-
     show natsuki turned curi cm oe zorder 2 at t11
-
     "Aunque un par de pastelitos estaban caídos en el suelo, logré rescatar algunos."
-
     show natsuki turned lsur cm oe zorder 2 at t11
-
     "Todos están decorados como si fueran gatitos, realmente se mira el talento."
-
     show natsuki turned fs neut om oe zorder 2 at f11
-
-    n "L-lo siento... Quería mostrarlos por mí misma, realmente me esforcé mucho haciéndolos..."
-
+    n "Y-yo... Quería mostrarlos por mí misma, realmente me esforcé mucho haciéndolos..."
     show natsuki turned fs neut cm oe zorder 2 at t11
-
     "Natsuki está muy centrada en los pastelitos del suelo."
-    
     show sayori 1f zorder 2 at t21
     show natsuki turned fs neut cm oe zorder 2 at t22
-
     "Sayori también."
-
     "Cómo puedo ayudar... con la bandeja en mi mano me di cuenta que aún quedaban unos pastelitos."
-
     mc "Oigan, está bien... miren, no todos cayeron al piso..."
-
     show sayori 1l zorder 2 at t21
     show natsuki 1n zorder 2 at t22
-
     mc "Y... se miran muy deliciosos, ¿no?"
-
     show sayori 3b zorder 2 at t21
     show natsuki turned lhip rhip ff sad om oe zorder 2 at f22
-
     n "S-sí..."
-
     show natsuki 4b zorder 2 at t22
     show natsuki turned lhip rhip ff sad cm oe zorder 2 at t22
     show sayori turned happ om oe zorder 2 at f21
-
     s "¡Siii! Aún hay pastelitos."
-
     show natsuki turned lhip rhip ff pout cm oe zorder 2 at f22
-
     n "Ajá..."
-
     show natsuki zorder 2 at thide
     hide natsuki
     show monika 2m zorder 2 at t21
     show sayori 1q zorder 2 at t22
-
     "Natsuki se fue al clóset a buscar algo para limpiar el piso."
-
     "Mientras que Sayori se acercó a mi oído."
-
     show monika zorder 2 at thide
     hide monika
     show sayori 1c zorder 2 at f11
-
     s "[player]"
-
     show sayori 1a zorder 2 at t11
-
     mc "¿Eh?"
-
     show sayori 1c zorder 2 at f11
-
     s "Hiciste bien."
-
     show sayori 1a zorder 2 at t11
-
     mc "Tenía que hacer algo para animarlas, ¿no?"
-
     show sayori 3c zorder 2 at f11
-
     s "Como siempre, jeje..."
-
     show sayori 3b zorder 2 at t11
-
     mc "¿Siempre?"
-
     stop music fadeout 2.0
     play music audio.t8 
     show sayori 2r zorder 2 at f11
-
     s "¡Vamos a comer~!"
-
     show sayori 1a zorder 2 at t22
     show monika forward lpoint happ cm ce zorder 2 at t21
-
-    "Después de hablar, agarró rápidamente un pastelito de la bandeja, seguida de Monika y luego de mí."
-
+    "Después de hablar, agarré rápidamente un pastelito de la bandeja, seguida de Monika y luego de mí."
     show sayori turned happ om ce zorder 2 at h22
-
     s "Esh mu delichisosho~ hmm~"
-
     show monika forward lpoint happ cm oe zorder 2 at t21
-
     "Mientras Sayori comía, Natsuki salió del clóset con un trapo y empezó a limpiar el piso."
-
     "Después de que Natsuki terminara de limpiar el piso, se sentó al lado de Sayori."
-
     show sayori zorder 2 at thide
     hide sayori
     show monika zorder 2 at thide
     hide monika
     show natsuki 3n zorder 2 at t11
-
-    "Noto cómo mira en mi dirección mientras comía el pastelito."
-
+    "Noté cómo mira en mi dirección mientras comía el pastelito."
     mc "Sayori tenía razón, están muy deliciosos."
-
     show natsuki 3r zorder 2 at t11
-
     mc "Muchas gracias, Natsuki."
-
     show natsuki 3r zorder 2 at f11
-
     n "¡N-no es que los haya hecho para ti o algo así!"
-
     "Sayori dijo que eran para el nue- sabes... mejor sigo disfrutando de los dulces pastelillos."
-
     show natsuki zorder 2 at thide
     hide natsuki
     with wiperight_scene
-
     show yuri 2a zorder 2 at t33
-
     "Yuri regresó con un juego de té en la mano y me entregó una taza con té."
-
     mc "¿Los profesores no las regañan por tener esto?"
-
     show yuri 2b zorder 2 at f33
-
     y "Nos dieron permiso debido a ser un nuevo club."
-
     y "Además, una taza de té siempre va de la mano de un libro."
-
     show yuri 2o zorder 2 at t21
     show monika 3b zorder 2 at f22
-
-    m "Tranquilo [player], solo intentan impresionarte."
-
+    m "Tranquilo [player], solo intenta impresionarte."
     show monika 1h  zorder 2 at t22
-
     m "(¿Presumiendo?)"
-
     show yuri 2o zorder 2 at f21
     show monika 2j zorder 2 at t22
-
     y "¿Qu-qué...? Y-yo no intentaba..."
-
     show yuri 2o zorder 2 at t21
-
     "Yuri volteó su mirada hacia la nada."
-
     show yuri 2w zorder 2 at f21
     show monika forward lpoint rhip happ cm oe zorder 2 at t22
-
     y "T-tú me entiendes..."
-
     show yuri zorder 2 at thide
     hide yuri
     show monika lean happ om oe zorder 2 at f11
-
     m "Por cierto [player], me alegra que te hayas unido. Como presidenta del club me aseguraré de que te sientas cómodo."
-
     show monika lean happ om oe zorder 2 at t11
     stop music fadeout 2.0
-
     mc "¿Que me haya unido? Pero aún no me he decidido en unirme..."
-
     show monika zorder 1 at thide
     hide monika
     show sayori 2m zorder 2 at t11
-
     mc "Me refiero..."
-
     show sayori 2m zorder 2 at t21
     show yuri 2i zorder 2 at t22
-
     mc "Aún tengo que ver otros clubs..."
-
     show sayori 2m zorder 2 at t31
     show yuri 2i zorder 2 at t32
     show monika 1m zorder 2 at t33
-
     mc "Ver qué club me gusta más..."
-
     show sayori 2m zorder 2 at t41
     show yuri turned sad cm oe zorder 2 at t42
     show monika 1m zorder 2 at t43
     show natsuki 1h zorder 2 at t44
-
     "Vamos, no pueden mirarme todas así."
-
     "Después de conocer a Yuri tal vez las cosas no sean tan malas, además no quiero que Sayori siga acosándome con que entre a su club."
-
     "Tomé valor y miré a las chicas directamente."
-
     mc "Eh... tomé una decisión."
-
     "Todas las chicas me estaban viendo, esperando mi respuesta."
-
     show sayori 2q zorder 2 at t41
     show yuri 1a zorder 2 at t42
     show monika 1j zorder 2 at t43
     show natsuki 2f zorder 2 at t44
     play music audio.t8
-
     mc "Está bien... Sí, me uniré al club."
-
     show sayori 2r zorder 2 at h41
-
     s "¡Yeiiii! Por un momento pensé que no te unirías."
-
     "Sayori me agarró de las manos y empezó a saltar con mucha emoción."
-
     show natsuki 1e zorder 2 at f44
-
     n "Si hubieras dicho que no te unirías, te hubiera hecho pagar por el pastelito."
-
     show natsuki 1g zorder 2 at t44
     show yuri 1d zorder 2 at f42
-
     y "Me asustaste por un instante."
-
     show yuri 1d zorder 2 at t42
     show monika 1b zorder 2 at f43
-    
     m "Me alegra que hayas tomado una buena decisión."
-
     show natsuki zorder 2 at thide
     hide natsuki
     show sayori zorder 2 at thide
@@ -492,74 +301,46 @@ label cap2:
     show yuri zorder 2 at thide
     hide yuri
     show monika 2b zorder 2 at f11
-
     m "Tengo una idea. Ya que [player] se ha unido, podríamos organizar una actividad. Ayer me encontré con algo curioso..."
-
     show monika zorder 2 at thide
     hide monika
     show sayori 2n zorder 2 at f11
-
     s "¿Actividad?"
-
     show sayori zorder 2 at thide
     hide sayori
     show monika 3a zorder 2 at t11
-
     "Monika sacó una hoja."
-
     show monika 3b zorder 2 at f11
-
     m "No sabía que te gustaba escribir poemas, Natsuki." 
-
     show monika 3a zorder 2 at t21
     show natsuki turned lhip rhip vang cm ce zorder 2 at f22
-
     n "¡Dame eso, Monika!"
-
     "Natsuki agarró la hoja de las manos de Monika para luego meterla en su mochila."
-
     show natsuki zorder 2 at thide
     hide natsuki
     show monika forward lpoint happ om ce zorder 2 at f11
-
     m "Y bueno... estaba pensando en que podríamos compartir poemas, así para [player] será más fácil conocernos."
-
     show monika 2i zorder 2 at f11
-
     m "Pero no creas que te salvarás de escribir uno también, [player]."
-
     show monika 2m zorder 2 at f11
-
     mc "Uh... claro."
-
     show sayori turned lup rup happ om ce zorder 2 at f21
     show monika 2i zorder 2 at t22
-
     s "Cuando llegue a casa me pondré a escribir."
-
     show sayori 1a zorder 2 at t31
     show monika 2i zorder 2 at t32
     show natsuki cross vang om ce zorder 2 at f33
-
     n "Qué vergüenza... No me gustaría compartir mis poemas, estoy segura que el nuevo me entenderá."
-
     show sayori 1a zorder 2 at t41
     show monika 2i zorder 2 at t42
     show natsuki cross anno cm oe zorder 2 at t43
     show yuri shy neut om oe zorder 2 at f44
-
     y "Para mí... también sería difícil hacerlo."
-
     show monika forward rhip happ cm oe zorder 2 at t42
-
     "Monika se quedó en silencio por un momento, para luego mirarme con una sonrisa."
-
     mc "Supongo que... podría hacer un poema y decirlo y eso."
-
     show monika forward rhip happ om oe zorder 2 at f42
-
     m "Perfecto, yo también. Así que chicas y [player], doy por concluida la reunión del club por hoy."
-
     show natsuki zorder 2 at thide
     hide natsuki
     show monika zorder 2 at thide
@@ -569,17 +350,12 @@ label cap2:
     show sayori zorder 2 at thide
     hide sayori
     show yuri turned laug cm oe zorder 2 at t11
-
     "Siento mucha ansiedad por escribir un poema {i}y encima compartirlo con ellas... con ella.{/i}"
-
     "Yuri se levantó de su asiento para ayudar a limpiar a Natsuki."
-
     show yuri zorder 2 at thide
     hide yuri
     show sayori turned happ om oe zorder 2 at f11
-
     s "Oye [player], ya que desde ahora nos veremos todos los días, ¿quieres caminar conmigo a casa? Ya sabes, como lo hacíamos antes."
-
     "Es cierto, hace mucho tiempo que no caminaba con Sayori debido a lo tarde que salía, no solo de la escuela."
 
     menu irse_con_Sayori:
@@ -590,7 +366,7 @@ label cap2:
             jump ir_sayori
         "Mejor no":
             mc "Mejor no."
-            jump sayori_insiste        
+            jump sayori_insiste
 
 label biblioteca:
 

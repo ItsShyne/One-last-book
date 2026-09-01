@@ -43,7 +43,9 @@ label start:
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-    jump cap1  
+    call cap1 from _call_cap1
+
+    call cap2 from _call_cap2
 
 # This label is where the game 'ends' during Act 1.
 label endgame(pause_length=4.0):

@@ -484,71 +484,39 @@ screen navigation():
 
         spacing gui.navigation_spacing
 
-        # Contador para escalonar la entrada de cada botón, igual que en el
-        # menú de Fallen Angel (fallen_button_1..5).
-        $ nav_delay = 0.0
-
         if not persistent.autoload or not main_menu:
 
             if main_menu:
-
-                $ nav_delay += 0.07
+                
                 if persistent.playthrough == 1:
-                    textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«"):
-                        action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
-                        at navigation_button(nav_delay)
+                    textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
                 else:
-                    textbutton _("Iniciar historia"):
-                        action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
-                        at navigation_button(nav_delay)
+                    textbutton _("Iniciar historia") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Por favor ingresa tu nombre", ok_action=Function(FinishEnterName)))
 
             else:
 
-                $ nav_delay += 0.07
-                textbutton _("Historia"):
-                    action [ShowMenu("history"), SensitiveIf(renpy.get_screen("history") == None)]
-                    at navigation_button(nav_delay)
+                textbutton _("Historia") action [ShowMenu("history"), SensitiveIf(renpy.get_screen("history") == None)]
 
-                $ nav_delay += 0.07
-                textbutton _("Guardar partida"):
-                    action [ShowMenu("save"), SensitiveIf(renpy.get_screen("save") == None)]
-                    at navigation_button(nav_delay)
+                textbutton _("Guardar partida") action [ShowMenu("save"), SensitiveIf(renpy.get_screen("save") == None)]
 
-            $ nav_delay += 0.07
-            textbutton _("Cargar partida"):
-                action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
-                at navigation_button(nav_delay)
+            textbutton _("Cargar partida") action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
 
             if enable_extras_menu:
-                $ nav_delay += 0.07
-                textbutton _("Extras..."):
-                    action [ShowMenu("extras"), SensitiveIf(renpy.get_screen("extras") == None)]
-                    at navigation_button(nav_delay)
+                textbutton _("Extras...") action [ShowMenu("extras"), SensitiveIf(renpy.get_screen("extras") == None)]
 
             if _in_replay:
 
-                $ nav_delay += 0.07
-                textbutton _("End Replay"):
-                    action EndReplay(confirm=True)
-                    at navigation_button(nav_delay)
+                textbutton _("End Replay") action EndReplay(confirm=True)
 
             elif not main_menu:
-                $ nav_delay += 0.07
                 if persistent.playthrough != 3:
-                    textbutton _("Menú principal"):
-                        action MainMenu()
-                        at navigation_button(nav_delay)
+                    textbutton _("Menú principal") action MainMenu()
                 else:
-                    textbutton _("Menu principal"):
-                        action NullAction()
-                        at navigation_button(nav_delay)
+                    textbutton _("Menu principal") action NullAction()
 
-            $ nav_delay += 0.07
-            textbutton _("Ajustes"):
-                action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
-                at navigation_button(nav_delay)
+            textbutton _("Ajustes") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
-
+           
             #textbutton _("Creditos") action ShowMenu("about")
 
             if renpy.variant("pc"):
@@ -557,38 +525,9 @@ screen navigation():
                 # textbutton _("Ayuda") action [Help("README.html"), Show(screen="dialog", message="The help file has been opened in your browser.", ok_action=Hide("dialog"))]
 
                 ## The quit button is banned on iOS and unnecessary on Android.
-                $ nav_delay += 0.07
-                textbutton _("Salir"):
-                    action Quit(confirm=not main_menu)
-                    at navigation_button(nav_delay)
+                textbutton _("Salir") action Quit(confirm=not main_menu)
         else:
             timer 1.75 action Start("autoload_yurikill")
-
-
-# ============================================================
-# ANIMACIONES DE LOS BOTONES DEL MENÚ (entrada + hover)
-# ============================================================
-
-# Entrada en cascada (on show) + reacción al pasar el mouse (on hover/on
-# idle), todo en UN solo transform. Antes eran dos transforms encadenados
-# vía "at [navigation_button_appear(delay), navigation_button_hover]": en
-# cuanto el primero (sin "repeat") terminaba su animación de entrada, Ren'Py
-# dejaba de re-evaluar esa cadena compuesta y el hover se quedaba congelado
-# (el botón seguía siendo clicable, pero ya no se animaba al pasar el mouse).
-# Un solo transform con bloques "on" no tiene ese problema.
-transform navigation_button(delay=0.0):
-    on show:
-        alpha 0.0
-        xoffset -25
-        pause delay
-        parallel:
-            ease 1.8 alpha 1.0
-        parallel:
-            ease 0.8 xoffset 0
-    on hover:
-        ease 0.15 xoffset 10
-    on idle:
-        ease 0.2 xoffset 0
 
 
 style navigation_button is gui_button
@@ -603,7 +542,7 @@ style navigation_button:
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
     font "gui/font/RifficFree-Bold.ttf"
-    color "#e20f0f"
+    color "#fff"
     outlines [(4, text_outline_color, 0, 0), (2, text_outline_color, 2, 2)]
     #outlines [(4, "#b59", 0, 0), (2, "#b59", 2, 2)]
     hover_outlines [(4, "#fac", 0, 0), (2, "#fac", 2, 2)]
@@ -618,7 +557,7 @@ style navigation_button_text:
 
 screen main_menu():
 
-    # Garantiza que se reemplace cualquier otra pantalla de menú
+    # This ensures that any other menu screen is replaced.
     tag menu
 
     style_prefix "main_menu"
@@ -628,26 +567,20 @@ screen main_menu():
         add "menu_art_y_ghost"
         add "menu_art_n_ghost"
     else:
-        # 1. Fondo de puntos
         add "menu_bg"
-
-        # 2. Panel morado con la rosa animado desde la izquierda (detrás del menú y logo)
-        add "mod_assets/game_menu.png" at panel_enter_left
-
-        # 3. Arte de los personajes
         add "menu_art_y"
         add "menu_art_n"
+        frame
 
-        # 4. Botones de opciones del menú (Iniciar historia, Cargar, Ajustes, etc.)
+        ## The use statement includes another screen inside this one. The actual
+        ## contents of the main menu are in the navigation screen.
         use navigation
 
     if not persistent.ghost_menu:
         add "menu_particles"
         add "menu_particles"
         add "menu_particles"
-        # 5. Logo del juego (queda sobre el panel morado)
         use interactive_logo()
-
     if persistent.ghost_menu:
         add "menu_art_s_ghost"
         add "menu_art_m_ghost"
@@ -714,6 +647,7 @@ style main_menu_title:
 ## screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
 
+default persistent.fallen_intro_seen = False
 
 
 init python:
@@ -722,6 +656,42 @@ init python:
             persistent.fallen_intro_seen = True
             renpy.save_persistent()
             return True
+
+
+screen fallen_intro_menu():
+
+    zorder 200
+
+    vbox:
+        xalign 0.205
+        yalign 0.61
+        spacing 0
+
+        # FUNCIONA
+        textbutton _("Iniciar historia"):
+            style "fallen_intro_menu_button"
+            action StartFallenIntro()
+
+        # NO FUNCIONA
+        textbutton _("Cargar juego"):
+            style "fallen_intro_menu_button"
+            action NullAction()
+
+        # NO FUNCIONA
+        textbutton _("Galeria"):
+            style "fallen_intro_menu_button"
+            action NullAction()
+
+        # NO FUNCIONA
+        textbutton _("Opciones"):
+            style "fallen_intro_menu_button"
+            action NullAction()
+
+        # FUNCIONA
+        textbutton _("Salir"):
+            style "fallen_intro_menu_button"
+            action Quit(confirm=True)
+
 
 # ============================================================
 # ESTILO EXCLUSIVO DEL MENU FALLEN ANGEL
@@ -2314,4 +2284,4 @@ style navigation_button_text:
     idle_color "#FFFFFF"       # Blanco puro para destacar sobre cualquier fondo
     hover_color "#FFD700"      # Dorado brillante al pasar el cursor
     selected_color "#FFA500"   # Naranja cálido para la opción activ
-    outlines [ (3, "#b85b14", 0, 0) ]
+    outlines [ (3, "#450ba1", 0, 0) ]
