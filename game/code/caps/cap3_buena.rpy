@@ -897,7 +897,7 @@ label ruta_buena_semana2:
     mc "Bueno."
     mc "Si te sirve de consuelo, Sayori me pego almenos dos veces."
     "Yuri deja escapar una pequeña risa."
-    y "Es por eso que tienes ese moretón en la cabeza?."
+    y "¿Es por eso que tienes ese moretón en la cabeza?"
     "UHH enserio? Exterminare las rocas"
     mc "Además..."
     mc "Ella estaba preocupada por ti."
