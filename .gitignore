@@ -24,6 +24,24 @@ game/cache/
 Thumbs.db
 .vscode/
 
+# Android Signing Keys & Keystores
+*.keystore
+*.jks
+*.key
+*.pk8
+*.pem
+*.p12
+android.keystore
+bundle.keystore
+
+# Android Build Outputs
+*.apk
+*.aab
+bin/
+gen/
+local.properties
+.gradle/
+
 # ==========================================
 # Official DDLC Assets (Excluded from Repo)
 # ==========================================
