@@ -298,7 +298,7 @@ label cap3:
     "Spaghetto's Bowl."
     mc "Aquí es."
     "Mantengo la puerta abierta para Yuri y entramos."
-    play music Noodle fadein 1.0
+    play music audio.t114 fadein 1.0
     show bg noodle_shop
     with wipeleft_scene
     mc "Hace frío aquí."

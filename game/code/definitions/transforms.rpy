@@ -555,3 +555,43 @@ init python:
 transform malpha(a=1.00):
     i11
     alpha a
+
+# --- Eyelid and camera wake-up animations (Chapter 1) ---
+image top_lid = Solid("#000")
+image bottom_lid = Solid("#000")
+
+transform top_closed:
+    xpos 0
+    ypos 0
+    xsize 1280
+    ysize 360
+
+transform bottom_closed:
+    xpos 0
+    ypos 360
+    xsize 1280
+    ysize 360
+
+transform top_open:
+    ease 0.8 ypos -360
+
+transform bottom_open:
+    ease 0.8 ypos 720
+
+transform top_close:
+    ease 0.8 ypos 0
+
+transform bottom_close:
+    ease 0.8 ypos 360
+
+transform sleepy_camera:
+    subpixel True
+    zoom 1.05
+    xalign 0.5
+    yalign 0.5
+    linear 4.0 xoffset -15 yoffset 8
+    linear 4.0 xoffset 15 yoffset -8
+    repeat
+
+transform noche:
+    matrixcolor BrightnessMatrix(-0.25)

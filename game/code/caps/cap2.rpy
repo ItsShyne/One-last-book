@@ -4869,13 +4869,13 @@ label biblioteca:
         "Siempre serás mi mejor amiga.":
             $ puntos_ruta -=1
             mc "Tú siempre serás mi mejor amiga."
-            jump siempre_serás_mi_mejor_amiga
+            jump siempre_seras_mi_mejor_amiga
         "Te quiero, Sayori.":
             $ puntos_ruta += 1
             mc "Sayori... Yo honestamente te quiero en mi vida."
             jump te_quiero_sayori
 
-    label siempre_serás_mi_mejor_amiga:
+    label siempre_seras_mi_mejor_amiga:
         stop music fadeout 0.5
         show sayori turned casual lup rup cry om ce zorder 2 at f11
         s "...Claro. Por supuesto."
@@ -4912,7 +4912,7 @@ label biblioteca:
         
 
 
-        jump yuri_continuación
+        jump yuri_continuacion
 
     label te_quiero_sayori:
 
@@ -4941,9 +4941,9 @@ label biblioteca:
         with dissolve_scene_full
 
 
-        jump yuri_continuación
+        jump yuri_continuacion
 
-    label yuri_continuación:
+    label yuri_continuacion:
         stop music fadeout 1.5
         scene bg sayori_street_aft 
         with dissolve_scene_full
