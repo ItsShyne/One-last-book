@@ -45,10 +45,6 @@ local.properties
 # ==========================================
 # Official DDLC Assets (Excluded from Repo)
 # ==========================================
-characters/monika.chr
-characters/natsuki.chr
-characters/sayori.chr
-characters/yuri.chr
 game/CAN YOU HEAR ME.txt
 game/bgm/1.ogg
 game/bgm/10-yuri.ogg
