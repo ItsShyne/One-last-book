@@ -550,7 +550,7 @@ init python:
         trans.yoffset = 3 + random.random() * 6 - 3
         return random.random() * 1.2 + 0.3
 
-# This transform makes the character appear on top with a transparency 
+# This transform makes the character appear on top with a transparency
 # for a bit during Act 2.
 transform malpha(a=1.00):
     i11

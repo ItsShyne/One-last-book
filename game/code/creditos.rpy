@@ -397,7 +397,7 @@ label creditos:
             ("mod_assets/bg/dibujo12.jpg", "Arte de la comunidad"),
         ],
         "ESCRITORES",
-        "EduCrock\nJeshu Rusky Dave\nLeni\nLuytenx\nShyne",
+        "EduCrock\nJeshu Rusky Dave\nLeni\nLuytenx\nShyne\nSlytharbez(Port a Android)",
         "#a83e2c",
         imgw=280, imgh=320
     )

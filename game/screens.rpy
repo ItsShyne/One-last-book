@@ -556,15 +556,15 @@ screen navigation():
 
             #textbutton _("Creditos") action ShowMenu("about")
 
-            $ nav_delay += 0.07
-            textbutton _("Salir"):
-                action Quit(confirm=not main_menu)
-                at navigation_button(nav_delay)
+            if renpy.variant("pc"):
 
-            if not main_menu or renpy.get_screen("main_menu") is None:
+                ## Help isn't necessary or relevant to mobile devices.
+                # textbutton _("Ayuda") action [Help("README.html"), Show(screen="dialog", message="The help file has been opened in your browser.", ok_action=Hide("dialog"))]
+
+                ## The quit button is banned on iOS and unnecessary on Android.
                 $ nav_delay += 0.07
-                textbutton _("Volver"):
-                    action Return()
+                textbutton _("Salir"):
+                    action Quit(confirm=not main_menu)
                     at navigation_button(nav_delay)
         else:
             timer 1.75 action Start("autoload_yurikill")
@@ -925,6 +925,11 @@ screen game_menu(title, scroll=None):
 
     if not main_menu and persistent.playthrough == 2 and not persistent.menu_bg_m and renpy.random.randint(0, 49) == 0:
         on "show" action Show("game_menu_m")
+
+    textbutton _("Return"):
+        style "return_button"
+
+        action Return()
 
     label title
 
