@@ -1,0 +1,125 @@
+name: Compilador
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versión (el archivo se llamará: OneLastBook-<versión>.zip)'
+        required: true
+        type: string
+        default: '0.9'
+
+jobs:
+  build:
+    name: Compilar y subir
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Validar la versión ────────────────────────────────────────────────
+      - name: Validar versión
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if [[ -z "$VERSION" ]]; then
+            echo "La versión no puede estar vacía."
+            exit 1
+          fi
+          if [[ ! "$VERSION" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+            echo "La versión contiene caracteres inválidos. Usa solo: letras, números, '.', '_', '-'"
+            exit 1
+          fi
+          echo "El archivo se llamará: OneLastBook-${VERSION}.zip"
+          echo "FILE_NAME=OneLastBook-${VERSION}" >> "$GITHUB_ENV"
+
+      # ── 2. Checkout del repositorio ─────────────────────────────────────────
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      # ── 3. Instalar Ren'Py SDK ───────────────────────────────────────────────
+      - name: Instalar Ren'Py SDK
+        run: |
+          RENPY_VERSION="8.5.2"
+          echo "Descargando Ren'Py SDK ${RENPY_VERSION}..."
+          wget -q "https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-sdk.tar.bz2" \
+            -O renpy-sdk.tar.bz2
+          tar -xjf renpy-sdk.tar.bz2
+          mv "renpy-${RENPY_VERSION}-sdk" renpy-sdk
+          echo "RENPY_SDK=$(pwd)/renpy-sdk" >> "$GITHUB_ENV"
+
+      # ── 4. Preparar SDK (permisos) ───────────────────────────────────────────
+      - name: Preparar SDK
+        run: |
+          chmod +x "$RENPY_SDK/renpy.sh"
+          chmod +x "$RENPY_SDK/lib/py3-linux-x86_64/renpy" 2>/dev/null || true
+          mkdir -p "$RENPY_SDK/tmp"
+
+      # ── 5. Compilar el mod (Renpy8-DDLCMod: win + linux + mac) ──────────────
+      - name: Compilar mod
+        run: |
+          PROJECT_DIR="$(pwd)"
+          cd "$RENPY_SDK"
+
+          ./renpy.sh launcher distribute \
+            "$PROJECT_DIR" \
+            --package Renpy8-DDLCMod \
+            --destination "$PROJECT_DIR/dist"
+
+          echo "Archivos generados en dist/:"
+          ls -lh "$PROJECT_DIR/dist/"
+
+      # ── 6. Renombrar el ZIP generado ────────────────────────────────────────
+      - name: Renombrar archivo
+        run: |
+          cd dist
+
+          ORIGINAL_ZIP=$(ls OneLastBook-Py3-Renpy8DDLCMod*.zip 2>/dev/null | head -n 1)
+
+          if [[ -z "$ORIGINAL_ZIP" ]]; then
+            echo "No se encontró el ZIP compilado. Archivos en dist/:"
+            ls -lh
+            exit 1
+          fi
+
+          echo "ZIP original: $ORIGINAL_ZIP"
+          mv "$ORIGINAL_ZIP" "${{ env.FILE_NAME }}.zip"
+          echo "Renombrado a: ${{ env.FILE_NAME }}.zip"
+          echo "ASSET_PATH=$(pwd)/${{ env.FILE_NAME }}.zip" >> "$GITHUB_ENV"
+
+      # ── 7. Encontrar la última release o pre-release ────────────────────────
+      - name: Encontrar release destino
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO="${{ github.repository }}"
+          RELEASE_DATA=$(gh release list --repo "$REPO" --limit 10 --json tagName,isPrerelease,isDraft 2>/dev/null || echo "[]")
+
+          STABLE_TAG=$(echo "$RELEASE_DATA" | jq -r '[.[] | select(.isPrerelease == false and .isDraft == false)] | first | .tagName // empty')
+
+          if [[ -n "$STABLE_TAG" ]]; then
+            echo "📦 Se usará la release estable: $STABLE_TAG"
+            echo "RELEASE_TAG=$STABLE_TAG" >> "$GITHUB_ENV"
+          else
+            PRE_TAG=$(echo "$RELEASE_DATA" | jq -r '[.[] | select(.isPrerelease == true and .isDraft == false)] | first | .tagName // empty')
+
+            if [[ -n "$PRE_TAG" ]]; then
+              echo "No hay release estable. Se usará la pre-release: $PRE_TAG"
+              echo "RELEASE_TAG=$PRE_TAG" >> "$GITHUB_ENV"
+            else
+              echo "No se encontró ninguna release ni pre-release en el repositorio."
+              exit 1
+            fi
+          fi
+
+      # ── 8. Subir el archivo a la release ────────────────────────────────────
+      - name: Subir a release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Subiendo ${{ env.FILE_NAME }}.zip a la release ${{ env.RELEASE_TAG }}..."
+
+          gh release upload "${{ env.RELEASE_TAG }}" \
+            "${{ env.ASSET_PATH }}" \
+            --repo "${{ github.repository }}" \
+            --clobber
+
+          echo "¡Archivo subido exitosamente!"
+          echo "https://github.com/${{ github.repository }}/releases/tag/${{ env.RELEASE_TAG }}"
