@@ -1,4 +1,4 @@
-name: Compilador
+﻿name: Compilador
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
       RENPY_VERSION: "8.5.2"
       RENPY_DIR: renpy
       DDLC_DIR: ddlc-base
-      PROJECT_DIR: ${{ github.workspace }}
+      BUILD_DIR: build
 
     steps:
       # ── 1. Validar la versión ────────────────────────────────────────────────
@@ -39,6 +39,8 @@ jobs:
       # ── 2. Checkout del repositorio ─────────────────────────────────────────
       - name: Checkout código
         uses: actions/checkout@v4
+        with:
+          path: mod-source
 
       # ── 3. Configurar Python ─────────────────────────────────────────────────
       - name: Configurar Python
@@ -72,41 +74,48 @@ jobs:
           path: ${{ env.DDLC_DIR }}/
           key: ddlc-base-v1
 
-      # ── 7. Descargar y extraer DDLC (solo si no está en caché) ─────────────
+      # ── 7. Descargar DDLC base (solo si no está en caché) ──────────────────
       - name: Descargar DDLC base
         if: steps.cache-ddlc.outputs.cache-hit != 'true'
         env:
           DDLC_URL: ${{ secrets.DDLC }}
         run: |
           if [[ -z "$DDLC_URL" ]]; then
-            echo "El secret DDLC_URL no está configurado en el repositorio."
-            echo "Ve a Settings > Secrets > Actions y agrega DDLC_URL con el enlace de descarga de DDLC."
+            echo "El secret DDLC no está configurado en el repositorio."
+            echo "Ve a Settings > Secrets > Actions y agrega DDLC con el enlace de descarga."
             exit 1
           fi
           echo "Descargando DDLC base..."
           wget -q "$DDLC_URL" -O ddlc-win.zip
-          mkdir -p ${DDLC_DIR}
           unzip -q ddlc-win.zip -d ddlc-extract/
           rm ddlc-win.zip
-          # Copiar solo los .rpa al directorio de caché
-          find ddlc-extract/ -name "*.rpa" -exec cp {} ${DDLC_DIR}/ \;
+          # DDLC se extrae en DDLC-1.1.1-pc/, lo movemos al directorio de caché
+          mv ddlc-extract/DDLC-1.1.1-pc ${DDLC_DIR}
           rm -rf ddlc-extract/
-          echo "RPAs extraídos:"
+          echo "DDLC base extraído:"
           ls -lh ${DDLC_DIR}/
 
-      # ── 8. Copiar RPAs de DDLC al proyecto ─────────────────────────────────
-      - name: Copiar RPAs de DDLC al proyecto
+      # ── 8. Preparar carpeta de compilación (DDLC + mod) ────────────────────
+      - name: Preparar carpeta de compilación
         run: |
-          cp ${DDLC_DIR}/*.rpa game/
-          echo "RPAs copiados a game/:"
-          ls -lh game/*.rpa
+          # Copiar todo el DDLC base como punto de partida
+          cp -Rf ${DDLC_DIR} ${BUILD_DIR}
 
-      # ── 9. Compilar el mod (Renpy8-DDLCMod: win + linux + mac) ──────────────
+          # Copiar los archivos del mod encima (game/ y project.json)
+          cp -Rf mod-source/game/* ${BUILD_DIR}/game/
+          cp -f mod-source/project.json ${BUILD_DIR}/project.json
+
+          echo "Carpeta de compilación lista:"
+          ls -lh ${BUILD_DIR}/
+          echo "Contenido de game/:"
+          ls -lh ${BUILD_DIR}/game/ | head -20
+
+      # ── 9. Compilar el mod ─────────────────────────────────────────────────
       - name: Compilar mod
         run: |
           mkdir -p dist
           cd ${RENPY_DIR}
-          ./renpy.sh launcher distribute "../" \
+          ./renpy.sh launcher distribute "../${BUILD_DIR}" \
             --package Renpy8-DDLCMod \
             --destination "../dist" \
             --no-update
@@ -114,7 +123,7 @@ jobs:
           echo "Archivos generados en dist/:"
           ls -lh "../dist/"
 
-      # ── 10. Renombrar el ZIP generado ───────────────────────────────────────
+      # ── 10. Renombrar el ZIP generado ──────────────────────────────────────
       - name: Renombrar archivo
         run: |
           cd dist
@@ -132,7 +141,7 @@ jobs:
           echo "Renombrado a: ${{ env.FILE_NAME }}.zip"
           echo "ASSET_PATH=$(pwd)/${{ env.FILE_NAME }}.zip" >> "$GITHUB_ENV"
 
-      # ── 11. Encontrar la última release o pre-release ────────────────────────
+      # ── 11. Encontrar la última release o pre-release ──────────────────────
       - name: Encontrar release destino
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -157,7 +166,7 @@ jobs:
             fi
           fi
 
-      # ── 12. Subir el archivo a la release ────────────────────────────────────
+      # ── 12. Subir el archivo a la release ──────────────────────────────────
       - name: Subir a release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
