@@ -101,9 +101,14 @@ jobs:
           # Copiar todo el DDLC base como punto de partida
           cp -Rf ${DDLC_DIR} ${BUILD_DIR}
 
-          # Copiar los archivos del mod encima (game/ y project.json)
+          # Copiar los archivos del mod encima (game/, characters/ y project.json)
           cp -Rf mod-source/game/* ${BUILD_DIR}/game/
+          cp -Rf mod-source/characters/* ${BUILD_DIR}/characters/ 2>/dev/null || true
           cp -f mod-source/project.json ${BUILD_DIR}/project.json
+
+          # Eliminar scripts.rpa del DDLC base original (el mod provee sus propios scripts)
+          rm -f ${BUILD_DIR}/game/scripts.rpa
+          rm -f ${BUILD_DIR}/game/*.rpyc 2>/dev/null || true
 
           echo "Carpeta de compilación lista:"
           ls -lh ${BUILD_DIR}/
@@ -128,7 +133,7 @@ jobs:
         run: |
           cd dist
 
-          ORIGINAL_ZIP=$(ls OneLastBook-Py3-Renpy8DDLCMod*.zip 2>/dev/null | head -n 1)
+          ORIGINAL_ZIP=$(ls *.zip 2>/dev/null | head -n 1)
 
           if [[ -z "$ORIGINAL_ZIP" ]]; then
             echo "No se encontró el ZIP compilado. Archivos en dist/:"
