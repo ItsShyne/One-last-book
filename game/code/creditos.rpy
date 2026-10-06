@@ -44,6 +44,8 @@
 # de ~17.7s cada uno (3s apareciendo + 11.7s sostenido + 3s
 # desapareciendo), sin repetirse -- cada uno se muestra una sola vez y le
 # pasa la posta al siguiente con un crossfade de 3s.
+# (El tercero se sostiene 19.3s en vez de 11.7s para cubrir la categoria final de
+# "Agradecimientos especiales", que agrega ~7.6s al final de los creditos.)
 image credits_ambient_1:
     "mod_assets/bg/creditos/creditos_bg_club.png"
     xysize (1280, 720)
@@ -70,7 +72,7 @@ image credits_ambient_3:
     alpha 0.0
     35.4
     linear 3.0 alpha 1.0
-    11.7
+    19.3
     linear 3.0 alpha 0.0
 
 # Fondo del reconocimiento inicial: el fondo de lunares del menú de Fallen
@@ -215,7 +217,7 @@ screen creditos_director_creador():
 # apilar: True pone los dibujos uno encima del otro en vez de lado a lado
 # -- para panorámicas (anchas y bajas), apiladas se aprovecha mejor el
 # espacio vertical en vez de alargar todo horizontalmente.
-screen creditos_categoria(imagenes, titulo, texto, color_titulo="#ffcc66", imgw=280, imgh=320, apilar=False):
+screen creditos_categoria(imagenes, titulo, texto, color_titulo="#ffcc66", imgw=280, imgh=320, apilar=False, tam_titulo=44, tam_texto=30):
     add Solid("#00000060")
 
     hbox:
@@ -265,14 +267,14 @@ screen creditos_categoria(imagenes, titulo, texto, color_titulo="#ffcc66", imgw=
 
             text titulo:
                 xalign 0.5
-                size 44
+                size tam_titulo
                 color color_titulo
                 bold True
 
             text texto:
                 xalign 0.5
                 text_align 0.5
-                size 30
+                size tam_texto
                 color "#ffffff"
 
 
@@ -381,7 +383,7 @@ label creditos:
             ("mod_assets/bg/dibujo7.png", "Sin Cereal"),
         ],
         "PROGRAMADORES",
-        "Falkner\nLeni\nShyne\nSkert",
+        "Falkner\nLeni\nShyne\nSkert\nSlytharbez(Port a Android)",
         "#c9932e",
         imgw=420, imgh=236, apilar=True
     )
@@ -397,7 +399,7 @@ label creditos:
             ("mod_assets/bg/dibujo12.jpg", "Arte de la comunidad"),
         ],
         "ESCRITORES",
-        "EduCrock\nJeshu Rusky Dave\nLeni\nLuytenx\nShyne\nSlytharbez(Port a Android)",
+        "EduCrock\nJeshu Rusky Dave\nLeni\nLuytenx\nShyne",
         "#a83e2c",
         imgw=280, imgh=320
     )
@@ -448,6 +450,20 @@ label creditos:
     with Dissolve(0.8)
     $ renpy.pause(5.0, hard=True)
     hide screen creditos_categoria
+    with Dissolve(0.8)
+
+    # Agradecimientos especiales: va al final y con letra mas chica porque
+    # son varios nombres. Dura 6s (en vez de 5s) para dar tiempo a leerlos.
+    show screen creditos_categoria(
+        [],
+        "AGRADECIMIENTOS ESPECIALES",
+        "Sprites de MC (Canon MC Remake)\nStormBlazed76 · Satchely · Blue Quacker · Sweggory\n\nTeléfono (Better EMR Phone)\nElckarow",
+        "#d9a441",
+        tam_titulo=36, tam_texto=22
+    )
+    with Dissolve(0.8)
+    $ renpy.pause(6.0, hard=True)
+    hide screen creditos_categoria
     hide credits_ambient_1
     hide credits_ambient_2
     hide credits_ambient_3
@@ -466,4 +482,8 @@ label creditos:
     with Dissolve(1.0)
     $ renpy.pause(4.0, hard=True)
 
+    # Vuelve al menú principal pase lo que pase con la pila de llamadas.
+    # Con "return" se rompía en partidas guardadas viejas: arrastraban una
+    # llamada pendiente a un archivo que ya no existe (cap1.rpy cambió de carpeta).
+    $ MainMenu(confirm=False)()
     return

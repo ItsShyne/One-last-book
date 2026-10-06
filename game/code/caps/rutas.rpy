@@ -232,7 +232,6 @@ label rutas:
         play sound alarm
         $ renpy.pause(2.0)
         stop sound fadeout 0.3
-        "Una fuerte alarma interrumpe a Yuri y la devuelve bruscamente a la realidad."
         show yuri turned pani om oe zorder 2 at f11
         y "A-Ah..."
         y turned ldown rdown lsur om oe "L-Lamento haberte retenido aquí tanto tiempo escuchándome..."
@@ -496,82 +495,65 @@ label rutas:
     label mostrar_poema_yuri2:
         if decision_biblioteca == "Monika":
             play music audio.t5
-            "Me acerqué a Yuri."
+            "Me acerco a Yuri con el poema en la mano."
             show yuri turned happ cm oe zorder 2 at t11
             mc "¿Lista?"
-            show yuri turned happ om oe zorder 2 at f11
-            y "Por supuesto, quiero ver cómo seguiste mis consejos."
-            show yuri turned happ cm oe zorder 2 at f11
-            "Espero no me destruya..."
-            "Alcé mi mano para darle el poema a Yuri."
-            #añadir poema 
+            show yuri turned flus om oe zorder 2 at f11
+            y "S-sí. Tengo curiosidad por ver cómo te fue."
+            show yuri turned flus cm oe zorder 2 at t11
+            "Pasé la noche pensando en lo que hablamos. Espero haberlo entendido bien."
+            "Le entrego la hoja."
+            $ poem_db.show_poem("poem_mc_intruso")
+            show yuri turned neut cm oe zorder 2 at t11
+            "Yuri lee en silencio, sin apurarse. Sus ojos recorren cada verso dos veces."
+            "Siento que va a notar que lo escribí a última hora... Supongo que no vale la pena sobrepensar."
             show yuri turned neut om oe zorder 2 at f11
             y "[player]..."
             show yuri turned neut cm oe zorder 2 at t11
             mc "¿S-sí?"
-            "Siento que va a notar que lo escribí en la noche... Supongo que no vale la pena sobrepensar, eso no soluciona nada."
-            #añadir escena de interrumpir dependiendo de la reescritura 
             show yuri turned happ om ce zorder 2 at f11
-            y "Me gustó mucho más que el de ayer."
+            y "Se nota que trabajaste en lo que hablamos. Tomaste una sola imagen, el intruso, y no la soltaste en todo el poema."
+            y "Lo que más me inquieta es que tenga tu misma cara. «Su anatomía es idéntica a la mía»."
+            y "Nadie nota la diferencia, y por eso nadie lo detiene. Eso es lo que más duele."
             show yuri turned happ cm ce zorder 2 at t11
-            "¿Qué?"
-            show yuri mb e1d zorder 2 at f11
-            y "Añadiste muy bien el simbolismo y esta vez intentaste algo nuevo, experimentaste y realmente te salió bien."
-            show yuri turned laug om oe zorder 2 at f11
-            y "Si sigues mejorando, incluso podrías ser el mejor escritor del club, yo lo creo."
-            show yuri turned laug cm oe zorder 2 at f11
-            mc "No creo que sea tan bueno como mencionas, Yuri, pero sí seguí tus consejos y además leí algunos libros."
-            show yuri turned nerv om oe zorder 2 at f11
-            y "Tu poema es tan impresionante... ¿T-te importaría si me lo quedo?"
-            show yuri turned lsur cm oe zorder 2 at t11
-            mc "Pero aún tengo que compartirlo, Yuri..."
-            show yuri turned worr cm oe zorder 2 at t11
-            mc "Pero no tengo problemas."
-            show yuri turned laug om oe zorder 2 at t11
-            "Yuri me sonrió ligeramente. Espero no se lo tome a mal."
+            mc "Lo leí en voz alta varias veces, como dijiste."
             show yuri turned flus om oe zorder 2 at f11
-            y "Con más práctica, podrías incluso expresar tus sentimientos o cómo te sientes. Yo... a veces lo hago."
-            show yuri turned rup laug cm oe zorder 2 at t11
-            mc "Sería muy difícil escribir mis pensamientos."
-            show yuri turned curi om oe zorder 2 at f11
-            y "¿A qué te refieres?"
-            show yuri turned curi cm oe zorder 2 at t11
-            mc "No me sentiría tan cómodo describiéndome a los demás."
-            mc "E incluso creo que incomodaría a los demás miembros haciéndolo."
-            show yuri turned happ om oe zorder 2 at f11
-            y "Bueno, no tiene que ser a todos, puede ser con alguien especial."
-            show yuri turned happ om oe zorder 2 at s11
-            y "Como yo..."
-            show yuri turned nerv cm ce zorder 2 at t11
-            "Se quedó en silencio un segundo, como si recién hubiera escuchado lo que acababa de decir."
-            show yuri turned nerv om oe zorder 2 at f11
-            y "Q-quiero decir... alguien en quien confíes. No tiene que ser yo, necesariamente."
+            y "Se nota. Sobre todo en la tercera estrofa: ahora respira."
+            y "Y el final... cambia la pregunta. Empiezas preguntando por el intruso y terminas preguntando si el intruso eres tú."
             show yuri turned flus cm oe zorder 2 at t11
-            mc "No sé, Yuri. Contigo se siente bastante fácil hablar de estas cosas."
-            show yuri turned happ om ce zorder 2 at f11
+            "Parece contenta de verdad, aunque trata de disimularlo bajando la mirada."
+            mc "Gracias, Yuri. Viniendo de ti, significa mucho."
+            show yuri turned flus om oe zorder 2 at f11
+            y "No hice gran cosa. El esfuerzo fue tuyo."
+            y "Y... algo más. Cuando uno escribe con sinceridad, a veces termina diciendo más de lo que pensaba."
+            show yuri turned flus cm oe zorder 2 at t11
+            mc "Sí... me pasó. No sabía que tenía tantas cosas guardadas."
+            show yuri turned nerv om oe zorder 2 at f11
+            y "Y... lo del intruso. ¿Te has sentido así alguna vez? ¿Como si alguien más ocupara tu lugar?"
+            show yuri turned nerv cm oe zorder 2 at t11
+            mc "A veces. Sobre todo cuando hay mucha gente."
+            show yuri turned nerv om oe zorder 2 at f11
+            y "Yo... también. Por eso casi nunca comparto lo que escribo."
+            show yuri turned nerv cm oe zorder 2 at t11
+            mc "Entonces me alegra que hoy nuevamente lo compartas con el club."
+            show yuri turned flus om ce zorder 2 at f11
             y "..."
-            show yuri turned laug cm oe zorder 2 at t11
-            mc "Suena a una buena idea para mi próximo poema."
-            "Yuri me pasó su poema. Era una hoja suelta."
+            y "Bueno... ya que estamos, es mi turno. Aunque no sé si te va a gustar."
+            "Yuri me entrega una hoja doblada con cuidado."
             $ poem_db.show_poem("Yuri_poem2")
             show yuri turned nerv om oe zorder 2 at f11
             y "¿Y bien...?"
             show yuri turned nerv cm oe zorder 2 at t11
-            mc "Es realmente hermoso, Yuri... El \"Señor tic tac\". ¿En quién pensabas cuando lo escribiste?"
+            mc "Es muy bonito, Yuri. El «Señor tic tac» suena casi como un personaje. ¿Es alguien, o el tiempo mismo?"
             show yuri turned flus om ce zorder 2 at f11
-            y "E-eso no es algo que pueda responder tan fácilmente."
-            show yuri shy m4 e1 b1 zorder 2 at f11
-            y "Solo... hay alguien que ha estado ahí, aunque no se lo haya pedido. Alguien paciente, que no se rindió conmigo aunque tuviera motivos de sobra."
-            show yuri shy m4 e1 b1 zorder 2 at t11
-            y "No sabía cómo agradecer eso con palabras normales, así que... lo escribí de la única forma que sé hacerlo."
-            show yuri shy m1 e2 b1 zorder 2 at t11
-            mc "Oh... conque es eso."
-            mc "Entonces vale mucho más ahora que sé lo que hay detrás de esas palabras."
-            show yuri shy m3 e1 b1 zorder 2 at f11
-            y "..."
-            show yuri shy m3 e1 b1 zorder 2 at t11
-            y "Me alegra que lo veas de esa forma."
-            show yuri shy m3 e1 b1 zorder 2 at thide
+            y "Supongo que... las dos cosas. Lo escribí pensando en cómo cambia el tiempo cuando por fin sientes calma."
+            show yuri turned flus cm oe zorder 2 at t11
+            mc "Entiendo. No hace falta que me expliques más."
+            show yuri turned happ om ce zorder 2 at f11
+            y "Gracias... por no preguntar de más."
+            show yuri turned happ cm ce zorder 2 at t11
+            mc "Gracias a ti por compartirlo."
+            show yuri turned happ cm ce zorder 2 at thide
             hide yuri
             with wipeleft_scene
             jump pelea
@@ -582,81 +564,68 @@ label rutas:
             show yuri turned happ cm oe zorder 2 at f11
             y "[player], ¿quieres compartir poemas?"
             show yuri turned happ cm oe zorder 2 at t11
-            mc "Por supuesto"
+            mc "Por supuesto."
             mc "¿Lista?"
             show yuri turned happ om oe zorder 2 at f11
-            y "Por supuesto, quiero ver cómo seguiste mis consejos."
-            show yuri turned happ cm oe zorder 2 at f11
-            "Espero no me destruya..."
-            "Alcé mi mano para darle el poema a Yuri."
-            #añadir poema 
+            y "S-sí. Tengo curiosidad por ver cómo te fue."
+            show yuri turned happ cm oe zorder 2 at t11
+            "Pasé la noche pensando en lo que hablamos. Espero haberlo entendido bien."
+            "Le entrego la hoja."
+            $ poem_db.show_poem("poem_mc_intruso")
+            show yuri turned neut cm oe zorder 2 at t11
+            "Yuri lee en silencio, sin apurarse. Sus ojos recorren cada verso dos veces."
+            "Siento que va a notar que lo escribí a última hora... Supongo que no vale la pena sobrepensar."
             show yuri turned neut om oe zorder 2 at f11
             y "[player]..."
             show yuri turned neut cm oe zorder 2 at t11
             mc "¿S-sí?"
-            "Siento que va a notar que lo escribí en la noche... Supongo que no vale la pena sobrepensar, eso no soluciona nada."
-            #añadir escena de interrumpir dependiendo de la reescritura 
             show yuri turned happ om ce zorder 2 at f11
-            y "Me gustó mucho más que el de ayer."
+            y "Se nota que trabajaste en lo que hablamos. Tomaste una sola imagen, el intruso, y no la soltaste en todo el poema."
+            y "Lo que más me inquieta es que tenga tu misma cara. «Su anatomía es idéntica a la mía»."
+            y "Nadie nota la diferencia, y por eso nadie lo detiene. Eso es lo que más duele."
             show yuri turned happ cm ce zorder 2 at t11
-            "¿Qué?"
-            show yuri mb e1d zorder 2 at f11
-            y "Añadiste muy bien el simbolismo y esta vez intentaste algo nuevo, experimentaste y realmente te salió bien."
+            mc "Lo leí en voz alta varias veces, como dijiste. Y... también leí un par de los libros que me recomendaste."
             show yuri turned laug om oe zorder 2 at f11
-            y "Si sigues mejorando, incluso podrías ser el mejor escritor del club, yo lo creo."
+            y "¿En serio? Me alegra mucho."
+            y "Se nota. Sobre todo en la tercera estrofa: ahora respira."
+            y "Y el final... cambia la pregunta. Empiezas preguntando por el intruso y terminas preguntando si el intruso eres tú."
             show yuri turned laug cm oe zorder 2 at t11
-            mc "No creo que sea tan bueno como mencionas, Yuri, pero sí seguí tus consejos y además leí algunos libros."
-            show yuri turned nerv om oe zorder 2 at f11
-            y "Tu poema es tan impresionante... ¿T-te importaría si me lo quedo?"
-            show yuri turned lsur cm oe zorder 2 at t11
-            mc "Pero aún tengo que compartirlo, Yuri..."
-            show yuri turned worr cm oe zorder 2 at t11
-            mc "Pero no tengo problemas luego de compartirlo con las chicas."
-            show yuri turned laug om oe zorder 2 at t11
-            "Yuri me sonrió ligeramente. Espero no se lo tome a mal."
+            "Parece contenta de verdad, aunque trata de disimularlo bajando la mirada."
+            mc "Gracias, Yuri. Viniendo de ti, significa mucho."
             show yuri turned flus om oe zorder 2 at f11
-            y "Con más práctica, podrías incluso expresar tus sentimientos o cómo te sientes. Yo... a veces lo hago."
-            show yuri turned rup laug cm oe zorder 2 at t11
-            mc "Sería muy difícil escribir mis pensamientos."
-            show yuri turned curi om oe zorder 2 at f11
-            y "¿A qué te refieres?"
-            show yuri turned curi cm oe zorder 2 at t11
-            mc "No me sentiría tan cómodo describiéndome a los demás."
-            mc "E incluso creo que incomodaría a los demás miembros haciéndolo."
-            show yuri turned happ om oe zorder 2 at f11
-            y "Bueno, no tiene que ser a todos, puede ser con alguien especial."
-            show yuri turned happ om oe zorder 2 at s11
-            y "Como yo..."
-            show yuri turned nerv cm ce zorder 2 at t11
-            "Se quedó en silencio un segundo, como si recién hubiera escuchado lo que acababa de decir."
-            show yuri turned nerv om oe zorder 2 at f11
-            y "Q-quiero decir... alguien en quien confíes. No tiene que ser yo, necesariamente."
+            y "No hice gran cosa. El esfuerzo fue tuyo."
+            y "Y... algo más. Cuando uno escribe con sinceridad, a veces termina diciendo más de lo que pensaba."
             show yuri turned flus cm oe zorder 2 at t11
-            mc "No sé, Yuri. Contigo se siente bastante fácil hablar de estas cosas."
-            show yuri turned happ om ce zorder 2 at f11
+            mc "Sí... me pasó. No sabía que tenía tantas cosas guardadas."
+            show yuri turned nerv om oe zorder 2 at f11
+            y "Y... lo del intruso. ¿Te has sentido así alguna vez? ¿Como si alguien más ocupara tu lugar?"
+            show yuri turned nerv cm oe zorder 2 at t11
+            mc "A veces. Sobre todo cuando hay mucha gente."
+            show yuri turned nerv om oe zorder 2 at f11
+            y "Yo... también. Por eso casi nunca comparto lo que escribo."
+            show yuri turned nerv cm oe zorder 2 at t11
+            mc "Entonces me alegra que hoy nuevamente lo compartas con el club."
+            show yuri turned flus om ce zorder 2 at f11
             y "..."
-            show yuri turned laug cm oe zorder 2 at t11
-            mc "Suena a una buena idea para mi próximo poema."
-            "Yuri me pasó su poema. Era una hoja suelta."
+            y "Bueno... es mi turno. Aunque no sé si te va a gustar."
+            "Yuri me entrega una hoja doblada con cuidado."
             $ poem_db.show_poem("Yuri_poem2")
             show yuri turned nerv om oe zorder 2 at f11
             y "¿Y bien...?"
             show yuri turned nerv cm oe zorder 2 at t11
-            mc "Es realmente hermoso, Yuri... El \"Señor tic tac\". ¿En quién pensabas cuando lo escribiste?"
+            mc "Es muy bonito, Yuri. El «Señor tic tac» suena casi como un personaje. ¿Es alguien, o el tiempo mismo?"
             show yuri turned flus om ce zorder 2 at f11
-            y "E-eso no es algo que pueda responder tan fácilmente."
+            y "Supongo que... las dos cosas. Lo escribí pensando en cómo cambia el tiempo cuando por fin sientes calma."
             show yuri turned worr om oe zorder 2 at f11
-            y "Solo... hay alguien que ha estado ahí, aunque no se lo haya pedido. Alguien paciente, que no se rindió conmigo aunque tuviera motivos de sobra."
+            y "Hace poco descubrí que hay personas que escuchan de verdad, sin aburrirse. No es algo común."
             show yuri turned worr cm oe zorder 2 at t11
-            y "No sabía cómo agradecer eso con palabras normales, así que... lo escribí de la única forma que sé hacerlo."
+            mc "Entiendo. No hace falta que me expliques más."
             show yuri turned flus cm oe zorder 2 at t11
-            mc "Oh... conque es eso."
-            mc "Entonces vale mucho más ahora que sé lo que hay detrás de esas palabras."
+            "No sé si habla de mí. Prefiero no preguntar."
             show yuri turned happ om ce zorder 2 at f11
-            y "..."
-            show yuri turned flus cm oe zorder 2 at t11
-            y "Me alegra que lo veas de esa forma."
-            show yuri turned laug cm oe zorder 2 at t11
+            y "Gracias... por no preguntar de más."
+            show yuri turned happ cm ce zorder 2 at t11
+            mc "Gracias a ti por compartirlo."
             show yuri turned laug cm oe zorder 2 at thide
             hide yuri
             with wipeleft_scene

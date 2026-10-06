@@ -1452,7 +1452,7 @@ label biblioteca:
     y "E-Es mi cu-"
     show yuri turned shoc cm oe zorder 2 at t11
     mc "Yuri, está bien. Solo es un poco de agua."
-    "Yuri me entrega un pequeño trapo de tela muy fina para secar mis pies"
+    "Yuri me entrega un pequeño pañuelo de tela muy fina para secar mis pies"
     mc "Con el tiempo se secaran, por lo pronto limpiemos el suelo"
     "Yuri aún parecía preocupada."
     show yuri turned lsur cm oe zorder 2 at t11
@@ -2471,18 +2471,23 @@ label biblioteca:
         "Suspiré esperando a Yuri."
         #transición y sonido del bzzt
         with wipeleft_scene
-        play sound vibration
-        "*bzzt*"
-        play sound vibration
-        "*bzzt*"
+        play sound notificacion
+        "*ding*"
+        play sound notificacion
+        "*ding*"
         "Mi celular empezó a vibrar en mi bolsillo. ¿Será Sayori?"
         "Abrí el mensaje."
         #agregar el ??? y el sondio de bzzt para no hacerse wey
         #añadir escena de Yuri con Yuri chiquita
-        "???" "Deja de evitarme."
-        mc "¿Qué?"
-        "???" "Ella no te merece, créeme, es una loca."
-        mc "Quizás te estés confundiendo de número, soy [player]."
+        $ phone_hora(1, 18, 5, 78)
+        phone discussion "desconocido":
+            time year 2026 month 10 day 1 hour 18 minute 5 delay -1
+            "x" "Deja de evitarme."
+            "mc" "¿Qué?"
+            "x" "Ella no te merece, créeme, es una loca."
+            "mc" "Quizás te estés confundiendo de número, soy [player]."
+            pause
+        phone end discussion
         "No recibí respuesta."
         "¿Quién er—"
         y "¿[player]?"
@@ -2696,7 +2701,21 @@ label biblioteca:
         "Pero aún me inquieta todo lo demás..."
         "Sayori llorando en el club y yo, siendo su mejor amigo, no pude apoyarla..."
         "Natsuki también parece tener un problema que aún no puedo saber."
-        "Desde ayer he estado recibiendo mensajes de un número extraño."
+        "Desde hace dos días he estado recibiendo mensajes de un número extraño."
+        $ phone_hora(3, 10, 43, 62)
+        phone discussion "desconocido":
+            time year 2026 month 10 day 2 hour 14 minute 20 delay -1
+            "x" "No me ignores." delay 0.4
+            "x" "Ya viste cómo es, ¿no? Lo que hay detrás de esa cara de niña buena." delay 0.4
+            "mc" "No sé quién eres ni qué quieres. Deja de escribirme." delay 0.4
+            "x" "Sí lo sabes. Solo no quieres aceptarlo." delay 0.4
+            time year 2026 month 10 day 2 hour 21 minute 40 delay -1
+            "x" "Ella te va a lastimar. Siempre termina lastimando a los que se acercan." delay 0.4
+            time year 2026 month 10 day 3 hour 9 minute 50 delay -1
+            "x" "Vas a salir con ella hoy, ¿verdad?" delay 0.4
+            pause
+        phone end discussion
+        "Sigo sin saber quién es."
         "Se me está complicando seguir el ritmo a todo... Siento que en algún momento solo caeré en el suelo."
         "Pero Yuri..."
         "Luego de curar sus heridas, quedamos en que íbamos a salir hoy."
@@ -2706,11 +2725,22 @@ label biblioteca:
         scene kitchen
         with wipeleft_scene
         "Saqué mi teléfono para escribirle a Yuri. Desde que me fui de su casa no hemos hablado mucho."
-        mc "Hola Yuri, estoy saliendo de mi casa, pero antes de ir quería saber cómo estás."
+        $ phone_hora(3, 10, 52, 60)
+        phone discussion "yuri":
+            time year 2026 month 10 day 3 hour 10 minute 52 delay -1
+            "mc" "Hola Yuri, estoy saliendo de mi casa, pero antes de ir quería saber cómo estás."
+            pause
+        phone end discussion
         "Sé que hoy será un día bueno para ambos."
-        play sound vibration
-        "*bzzt*"
-        y "Ya me encuentro lista, gracias por preguntar."
+        play sound notificacion
+        "*ding*"
+        phone discussion "yuri":
+            type "y" value True
+            "y" "Ya me encuentro lista, gracias por preguntar."
+            "y" "Estoy un poco nerviosa. Pero lista."
+            "mc" "Tranquila, voy para allá."
+            pause
+        phone end discussion
         #cambio de escena suave
         scene bg house_y
         with wipeleft_scene 
@@ -2879,20 +2909,27 @@ label biblioteca:
                 y "Gracias por dejarme intentarlo... y por no rendirte conmigo."
                 show yuri 1ca zorder 2 at t11
         mc "No hay problema."
-        play sound vibration
-        "*Bzzt*"
+        play sound notificacion
+        "*ding*"
         "El camarero pone las órdenes en la mesa."
-        play sound vibration
-        "*Bzzt*"
+        play sound notificacion
+        "*ding*"
         mc "Y ¿ya ha—"
-        play sound vibration
-        "*Bzzt*"
+        play sound notificacion
+        "*ding*"
         show yuri 1cb zorder 2 at f11
         y "Puedes contestar, no me molesta."
         show yuri 1ca zorder 2 at t11
         mc "No, solo lo apagaré un rato. Dame un momento."
         "Agarré mi celular y vi los mensajes del número desconocido."
-        "???" "¿Ya responderás? ¿Estás ocupado \"bebiendo té\"?"
+        $ phone_hora(3, 12, 48, 38)
+        phone discussion "desconocido":
+            time year 2026 month 10 day 3 hour 12 minute 46 delay -1
+            "x" "¿Ya responderás?" delay 0.4
+            "x" "¿Estás ocupado \"bebiendo té\"?" delay 0.4
+            "x" "Pregúntale por qué evita a la gente. A ver qué te dice." delay 0.4
+            pause
+        phone end discussion
         mc "Jódete."
         "Apagué mi celular."
         show yuri 1ce zorder 2 at t11
@@ -3334,83 +3371,207 @@ label biblioteca:
         y "Yo tengo una copia en la repisa."
         show yuri 1ca zorder 2 at t11
         mc "Ah, cierto, lo había olvidado."
-        show yuri 1cc zorder 2 at f11
+        show yuri 1cq zorder 2 at f11
+        y "[player]... ¿me das un momento? Quisiera ponerme algo más cómodo."
+        show yuri 1cq zorder 2 at t11
+        mc "Claro, tómate tu tiempo."
+        show yuri 1cb zorder 2 at thide
+        hide yuri
+        "Subió las escaleras casi corriendo. Escuché una puerta cerrarse arriba."
+        "Me quedé solo en la sala. Ahora que la miro bien, la casa es enorme, muy ordenada y casi silenciosa."
+        "En la repisa había una fila de libros y, entre ellos, la copia del nuestro, con el lomo muy cuidado."
+        "Un par de minutos después escuché sus pasos bajando."
+        # A partir de aquí se usa el sprite del MPT con la ropa casual
+        show yuri turned casual flus n3 cm oe zorder 2 at t11
+        "Yuri se había cambiado a un atuendo más casual."
+        show yuri turned casual flus n3 om oe zorder 2 at f11
+        y "P-perdona la tardanza."
+        show yuri turned casual flus n3 cm oe zorder 2 at t11
+        mc "No te preocupes."
+        show yuri turned casual happ om oe zorder 2 at f11
         y "Puedes sentarte donde quieras. Yo... normalmente leo aquí."
         "Señaló un rincón del sofá. Justo a su lado. No al otro extremo."
-        show yuri 1ca zorder 2 at t11
+        show yuri turned casual happ cm oe zorder 2 at t11
         "Me senté donde me indicó. Más cerca de lo que hubiera esperado hace apenas una semana."
-        # Añadir fondo de la casa de Yuri de noche
         scene bg living_room_night
         with dissolve_scene_full
-        show yuri 1cm zorder 2 at t11
+        show yuri turned casual neut cm ce zorder 2 at t11
         "Pasamos un buen rato así, en silencio. Lo único que se escuchaba era el pasar de las páginas y, de vez en cuando, su respiración cuando algo del libro la sorprendía."
         "No es un silencio incómodo. Es de esos que no necesitan llenarse con nada."
         "La miré de reojo más de una vez. Un par de esas veces, ella hacía lo mismo. Ninguno de los dos dijo nada al respecto."
-        "Estuvimos leyendo una gran parte de la tarde. Creo que Yuri está dormida."
+        "Estuvimos leyendo una gran parte de la tarde. Cuando levanté la vista, Yuri se había quedado dormida con el libro sobre las rodillas."
+        show yuri turned casual neut cm ce zorder 2 at t11
         mc "Yuri, despierta."
-        "La moví un poco y lentamente ella abrió los ojos."
-        show yuri 1co zorder 2 at f11
+        "La moví un poco y, lentamente, abrió los ojos."
+        show yuri turned casual lsur om oe zorder 2 at f11
         y "A-Ah, disculpa, me quedé completamente dormida. ¿Qué hora es?"
-        show yuri 1cs zorder 2 at t11
+        show yuri turned casual lsur cm oe zorder 2 at t11
         "Revisé mi celular."
         "Sin carga."
         mc "No tengo idea, pero ya está bastante oscuro afuera."
-        show yuri 1cg zorder 2 at f11
+        show yuri turned casual worr om oe zorder 2 at f11
         y "Es tarde. Muy tarde."
-        show yuri 1co zorder 2 at t11
+        show yuri turned casual worr cm oe zorder 2 at t11
         "Se levantó de golpe y caminó hasta la ventana, como si pudiera confirmar la hora solo con mirar afuera."
-        show yuri 1cg zorder 2 at f11
+        show yuri turned casual worr om oe zorder 2 at f11
         y "No deberías caminar solo a esta hora."
         mc "Estaré bien, Yuri, no es la primera vez que—"
-        show yuri 1co zorder 2 at f11
+        show yuri turned casual lsur om oe zorder 2 at f11
         y "No."
-        "Lo dijo tan rápido que hasta ella pareció sorprendida de haberlo dicho."
-        show yuri 1cg zorder 2 at t11
+        "Lo dijo tan rápido que hasta ella pareció sorprendida."
+        show yuri turned casual nerv om oe zorder 2 at f11
         y "Q-Quiero decir... preferiría que no. Si algo llegara a pasarte..."
-        show yuri 1co zorder 2 at f11
+        show yuri turned casual nerv cm oe zorder 2 at t11
         mc "Tampoco quisiera ser un intruso en tu casa, ¿sabes?"
-        show yuri 1cb zorder 2 at f11
+        show yuri turned casual worr om oe zorder 2 at f11
         y "No serías un intruso."
+        show yuri turned casual worr cm oe zorder 2 at t11
         "Se hizo un silencio entre los dos. Ninguno se movió."
-        show yuri 1ca zorder 2 at t11
-        mc "¿Y... dónde dormiría?"
-        show yuri 1ch zorder 2 at f11
-        "Su expresión cambió por completo, como si no hubiera pensado en esa parte hasta este momento."
-        show yuri 1ch zorder 2 at t11
-        y "E-en la sala hay... no, espera, eso sería descortés de mi parte."
-        show yuri 1ch zorder 2 at f11
-        "Se está poniendo roja. Creo que yo también."
-        show yuri 1ch zorder 2 at t11
-        y "Sé que sonará un poco ridículo, pero..."
-        show yuri 1cq zorder 2 at f11
-        y "Mi cama es bastante grande y cómoda..."
-        show yuri 1cq zorder 2 at t11
-        "Mi boca no responde. No estoy seguro de que mis pulmones sigan funcionando con normalidad."
-        show yuri 1cv zorder 2 at f11
-        y "O-olvídalo, fue una idea tonta. Dormiré yo aquí y tú en mi cuarto, es lo justo."
-        show yuri 1cn zorder 2 at t11
-        "No quiero que se sienta mal por haberlo dicho. Y, siendo honesto, tampoco quiero que la idea desaparezca tan rápido."
-        mc "N-No hace falta. En serio, no veo ningún problema en que... durmamos los dos."
-        show yuri 1cc zorder 2 at f11
-        "Se quedó completamente quieta por un segundo que se sintió eterno."
-        show yuri 1ca zorder 2 at t11
+        "Ahora que lo pienso, en todo el día no he visto a nadie más en esta casa. Ni un abrigo en la entrada, ni un par de zapatos que no fueran los suyos."
+        "Es una casa muy grande para una sola persona. Y Yuri nunca ha mencionado a nadie."
+        show yuri turned casual nerv om oe zorder 2 at f11
+        y "Tengo una habitación extra."
+        show yuri turned casual nerv cm oe zorder 2 at t11
+        mc "¿Una habitación extra?"
+        show yuri turned casual nerv om oe zorder 2 at f11
+        y "Está en el piso de arriba. Hace tiempo que nadie la usa."
+        show yuri turned casual nerv cm oe zorder 2 at t11
+        mc "Yuri, no quiero causarte molestias."
+        show yuri turned casual worr om oe zorder 2 at f11
+        y "No es ninguna molestia."
+        show yuri turned casual worr cm oe zorder 2 at t11
+        mc "Pero—"
+        show yuri turned casual rup worr om oe zorder 2 at f11
+        y "De verdad. Insisto. Por favor."
+        y "Prefiero que te quedes. Así no me quedo toda la noche pensando si llegaste bien."
+        "Su voz sonó firme, aunque sus manos apretaban la manga de su suéter."
+        "No tenía sentido seguir negándome."
+        show yuri turned casual worr cm oe zorder 2 at t11
+        mc "Está bien. Gracias, Yuri."
+        show yuri turned casual happ om ce zorder 2 at f11
+        y "Tengo un cargador, si lo necesitas."
+        "Avisé en mi casa de que me quedaba con alguien del club y dejé el celular cargando."
+        show yuri turned casual happ cm ce zorder 2 at thide
+        hide yuri
+        scene bg guest_room_nolight
+        with wipeleft_scene
+        "La habitación extra estaba al final del pasillo. Yuri abrió la puerta y estaba completamente a oscuras."
+        play sound interruptor_on
+        scene bg guest_room
+        with dissolve_scene
+        "Yuri encendió la lámpara de la mesita."
+        "No estaba sucia, pero había polvo sobre el escritorio, cajas en un rincón y libros apilados sobre una silla. La cama tenía las sábanas dobladas sin cuidado."
+        "No parecía un cuarto de huéspedes pero si lleva un tiempo sin ser ocupada por el dueño de la habitación."
+        show yuri turned casual worr om oe zorder 2 at f11
+        y "P-perdona el desorden. Hace mucho que nadie entra aquí."
+        y "Dame unos minutos no quiero que—"
+        show yuri turned casual worr cm oe zorder 2 at t11
+        mc "Yuri."
+        show yuri turned casual nerv om oe zorder 2 at f11
+        y "N-no es necesario que..."
+        show yuri turned casual nerv cm oe zorder 2 at t11
+        mc "Déjame ayudarte. Fui yo quien se quedó hasta tarde, es lo menos que puedo hacer."
+        show yuri turned casual worr om oe zorder 2 at f11
+        y "Pero eres mi invitado."
+        show yuri turned casual worr cm oe zorder 2 at t11
+        mc "Limpiandola juntos terminaremos rapido."
+        show yuri turned casual flus n3 om oe zorder 2 at f11
         y "...Está bien."
-        show yuri 1cc zorder 2 at f11
-        y "Gracias, [player]."
-        show yuri 1ca zorder 2 at t11
-        y "Por ti, mi día ha sido increíble. Incluso con... con todo lo que pasó."
-        show yuri 1cb zorder 2 at t11
-        mc "El mío también, Yuri. Y no sé cómo explicarlo, pero se siente bien poder decirlo así, sin más rodeos."
-        "Ella no respondió nada. Solo sonrió, de esa forma pequeña y torpe que hace cuando no sabe qué decir."
-        "Yuri me llevó a su cuarto."
-        "Ninguno de los dos dijo una palabra en todo el camino por el pasillo. No hacía falta."
+        show yuri turned casual flus n3 cm oe zorder 2 at t11
+        mc "¿De quién es este cuarto?"
+        show yuri turned casual nerv cm oe zorder 2 at t11
+        y "..."
+        show yuri turned casual nerv om oe zorder 2 at f11
+        y "De... un familiar."
+        y "Viene de vez en cuando, pero ahora está de viaje."
+        show yuri turned casual nerv cm oe zorder 2 at t11
+        "Lo dijo demasiado rápido, sin mirarme. Y el polvo sobre el escritorio decía otra cosa: hacía mucho más que 'un tiempo' que nadie lo tocaba."
+        "No pregunté más."
+        "Empezamos por la mesa. Eran todos libros, pilas y pilas, algunos con el lomo ya gastado."
+        mc "¿Cómo ordenas tantos libros?"
+        show yuri turned casual happ om oe zorder 2 at f11
+        y "Por... sensación."
+        show yuri turned casual happ cm oe zorder 2 at t11
+        mc "¿Sensación?"
+        show yuri turned casual happ om oe zorder 2 at f11
+        y "Los que me dan miedo en una pila, los que me hacen llorar en otra, y los que me hacen sentir mejor en esa."
+        show yuri turned casual happ cm oe zorder 2 at t11
+        mc "¿Y cuál es la pila más grande?"
+        show yuri turned casual flus n3 om oe zorder 2 at f11
+        y "L-la de los que me dan miedo."
+        show yuri turned casual laug cm ce zorder 2 at t11
+        "Se rio bajito, tapándose la boca con la mano. Es la primera vez que la escucho reírse así de sí misma."
+        mc "Tiene sentido."
+        "Levanté una caja y el polvo me hizo estornudar."
+        show yuri turned casual lsur om oe zorder 2 at f11
+        y "¡P-perdón! Ten, un pañuelo."
+        show yuri turned casual lsur cm oe zorder 2 at t11
+        mc "Gracias... Creo que esta habitación lleva años esperando que alguien entre."
+        show yuri turned casual nerv om oe zorder 2 at f11
+        y "Es que... hace mucho que nadie entra aquí. Ni siquiera yo."
+        show yuri turned casual nerv cm oe zorder 2 at t11
+        mc "Entonces soy el primero en mucho tiempo. Qué honor."
+        show yuri turned casual flus n4 om oe zorder 2 at f11
+        y "N-no digas esas cosas..."
+        show yuri turned casual flus n4 cm oe zorder 2 at t11
+        "Se dio la vuelta para acomodar un libro que ya estaba acomodado, pero vi cómo sonreía."
+        "Entre los dos terminamos más rápido de lo esperado: la mesa despejada, las cajas en un rincón y la cama lista."
+        show yuri turned casual happ om oe zorder 2 at f11
+        y "Voy por unas almohadas y una cobija. No tardo."
+        show yuri turned casual happ cm oe zorder 2 at thide
+        hide yuri
+        "Me senté en la cama. La habitación olía a papel viejo y a lavanda."
+        "Escuché sus pasos subir y bajar por el pasillo, y volver."
+        show yuri turned casual lup rup flus n3 cm oe zorder 2 at t11
+        "Yuri se quedó en la puerta, con las almohadas apretadas contra el pecho, sin atreverse a entrar."
+        mc "¿Todo bien?"
+        show yuri turned casual lup rup flus n3 om oe zorder 2 at f11
+        y "S-sí. Es que... no sé muy bien cómo se hace esto."
+        show yuri turned casual lup rup flus n3 cm oe zorder 2 at t11
+        mc "¿Hacer qué?"
+        show yuri turned casual lup rup nerv om oe zorder 2 at f11
+        y "Tener a alguien en casa."
+        "Dejó las almohadas y la cobija a los pies de la cama, con mucho cuidado, como si fueran algo frágil."
+        show yuri turned casual nerv cm oe zorder 2 at t11
+        mc "Lo haces muy bien."
+        show yuri turned casual flus n3 om oe zorder 2 at f11
+        y "¿En... en serio?"
+        show yuri turned casual flus n3 cm oe zorder 2 at t11
+        mc "Hasta la cobija huele a lavanda. No creo que pueda dormirme tan rápido."
+        show yuri turned casual laug om oe zorder 2 at f11
+        y "Jeje... Eso espero."
+        show yuri turned casual happ om ce zorder 2 at f11
+        y "Si te falta algo, solo dime. Estaré cerca."
+        show yuri turned casual happ cm ce zorder 2 at t11
+        mc "Gracias, Yuri. Por todo."
+        show yuri turned casual flus n3 om oe zorder 2 at f11
+        y "Gracias a ti."
+        y "Hacía mucho que no le decía buenas noches a nadie."
+        show yuri turned casual happ om ce zorder 2 at f11
+        y "Buenas noches, [player]."
+        show yuri turned casual happ cm ce zorder 2 at t11
+        mc "Buenas noches, Yuri."
+        show yuri turned casual happ cm ce zorder 2 at thide
+        hide yuri
+        play sound closet_close
+        "Cerró la puerta con cuidado. Escuché sus pasos alejarse y, después, el silencio de la casa."
         stop music fadeout 1.5
-        scene bg yuri_bedroom_night
-        with dissolve_scene_full
-        "La luz de la luna entraba apenas por las cortinas, lo justo para distinguir el contorno de todo."
-        "Nos quedamos ahí parados un momento, sin saber muy bien qué hacer con las manos, con la mirada, con nosotros mismos."
-        "No sé qué va a pasar después de esta noche. Pero por primera vez en mucho tiempo, no tengo miedo de averiguarlo."
+        play sound interruptor_off
+        scene bg guest_room_nolight
+        with dissolve_scene
+        "Apagué la luz de la mesita y me acosté sobre las sábanas limpias."
+        play sound golpecitos
+        "Unos golpecitos suaves sonaron en la puerta."
+        y "(¿[player]? ¿Sigues despierto?)"
+        mc "Sí... ¿pasa algo?"
+        y "(N-no. Es que... quería asegurarme de que no fue un sueño.)"
+        "No pude evitar sonreír."
+        mc "Yo también lo estaba pensando."
+        y "(...Buenas noches, otra vez.)"
+        mc "Buenas noches, Yuri."
+        "Escuché sus pasos alejarse, más ligeros que antes."
+        "Me quedé mirando el techo. Debería dormirme, pero no tenía sueño."
+        "No porque algo me preocupara. Solo quería que ya fuera mañana."
         scene black
-        with dissolve_scene_full
-        jump creditos 
+        jump creditos
     return

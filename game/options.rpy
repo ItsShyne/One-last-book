@@ -181,6 +181,11 @@ init python:
     build.classify("game/images/**", "mod_assets all")
     build.classify("game/bgm/**", "mod_assets all")
     build.classify("game/sfx/**", "mod_assets all")
+    # Teléfono (Better EMR Phone): sus imágenes y fuentes viajan en mod_assets.rpa.
+    # Se clasifican por extensión para que los .rpyc sigan yendo a scripts.rpa.
+    build.classify("game/phone/**.png", "mod_assets all")
+    build.classify("game/phone/**.ttf", "mod_assets all")
+    build.classify("game/phone/**.otf", "mod_assets all")
     build.classify("game/presplash.png", "scripts all")
     build.classify("game/**.rpyc", "scripts all")
     build.classify("game/README.md", None)
