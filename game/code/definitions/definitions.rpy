@@ -161,7 +161,7 @@ image bg guest_room = "mod_assets/bg/bedroom2/bedroom2_night.png"
 image bg sayori_street_aft = "mod_assets/bg/streetafternoon.png"
 image bg sayori_bedroom_aft = "mod_assets/bg/sayori_bedroom-e.png"
 image bg house_aft =  "mod_assets/bg/house/house_aft.png"
-image bg house_y =  "mod_assets/bg/house/house.png "
+image bg house_y =  "mod_assets/bg/house/house.png"
 image bg residential_aft = "mod_assets/bg/residentialdusk by Crashpunk#0025.png"
 ####################3
 image bg residential_day = "bg/residential.png" # Start of DDLC BG
