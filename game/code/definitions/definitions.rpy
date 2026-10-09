@@ -125,6 +125,7 @@ define audio.interruptor_on = "mod_assets/bgm/interruptor_on.wav"
 define audio.interruptor_off = "mod_assets/bgm/interruptor_off.wav"
 define audio.golpecitos = "mod_assets/bgm/golpecitos_suaves.wav"
 define audio.notificacion = "mod_assets/bgm/notificacion.wav"
+define audio.golpe_cabeza = "mod_assets/bgm/golpe_cabeza.wav"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -191,6 +192,7 @@ image bg kitchen = "bg/kitchen.png" # MC's Kitchen BG
 image bg escaleras = "mod_assets/bg/stairs_mid/stairs_mid_aft.png"
 image bg bano_Yuri = "images/bg/baño_cuchillo.webp"
 image bg bano_Yuri_nocuchillo = "images/bg/baño_sin_cuchillo.webp"
+image bg bano_escolar = "mod_assets/bg/bano_escolar.png"
 image bg living_room = "images/bg/yurihouseinterior.png"
 image bg living_room_aft = "images/bg/yurihouseinterior_aft.png"
 image bg living_room_night = "images/bg/living room night.png"
@@ -1742,6 +1744,60 @@ transform despertar_ojos:
 transform enfoque_despertar:
     blur 20.0
     ease 2.5 blur 0.0
+
+# --- Golpe en la cabeza al caer por la escalera (cap 2) ---
+# Se usan con la instruccion "camera at ..." (persiste entre escenas, a diferencia
+# de "show layer"). "camera" a secas la limpia.
+# Tropiezo, caida y golpe; despues queda la vision borrosa y mareada.
+transform golpe_cabeza_cam:
+    subpixel True
+    align (0.5, 0.5)
+    zoom 1.0 xoffset 0 yoffset 0 blur 0.0
+    easein 0.12 yoffset 8 xoffset -6 zoom 1.03
+    easein 0.12 yoffset -6 xoffset 8 zoom 1.04
+    easein 0.10 yoffset 10 xoffset -4 zoom 1.05
+    linear 0.04 yoffset 26 xoffset 0 zoom 1.08 blur 2.0
+    ease 0.08 yoffset -14 xoffset 7
+    ease 0.10 yoffset 12 xoffset -6 blur 3.5
+    ease 0.12 yoffset -7 xoffset 4
+    ease 0.15 yoffset 3 xoffset -2
+    ease 0.70 yoffset 0 xoffset 0 zoom 1.0 blur 4.5
+    block:
+        ease 1.6 blur 3.6 xoffset 2 yoffset 1
+        ease 1.6 blur 4.6 xoffset -2 yoffset -1
+        repeat
+
+# Mareo moderado (al subir al bano) y mareo leve (en el pasillo).
+transform vision_media:
+    subpixel True
+    align (0.5, 0.5)
+    ease 1.2 blur 2.0 zoom 1.0 xoffset 0 yoffset 0
+    block:
+        ease 2.0 blur 1.7 xoffset 1 yoffset 0
+        ease 2.0 blur 2.4 xoffset -1 yoffset 0
+        repeat
+
+transform vision_leve:
+    subpixel True
+    align (0.5, 0.5)
+    ease 1.5 blur 1.1 zoom 1.0 xoffset 0 yoffset 0
+    block:
+        ease 2.5 blur 0.8
+        ease 2.5 blur 1.3
+        repeat
+
+# La vision se aclara del todo (fin del efecto).
+transform vision_fin:
+    subpixel True
+    align (0.5, 0.5)
+    ease 1.5 blur 0.0 zoom 1.0 xoffset 0 yoffset 0
+
+# Destello blanco justo en el momento del golpe.
+transform flash_golpe_atl:
+    alpha 0.0
+    pause 0.34
+    alpha 0.85
+    easeout 0.55 alpha 0.0
 
 transform parpados_abriendo:
     Solid("#000")

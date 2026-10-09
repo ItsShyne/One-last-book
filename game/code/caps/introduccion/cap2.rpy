@@ -5,6 +5,13 @@ default decision_secreta = False
 # if para algunas decisiones
 default decision_biblioteca = "nula"
 default decision_sayori = "nula"
+# Registro de la relación con Sayori (camino a casa del día 2 en adelante)
+default sayori_vinculo = 0
+default sayori_cansancio = "nula"
+default sayori_esquina = "nula"
+default sayori_recogida = False
+default sayori_estado = "nula"
+default sayori_respuesta = "nula"
 default decision_poema_my = "Nula"
 label cap2:
     $ ach_chapter2 = True
@@ -363,7 +370,7 @@ label cap2:
     "Es cierto, hace mucho tiempo que no caminaba con Sayori debido a lo tarde que salía, no solo de la escuela."
     window show
     menu irse_con_Sayori:
-        "Irse con Sayori":
+        "Ir con Sayori":
             $ decision_sayori = "Sayori"
             "Sí, debería ir con ella."
             $ puntos_ruta += 1
@@ -1233,7 +1240,7 @@ label biblioteca:
         "Sayori me sonríe honestamente. Hace un tiempo ni siquiera hablábamos, pero luce más alegre desde que me uní."
         show sayori turned happ cm ce zorder 2 at thide
         hide sayori
-    elif decision_sayori == "Sayori" or "insistir":
+    else:
         show sayori turned happ om ce zorder 2 at f11
         s "¿Listo para caminar a casa?"
         show sayori turned happ cm ce zorder 2 at t11
@@ -1276,25 +1283,169 @@ label biblioteca:
     mc "Espero que todo mejore mañana."
     show sayori turned happ om oe zorder 2 at f11
     s "Todo estará bien, ya verás."
+    with wipeleft_scene
+    show sayori turned dist cm oe zorder 2 at t11
+    "Seguimos caminando. Sayori va más lenta que de costumbre, y esta vez soy yo quien tiene que frenar para no dejarla atrás."
+    "Es raro. Pensé que sería ella quien me jalaría del brazo para que apurara el paso."
+    mc "Oye... ¿crees que Yuri y Natsuki se hablen mañana?"
+    show sayori turned neut om oe zorder 2 at f11
+    s "¡Seguro que sí! Las peleas se pasan."
+    s "Lo difícil es el rato de después, cuando todo se queda en silencio."
+    show sayori turned neut cm oe zorder 2 at t11
+    "Lo dice mirando al frente, sin su sonrisa de siempre. Solo un segundo."
+    show sayori turned neut om oe zorder 2 at f11
+    s "Mira el cielo, [player]."
+    show sayori turned neut cm oe zorder 2 at t11
+    "Levanto la vista. Se está tiñendo de naranja."
+    show sayori turned mb e1a b1b zorder 2 at f11
+    s "Es mi parte favorita del día. Por un ratito todo se ve bonito."
+    show sayori turned mj e1a b1b zorder 2 at t11
+    mc "¿Y el resto del día no?"
+    show sayori turned mb e1a b1b zorder 2 at f11
+    s "¿Eh? Jeje, sí, claro que sí. Es solo que este rato es especial."
+    show sayori turned mb e4b b3c zorder 2 at t11
+    "Se ríe, pero tarda un segundo de más en hacerlo."
+    mc "Te ves cansada."
+    show sayori turned mb e1b b1a zorder 2 at f11
+    s "¿Yo? ¡Para nada! Dormí poco, nada más. Casi no logro salir de la cama esta mañana, jeje."
     show sayori turned happ cm oe zorder 2 at t11
-    show sayori turned happ cm oe zorder 2 at thide
-    hide sayori
+    window show
+    menu sayori_cansancio_menu:
+        "¿Duermes bien? Si pasa algo, puedes decírmelo.":
+            $ sayori_vinculo += 1
+            $ sayori_cansancio = "calida"
+            mc "¿Duermes bien? Si pasa algo, puedes decírmelo."
+            show sayori turned mb e1a b1b  zorder 2 at f11
+            s "¿Eh? Jeje, qué dramático eres. Estoy bien, de verdad."
+            show sayori turned ma e1a b1b zorder 2 at f11
+            s "Pero... gracias por preguntar."
+            show sayori turned sad cm oe zorder 2 at t11
+            "Lo dice bajito, como si no esperara que alguien se lo preguntara."
+        "Para eso existen los despertadores, Sayori.":
+            $ sayori_cansancio = "neutra"
+            mc "Para eso existen los despertadores, Sayori."
+            show sayori turned rup mb e1a b1a zorder 2 at f11
+            s "¡Tengo tres! Los apago los tres, jeje."
+            show sayori turned laug cm ce zorder 2 at t11
+            "Se ríe. Es la risa de siempre, y aun así no me convence del todo, aunque no sabría decir por qué."
+        "Siempre llegas tarde, ya no me sorprende.":
+            $ sayori_vinculo -= 1
+            $ sayori_cansancio = "fria"
+            mc "Siempre llegas tarde, Sayori. Ya ni me sorprende."
+            show sayori turned mb e1a b1b zorder 2 at f11
+            s "Jeje... sí. Soy un desastre, ¿verdad?"
+            show sayori turned happ cm ce zorder 2 at t11
+            "Nos reimos juntos. No le doy más vueltas."
+    scene bg residential_aft
+    with wipeleft_scene
+    "Llegamos a la esquina donde nuestros caminos se separan. Sayori se detiene, pero no se despide."
+    show sayori turned neut om oe zorder 2 at f11
+    s "Ya llegamos... qué rápido se pasó, ¿no?"
+    show sayori turned neut cm oe zorder 2 at t11
+    "Llevamos un buen rato parados en la esquina."
+    show sayori turned mb e1a b1b zorder 2 at f11
+    s "Oye, [player]... ¿te acuerdas cuando pasabas por mí en las mañanas?"
+    show sayori turned mb e2g b1b zorder 2 at f11
+    s "Yo tardaba una eternidad y tú te quedabas en la puerta, quejándote."
+    s "Siempre decías que era la última vez que me esperabas... y siempre volvías."
+    "Se rasca la mejilla y mira al suelo."
+    window show
+    menu sayori_esquina_menu:
+        "Yo también extraño esas mañanas.":
+            $ sayori_vinculo += 2
+            $ puntos_ruta += 1
+            $ sayori_esquina = "calida"
+            $ sayori_recogida = True
+            mc "Yo también lo extraño. Más de lo que pensé."
+            show sayori turned lsur om oe zorder 2 at f11
+            s "¿...En serio?"
+            show sayori turned lsur cm oe zorder 2 at t11
+            "Abre los ojos como si le hubiera dicho algo imposible."
+            show sayori turned happ om oe zorder 2 at f11
+            s "Entonces... jeje... ¿mañana puedes pasar por mí? Prometo estar lista."
+            s "O... al menos intentarlo."
+            show sayori turned happ cm oe zorder 2 at t11
+            mc "Ahí estaré."
+            show sayori turned happ om ce zorder 2 at f11
+            s "Gracias, [player]. De verdad."
+            show sayori turned happ cm ce zorder 2 at t11
+            mc "Es solo caminar."
+            show sayori turned happ om oe zorder 2 at f11
+            s "Sí. Solo caminar."
+            show sayori turned happ cm oe zorder 2 at thide
+            hide sayori
+            "Se despide caminando de espaldas, saludando con las dos manos."
+            "Antes de girar se frota los ojos con la manga. Seguro el sol le dio en la cara."
+        "Si te levantas antes de las siete, quizás.":
+            $ sayori_vinculo += 1
+            $ sayori_esquina = "neutra"
+            $ sayori_recogida = True
+            mc "Si te levantas antes de las siete, quizás."
+            show sayori turned laug om oe zorder 2 at f11
+            s "¡Trato hecho! ...Bueno, quizás."
+            show sayori turned laug cm oe zorder 2 at t11
+            show sayori turned laug cm oe zorder 2 at thide
+            hide sayori
+            "Se aleja corriendo, saludando por encima del hombro."
+            "Volteo un segundo y la veo detenerse, ya sin la sonrisa."
+            "Cuando se da cuenta de que sigo ahí, la recupera de golpe y vuelve a agitar sus brazos."
+        "Éramos niños, Sayori. Ya sabes levantarte sola.":
+            $ sayori_vinculo -= 2
+            $ puntos_ruta -= 1
+            $ sayori_esquina = "fria"
+            mc "Éramos niños, Sayori. Ya sabes levantarte sola."
+            show sayori turned dist cm oe zorder 2 at t11
+            "..."
+            show sayori turned happ om oe zorder 2 at f11
+            s "Tienes razón. Jeje. Qué tonta."
+            s "Era una broma, ¿sabes? Una broma."
+            s "Nos vemos en el club, [player]."
+            show sayori turned happ cm oe zorder 2 at thide
+            hide sayori
+            "Se va rápido. No voltea."
+            "Sayori siempre se despide agitando los brazos."
+            "Quizás debí decirlo de otra forma... aunque no dije nada falso"
     scene bg bedroom
     with wipeleft_scene
     stop music fadeout 1.0
+    if sayori_esquina == "calida":
+        "Antes de acostarme programo la alarma una hora antes. Mañana tengo que pasar por alguien."
     "Hoy me siento mucho más inspirado que ayer."
     "Tengo una mejor visión de como escribir lo que siento."
     "Se me ocurren un par de ideas."
     "Los consejos de las chicas están dando sus frutos."
-    stop music fadeout 1.0
-    scene bg club_day
-    with dissolve_scene_full
-    play music audio.t8
-    "Llegué junto a Sayori al club."
-    show sayori turned lup rup happ om ce zorder 2 at f11
-    s "¡Compártelos, jeje~!"  
-    show sayori turned lup rup happ cm ce zorder 2 at thide
-    hide sayori
+    if sayori_esquina == "calida":
+        scene bg house
+        with wipeleft_scene
+        "Esa mañana toqué a la puerta de Sayori antes de ir a la escuela. Salió casi de inmediato, con la mochila al hombro y el pelo un poco desordenado."
+        show sayori turned lup rup happ om ce zorder 2 at f11 
+        s "¡Lista! ¿Ves? ¡Lista!"
+        mc "Con el pelo hecho un desastre, pero lista."
+        s "¡Eso no cuenta!"
+        "Caminamos a la escuela sin prisa. No hablamos de nada importante, y creo que por eso me gustó."
+        scene bg club_day
+        with dissolve_scene_full
+        play music audio.t8
+        "Después de clases llegué junto a Sayori al club."
+    elif sayori_esquina == "neutra":
+        scene bg corridor
+        with wipeleft_scene
+        "Esa mañana pasé por casa de Sayori por si acaso. Salió corriendo cuando me vio por la ventana y caminamos juntos a la escuela."
+        "Después de clases llegué junto a Sayori al club."
+        scene bg club_day
+        with dissolve_scene_full
+        play music audio.t8
+    else:
+        scene bg club_day
+        with dissolve_scene_full
+        play music audio.t8
+        "Esa mañana no pasé por Sayori. Fui solo a la escuela y, después de clases, llegué solo al club."
+        "Sayori ya estaba en su escritorio, escribiendo con la cabeza gacha. No me vio entrar, o hizo como que no."
+    if sayori_recogida:
+        show sayori turned lup rup happ om ce zorder 2 at f11
+        s "¡Holiii chicas!"
+        show sayori turned lup rup happ cm ce zorder 2 at thide
+        hide sayori
     "Como ayer, Natsuki está encerrada en el clóset y Monika está organizando papeles sobre el club."
     show yuri turned anno om oe zorder 2 at t11
     "Y Yuri está leyendo un libro; es diferente al que leíamos ayer."
@@ -1541,6 +1692,22 @@ label biblioteca:
     mc "Te encorvas mucho al leer, supongo."
     show yuri turned nerv om oe zorder 2 at f11
     y "¡Sí! Tengo una terrible postura."
+    if sayori_esquina == "calida":
+        "Antes de sentarme, levanto la vista hacia el escritorio de Sayori."
+        "No está escribiendo. Nos mira desde ahí, con la barbilla apoyada en la mano."
+        "Cuando nota que la veo, me saluda con los dedos y se esconde detrás de su cuaderno."
+        show yuri turned nerv cm oe zorder 2 at t21
+        mc "¿No quieres sentarte con nosotros, Sayori?"
+        show sayori turned happ om ce zorder 2 at f22
+        s "No, no, sigan ustedes. Desde aquí los veo bien."
+        s "...Con eso me basta, jeje."
+        show sayori turned happ cm ce zorder 2 at thide
+        hide sayori
+    elif sayori_esquina == "neutra":
+        "Antes de sentarme noto que Sayori nos mira desde su escritorio. Cuando la veo, aparta la vista rápido."
+    else:
+        "Antes de sentarme miro hacia el escritorio de Sayori."
+        "Sigue con la vista en el mismo punto de su cuaderno, sin escribir. No levanta la cabeza."
     hide yuri
     scene y_cg2_bg1
     show y_cg2_dust1
@@ -2173,9 +2340,15 @@ label biblioteca:
         show yuri turned lup rup cry om oe zorder 2 at thide
         hide yuri
         "No se detuvo. Ni siquiera volteó."
+        # Golpe en la cabeza: sonido + sacudida de camara + destello; despues la vision queda borrosa
+        play sound golpe_cabeza
+        camera at golpe_cabeza_cam
+        show expression Solid("#ffffff") as flash_golpe onlayer overlay at flash_golpe_atl
         "Al bajar las escaleras con prisa, el pie me falló y caí, golpeándome la cabeza contra un escalón."
+        hide flash_golpe onlayer overlay
         mc "Mierda..."
         "El mundo me dio vueltas un instante. Me costó levantarme."
+        camera at vision_media
         "Probablemente Yuri ya se había ido."
         "logro escuchar unos pequeños quejidos y sollozos, cerca, en el silencio del pasillo."
         "Me sostuve de la pared y los seguí. Venían del baño."
@@ -2184,7 +2357,9 @@ label biblioteca:
         "Aún mareado, apreté el paso. La cabeza me latía a cada paso."
         #añadir escena perspectiva de Yuri 
         play music audio.t10 fadein 2.0
-        scene bg bano_Yuri_nocuchillo
+        # Perspectiva de Yuri: sin la vision borrosa de MC
+        camera
+        scene bg bano_escolar
         with dissolve_scene_full
         "???" "¿No crees que deberías dejar de huir de tus problemas?"
         show yuri_pequena seria zorder 2 at f11
@@ -2200,29 +2375,23 @@ label biblioteca:
         show yuri_pequena sad2 zorder 2 at thide
         hide yuri_pequena sad2
         with dissolve_scene_full
-        scene bg bano_Yuri_nocuchillo
+        scene bg bano_escolar
         ############################
+        # Vuelve la perspectiva de MC: la vision borrosa regresa poco a poco
+        camera at vision_media
         mc "¿Yu-Yuri?"
-        scene bg bano_Yuri_nocuchillo
-        show yuri_sentada zorder 2 at t11:
-            xalign 0.3
+        scene bg bano_escolar
         y "¡—!"
         "Yuri se encogió al verme y escondió el brazo detrás de su espalda con un movimiento torpe."
         "Pero ya lo había visto."
         "Tenía tantas marcas... algunas recientes, otras tan viejas que casi se confundían con la piel."
-        hide yuri_sentada
-        show yuri_parada zorder 2 at t11_big
         "Se puso de pie de golpe, como si el suelo quemara."
         "Algo metálico se le resbaló de la mano y resonó contra los azulejos."
-        scene bg bano_Yuri
-        show yuri_parada zorder 2 at t11_big
         "Era el cuchillo del té. Lo reconocí enseguida."
         y "N-no mires. Por favor, no mires."
         y "[player], n-no se supone que deberías estar aquí..."
         y "Lo llevaba para el té... y mira para qué terminé usándolo."
-        show yuri_parada zorder 2 at thide
-        hide yuri_parada
-        scene bg bano_Yuri_nocuchillo
+        scene bg bano_escolar
         "No encontré fuerzas para decir algo. Solo di unos pasos hacia ella."
         show yuri_cuts sad zorder 2 at f11 
         y "¡No!"
@@ -2292,6 +2461,7 @@ label biblioteca:
         #transición
         scene corridor
         with dissolve_scene_full
+        camera at vision_leve
         "Intenté alcanzarla, pero el dolor de cabeza empeoraba con cada movimiento brusco."
         play music audio.t9 fadein 1.5
         "La perdí..."
@@ -2306,6 +2476,8 @@ label biblioteca:
         "Unas monedas cayeron en el suelo luego del golpe repentino."
         show natsuki turned lhip rhip ff angr om oe zorder 2 at f11
         n "Las monedas... ¡Idiota, fíjate por dónde vas!"
+        # Aqui termina el efecto: la vision se aclara
+        camera at vision_fin
         show natsuki turned rhip ff anno cm oe zorder 2 at t11
         mc "¿Natsuki? Disculpa, Natsuki, no te había visto."
         show natsuki turned rhip ff anno om oe zorder 2 at f11
@@ -2367,6 +2539,8 @@ label biblioteca:
         show natsuki cross ff flus cm oe zorder 2 at t11
         "Natsuki me lleva afuera de la escuela."
         #transición a la casa de Yuri
+        # La vision borrosa se va al salir de la escuela
+        camera
         scene bg street1_morn
         with dissolve_scene_full
         "¿En serio Natsuki estaba buscando monedas por eso? Sé que no debería de meterme, pero qué tan mal estará."
@@ -2945,16 +3119,11 @@ label biblioteca:
         y "Tenía la esperanza de poder dejar de ser tan indiferente..."
         y "Parece que no salió como me esperaba."
         show yuri 1cw zorder 2 at f11
-        y "Monika."
-        y "Ella me invitó al club primeramente."
+        y "..."
+        y "Ella me invitó al club. Disfrute muchos dias en el club."
         show yuri 1cv zorder 2 at f11
         y "No quisiera que la odies... por mi culpa."
         y "Sé que es una buena persona..."
-        show yuri 1cu zorder 2 at t11
-        "¿Una buena persona?"
-        "Una buena persona no diría que te suicides."
-        "Pero una buena persona tampoco diría que va a matar a alguien..."
-        show yuri 1cu zorder 2 at t11
         mc "Prefiero no hablar de ella, pero..."
         show yuri 1cs zorder 2 at t11
         mc "Estás equivocada en lo de socializar, me refiero. Estás aquí conmigo."
@@ -3016,6 +3185,13 @@ label biblioteca:
         stop music fadeout 1.0
         scene black 
         with dissolve_scene_full
+        # Estado de Sayori según el vínculo construido desde el camino a casa del día 2
+        if sayori_vinculo >= 2:
+            $ sayori_estado = "abierta"
+        elif sayori_vinculo <= -2:
+            $ sayori_estado = "cerrada"
+        else:
+            $ sayori_estado = "medias"
         mc "¿Sayori?"
         "Es extraño el silencio o no tener una bienvenida de Sayori."
         "Quizás sí le haya afectado el ánimo lo que ocurrió..."
@@ -3041,6 +3217,27 @@ label biblioteca:
         s "Así que ¿tú y Yuri, no?"
         show sayori turned casual happ cm oe zorder 2 at t11
         mc "N-No lo malinterpretes, solo somos amigos."
+        if sayori_estado == "cerrada":
+            show sayori turned casual laug om oe zorder 2 at f11
+            s "Jeje, claro, claro."
+            s "Perdona el desorden. Es que hoy fue un día de... siesta."
+            show sayori turned casual laug cm oe zorder 2 at t11
+            "La cama está sin hacer y hay un cuaderno abierto sobre ella. Sayori lo cierra de inmediato, como sin darse cuenta."
+            mc "¿Seguro que estás bien? Te ves cansada."
+            show sayori turned casual happ om oe zorder 2 at f11
+            s "¡Estoy genial! Solo tengo sueño. ¿Ves? ¡Sonrío!"
+            show sayori turned casual happ cm oe zorder 2 at t11
+            "Se señala las mejillas con los dedos. La sonrisa es perfecta. Demasiado perfecta."
+            mc "Sayori..."
+            show sayori turned casual happ om oe zorder 2 at f11
+            s "Nos vemos pronto, ¿sí? Gracias por venir. De verdad."
+            s "Pero ahora quiero dormir. Yuri te está esperando abajo, ¿no? No la hagas esperar."
+            show sayori turned casual happ cm oe zorder 2 at t11
+            "No me deja decir nada más. Me empuja suave hacia el pasillo, riendo, y cierra la puerta."
+            play sound closet_close
+            show sayori turned casual happ cm oe zorder 2 at thide
+            hide sayori
+            jump yuri_continuación
         show sayori turned casual neut om oe zorder 2 at f11
         s "Es difícil ocultar los sentimientos, sobre todo cuando los ves todos los días."
         s "Desde el primer día noté esa conexión entre ustedes."
@@ -3057,6 +3254,19 @@ label biblioteca:
         "Entré a su cuarto."
         mc "Sé que está pasando algo."
         mc "Como mencionas, es difícil ocultar los sentimientos y más si te conozco desde hace mucho tiempo."
+        if sayori_estado == "abierta":
+            if sayori_esquina == "calida":
+                show sayori turned sad om oe zorder 2 at f11
+                s "Dijiste que extrañabas las mañanas de antes... ¿era en serio?"
+                show sayori turned sad cm oe zorder 2 at t11
+                mc "Muy en serio, Sayori."
+                show sayori turned sad om ce zorder 2 at f11
+                s "Entonces no sé por qué me cuesta tanto decirte esto."
+                show sayori turned sad cm ce zorder 2 at t11
+            if sayori_cansancio == "calida":
+                show sayori turned sad om oe zorder 2 at f11
+                s "Me preguntaste si dormía bien. He tenido unas noches dificiles."
+                show sayori turned sad cm oe zorder 2 at t11
         show sayori turned neut n1 mb e1g b1c zorder 2 at t11
         "Sayori se limpió los ojos."
         show sayori turned neut n1 mb e4d b1c zorder 2 at f11
@@ -3071,6 +3281,23 @@ label biblioteca:
         show sayori turned worr cm oe zorder 2 at t22
         "Sayori..."
         "Siento la misma sensación de cuando vi a Yuri cortándose... Puedo ver en Sayori esa misma expresión."
+        if sayori_estado == "medias":
+            mc "Sayori, si hay algún problema, solo dime."
+            show sayori turned worr om oe zorder 2 at f22
+            s "Por favor, [player]. Hoy no."
+            s "Mañana... mañana estaré mejor. Siempre lo estoy."
+            show sayori turned worr cm oe zorder 2 at t22
+            mc "Sayori—"
+            show sayori turned happ om oe zorder 2 at f22
+            s "Estoy bien, de verdad. Solo necesito estar sola un rato."
+            show sayori turned happ cm oe zorder 2 at t22
+            "Me señala la puerta. No con enojo. Con cansancio."
+            mc "Está bien. Pero voy a volver."
+            show sayori turned sad om oe zorder 2 at f22
+            s "Jeje... eso dices."
+            show sayori turned sad cm oe zorder 2 at thide
+            hide sayori
+            jump yuri_continuación
         mc "Sayori, si hay algún problema que haya ocurrido, solo dime. ¿Es por lo del clu—"
         show sayori turned sad om oe zorder 2 at f11
         s "No creo que lo entiendas, [player]. Yo no quiero ser ayudada."
@@ -3088,7 +3315,7 @@ label biblioteca:
         s "He pasado toda mi vida lidiando con la depresión."
         show sayori turned sad om oe zorder 2 at f11
         s "Desde que tengo memoria. Incluso antes de conocerte a ti."
-        s "Nunca se lo había dicho a nadie. Ni siquiera a ti, y eso que eres la persona que más conozco en este mundo."
+        s "Nunca se lo había dicho a nadie. Ni siquiera a ti, la persona que más quiero en este mundo."
         show sayori turned sad cm oe zorder 2 at t11
         s "Siempre he tenido esos pensamientos en mi mente; que no debería de ser feliz, que no debería de continuar."
         show sayori turned cry om oe zorder 2 at f11
@@ -3108,8 +3335,8 @@ label biblioteca:
         s "Dime por qué todos los días tengo que fingir una personalidad que no soy con tal de no afectar a los demás."
         s "¿Por qué hacer amigos cuando todos ellos solo me usan para poderse sentir mejor consigo mismos?"
         show sayori turned cry cm ce zorder 2 at f11
-        s "Cuando siempre eres vista como \"la tonta.\""
-        s "La chica que siempre está forzando una sonrisa."
+        s "Cuando siempre eres vista como 'la tonta'."
+        s "La chica que siempre está sonriendo."
         show sayori turned cry om oe zorder 2 at f11
         s "¿Por qué abrir los ojos todas las mañanas...?"
         s "Cuando la única persona y razón por la cual intento aguantar todo este dolor y continuar..."
@@ -3175,59 +3402,83 @@ label biblioteca:
         mc "Pero yo haré todo por ti, Sayori. Estaré siempre a tu lado..."
         show sayori turned casual lup rup neut n1 mh e1h b2c zorder 2 at f11
         s "Pero [player]..."
-        s "No podés prometer eso. Nadie puede prometer eso."
+        s "No puedes prometer eso. Nadie puede prometer eso."
         show sayori turned casual lup rup neut n1 mj e1h b2c zorder 2 at f11
         s "Y aunque pudieras cumplirlo... no sé si merezco que lo intentes."
         mc "Sayori."
     # Mierda, no quiero continuar esta parte :(
     window show
     menu Sayori_eleccion:
-        "Siempre serás mi mejor amiga.":
-            $ puntos_ruta -=1
-            mc "Tú siempre serás mi mejor amiga."
-            jump siempre_serás_mi_mejor_amiga
-        "Te quiero, Sayori.":
+        "Tienes que dejar de pensar así. Mira todo lo que sí tienes.":
+            $ puntos_ruta -= 1
+            $ sayori_respuesta = "consejo"
+            mc "Tienes que dejar de pensar así, Sayori. Mira todo lo que sí tienes: tus amigas, el club... me tienes a mí."
+            jump sayori_echa
+        "No sé cómo ayudarte, pero hoy no me voy a ir.":
             $ puntos_ruta += 1
-            mc "Sayori... Yo honestamente te quiero en mi vida."
-            jump te_quiero_sayori
-    label siempre_serás_mi_mejor_amiga:
+            $ sayori_respuesta = "presencia"
+            mc "No sé cómo ayudarte, Sayori. No sé ni qué decirte. Pero hoy no me voy a ir."
+            jump sayori_presencia
+    label sayori_echa:
         stop music fadeout 0.5
+        show sayori turned casual lup rup neut n1 mc e1h b2c zorder 2 at t11
+        "Sayori no responde. Me mira como si acabara de decir algo en otro idioma."
         show sayori turned casual lup rup cry om ce zorder 2 at f11
-        s "...Claro. Por supuesto."
-        s "¿Qué esperaba? Ni siquiera yo me elegiría a mí misma."
-        s "Vete..."
-        show sayori turned casual lup rup cry om ce zorder 2 at t11
-        mc "Pero, Sayori..."
-        show sayori turned casual lup rup cry om oe zorder 2 at f11
-        s "¡Vete de mi casa, por favor!"
-        show sayori turned casual lup rup cry cm oe zorder 2 at t11
-        play sound glassbr
-        "Intenté volverme a acercar a Sayori y ella tiró un espejo cerca de mí."
-        show sayori turned casual lup rup cry om oe zorder 2 at f11
-        s "¡Lárgate ahora mismo!"
+        s "...¿Que deje de pensar así?"
+        s "Ja. Jeje."
         show sayori turned casual lup rup cry cm ce zorder 2 at t11
-        mc "..."
-        "Me fui de la habitación."
+        "Es la risa más hueca que le he escuchado."
+        show sayori turned casual lup rup cry om oe zorder 2 at f11
+        s "Lo intento todos los días, [player]. Todos."
+        s "Cada mañana hago esa lista, igual que tú. Mis amigas. El club. El sol, si es que sale."
+        s "Y no sirve. ¿Entiendes? No sirve."
+        show sayori turned casual lup rup cry cm oe zorder 2 at t11
+        mc "Yo no quise decir—"
+        show sayori turned casual lup rup cry om oe zorder 2 at f11
+        s "Siempre es lo mismo. Cuando por fin lo digo en voz alta, me piden que deje de sentirlo."
+        s "Por eso no se lo cuento a nadie."
+        show sayori turned casual lup rup cry cm oe zorder 2 at t11
+        "Doy un paso hacia ella."
+        show sayori turned casual lup rup cry om oe zorder 2 at f11
+        s "No te acerques."
+        mc "Sayori, por favor, déjame—"
+        s "¡Que no te acerques!"
+        play sound glassbr
+        "Algo se estrella contra la pared, a mi lado. Un espejo. Los pedazos caen sobre la alfombra."
+        show sayori turned casual lup rup cry cm oe zorder 2 at t11
+        "Los dos nos quedamos quietos. Sayori mira sus manos como si no fueran suyas."
+        show sayori turned casual lup rup cry om ce zorder 2 at f11
+        s "...Vete."
+        s "Por favor. Vete antes de que diga algo peor."
+        mc "Sayori..."
+        s "¡VETE!"
+        show sayori turned casual lup rup cry cm ce zorder 2 at t11
+        "Salgo del cuarto. Antes de cerrar la puerta la escucho empezar a llorar."
         show sayori turned casual lup rup cry cm ce zorder 2 at thide
         hide sayori
         jump yuri_continuación
-    label te_quiero_sayori:
+    label sayori_presencia:
+        show sayori turned casual lup rup cry om ce zorder 2 at f11
+        s "...Hoy."
+        s "No me prometes mañana. Solo hoy."
+        show sayori turned casual lup rup cry cm ce zorder 2 at t11
+        mc "Solo hoy. Y mañana vemos."
+        show sayori turned casual lup rup cry om ce zorder 2 at f11
+        s "Jeje... eso sí puedo creerlo."
         scene black
         with dissolve_scene_full
+        "Dejo de intentar arreglarlo. Me siento a su lado en el suelo, con la espalda contra la cama."
+        "Ella apoya la cabeza en mi hombro sin decir nada. Se queda así un buen rato. Yo también."
+        "Afuera se va apagando la tarde. Ninguno enciende la luz."
         s "[player]..."
-        s "Tú eres la única razón por la cual continúo viviendo todos los días."
-        s "No es una forma de hablar. Lo digo en serio."
-        s "Si no fuera por ti, no sé si seguiría aquí para contarte esto."
-        mc "Tranquila, Sayori... Siento que, a su vez, deberías de ir a un psicólogo."
-        mc "Te acompañaré en cada terapia."
-        s "..."
-        s "No sé si eso vaya a arreglar algo. Pero si prometes quedarte conmigo, puedo intentarlo."
-        s "[player]..."
-        s "Gracias por estar aquí."
-        s "No sé qué hubiera pasado en unos días..."
-        "Abracé de nuevo a Sayori."
-        "Y ella me devolvió el abrazo."
-        with dissolve_scene_full
+        s "No se siente como pensé. Creí que iba a ser peor."
+        s "Se siente pesado. Pero menos solo."
+        mc "¿Y si hablamos con alguien que sepa de esto? Un psicólogo. Yo te acompaño, hasta la puerta o hasta adentro."
+        s "No sé si eso vaya a arreglar algo."
+        mc "Quizás no todo. Pero sería un comienzo."
+        s "...Si vienes conmigo, puedo intentarlo."
+        "Esta vez, cuando la abrazo, no me aleja. Me devuelve el abrazo despacio, como si temiera que me rompiera."
+        s "Gracias por estar aquí. No sé qué hubiera pasado en unos días..."
         jump yuri_continuación
     label yuri_continuación:
         stop music fadeout 1.5
@@ -3238,8 +3489,15 @@ label biblioteca:
         show yuri 1ct zorder 2 at f11
         y "Y... ¿se encuentra bien Sayori?"
         show yuri 1ci zorder 2 at t11
-        "Cómo quisiera poder mentirte en estos momentos..."
-        mc "Sí, se encuentra en su habitación."
+        if sayori_estado == "abierta":
+            "Cómo quisiera poder mentirte en estos momentos..."
+            mc "Sí, se encuentra en su habitación."
+        elif sayori_estado == "medias":
+            "No sé qué responderle."
+            mc "Dice que está bien."
+        else:
+            "No sé qué responderle."
+            mc "Dice que está bien. Que solo tenía sueño."
         show yuri 1cj zorder 2 at f11
         y "Entonces, ¿por qué cerraste la puerta de la casa? Te miras agitado..."
         show yuri 1co zorder 2 at t11
@@ -3256,12 +3514,26 @@ label biblioteca:
         y "Quizás solo necesite un tiempo para poder acomodar sus pensamientos. Espero lo mejor para ella."
         show yuri 1ca zorder 2 at t11
         mc "Sí..."
-        "Sayori, mi mejor amiga, se confesó conmigo... Todos sus sentimientos, lo que llevaba cargando todo este tiempo."
-        "Nunca pude llegar a pensar en que ella sufriría depresión."
-        show yuri 1cg zorder 2 at t11
-        "Siempre le he hecho bromas o me he burlado de ella por llegar tarde, estar despeinada... llevar el uniforme mal..."
-        "Qué depresión tan fuerte tendrá ella... para costarle levantarse de la cama."
-        "Todo ha sido mi culpa..."
+        if sayori_estado == "abierta":
+            "Sayori, mi mejor amiga, se confesó conmigo... Todos sus sentimientos, lo que llevaba cargando todo este tiempo."
+            "Nunca pude llegar a pensar en que ella sufriría depresión."
+            show yuri 1cg zorder 2 at t11
+            "Siempre le he hecho bromas o me he burlado de ella por llegar tarde, estar despeinada... llevar el uniforme mal..."
+            "Qué depresión tan fuerte tendrá ella... para costarle levantarse de la cama."
+            if sayori_respuesta == "consejo":
+                "Quise animarla y lo único que logré fue que se cerrara."
+                "Me dijo que lo intenta todos los días, y yo le dije que lo intentara."
+            "Todo ha sido mi culpa..."
+        elif sayori_estado == "medias":
+            "Sayori estuvo a punto de decirme algo. Lo vi en sus ojos. Y yo me quedé sin saber qué hacer."
+            show yuri 1cg zorder 2 at t11
+            "Siempre me burlé de ella por llegar tarde, estar despeinada... y nunca me pregunté por qué."
+            "Mañana iré a verla. Mañana sí."
+        else:
+            "Dice que solo tenía sueño."
+            "Un cuarto desordenado, un cuaderno que cierra de golpe, una sonrisa perfecta... Pero Sayori siempre sonríe, ¿no?"
+            show yuri 1cg zorder 2 at t11
+            "Tal vez estoy exagerando. Tal vez solo fue un mal día."
         show yuri 1cg zorder 2 at f11
         y "¿[player]?"
         show yuri 1cg zorder 2 at t11
