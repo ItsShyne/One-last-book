@@ -1167,6 +1167,41 @@ Se va y se entrelaza con el aire.
 Espero que no le diga lo que escucho.""",
 )
 
+#segundo poema de MC (el que le muestra a Yuri en la segunda ronda de poemas)
+poem_db.add_poem(
+    "poem_mc_intruso",
+    author_mc,
+    title="¿Yo soy el intruso?",
+    text="""\
+El día de hoy vi a un intruso en mi cuarto.
+Ese invasor, de la nada, empezó a usar mis cosas.
+Usa mi lugar en la mesa, pero nadie se da cuenta.
+El intruso se apropió de mi ser,
+y nadie se da cuenta al parecer.
+
+Y lo único que hago es mirar por la ventana,
+viendo cómo, poco a poco, reemplaza mi alma.
+Parece que no se dan cuenta de mi ausencia,
+y ese pensamiento lo cargo siempre en la conciencia.
+
+Pero se entiende que no puedan ver la diferencia,
+pues su anatomía es idéntica a la mía.
+Ellos ven su rostro lleno de alegría,
+pero ignoran el mío, que está lleno de agonía.
+
+Entonces, ¿por qué prefieren al invasor,
+si se supone que yo soy el presente?
+¿Por qué les interesa más el pasado?
+Ahora solo me siento más atado.
+
+Tal vez nunca perdí mi lugar;
+tal vez fui yo quien se dejó reemplazar.
+Y mientras a ese extraño le llaman "hogar",
+yo solo me pregunto si aún me quieren mirar.
+
+Entonces... ¿quién es realmente el intruso?""",
+)
+
 ###################### LIBRO COMPARTIDO (MC Y YURI) #######################
 # El libro que Yuri le regaló a MC y que leen juntos en cap2 (ver diálogo
 # donde Yuri resume la trama, cap2.rpy ~línea 908). Se muestra en dos
