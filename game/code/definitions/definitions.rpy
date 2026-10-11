@@ -2,7 +2,7 @@
 # This file defines important stuff for DDLC and your mod!
 
 # This variable declares whether to enable Developer Tools from Ren'Py.
-define config.developer = True 
+define config.developer = False
 
 # Whether to allow underfilled grids in the game.
 define config.allow_underfull_grids = True
@@ -121,11 +121,6 @@ define audio.creditos = "mod_assets/bgm/Horizon.mp3"
 define audio.opdoor = "mod_assets/bgm/opdoor.mp3"
 define audio.vibration = "mod_assets/bgm/vibration.mp3"
 define audio.glassbr = "mod_assets/bgm/glassbr.mp3"
-define audio.interruptor_on = "mod_assets/bgm/interruptor_on.wav"
-define audio.interruptor_off = "mod_assets/bgm/interruptor_off.wav"
-define audio.golpecitos = "mod_assets/bgm/golpecitos_suaves.wav"
-define audio.notificacion = "mod_assets/bgm/notificacion.wav"
-define audio.golpe_cabeza = "mod_assets/bgm/golpe_cabeza.wav"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -147,23 +142,61 @@ image bg MC_room_destroyed_night = "mod_assets/bg/MC_room_destroyed_night.png"
 image bg MC_room_destroyed_vignette = "mod_assets/bg/MC_room_destroyed_vignette.png"
 image bg MC_room_destroyed = "mod_assets/bg/MC_room_destroyed.png"
 image bg c_end = "mod_assets/bg/c_end.png"
-image bg club_invert = "mod assets/bg/club_invert.png"
+image bg club_invert = "mod_assets/bg/club_invert.png"
+image bg street1_cloudy = "mod_assets/bg/street1/street1_cloudy.png"
+image bg street1_nolight = "mod_assets/bg/street1/street1_nolight.png"
+image bg street1_night = "mod_assets/bg/street1/street1_night.png"
 image bg street1_aft = "mod_assets/bg/street1/street1_aft.png" 
-image bg street1_morn = "mod_assets/bg/street1/street1.png"
+image bg street1 = "mod_assets/bg/street1/street1.png"
+image bg street1_rainy = "mod_assets/bg/street1/street1_rainy.png"
+image bg street1_stormy = "mod_assets/bg/street1/street1_stormy.png"
 image bg monika_room_evening = "mod_assets/bg/monika_bedroom_evening.png"
 image bg monika_room_night = "mod_assets/bg/monika_bedroom_night.png"
 image bg monika_room = "mod_assets/bg/monika_bedroom.png"
+image bg gate_rainy =  "mod_assets/bg/gate/gate_rainy.png" 
+image bg gate_closed_stormy = "mod_assets/bg/gate/gate_closed_stormy.png" 
+image bg gate_night_stormy =  "mod_assets/bg/gate/gate_night_stormy.png"
+image bg gate_aft_stormy = "mod_assets/bg/gate/gate_aft_stormy.png"
+image bg gate_stormy  = "mod_assets/bg/gate/gate_stormy.png"
+image bg gate_closed_cloudy = "mod_assets/bg/gate/gate_closed_cloudy.png" 
+image bg gate_night_cloudy = "mod_assets/bg/gate/gate_night_cloudy.png"
+image bg gate_aft_cloudy = "mod_assets/bg/gate/gate_aft_cloudy.png"
+image bg gate_cloudy = "mod_assets/bg/gate/gate_cloudy.png"
+image bg gate_closed = "mod_assets/bg/gate/gate_closed.png"
+image bg gate_night = "mod_assets/bg/gate/gate_night.png"
+image bg gate_aft = "mod_assets/bg/gate/gate_aft.png"
+image bg gate = "mod_assets/bg/gate/gate.png"
+image bg gate_closed_rainy = "mod_assets/bg/gate/gate_closed_rainy.png"
+image bg gate_night_rainy = "mod_assets/bg/gate/gate_night_rainy.png"
+image bg gate_aft_rainy = "mod_assets/bg/gate/gate_aft_rainy.png"
+image bg library_nolight =  "mod_assets/bg/library/library_nolight.png" 
+image bg library_night =  "mod_assets/bg/library/library_night.png"
 image bg library_aft =  "mod_assets/bg/library/library_aft.png"
+image bg library =  "mod_assets/bg/library/library.png"
+image bg library_stormy =  "mod_assets/bg/library/library_stormy.png"
+image bg library_cloudy =  "mod_assets/bg/library/library_cloudy.png"
+image bg city_street_rainy =  "mod_assets/bg/city_street/city_street_rainy.png"
+image bg city_street_stormy =  "mod_assets/bg/city_street/city_street_stormy.png" 
 image bg city_street_cloudy =  "mod_assets/bg/city_street/city_street_cloudy.png"
+image bg city_street_nolight =  "mod_assets/bg/city_street/city_street_nolight.png" 
+image bg city_street_night =  "mod_assets/bg/city_street/city_street_night.png" 
 image bg city_street_aft =  "mod_assets/bg/city_street/city_street_aft.png" 
+image bg city_street =  "mod_assets/bg/city_street/city_street.png"
+image bg courtyard_aft =  "mod_assets/bg/courtyard/courtyard_aft.png" 
+image bg courtyard =  "mod_assets/bg/courtyard/courtyard.png"
+image bg courtyard_nolight =  "mod_assets/bg/courtyard/courtyard_nolight.png" 
+image bg courtyard_night =  "mod_assets/bg/courtyard/courtyard_night.png"
+image bg yuri_bedroom = "mod_assets/bg/yuri_bed.png"
 image bg yuri_bedroom_night = "mod_assets/bg/yuri_bed_night.png"
-image bg guest_room_nolight = "mod_assets/bg/bedroom2/bedroom2_nolight.png"
-image bg guest_room = "mod_assets/bg/bedroom2/bedroom2_night.png"
+image bg yuri_bathroom = "mod_assets/bg/Bathroom_BG.jpg"
+image bg clothing_store = "mod_assets/bg/clothing_store.png"
+image bg noodle_shop = "mod_assets/bg/noodle_shop.png"
 image bg sayori_street_aft = "mod_assets/bg/streetafternoon.png"
 image bg sayori_bedroom_aft = "mod_assets/bg/sayori_bedroom-e.png"
+image bg house_nolight =  "mod_assets/bg/house/house_nolight.png" 
+image bg house_night =  "mod_assets/bg/house/house_night.png"
 image bg house_aft =  "mod_assets/bg/house/house_aft.png"
 image bg house_y =  "mod_assets/bg/house/house.png"
-image bg residential_aft = "mod_assets/bg/residentialdusk by Crashpunk#0025.png"
 ####################3
 image bg residential_day = "bg/residential.png" # Start of DDLC BG
 image bg class_day = "bg/class.png" # The classroom BG
@@ -190,9 +223,9 @@ image bg house = "bg/house.png" # Sayori's House BG
 image bg kitchen = "bg/kitchen.png" # MC's Kitchen BG
 ##############  ONE LAST BOOK  #####################
 image bg escaleras = "mod_assets/bg/stairs_mid/stairs_mid_aft.png"
-image bg bano_Yuri = "images/bg/baño_cuchillo.webp"
-image bg bano_Yuri_nocuchillo = "images/bg/baño_sin_cuchillo.webp"
-image bg bano_escolar = "mod_assets/bg/bano_escolar.png"
+image bg bano_Yuri = "images/bg/bano_cuchillo.webp"
+image bg bano_Yuri_nocuchillo = "images/bg/bano_sin_cuchillo.webp"
+image bg street1_morn = "mod_assets/bg/street1/street1.png"
 image bg living_room = "images/bg/yurihouseinterior.png"
 image bg living_room_aft = "images/bg/yurihouseinterior_aft.png"
 image bg living_room_night = "images/bg/living room night.png"
@@ -1744,60 +1777,6 @@ transform despertar_ojos:
 transform enfoque_despertar:
     blur 20.0
     ease 2.5 blur 0.0
-
-# --- Golpe en la cabeza al caer por la escalera (cap 2) ---
-# Se usan con la instruccion "camera at ..." (persiste entre escenas, a diferencia
-# de "show layer"). "camera" a secas la limpia.
-# Tropiezo, caida y golpe; despues queda la vision borrosa y mareada.
-transform golpe_cabeza_cam:
-    subpixel True
-    align (0.5, 0.5)
-    zoom 1.0 xoffset 0 yoffset 0 blur 0.0
-    easein 0.12 yoffset 8 xoffset -6 zoom 1.03
-    easein 0.12 yoffset -6 xoffset 8 zoom 1.04
-    easein 0.10 yoffset 10 xoffset -4 zoom 1.05
-    linear 0.04 yoffset 26 xoffset 0 zoom 1.08 blur 2.0
-    ease 0.08 yoffset -14 xoffset 7
-    ease 0.10 yoffset 12 xoffset -6 blur 3.5
-    ease 0.12 yoffset -7 xoffset 4
-    ease 0.15 yoffset 3 xoffset -2
-    ease 0.70 yoffset 0 xoffset 0 zoom 1.0 blur 4.5
-    block:
-        ease 1.6 blur 3.6 xoffset 2 yoffset 1
-        ease 1.6 blur 4.6 xoffset -2 yoffset -1
-        repeat
-
-# Mareo moderado (al subir al bano) y mareo leve (en el pasillo).
-transform vision_media:
-    subpixel True
-    align (0.5, 0.5)
-    ease 1.2 blur 2.0 zoom 1.0 xoffset 0 yoffset 0
-    block:
-        ease 2.0 blur 1.7 xoffset 1 yoffset 0
-        ease 2.0 blur 2.4 xoffset -1 yoffset 0
-        repeat
-
-transform vision_leve:
-    subpixel True
-    align (0.5, 0.5)
-    ease 1.5 blur 1.1 zoom 1.0 xoffset 0 yoffset 0
-    block:
-        ease 2.5 blur 0.8
-        ease 2.5 blur 1.3
-        repeat
-
-# La vision se aclara del todo (fin del efecto).
-transform vision_fin:
-    subpixel True
-    align (0.5, 0.5)
-    ease 1.5 blur 0.0 zoom 1.0 xoffset 0 yoffset 0
-
-# Destello blanco justo en el momento del golpe.
-transform flash_golpe_atl:
-    alpha 0.0
-    pause 0.34
-    alpha 0.85
-    easeout 0.55 alpha 0.0
 
 transform parpados_abriendo:
     Solid("#000")

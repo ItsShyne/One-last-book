@@ -92,12 +92,20 @@ def restore_character(characters: list[str]):
     for character in characters:
         character_file_path = os.path.join(characters_folder, f"{character}.chr")
         if not os.path.exists(character_file_path):
-            src_path = os.path.join("chrs", f"{character}.chr").replace("\\", "/")
+            src_path = None
+            for candidate in [
+                f"code/chrs/{character}.chr",
+                f"chrs/{character}.chr",
+            ]:
+                if renpy.loadable(candidate):
+                    src_path = candidate
+                    break
 
-            src_file = renpy.open_file(src_path)
-            data = src_file.read()
-            with open(character_file_path, "wb") as char_file:
-                char_file.write(data)
+            if src_path:
+                with renpy.open_file(src_path) as src_file:
+                    data = src_file.read()
+                with open(character_file_path, "wb") as char_file:
+                    char_file.write(data)
 
 
 def restore_characters():
