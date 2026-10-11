@@ -1,0 +1,189 @@
+name: Compilador
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versión (el archivo se llamará: OneLastBook-<versión>.zip)'
+        required: true
+        type: string
+        default: '0.9'
+
+jobs:
+  build:
+    name: Compilar y subir
+    runs-on: ubuntu-slim
+    permissions:
+      contents: write
+
+    env:
+      RENPY_VERSION: "8.5.2"
+      RENPY_DIR: renpy
+      DDLC_DIR: ddlc-base
+      BUILD_DIR: build
+
+    steps:
+      # ── 1. Validar la versión ────────────────────────────────────────────────
+      - name: Validar versión
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if [[ -z "$VERSION" ]]; then
+            echo "La versión no puede estar vacía."
+            exit 1
+          fi
+          if [[ ! "$VERSION" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+            echo "La versión contiene caracteres inválidos. Usa solo: letras, números, '.', '_', '-'"
+            exit 1
+          fi
+          echo "El archivo se llamará: OneLastBook-${VERSION}.zip"
+          echo "FILE_NAME=OneLastBook-${VERSION}" >> "$GITHUB_ENV"
+
+      # ── 2. Checkout del repositorio ─────────────────────────────────────────
+      - name: Checkout código
+        uses: actions/checkout@v4
+        with:
+          path: mod-source
+
+      # ── 3. Configurar Python ─────────────────────────────────────────────────
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.12'
+
+      # ── 4. Caché del SDK de Ren'Py ───────────────────────────────────────────
+      - name: Caché SDK Ren'Py
+        id: cache-renpy
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.RENPY_DIR }}/
+          key: renpy-${{ env.RENPY_VERSION }}
+
+      # ── 5. Descargar SDK de Ren'Py (solo si no está en caché) ───────────────
+      - name: Descargar SDK Ren'Py
+        if: steps.cache-renpy.outputs.cache-hit != 'true'
+        run: |
+          renpysdk=renpy-${RENPY_VERSION}-sdk.tar.bz2
+          wget -q https://www.renpy.org/dl/${RENPY_VERSION}/${renpysdk}
+          tar xf ${renpysdk}
+          rm ${renpysdk}
+          mv ${renpysdk/.tar.bz2/} ${RENPY_DIR}
+
+      # ── 6. Caché de los archivos base de DDLC ──────────────────────────────
+      - name: Caché DDLC base
+        id: cache-ddlc
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.DDLC_DIR }}/
+          key: ddlc-base-v2
+
+      # ── 7. Descargar DDLC base (solo si no está en caché) ──────────────────
+      - name: Descargar DDLC base
+        if: steps.cache-ddlc.outputs.cache-hit != 'true'
+        env:
+          DDLC_URL: ${{ secrets.DDLC }}
+        run: |
+          if [[ -z "$DDLC_URL" ]]; then
+            echo "El secret DDLC no está configurado en el repositorio."
+            echo "Ve a Settings > Secrets > Actions y agrega DDLC con el enlace de descarga."
+            exit 1
+          fi
+          echo "Descargando DDLC base..."
+          wget -q "$DDLC_URL" -O ddlc-win.zip
+          unzip -q ddlc-win.zip -d ddlc-extract/
+          rm ddlc-win.zip
+          # DDLC se extrae en DDLC-1.1.1-pc/, lo movemos al directorio de caché
+          mv ddlc-extract/DDLC-1.1.1-pc ${DDLC_DIR}
+          rm -rf ddlc-extract/
+          echo "DDLC base extraído:"
+          ls -lh ${DDLC_DIR}/
+
+      # ── 8. Preparar carpeta de compilación (DDLC + mod) ────────────────────
+      - name: Preparar carpeta de compilación
+        run: |
+          # Copiar todo el DDLC base como punto de partida
+          cp -Rf ${DDLC_DIR} ${BUILD_DIR}
+
+          # Copiar los archivos del mod encima (game/, characters/ y project.json)
+          cp -Rf mod-source/game/* ${BUILD_DIR}/game/
+          cp -Rf mod-source/characters/* ${BUILD_DIR}/characters/ 2>/dev/null || true
+          cp -f mod-source/project.json ${BUILD_DIR}/project.json
+
+          # Eliminar scripts.rpa del DDLC base original (el mod provee sus propios scripts)
+          rm -f ${BUILD_DIR}/game/scripts.rpa
+          rm -f ${BUILD_DIR}/game/*.rpyc 2>/dev/null || true
+
+          echo "Carpeta de compilación lista:"
+          ls -lh ${BUILD_DIR}/
+          echo "Contenido de game/:"
+          ls -lh ${BUILD_DIR}/game/ | head -20
+
+      # ── 9. Compilar el mod ─────────────────────────────────────────────────
+      - name: Compilar mod
+        run: |
+          mkdir -p dist
+          cd ${RENPY_DIR}
+          ./renpy.sh launcher distribute "../${BUILD_DIR}" \
+            --package Renpy8-DDLCMod \
+            --destination "../dist" \
+            --no-update
+
+          echo "Archivos generados en dist/:"
+          ls -lh "../dist/"
+
+      # ── 10. Renombrar el ZIP generado ──────────────────────────────────────
+      - name: Renombrar archivo
+        run: |
+          cd dist
+
+          ORIGINAL_ZIP=$(ls *.zip 2>/dev/null | head -n 1)
+
+          if [[ -z "$ORIGINAL_ZIP" ]]; then
+            echo "No se encontró el ZIP compilado. Archivos en dist/:"
+            ls -lh
+            exit 1
+          fi
+
+          echo "ZIP original: $ORIGINAL_ZIP"
+          mv "$ORIGINAL_ZIP" "${{ env.FILE_NAME }}.zip"
+          echo "Renombrado a: ${{ env.FILE_NAME }}.zip"
+          echo "ASSET_PATH=$(pwd)/${{ env.FILE_NAME }}.zip" >> "$GITHUB_ENV"
+
+      # ── 11. Encontrar la última release o pre-release ──────────────────────
+      - name: Encontrar release destino
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO="${{ github.repository }}"
+          RELEASE_DATA=$(gh release list --repo "$REPO" --limit 10 --json tagName,isPrerelease,isDraft 2>/dev/null || echo "[]")
+
+          STABLE_TAG=$(echo "$RELEASE_DATA" | jq -r '[.[] | select(.isPrerelease == false and .isDraft == false)] | first | .tagName // empty')
+
+          if [[ -n "$STABLE_TAG" ]]; then
+            echo "Se usará la release estable: $STABLE_TAG"
+            echo "RELEASE_TAG=$STABLE_TAG" >> "$GITHUB_ENV"
+          else
+            PRE_TAG=$(echo "$RELEASE_DATA" | jq -r '[.[] | select(.isPrerelease == true and .isDraft == false)] | first | .tagName // empty')
+
+            if [[ -n "$PRE_TAG" ]]; then
+              echo "No hay release estable. Se usará la pre-release: $PRE_TAG"
+              echo "RELEASE_TAG=$PRE_TAG" >> "$GITHUB_ENV"
+            else
+              echo "No se encontró ninguna release ni pre-release en el repositorio."
+              exit 1
+            fi
+          fi
+
+      # ── 12. Subir el archivo a la release ──────────────────────────────────
+      - name: Subir a release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Subiendo ${{ env.FILE_NAME }}.zip a la release ${{ env.RELEASE_TAG }}..."
+
+          gh release upload "${{ env.RELEASE_TAG }}" \
+            "${{ env.ASSET_PATH }}" \
+            --repo "${{ github.repository }}" \
+            --clobber
+
+          echo "Archivo subido exitosamente!"
+          echo "https://github.com/${{ github.repository }}/releases/tag/${{ env.RELEASE_TAG }}"
