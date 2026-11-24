@@ -26,7 +26,7 @@ transform time_skip_text_appear:
 label time_skip(text):
     window hide
     scene black
-    show time_skip_text "[text]" at time_skip_text_appear
+    show time_skip_text "[text!t]" at time_skip_text_appear
     pause 2.8
     scene black
     return
@@ -592,7 +592,7 @@ label splashscreen:
         # Show the warning disclaimer first
         if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
             $ splash_message = renpy.random.choice(splash_messages)
-        show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
+        show splash_warning "[splash_message!t]" with Dissolve(0.5, alpha=True)
         $ pause(1.5)
         $ pause(2.5)
         hide splash_warning with Dissolve(0.5, alpha=True)
@@ -756,7 +756,7 @@ label splashscreen:
         # Show the warning disclaimer first
         if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
             $ splash_message = renpy.random.choice(splash_messages)
-        show splash_warning "[splash_message]" with Dissolve(0.5, alpha=True)
+        show splash_warning "[splash_message!t]" with Dissolve(0.5, alpha=True)
         $ pause(1.5)
         $ pause(2.5)
         hide splash_warning with Dissolve(0.5, alpha=True)

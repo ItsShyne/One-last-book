@@ -70,3 +70,15 @@ translate english strings:
     old "Estoy de acuerdo."
     new "I agree."
 
+    # game/code/definitions/py/core_ren.py:22 (splash_message_default, se muestra con [splash_message!t])
+    old "Este mod es un juego no oficial hecho por fans que no está afiliado a Team Salvato."
+    new "This mod is an unofficial fan-made game that is not affiliated with Team Salvato."
+
+    # game/code/definitions/splash.rpy:673
+    old "{color=#ffffff}Espera un momento...{/color}"
+    new "{color=#ffffff}Wait a moment...{/color}"
+
+    # game/code/definitions/splash.rpy:716
+    old "{color=#ffffff}¿Y si la historia fuese diferente?{/color}"
+    new "{color=#ffffff}What if the story were different?{/color}"
+

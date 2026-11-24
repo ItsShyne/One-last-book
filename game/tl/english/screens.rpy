@@ -262,3 +262,41 @@ translate english strings:
     old "{#in language font}Continuar / Continue"
     new "{#in language font}Continue / Continuar"
 
+    # game/screens.rpy:509 y 513 (aviso al pulsar "Iniciar historia" si aún no hay nombre)
+    old "Por favor ingresa tu nombre"
+    new "Please enter your name"
+
+    # Pantalla "Credits" del menú (game/screens.rpy:1040-1050)
+    old "\"One Last Book\" es un mod creado por el equipo de Doki Nova. Como un remake de Fallen Angel\n\n"
+    new "\"One Last Book\" is a mod created by the Doki Nova team, a remake of Fallen Angel\n\n"
+
+    old "PROGRAMACIÓN:\n\n"
+    new "PROGRAMMING:\n\n"
+
+    old "Minijuegos: Falkner\n\n"
+    new "Minigames: Falkner\n\n"
+
+    old "Historia: Leni\n\n"
+    new "Story: Leni\n\n"
+
+    old "Port a android: Slytharbez\n\n"
+    new "Android port: Slytharbez\n\n"
+
+    old "ARTE:\n\n"
+    new "ART:\n\n"
+
+    old "sprites de Yuri en el baño y otro: Parraga\n\n"
+    new "Yuri's bathroom sprites and another one: Parraga\n\n"
+
+    old "hacerse wey: Saorin\n\n"
+    new "Playing dumb: Saorin\n\n"
+
+    old "Gui y MC: enpect\n\n"
+    new "GUI and MC: enpect\n\n"
+
+    old "chibis: Artful\n\n"
+    new "Chibis: Artful\n\n"
+
+    old "Gui: Ledezx\n\n"
+    new "GUI: Ledezx\n\n"
+
