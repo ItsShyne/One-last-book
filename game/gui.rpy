@@ -120,6 +120,13 @@ define gui.namebox_tile = False
 define gui.text_xpos = 268
 define gui.text_ypos = 62
 
+# Ajuste fino del texto de los dialogos. Se aplica a los estilos "normal", "edited"
+# y "say_dialogue" (el juego cambia say_dialogue por normal al empezar y al cargar,
+# por eso hay que tocar los tres). yoffset negativo = sube el texto; line_spacing
+# negativo = renglones mas juntos (para que 3 lineas no toquen el menu rapido).
+define gui.dialogue_yoffset = -10
+define gui.dialogue_line_spacing = 1
+
 # This controls the maximum width of dialogue text.
 define gui.text_width = 744
 
@@ -194,8 +201,8 @@ define gui.choice_button_text_font = gui.default_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
 
-define gui.choice_button_text_idle_color = "#000"
-define gui.choice_button_text_hover_color = "#fa9"
+define gui.choice_button_text_idle_color = "#ffffff"
+define gui.choice_button_text_hover_color = "#FFD7F0"
 
 ## File Slot Buttons 
 # This controls the file slot buttons in the save/load menu. 

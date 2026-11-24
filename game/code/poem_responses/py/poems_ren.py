@@ -122,6 +122,11 @@ class Poem(renpy.text.text.Text):
         self.author = author
         self.paper = renpy.easy.displayable_or_none(paper) or renpy.Null()
         self.music = music
+        # Copias del título/texto sin combinar, para pantallas (como la del
+        # libro compartido) que necesitan repartir el contenido en varias
+        # columnas en vez de mostrarlo como un único bloque de texto.
+        self.raw_title = title
+        self.raw_text = text
 
     def format_music_str(self, music: str, pos: int = 0):
         """
@@ -162,6 +167,7 @@ class Poem(renpy.text.text.Text):
         from_current: bool = True,
         revert_music: bool = True,
         testing: bool = False,
+        transition=None,
     ):
         """
         Displays the poem to the Poem Response screen.
@@ -171,6 +177,8 @@ class Poem(renpy.text.text.Text):
         :param from_current: Whether to start the music from the current position of the previous music track.
         :param revert_music: Whether to revert the music to the previous track after the poem is displayed.
         :param testing: Unused in DDLC. Used for GitHub Actions testing purposes.
+        :param transition: Transition to use for showing/hiding the poem. Defaults to
+            the usual dissolve if not given (does not affect existing poems that don't pass it).
 
         :type paper_sound: str | None
         :type music: str | bool
@@ -178,6 +186,7 @@ class Poem(renpy.text.text.Text):
         :type revert_music: bool
         :type testing: bool
         """
+        transition = transition or store.dissolve
         if not testing:
             previous_music = None
 
@@ -206,7 +215,7 @@ class Poem(renpy.text.text.Text):
             skipping = store._skipping
             store._skipping = False
 
-            renpy.transition(store.dissolve)
+            renpy.transition(transition)
             renpy.show_screen("poem", self)
             pause()
 
@@ -218,7 +227,7 @@ class Poem(renpy.text.text.Text):
                 renpy.show(img, at_list=at_list)
 
             renpy.hide_screen("poem")
-            renpy.transition(store.dissolve)
+            renpy.transition(transition)
 
             renpy.config.allow_skipping = allow_skipping
             store._skipping = skipping
@@ -343,6 +352,7 @@ author_n = PoemAuthor("natsuki", music="<loop 4.444>bgm/5_natsuki.ogg")
 author_y = PoemAuthor("yuri", music="<loop 4.444>bgm/5_yuri.ogg")
 author_m = PoemAuthor("monika", music="<loop 4.444>bgm/5_monika.ogg")
 author_mc = PoemAuthor("mc")
+author_libro = PoemAuthor("libro", paper="mod_assets/bg/libro_paper.png")
 
 ## Yuri's Poems
 poem_db.add_poem(
@@ -1003,18 +1013,18 @@ Memorias las cuales prefiero no recordar
 Pero no importa, pues es mi libro favorito.
 
 Ese libro lo sabe todo de mi pasado 
-Lo cual eso me tiene muy asustado 
+Lo cual me tiene muy asustado
 Pues esas memorias, al papel ya se han pegado 
 Negándose a ser borradas 
-Pues como cadenas me tienen atado
+Pues como cadenas me tienen atada
 Y amargas son, como si ese fuese su sabor 
-Pero no le doy importancia, es mi  libro favorito 
+Pero no le doy importancia, es mi libro favorito
 
 De ese libro no me puedo deshacer 
-Pues ya lo intente hacer arder 
+Pues ya lo intenté hacer arder
 Tan solo pensar en el libro, me hace estremecer 
 Pero no lo logro entender 
-Ya que  esas memorias no quieren desaparecer
+Ya que esas memorias no quieren desaparecer
 Pues esos capítulos, ya se han aferrado al pasado.
 
 Y ahí entendí que ya no me queda nada más que hacer, pues es mi libro favorito.""",
@@ -1027,13 +1037,13 @@ poem_db.add_poem(
     text="""\
 Bajo la luna, del mes de diciembre 
 Escucho un eco que siempre vuelve 
-Donde cualquier rastro  de ti
+Donde cualquier rastro de ti
 Un asco profundo logra provocar 
 Y un desprecio inmenso, empiezo a demostrar.
 
 A tu falta de valentía 
-Me toca a mi sufrir con esta agonía 
-Que se que desaparecerá algún día 
+Me toca a mí sufrir con esta agonía
+Que sé que desaparecerá algún día
 Y por tu culpa este sentir 
 Solo se niega a partir 
 
@@ -1042,29 +1052,29 @@ Tengo que sufrir
 Pues, ese sentir llega hasta lo más profundo de mi raíz.
 
 Todo eso me toca sufrir en diciembre 
-Mes que odiare por siempre 
-Pues desde ese entonces tu sombra es como una espina la cual no me puedo librar 
+Mes que odiaré por siempre
+Pues desde ese entonces tu sombra es como una espina de la cual no me puedo librar
 Pues la luna de diciembre 
 Abre la cicatriz que me atormenta por siempre 
 
-Pero algún día te tocara a ti sufrir 
+Pero algún día te tocará a ti sufrir
 Y así tal vez, yo aprenda a vivir 
 Para así, este recuerdo ya dejar ir.
 
-Pero ¿por que todo, eso tengo que recordar en el mes de diciembre? """,
+Pero ¿por qué todo, eso tengo que recordar en el mes de diciembre? """,
 )
 #poema de Natsuki
 poem_db.add_poem(
     "natsuki_poem1",
     author_n,
-    title= "Las Aguilas pueden volar",
+    title= "Las Águilas pueden volar",
     text="""\
 Los monos pueden trepar,
 los grillos pueden saltar,
 los caballos pueden correr,
-los buhos pueden buscar,
-los guepardos pueden corre,
-las aguilas pueden volar,
+los búhos pueden buscar,
+los guepardos pueden correr,
+las águilas pueden volar,
 la gente puede intentarlo,
 pero eso es todo.""",
 )
@@ -1074,25 +1084,25 @@ pero eso es todo.""",
 poem_db.add_poem(
     "Sayori_poem1",
     author_s,
-    title= "No sé como ser yo sin ti",
+    title= "No sé cómo ser yo sin ti",
     text="""\
 volví a intentar despertar
 el lago de noche prometí este día visitar
-me levanto, si ¿pero que mas da?
+me levanto, sí ¿pero qué más da?
 si cada vez lo pienso, a la cama
 quiero ir una vez más.
 
 Vuelve el deseo a mi mente
-el deseo de tenerte aqui en lago
+el deseo de tenerte aquí en el lago
 y ya no ser indiferentes
 rápido lo empiezo a quitar
-recuerdo que alguien mas ya ocupa mi lugar
+recuerdo que alguien más ya ocupa mi lugar
 y simplemente... ya no puedo respirar.
 
-ya no quiero nada más, ni siquiera se
+ya no quiero nada más, ni siquiera sé
 si me quiero despertar
 al lago de noche ya no quiero ir
-porque no se como ser yo sin. """,
+porque no sé cómo ser yo sin ti. """,
 )
 #poema de Yuri
 poem_db.add_poem(
@@ -1100,21 +1110,21 @@ poem_db.add_poem(
     author_y,
     title= "Señor tic tac",
     text="""\
-Hoy ante mi tu, te has de presentar Señor tic tac 
+Hoy ante mí tú, te has de presentar Señor tic tac
 Pues me quieres confesar que el tiempo ya no funciona igual 
 Ya que se debe a las tempestades que yo desate en su corazón 
-Pues es mi forma de agradecer, por  haberme sacado de mi caparazón.
+Pues es mi forma de agradecer, por haberme sacado de mi caparazón.
 
-Pero yo quiero que mañana tu estés
+Pero yo quiero que mañana tú estés
 Ya que me juraste, segundos recoger 
 Y así hacer un caminito hecho de años 
-Para juntos crecer, mientras tu me escribes cartas en una hoja 
+Para juntos crecer, mientras tú me escribes cartas en una hoja
 Mientras desafías al reloj dentro de una paradoja.
 
-Tu me has contado Señor tic tac 
+Tú me has contado Señor tic tac
 Que has visto que la lluvia se retuerce al caer 
 Y haber visto golondrinas durante el amanecer 
-Olvidando  esas historias que aun no tienen solución 
+Olvidando esas historias que aún no tienen solución
 Pues has decidido darme todo tu amor.
 
 Ahora que el tiempo volvió a la normalidad 
@@ -1124,7 +1134,7 @@ Ya que acabaste el caminito hecho de años para que juntos pudiéramos envejecer
 Me escribiste un millón de cartas en todas estas hojas 
 Pues ya dejaste de desafiar al reloj, en todas esas paradojas. 
 
-Gracias por mostrarte ante mi Señor tic tac. """,
+Gracias por mostrarte ante mí Señor tic tac. """,
 )
 #poema de MC
 poem_db.add_poem(
@@ -1138,7 +1148,7 @@ En esos días, entras sin querer perturbar el polvo y te sientas.
 No preguntas, tampoco esperas.
 
 El libro queda en la mesa,
-El té se enfría, por que me haces centrar la mente en lo que importa y la lengua se me va.
+El té se enfría, porque me haces centrar la mente en lo que importa y la lengua se me va.
 Tú escuchas, sin impacientarte.
 Solo existes, y eso ya es más de lo que merezco.
 
@@ -1155,4 +1165,119 @@ Aunque no nos conozcamos, nos entendemos.
 El vapor se va, no hay más,
 Se va y se entrelaza con el aire.
 Espero que no le diga lo que escucho.""",
+)
+
+#segundo poema de MC (el que le muestra a Yuri en la segunda ronda de poemas)
+poem_db.add_poem(
+    "poem_mc_intruso",
+    author_mc,
+    title="¿Yo soy el intruso?",
+    text="""\
+El día de hoy vi a un intruso en mi cuarto.
+Ese invasor, de la nada, empezó a usar mis cosas.
+Usa mi lugar en la mesa, pero nadie se da cuenta.
+El intruso se apropió de mi ser,
+y nadie se da cuenta al parecer.
+
+Y lo único que hago es mirar por la ventana,
+viendo cómo, poco a poco, reemplaza mi alma.
+Parece que no se dan cuenta de mi ausencia,
+y ese pensamiento lo cargo siempre en la conciencia.
+
+Pero se entiende que no puedan ver la diferencia,
+pues su anatomía es idéntica a la mía.
+Ellos ven su rostro lleno de alegría,
+pero ignoran el mío, que está lleno de agonía.
+
+Entonces, ¿por qué prefieren al invasor,
+si se supone que yo soy el presente?
+¿Por qué les interesa más el pasado?
+Ahora solo me siento más atado.
+
+Tal vez nunca perdí mi lugar;
+tal vez fui yo quien se dejó reemplazar.
+Y mientras a ese extraño le llaman "hogar",
+yo solo me pregunto si aún me quieren mirar.
+
+Entonces... ¿quién es realmente el intruso?""",
+)
+
+###################### LIBRO COMPARTIDO (MC Y YURI) #######################
+# El libro que Yuri le regaló a MC y que leen juntos en cap2 (ver diálogo
+# donde Yuri resume la trama, cap2.rpy ~línea 908). Se muestra en dos
+# fragmentos, uno por cada sesión de lectura compartida.
+poem_db.add_poem(
+    "libro_fragmento1",
+    author_libro,
+    title="Capítulo 1",
+    paper=author_libro.paper,
+    text="""\
+Llevo tres noches contando los pasos del guardia. Catorce hasta el poste norte, catorce de vuelta, una pausa demasiado larga junto al portón oxidado que ya no sé si es real o si la imaginé para tener algo en qué pensar que no fuera el hambre.
+
+—Esta noche —dijo Elara, sin mirarme. No hacía falta que me mirara. Hace años que dejé de necesitar que alguien me mirara para saber que me estaba hablando a mí.
+
+Asentí, aunque no pudo verme en la oscuridad. Llevaba el pan seco escondido entre la ropa desde hacía una semana, un poco cada día, robado a mí mismo en cada comida, aunque no sabía bien si lo hacía por sobrevivir el bosque o por tener algo que controlar.
+\f
+El miedo no se siente como en los libros que leía antes de esto. No es un grito atorado en la garganta. Es un frío que se instala en las manos y no se va, no importa cuántas veces las cierre en puños, no importa cuántas veces me diga que esta va a ser la última noche que tenga miedo.
+
+—¿Y si no lo logramos? —le pregunté, y odié cómo sonó mi voz al decirlo, tan pequeña, tan parecida a la de alguien que ya sabe la respuesta.
+
+Elara tomó mi mano. No respondió. Aprendí de ella que algunas preguntas es mejor dejarlas sin responder, para que la esperanza no tenga que competir con la verdad.""",
+)
+
+poem_db.add_poem(
+    "libro_fragmento2",
+    author_libro,
+    title="Capítulo 2",
+    paper=author_libro.paper,
+    text="""\
+Los guardias no dijeron una palabra cuando me trajeron de vuelta al campamento. No hacía falta que dijeran nada; ya sabía, por cómo evitaban mirarme, que lo que venía era peor que cualquier palabra que pudieran haber elegido.
+
+Me dieron a elegir entre mirar o cerrar los ojos. Elegí mirar, porque pensé que si Elara tenía que soportar aquello, lo mínimo que yo podía hacer era no darle la espalda. No sé si fue valentía o si simplemente ya no me quedaba nada más que ofrecerle.
+
+Después de esa noche dejé de contar los días. Me encerraron en un cuarto sin ventanas, donde el sol se convirtió en un rumor que otros contaban, un lujo que dejó de pertenecerme.
+\f
+Al principio le hablaba a las paredes, solo para no olvidar el sonido de mi propia voz. Después empecé a escuchar que las paredes me respondían, y no sabría decir en qué momento exacto dejé de asustarme por eso.
+
+Veo a Elara en los rincones más oscuros del cuarto, siempre a punto de decir algo, siempre desapareciendo justo antes de que logre acercarme lo suficiente. Algunas noches siento el peso de una soga alrededor de mi propio cuello, aunque nadie me la ha puesto ahí, y no sé si es un recuerdo de lo que le hicieron a ella o un aviso de lo que voy a hacerme yo.
+
+No sé cuántos días —o años— llevo aquí cuando finalmente entiendo lo que tengo que hacer. No para morir. Para encontrarla. La oscuridad, pienso mientras ato el nudo con manos que ya no tiemblan, nunca fue el castigo. El castigo era seguir respirando sin ella.""",
+)
+
+poem_db.add_poem(
+    "libro_fragmento1b",
+    author_libro,
+    title="",
+    paper=author_libro.paper,
+    text="""\
+La luna se escondió detrás de una nube justo cuando el guardia dio su decimocuarto paso hacia el poste norte. Elara apretó mi mano una última vez, y por un segundo pensé que ese apretón iba a ser lo único que recordaría de toda mi vida, si es que esa noche terminaba mal.
+
+—Ahora —susurró, y corrí antes de terminar de decidir que iba a correr.
+
+El pan seco se me cayó de la ropa en algún punto entre el barracón y el portón, y no me detuve a recogerlo. El corazón me latía más fuerte que mis propios pasos. El bosque parecía tan lejano como siempre, y tan cerca como nunca, y no sabía cuál de las dos cosas creer.
+\f
+Las primeras hileras de árboles parecían más una promesa que un refugio, pero corrí hacia ellas de todas formas, porque ya no tenía sentido dudar a esa altura.
+
+Por un instante —apenas un instante, tan corto que todavía no sé si lo invento ahora para poder soportar lo que vino después— creí que lo lograríamos. Sentí las ramas rozarme los brazos, la tierra húmeda bajo mis pies descalzos, el aire frío llenándome los pulmones como si fuera la primera vez que respiraba de verdad.
+
+Entonces los perros empezaron a ladrar, y supe, antes de que pasara nada más, que esa iba a ser la última vez que sentiría algo parecido a la esperanza.""",
+)
+
+poem_db.add_poem(
+    "libro_fragmento3",
+    author_libro,
+    title="Capítulo 3",
+    paper=author_libro.paper,
+    text="""\
+Vuelvo a este recuerdo casi todas las noches, aunque ya no sé si sigue siendo un recuerdo o algo que invento para no perder del todo la cabeza en esta oscuridad.
+
+Nadie en el pueblo entendía por qué prefería la soledad al ruido de la gente. Mi madre solía decirme que iba a terminar solo si seguía así, más cómodo con mis propios pensamientos que con cualquiera que intentara acercarse.
+
+Pero el silencio nunca me miraba raro. Nunca me preguntaba por qué hablaba tan bajo, por qué tardaba tanto en encontrar las palabras correctas, por qué prefería escribir lo que sentía antes que decirlo en voz alta.
+\f
+Escribía todas las noches, aunque nadie fuera a leerlo jamás. No porque tuviera algo importante que decir, sino porque era la única forma que conocía de poner en orden lo que llevaba dentro.
+
+«Si alguna vez alguien me entendiera de verdad —escribí una noche, mucho antes de todo esto—, no sabría qué hacer. Me he acostumbrado tanto a que no lo hagan.»
+
+Elara fue la primera persona que leyó esas páginas. Y en vez de asustarse, se quedó. Ahora, encerrado en esta habitación sin ventanas, es lo único que sigo intentando entender: por qué se quedó, y por qué yo no pude hacer lo mismo por ella cuando más lo necesitaba.""",
 )

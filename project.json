@@ -1,8 +1,7 @@
 {
   "build_update": false,
   "packages": [
-    "Renpy8-DDLCMod",
-    "win"
+    "Renpy8-DDLCMod"
   ],
   "add_from": true,
   "force_recompile": true,

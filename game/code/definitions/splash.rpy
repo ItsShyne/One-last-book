@@ -418,7 +418,7 @@ label splashscreen:
         # are available and the player hasn't chosen a language yet.
         if not persistent.has_chosen_language and translations:
             if _preferences.language is None:
-                call screen language_selector
+                call screen choose_language
 
         # You can edit this message but you MUST declare that your mod is 
         # unaffiliated with Team Salvato, requires that the player must 
@@ -608,15 +608,6 @@ label splashscreen:
         hide ts_logo with Dissolve(0.5, alpha=True)
         $ pause(0.5)
 
-        scene black
-
-        show doki_nova_logo as dn_logo with Dissolve(0.5, alpha=True)
-
-        $ pause(2.2)
-
-        hide dn_logo with Dissolve(0.5, alpha=True)
-        $ pause(0.5)
-
         # --------------------------------------------------------------------
         # FALLEN ANGEL ANIMATED MENU
         # --------------------------------------------------------------------
@@ -780,6 +771,9 @@ label splashscreen:
         hide ts_logo with Dissolve(0.5, alpha=True)
         $ pause(0.5)
 
+        # El logo de Doki Nova solo aparece a partir de la segunda apertura
+        # del juego en adelante -- la primera vez no se muestra (ver el
+        # bloque "FALLEN ANGEL INTRO" más arriba, que no lo incluye).
         scene black
 
         show doki_nova_logo as dn_logo with Dissolve(0.5, alpha=True)
@@ -869,11 +863,6 @@ label after_load:
         else:
             m "You're so funny, [persistent.playername]."
         $ renpy.utter_restart()
-    else:
-        # Show a hint about the skip button if it's the player's first playthrough.
-        if persistent.playthrough == 0 and not persistent.first_load and not config.developer:
-            $ persistent.first_load = True
-            call screen dialog("Hint: You can use the \"Skip\" button to\nfast-forward through text you've already read.", ok_action=Return())
     return
 
 ## This label loads the label saved in the autoload variable. 

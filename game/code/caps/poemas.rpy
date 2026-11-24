@@ -4,7 +4,7 @@
 
 label mostrar_poema_natsukis:
     
-    "Natsuki no está compartiendo poema con nadie, supongo que lo compartiré con ella primero"
+    "Natsuki no está compartiendo un poema con nadie, supongo que lo compartiré con ella primero"
     show natsuki 1c zorder 2 at t11
     n "A ver qué traes ahí..."
     
@@ -100,13 +100,13 @@ label mostrar_poema_Sayori:
     show sayori tap nerv om oe zorder 2 at f11
     s "Ya lo verás~"
     show sayori tap nerv cm oe zorder 2 at t11
-    "le entregué mi poema a Sayori"
+    "Le entregué mi poema a Sayori"
     show sayori turned rup happ om oe zorder 2 at f11
     s "Este poema es muy bueno."
     s "Me encanta, [player]."
     s "Me sorprendió, realmente parece como un poema que haría Yuri, jeje..."
     show sayori turned rup happ om oe zorder 2 at t11
-    mc "Espera Sayori, creo que te estás confundiendo-"
+    mc "Espera, Sayori, creo que te estás confundiendo-"
     show sayori turned rup happ om ce zorder 2 at f11
     s "Jeje, te conozco desde que somos niños, es imposible no notar cosas obvias"
     show sayori turned lsur om ce zorder 2 at t11

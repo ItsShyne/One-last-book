@@ -3,6 +3,12 @@
 
 # For the Python code, see `poems_ren.py` in the `py` directory.
 
+# Transición de "pasar la página" para el libro compartido de MC y Yuri --
+# mismo mecanismo que wipeleft_scene (ImageDissolve con una máscara
+# degradada), pero con un barrido diagonal en vez de recto, para que se
+# sienta como una página girando en vez de un wipe genérico de escena.
+define page_flip_transition = ImageDissolve("mod_assets/bg/creditos/page_flip_mask.png", 0.6, ramplen=64)
+
 screen poem(poem):
     style_prefix "poem"
 
@@ -14,23 +20,53 @@ screen poem(poem):
             add poem.paper:
                 subpixel True align (0.5, 0.5)
 
-        frame:
-            background None
-            
+        if poem.author == "libro":
+            # El libro compartido reparte el texto en dos columnas, una por
+            # hoja, en vez de un único bloque que atraviese el lomo. El
+            # punto de quiebre entre hojas se marca a mano en el texto con
+            # un carácter "\f" (ver poems_ren.py), en un salto de párrafo
+            # elegido para que ambas hojas queden parejas.
+            $ _libro_left, _libro_sep, _libro_right = poem.raw_text.partition("\f")
+            $ _libro_left = _libro_left.strip()
+            $ _libro_right = _libro_right.strip()
+
             hbox:
-                viewport id "poem_vp":
-                    draggable True
-                    mousewheel True
+                xalign 0.5 yalign 0.5 xpos 300
+                spacing 100
 
-                    add poem
+                vbox:
+                    xsize 360
 
-                vbar value YScrollValue("poem_vp")
-        
+                    if poem.raw_title:
+                        text poem.raw_title style "libro_text" bold True size 30
+
+                        null height 14
+
+                    text _libro_left style "libro_text"
+
+                vbox:
+                    xsize 360
+
+                    text _libro_right style "libro_text"
+        else:
+            frame:
+                background None
+
+                hbox:
+                    viewport id "poem_vp":
+                        draggable True
+                        mousewheel True
+
+                        add poem
+
+                    vbar value YScrollValue("poem_vp")
+
     if not persistent.first_poem:
         add "gui/poem_dismiss.png" xpos 1050 ypos 590
-    
-    key ["repeat_K_UP", "K_UP"] action Scroll("poem_vp", "vertical decrease", 20)
-    key ["repeat_K_DOWN", "K_DOWN"] action Scroll("poem_vp", "vertical increase", 20)
+
+    if poem.author != "libro":
+        key ["repeat_K_UP", "K_UP"] action Scroll("poem_vp", "vertical decrease", 20)
+        key ["repeat_K_DOWN", "K_DOWN"] action Scroll("poem_vp", "vertical increase", 20)
 
     on "show" action SetVariable("poem_last_author", poem.author)
 
@@ -93,6 +129,19 @@ style monika_text:
     size 28
     color "#000"
     outlines []
+
+# Estilo para fragmentos del libro que MC y Yuri leen juntos -- una serif
+# de imprenta en vez de la caligrafía de algún personaje, ya que es un
+# libro publicado, no un poema escrito a mano. Justificado como prosa
+# normal en vez de centrado como los poemas.
+style libro_text:
+    font "mod_assets/font/PTSerif-Regular.ttf"
+    size 18
+    color "#000"
+    outlines []
+    text_align 0.0
+    justify True
+    line_leading 2
 
 default poem_last_author = None
 

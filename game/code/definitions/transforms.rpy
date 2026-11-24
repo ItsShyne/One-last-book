@@ -8,7 +8,7 @@ transform tcommon(x=640, z=0.80):
         ypos 1.03
         zoom z*0.95 alpha 0.00
         xcenter x yoffset -20
-        easein .25 yoffset 0 zoom z*1.00 alpha 1.00
+        easein .45 yoffset 0 zoom z*1.00 alpha 1.00
     on replace:
 
         alpha 1.00
@@ -27,7 +27,7 @@ transform focus(x=640, z=0.80):
 
         zoom z*0.95 alpha 0.00
         xcenter x yoffset -20
-        easein .25 yoffset 0 zoom z*1.05 alpha 1.00
+        easein .45 yoffset 0 zoom z*1.05 alpha 1.00
         yanchor 1.0 ypos 1.03
     on replace:
         alpha 1.00
@@ -76,12 +76,12 @@ transform panic(x=640, z=0.80):
 # This transform causes the character to "fly in" (enter the scene) from the left.
 transform leftin(x=640, z=0.80):
     xcenter -300 yoffset 0 yanchor 1.0 ypos 1.03 zoom z*1.00 alpha 1.00 subpixel True
-    easein .25 xcenter x
+    easein .4 xcenter x
 
 # This transform causes the character to "fly in" (enter the scene) from the right.
 transform rightin(x=640, z=0.80):
     xcenter 2000 yoffset 0 yanchor 1.0 ypos 1.03 zoom z*1.00 alpha 1.00 subpixel True
-    easein .25 xcenter x
+    easein .4 xcenter x
 
 # This transform hides the character from the screen.
 transform thide(z=0.80):
@@ -89,19 +89,19 @@ transform thide(z=0.80):
     transform_anchor True
     on hide:
 
-        easein .25 zoom z*0.95 alpha 0.00 yoffset -20
+        easein .45 zoom z*0.95 alpha 0.00 yoffset -20
 
 # This transform hides the character by moving them to the left.
 transform lhide:
     subpixel True
     on hide:
-        easeout .25 xcenter -300
+        easeout .4 xcenter -300
 
 # This transform hides the character by moving them to the left.
 transform rhide:
     subpixel True
     on hide:
-        easeout .25 xcenter 2000
+        easeout .4 xcenter 2000
 
 # These transforms have the characters stand still at a given position given
 # how many characters are on screen and which character number they are.
@@ -126,6 +126,8 @@ transform t22:
     tcommon(880)
 transform t11:
     tcommon(640)
+transform t11_big:
+    tcommon(640, z=1.05)
 
 # These transforms makes the character pop in.
 transform i41:
@@ -348,7 +350,7 @@ transform n_cg2_zoom:
     easeout 0.20 zoom 2.5 xoffset 200
 
 # This variable defines the effect used by 'dissolve' by characters.
-define dissolve = Dissolve(0.25)
+define dissolve = Dissolve(0.4)
 
 # These variables define Dissolve(X) for CGs and scenes.
 define dissolve_cg = Dissolve(0.75)
@@ -385,23 +387,24 @@ define trueblack = MultipleTransition([
     ])
 
 # This variable makes the current character hide by wiping their sprite off-screen to the left.
-define wipeleft = ImageDissolve("images/menu/wipeleft.png", 0.5, ramplen=64)
+define wipeleft = ImageDissolve("images/menu/wipeleft.png", 0.8, ramplen=128)
 
 # This variable makes the current scene wipe to black from the left, then shows another scene.
+# (Tiempos alargados y borde mas suave para que el cambio de escena no sea tan brusco.)
 define wipeleft_scene = MultipleTransition([
-    False, ImageDissolve("images/menu/wipeleft.png", 0.5, ramplen=64),
-    Solid("#000"), Pause(0.25),
-    Solid("#000"), ImageDissolve("images/menu/wipeleft.png", 0.5, ramplen=64),
+    False, ImageDissolve("images/menu/wipeleft.png", 0.8, ramplen=128),
+    Solid("#000"), Pause(0.4),
+    Solid("#000"), ImageDissolve("images/menu/wipeleft.png", 0.8, ramplen=128),
     True])
 
 # This variable makes the current character hide by wiping their sprite off-screen to the right.
-define wiperight = ImageDissolve("images/menu/wipeleft.png", 0.5, ramplen=64, reverse=True)
+define wiperight = ImageDissolve("images/menu/wipeleft.png", 0.8, ramplen=128, reverse=True)
 
 # This variable makes the current scene wipe to black from the right, then shows another scene.
 define wiperight_scene = MultipleTransition([
-    False, ImageDissolve("images/menu/wipeleft.png", 0.5, ramplen=64, reverse=True),
-    Solid("#000"), Pause(0.25),
-    Solid("#000"), ImageDissolve("images/menu/wipeleft.png", 0.5, ramplen=64, reverse=True),
+    False, ImageDissolve("images/menu/wipeleft.png", 0.8, ramplen=128, reverse=True),
+    Solid("#000"), Pause(0.4),
+    Solid("#000"), ImageDissolve("images/menu/wipeleft.png", 0.8, ramplen=128, reverse=True),
     True])
 
 # This variable is possibly a left-over from DDLC's development.
@@ -548,8 +551,48 @@ init python:
         trans.yoffset = 3 + random.random() * 6 - 3
         return random.random() * 1.2 + 0.3
 
-# This transform makes the character appear on top with a transparency 
+# This transform makes the character appear on top with a transparency
 # for a bit during Act 2.
 transform malpha(a=1.00):
     i11
     alpha a
+
+# --- Eyelid and camera wake-up animations (Chapter 1) ---
+image top_lid = Solid("#000")
+image bottom_lid = Solid("#000")
+
+transform top_closed:
+    xpos 0
+    ypos 0
+    xsize 1280
+    ysize 360
+
+transform bottom_closed:
+    xpos 0
+    ypos 360
+    xsize 1280
+    ysize 360
+
+transform top_open:
+    ease 0.8 ypos -360
+
+transform bottom_open:
+    ease 0.8 ypos 720
+
+transform top_close:
+    ease 0.8 ypos 0
+
+transform bottom_close:
+    ease 0.8 ypos 360
+
+transform sleepy_camera:
+    subpixel True
+    zoom 1.05
+    xalign 0.5
+    yalign 0.5
+    linear 4.0 xoffset -15 yoffset 8
+    linear 4.0 xoffset 15 yoffset -8
+    repeat
+
+transform noche:
+    matrixcolor BrightnessMatrix(-0.25)

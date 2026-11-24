@@ -22,7 +22,7 @@ init python:
         rv = [(i, renpy.translate_string("{#language name and font}", i)) for i in languages ]
         rv.sort(key=lambda a : renpy.filter_text_tags(a[1], allow=[]).lower())
 
-        rv.insert(0, (None, "English"))
+        rv.insert(0, (None, "Español"))
 
         bound = math.ceil(len(rv)/2.)
 
@@ -35,7 +35,7 @@ default extra_settings = False
 # If you are using the Extras Menu feature, set this line to True.
 default enable_extras_menu = False
 # If you are going to use extra languages, set this to True.
-default enable_languages = False
+default enable_languages = True
 
 ## Color Styles
 ################################################################################
@@ -66,6 +66,8 @@ style edited is default:
     xanchor gui.text_xalign
     xsize gui.text_width
     ypos gui.text_ypos
+    yoffset gui.dialogue_yoffset
+    line_spacing gui.dialogue_line_spacing
     text_align gui.text_xalign
     layout ("subtitle" if gui.text_xalign else "tex")
 
@@ -74,6 +76,8 @@ style normal is default:
     xanchor gui.text_xalign
     xsize gui.text_width
     ypos gui.text_ypos
+    yoffset gui.dialogue_yoffset
+    line_spacing gui.dialogue_line_spacing
 
     text_align gui.text_xalign
     layout ("subtitle" if gui.text_xalign else "tex")
@@ -248,7 +252,9 @@ style say_dialogue:
     ypos gui.text_ypos
     text_align gui.text_xalign
     layout ("subtitle" if gui.text_xalign else "tex")
-    yoffset -10
+    # Mismos valores que "normal" (ver gui.dialogue_yoffset en gui.rpy)
+    yoffset gui.dialogue_yoffset
+    line_spacing gui.dialogue_line_spacing
 
 
 image ctc:
@@ -380,8 +386,8 @@ style choice_button is default:
     properties gui.button_properties("choice_button")
     hover_sound gui.hover_sound
     activate_sound gui.activate_sound
-    idle_background Frame("gui/button/choice_idle_background.png", gui.choice_button_borders)
-    hover_background Frame("gui/button/choice_hover_background.png", gui.choice_button_borders)
+    idle_background Frame("mod_assets/gui/choice_idle_background.png", gui.choice_button_borders)
+    hover_background Frame("mod_assets/gui/choice_hover_background.png", gui.choice_button_borders)
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
@@ -2043,14 +2049,14 @@ style confirm_button is gui_medium_button
 style confirm_button_text is gui_medium_button_text
 
 style confirm_frame:
-    background Frame("gui/frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
+    background Frame("mod_assets/gui/confirm_frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
     # background Frame(recolorize("gui/frame.png"), gui.confirm_frame_borders, tile=gui.frame_tile)
     padding gui.confirm_frame_borders.padding
     xalign .5
     yalign .5
 
 style confirm_prompt_text:
-    color "#000"
+    color "#ffffff"
     outlines []
     text_align 0.5
     layout "subtitle"
@@ -2062,6 +2068,9 @@ style confirm_button:
 
 style confirm_button_text is navigation_button_text:
     properties gui.button_text_properties("confirm_button")
+    idle_color "#F2D8FF"
+    hover_color "#ffffff"
+    selected_color "#ffffff"
 
 
 ## Skip indicator screen #######################################################
@@ -2294,7 +2303,7 @@ screen choose_language():
             xsize 760
             spacing 30
 
-            label renpy.translate_string(_("{#in language font}Please select a language"), local_lang):
+            label renpy.translate_string(_("{#in language font}Elige tu idioma / Choose your language"), local_lang):
                 style "confirm_prompt"
                 xalign 0.5
 
@@ -2315,13 +2324,13 @@ screen choose_language():
                 xalign 0.5
                 spacing 100
 
-                textbutton renpy.translate_string(_("{#in language font}Select"), local_lang):
+                textbutton renpy.translate_string(_("{#in language font}Continuar / Continue"), local_lang):
                     style "confirm_button"
                     action [Language(chosen_lang), SetField(persistent, "has_chosen_language", True), Return()]
 
 translate None strings:
     old "{#language name and font}"
-    new "English"
+    new "Español"
 
 label choose_language:
     call screen choose_language

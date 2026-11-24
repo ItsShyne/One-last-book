@@ -8,10 +8,12 @@ init -1 python:
     # AUTOMATICO: se detecta el tinte a partir del nombre del fondo actual
     # ("bg" es el tag que usan todos los fondos del mod). Por convencion,
     # sin sufijo = de dia, y el resto sigue el sufijo del archivo:
-    #   _night / _evening / _nolight -> noche
     #   _rainy / _stormy / _cloudy   -> lluvia
     #   _aft / _afternoon            -> tarde
-    #   (cualquier otro caso)        -> dia
+    #   (cualquier otro caso, incluidos _night/_evening/_nolight) -> dia
+    # No hay tinte especial para fondos de noche: ninguna escena del mod
+    # representa una falta real de luz, así que esos fondos quedan con el
+    # mismo tratamiento que los de día.
     # No hace falta tocar el guion para que esto funcione: cambia solo con
     # el "scene bg ..."/"show bg ..." que ya está puesto en cada escena.
     #
@@ -30,8 +32,6 @@ init -1 python:
 
     def detect_lighting_from_bg_name(name):
         name = (name or "").lower()
-        if "night" in name or "evening" in name or "nolight" in name:
-            return "noche"
         if "rainy" in name or "stormy" in name or "cloudy" in name:
             return "lluvia"
         if "aft" in name or "afternoon" in name:
